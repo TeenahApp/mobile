@@ -1,13 +1,153 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DTC-lY-A4W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller - Circles-->
+        <scene sceneID="daV-Qc-vdX">
+            <objects>
+                <viewController id="WUa-vC-a3D" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fwl-9g-fnc"/>
+                        <viewControllerLayoutGuide type="bottom" id="MTN-Y8-K9c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1ZL-j7-SdJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Circles" id="3Lc-s1-yUb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GUV-CX-W1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1514" y="1358"/>
+        </scene>
+        <!--View Controller - Settings-->
+        <scene sceneID="q20-bH-zcs">
+            <objects>
+                <viewController id="gGb-Gr-FPU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="410-dR-ykG"/>
+                        <viewControllerLayoutGuide type="bottom" id="BsT-tM-9Mv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A8y-ma-tDu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="IKu-hH-zOe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kVO-jr-Dii" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1514" y="-743"/>
+        </scene>
+        <!--First Hand Shake Login View Controller-->
+        <scene sceneID="EeF-7p-YRO">
+            <objects>
+                <viewController storyboardIdentifier="FirstHandShakeLogin" id="abE-bx-iSL" customClass="FirstHandShakeLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WXn-2b-yRO"/>
+                        <viewControllerLayoutGuide type="bottom" id="fuF-Y5-72Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Re2-t9-a3h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Key" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKJ-la-MdD">
+                                <rect key="frame" x="59" y="161" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mobile" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e2H-2e-mCT">
+                                <rect key="frame" x="164" y="161" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzg-7v-YH3">
+                                <rect key="frame" x="92" y="199" width="137" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send an SMS token">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="attempt:" destination="abE-bx-iSL" eventType="touchUpInside" id="Vgb-E2-YdQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.82992637049999995" green="1" blue="0.39692200700000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="keyTextField" destination="hKJ-la-MdD" id="p3S-I3-jbZ"/>
+                        <outlet property="mobileTextField" destination="e2H-2e-mCT" id="hcV-yW-tzl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JTK-8r-2n5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="-1444"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZG8-v5-Yq8">
+            <objects>
+                <viewController storyboardIdentifier="SecondHandShakeLogin" id="jiq-EK-oKR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BBp-u7-w3b"/>
+                        <viewControllerLayoutGuide type="bottom" id="xxC-rh-qX9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZpX-kd-gNE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SMS Token" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QnI-KA-WDx">
+                                <rect key="frame" x="112" y="163" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0q-H9-mkS">
+                                <rect key="frame" x="141" y="201" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="attempt:" destination="abE-bx-iSL" eventType="touchUpInside" id="Nhy-8B-77A"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ab3-Ug-TlI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7TG-jA-Xtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="-1444"/>
+        </scene>
+        <!--View Controller - Events-->
+        <scene sceneID="o0s-YR-cJF">
+            <objects>
+                <viewController id="YWV-Tp-8f9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pkM-RU-5Be"/>
+                        <viewControllerLayoutGuide type="bottom" id="LNY-El-H4z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BC8-tS-28h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Events" id="Mtx-xU-JaB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWu-S9-2in" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1514" y="-1444"/>
+        </scene>
+        <!--View Controller - Tree-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,9 +157,33 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Tree" id="rCA-DA-GeI"/>
+                    <navigationItem key="navigationItem" id="g4l-Tz-Jgr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1514" y="647"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9P6-d3-czb">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="DTC-lY-A4W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="bEF-30-8wI">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="DBz-WV-DQZ"/>
+                        <segue destination="WUa-vC-a3D" kind="relationship" relationship="viewControllers" id="n0w-YF-epc"/>
+                        <segue destination="gGb-Gr-FPU" kind="relationship" relationship="viewControllers" id="nuN-Zx-Wmc"/>
+                        <segue destination="YWV-Tp-8f9" kind="relationship" relationship="viewControllers" id="c18-uz-PGP"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oqR-7Z-GVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="604" y="-9"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

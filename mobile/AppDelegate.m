@@ -12,6 +12,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    FirstHandShakeLoginViewController * firstHandShakeLoginVC = (FirstHandShakeLoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstHandShakeLogin"];
+    
+    [self.window makeKeyAndVisible];
+    
+    [self.window.rootViewController presentViewController:firstHandShakeLoginVC animated:NO completion:nil];
+    
     // Override point for customization after application launch.
     return YES;
 }

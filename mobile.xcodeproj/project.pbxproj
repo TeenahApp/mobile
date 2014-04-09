@@ -14,13 +14,25 @@
 		FD54661618F5A66000BFD409 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54661518F5A66000BFD409 /* main.m */; };
 		FD54661A18F5A66000BFD409 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54661918F5A66000BFD409 /* AppDelegate.m */; };
 		FD54661D18F5A66000BFD409 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD54661B18F5A66000BFD409 /* Main.storyboard */; };
-		FD54662018F5A66000BFD409 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54661F18F5A66000BFD409 /* ViewController.m */; };
 		FD54662218F5A66000BFD409 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD54662118F5A66000BFD409 /* Images.xcassets */; };
 		FD54662918F5A66000BFD409 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54662818F5A66000BFD409 /* XCTest.framework */; };
 		FD54662A18F5A66000BFD409 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660918F5A66000BFD409 /* Foundation.framework */; };
 		FD54662B18F5A66000BFD409 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660D18F5A66000BFD409 /* UIKit.framework */; };
 		FD54663318F5A66000BFD409 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD54663118F5A66000BFD409 /* InfoPlist.strings */; };
 		FD54663518F5A66000BFD409 /* mobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54663418F5A66000BFD409 /* mobileTests.m */; };
+		FD54664618F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54664518F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m */; };
+		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
+		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
+		FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */; };
+		FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21C18F5C891001B53D0 /* TSweetMediasCommunicator.m */; };
+		FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21E18F5C891001B53D0 /* TSweetMembersCommunicator.m */; };
+		FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F22018F5C891001B53D0 /* TSweetMessagesCommunicator.m */; };
+		FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F22218F5C891001B53D0 /* TSweetSocialMediasCommunicator.m */; };
+		FDF1F23218F5C891001B53D0 /* TSweetTrusteesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F22418F5C891001B53D0 /* TSweetTrusteesCommunicator.m */; };
+		FDF1F23318F5C891001B53D0 /* TSweetResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F22618F5C891001B53D0 /* TSweetResponse.m */; };
+		FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F22818F5C891001B53D0 /* TSweetRest.m */; };
+		FDF1F23518F5C891001B53D0 /* TSweetUsersCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F22A18F5C891001B53D0 /* TSweetUsersCommunicator.m */; };
+		FDF1F23918F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F23818F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +57,40 @@
 		FD54661818F5A66000BFD409 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD54661918F5A66000BFD409 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FD54661C18F5A66000BFD409 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FD54661E18F5A66000BFD409 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FD54661F18F5A66000BFD409 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FD54662118F5A66000BFD409 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FD54662718F5A66000BFD409 /* mobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54662818F5A66000BFD409 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FD54663018F5A66000BFD409 /* mobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mobileTests-Info.plist"; sourceTree = "<group>"; };
 		FD54663218F5A66000BFD409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FD54663418F5A66000BFD409 /* mobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mobileTests.m; sourceTree = "<group>"; };
+		FD54664118F5A76C00BFD409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		FD54664418F5AD1B00BFD409 /* FirstHandShakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstHandShakeLoginViewController.h; sourceTree = "<group>"; };
+		FD54664518F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstHandShakeLoginViewController.m; sourceTree = "<group>"; };
+		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
+		FDF1F21518F5C891001B53D0 /* TSweetAutoCompletesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetAutoCompletesCommunicator.h; sourceTree = "<group>"; };
+		FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetAutoCompletesCommunicator.m; sourceTree = "<group>"; };
+		FDF1F21718F5C891001B53D0 /* TSweetCirclesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetCirclesCommunicator.h; sourceTree = "<group>"; };
+		FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetCirclesCommunicator.m; sourceTree = "<group>"; };
+		FDF1F21918F5C891001B53D0 /* TSweetEventsCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetEventsCommunicator.h; sourceTree = "<group>"; };
+		FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetEventsCommunicator.m; sourceTree = "<group>"; };
+		FDF1F21B18F5C891001B53D0 /* TSweetMediasCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetMediasCommunicator.h; sourceTree = "<group>"; };
+		FDF1F21C18F5C891001B53D0 /* TSweetMediasCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetMediasCommunicator.m; sourceTree = "<group>"; };
+		FDF1F21D18F5C891001B53D0 /* TSweetMembersCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetMembersCommunicator.h; sourceTree = "<group>"; };
+		FDF1F21E18F5C891001B53D0 /* TSweetMembersCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetMembersCommunicator.m; sourceTree = "<group>"; };
+		FDF1F21F18F5C891001B53D0 /* TSweetMessagesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetMessagesCommunicator.h; sourceTree = "<group>"; };
+		FDF1F22018F5C891001B53D0 /* TSweetMessagesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetMessagesCommunicator.m; sourceTree = "<group>"; };
+		FDF1F22118F5C891001B53D0 /* TSweetSocialMediasCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetSocialMediasCommunicator.h; sourceTree = "<group>"; };
+		FDF1F22218F5C891001B53D0 /* TSweetSocialMediasCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetSocialMediasCommunicator.m; sourceTree = "<group>"; };
+		FDF1F22318F5C891001B53D0 /* TSweetTrusteesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetTrusteesCommunicator.h; sourceTree = "<group>"; };
+		FDF1F22418F5C891001B53D0 /* TSweetTrusteesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetTrusteesCommunicator.m; sourceTree = "<group>"; };
+		FDF1F22518F5C891001B53D0 /* TSweetResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetResponse.h; sourceTree = "<group>"; };
+		FDF1F22618F5C891001B53D0 /* TSweetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetResponse.m; sourceTree = "<group>"; };
+		FDF1F22718F5C891001B53D0 /* TSweetRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetRest.h; sourceTree = "<group>"; };
+		FDF1F22818F5C891001B53D0 /* TSweetRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetRest.m; sourceTree = "<group>"; };
+		FDF1F22918F5C891001B53D0 /* TSweetUsersCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetUsersCommunicator.h; sourceTree = "<group>"; };
+		FDF1F22A18F5C891001B53D0 /* TSweetUsersCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetUsersCommunicator.m; sourceTree = "<group>"; };
+		FDF1F23718F5ECF3001B53D0 /* SecondHandShakeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondHandShakeLoginViewController.h; sourceTree = "<group>"; };
+		FDF1F23818F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondHandShakeLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +150,11 @@
 		FD54660F18F5A66000BFD409 /* mobile */ = {
 			isa = PBXGroup;
 			children = (
+				FD54664918F5AEDC00BFD409 /* Libraries */,
+				FD54663F18F5A6FE00BFD409 /* ViewControllers */,
 				FD54661818F5A66000BFD409 /* AppDelegate.h */,
 				FD54661918F5A66000BFD409 /* AppDelegate.m */,
 				FD54661B18F5A66000BFD409 /* Main.storyboard */,
-				FD54661E18F5A66000BFD409 /* ViewController.h */,
-				FD54661F18F5A66000BFD409 /* ViewController.m */,
 				FD54662118F5A66000BFD409 /* Images.xcassets */,
 				FD54661018F5A66000BFD409 /* Supporting Files */,
 			);
@@ -150,6 +188,55 @@
 				FD54663118F5A66000BFD409 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FD54663F18F5A6FE00BFD409 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD54664418F5AD1B00BFD409 /* FirstHandShakeLoginViewController.h */,
+				FD54664518F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m */,
+				FDF1F23718F5ECF3001B53D0 /* SecondHandShakeLoginViewController.h */,
+				FDF1F23818F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FD54664918F5AEDC00BFD409 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FDF1F23618F5C89D001B53D0 /* TSweet */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		FDF1F23618F5C89D001B53D0 /* TSweet */ = {
+			isa = PBXGroup;
+			children = (
+				FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */,
+				FDF1F21518F5C891001B53D0 /* TSweetAutoCompletesCommunicator.h */,
+				FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */,
+				FDF1F21718F5C891001B53D0 /* TSweetCirclesCommunicator.h */,
+				FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */,
+				FDF1F21918F5C891001B53D0 /* TSweetEventsCommunicator.h */,
+				FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */,
+				FDF1F21B18F5C891001B53D0 /* TSweetMediasCommunicator.h */,
+				FDF1F21C18F5C891001B53D0 /* TSweetMediasCommunicator.m */,
+				FDF1F21D18F5C891001B53D0 /* TSweetMembersCommunicator.h */,
+				FDF1F21E18F5C891001B53D0 /* TSweetMembersCommunicator.m */,
+				FDF1F21F18F5C891001B53D0 /* TSweetMessagesCommunicator.h */,
+				FDF1F22018F5C891001B53D0 /* TSweetMessagesCommunicator.m */,
+				FDF1F22118F5C891001B53D0 /* TSweetSocialMediasCommunicator.h */,
+				FDF1F22218F5C891001B53D0 /* TSweetSocialMediasCommunicator.m */,
+				FDF1F22318F5C891001B53D0 /* TSweetTrusteesCommunicator.h */,
+				FDF1F22418F5C891001B53D0 /* TSweetTrusteesCommunicator.m */,
+				FDF1F22518F5C891001B53D0 /* TSweetResponse.h */,
+				FDF1F22618F5C891001B53D0 /* TSweetResponse.m */,
+				FDF1F22718F5C891001B53D0 /* TSweetRest.h */,
+				FDF1F22818F5C891001B53D0 /* TSweetRest.m */,
+				FDF1F22918F5C891001B53D0 /* TSweetUsersCommunicator.h */,
+				FDF1F22A18F5C891001B53D0 /* TSweetUsersCommunicator.m */,
+			);
+			name = TSweet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,9 +336,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD54662018F5A66000BFD409 /* ViewController.m in Sources */,
 				FD54661A18F5A66000BFD409 /* AppDelegate.m in Sources */,
+				FDF1F23518F5C891001B53D0 /* TSweetUsersCommunicator.m in Sources */,
+				FD54664618F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m in Sources */,
+				FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */,
+				FDF1F23218F5C891001B53D0 /* TSweetTrusteesCommunicator.m in Sources */,
+				FDF1F23918F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m in Sources */,
+				FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */,
+				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
+				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
+				FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */,
+				FDF1F23318F5C891001B53D0 /* TSweetResponse.m in Sources */,
+				FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */,
 				FD54661618F5A66000BFD409 /* main.m in Sources */,
+				FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */,
+				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +385,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FD54661C18F5A66000BFD409 /* Base */,
+				FD54664118F5A76C00BFD409 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -456,6 +556,7 @@
 				FD54663A18F5A66000BFD409 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD54663B18F5A66000BFD409 /* Build configuration list for PBXNativeTarget "mobileTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +565,7 @@
 				FD54663D18F5A66000BFD409 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
