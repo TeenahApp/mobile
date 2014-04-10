@@ -1,5 +1,5 @@
 //
-//  SecondHandShakeLoginViewController.h
+//  TreeViewController.h
 //  mobile
 //
 //  Created by Hussam Al-Zughaibi on 6/11/1435 AH.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondHandShakeLoginViewController : UIViewController
-
-@property (nonatomic) NSString * mobile;
+@interface TreeViewController : UIViewController
 
 @end

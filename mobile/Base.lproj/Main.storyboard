@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Circles" id="3Lc-s1-yUb"/>
+                    <tabBarItem key="tabBarItem" title="Circles" image="Circles" id="3Lc-s1-yUb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUV-CX-W1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="IKu-hH-zOe"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="IKu-hH-zOe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kVO-jr-Dii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,7 +73,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="attempt:" destination="abE-bx-iSL" eventType="touchUpInside" id="Vgb-E2-YdQ"/>
+                                    <action selector="attempt:" destination="abE-bx-iSL" eventType="touchDown" id="8WN-EM-5cy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -82,16 +82,17 @@
                     <connections>
                         <outlet property="keyTextField" destination="hKJ-la-MdD" id="p3S-I3-jbZ"/>
                         <outlet property="mobileTextField" destination="e2H-2e-mCT" id="hcV-yW-tzl"/>
+                        <outlet property="sendSMSButton" destination="Dzg-7v-YH3" id="toE-0F-CxH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTK-8r-2n5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="357" y="-1444"/>
         </scene>
-        <!--View Controller-->
+        <!--Second Hand Shake Login View Controller-->
         <scene sceneID="ZG8-v5-Yq8">
             <objects>
-                <viewController storyboardIdentifier="SecondHandShakeLogin" id="jiq-EK-oKR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondHandShakeLogin" id="jiq-EK-oKR" customClass="SecondHandShakeLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BBp-u7-w3b"/>
                         <viewControllerLayoutGuide type="bottom" id="xxC-rh-qX9"/>
@@ -113,13 +114,16 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="attempt:" destination="abE-bx-iSL" eventType="touchUpInside" id="Nhy-8B-77A"/>
+                                    <action selector="login:" destination="jiq-EK-oKR" eventType="touchUpInside" id="gxC-mk-bTw"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.93039993912698171" blue="0.37473018417213366" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ab3-Ug-TlI"/>
+                    <connections>
+                        <outlet property="smsTokenTextField" destination="QnI-KA-WDx" id="Dw6-aB-aJH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7TG-jA-Xtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,16 +142,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Events" id="Mtx-xU-JaB"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="Events" badgeValue="30" id="Mtx-xU-JaB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWu-S9-2in" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1514" y="-1444"/>
         </scene>
-        <!--View Controller - Tree-->
+        <!--Tree View Controller - Tree-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tree" id="vXZ-lx-hvc" customClass="TreeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -157,7 +161,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tree" id="rCA-DA-GeI"/>
+                    <tabBarItem key="tabBarItem" title="Tree" image="Tree" id="rCA-DA-GeI"/>
                     <navigationItem key="navigationItem" id="g4l-Tz-Jgr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -167,7 +171,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="9P6-d3-czb">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="DTC-lY-A4W" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBar" automaticallyAdjustsScrollViewInsets="NO" id="DTC-lY-A4W" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="bEF-30-8wI">
@@ -186,6 +190,12 @@
             <point key="canvasLocation" x="604" y="-9"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circles" width="30" height="20"/>
+        <image name="Events" width="30" height="20"/>
+        <image name="Settings" width="30" height="20"/>
+        <image name="Tree" width="30" height="20"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -10,9 +10,6 @@
 
 @interface FirstHandShakeLoginViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
-@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
-
 @end
 
 @implementation FirstHandShakeLoginViewController
@@ -46,7 +43,7 @@
     NSLog(@"Full mobile = %@", mobile);
     
     UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    
+
     activityView.center=self.view.center;
     
     [activityView startAnimating];
@@ -54,26 +51,36 @@
     
     [self.view addSubview:activityView];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSLog(@"mobile: %@", mobile);
         
         TSweetResponse * tsr = [[UsersCommunicator shared] tokenize: mobile];
         NSLog(@"%@", tsr);
         
-        [activityView stopAnimating];
-        NSLog(@"stop animating...");
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            
+            NSLog(@"stop animating...");
+            [activityView stopAnimating];
+            
+            UIAlertView * responseAlert = [[UIAlertView alloc] initWithTitle:@"Message" message:tsr.json[@"message"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [responseAlert show];
+            
+            // TODO: For test only.
+            tsr.code = 204;
+            
+            if (tsr.code == 204)
+            {
+                SecondHandShakeLoginViewController * secondHandShakeLoginVC = (SecondHandShakeLoginViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"SecondHandShakeLogin"];
+                
+                secondHandShakeLoginVC.mobile = mobile;
+                
+                [self presentViewController:secondHandShakeLoginVC animated:NO completion:nil];
+            }
+            
+        });
         
-        if (tsr.code == 403)
-        {
-            UIAlertView * notAuthorizedAlert = [[UIAlertView alloc] initWithTitle:@"No network connection" message:@"You must be connected to the internet to use this app." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            [notAuthorizedAlert show];
-            
-            SecondHandShakeLoginViewController * secondHandShakeLoginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SecondHandShakeLogin"];
-            
-            [self presentViewController:secondHandShakeLoginVC animated:NO completion:nil];
-        }
     });
     
 }

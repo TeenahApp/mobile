@@ -14,4 +14,8 @@
 
 @interface FirstHandShakeLoginViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
+@property (weak, nonatomic) IBOutlet UIButton *sendSMSButton;
+
 @end
