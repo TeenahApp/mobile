@@ -42,7 +42,7 @@
     
     NSLog(@"Full mobile = %@", mobile);
     
-    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 
     activityView.center=self.view.center;
     
@@ -53,10 +53,7 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSLog(@"mobile: %@", mobile);
-        
         TSweetResponse * tsr = [[UsersCommunicator shared] tokenize: mobile];
-        NSLog(@"%@", tsr);
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             
@@ -66,9 +63,6 @@
             UIAlertView * responseAlert = [[UIAlertView alloc] initWithTitle:@"Message" message:tsr.json[@"message"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             
             [responseAlert show];
-            
-            // TODO: For test only.
-            tsr.code = 204;
             
             if (tsr.code == 204)
             {

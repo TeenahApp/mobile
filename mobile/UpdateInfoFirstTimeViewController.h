@@ -1,5 +1,5 @@
 //
-//  TreeViewController.h
+//  UpdateInfoFirstTimeViewController.h
 //  mobile
 //
 //  Created by Hussam Al-Zughaibi on 6/11/1435 AH.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UITreeView.h"
 
-@interface TreeViewController : UIViewController
+@interface UpdateInfoFirstTimeViewController : UIViewController
 
 @end

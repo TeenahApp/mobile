@@ -12,14 +12,41 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //$2y$10$gIc/7Z1TbGLOzjbNtXBHrOJzgIk.AzjQGQryBdxPS21Li2q/XJ7ZO
+    
+    TSweetRest * tsrest = [TSweetRest shared];
+    tsrest.userToken = @"$2y$10$gIc/7Z1TbGLOzjbNtXBHrOJzgIk.AzjQGQryBdxPS21Li2q/XJ7ZO";
+    
+    /*
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
     
     FirstHandShakeLoginViewController * firstHandShakeLoginVC = (FirstHandShakeLoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstHandShakeLogin"];
     
     [self.window makeKeyAndVisible];
     
     [self.window.rootViewController presentViewController:firstHandShakeLoginVC animated:NO completion:nil];
+     */
     
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UITabBarController *tbc = [storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
+    
+    [self.window makeKeyAndVisible];
+    
+    [self.window.rootViewController presentViewController:tbc animated:NO completion:nil];
+    
+    
+    //[[UsersCommunicator shared] dashboard];
+    
+    /*
+     FirstUploadPhotoViewController * fphotovc = (FirstUploadPhotoViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstUploadPhoto"];
+    
+    [self.window makeKeyAndVisible];
+    
+    [self.window.rootViewController presentViewController:fphotovc animated:NO completion:nil];
+    */
+     
     // Override point for customization after application launch.
     return YES;
 }

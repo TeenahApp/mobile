@@ -13,6 +13,8 @@
 //#import "TSweetUsersCommunicator.h"
 
 #import "FirstHandShakeLoginViewController.h"
+#import "FirstUploadPhotoViewController.h"
+#import "TSweetUsersCommunicator.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

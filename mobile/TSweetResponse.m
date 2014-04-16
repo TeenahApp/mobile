@@ -19,6 +19,8 @@
         self.code = code;
         self.body = body;
         self.json = [NSJSONSerialization JSONObjectWithData:self.body options:kNilOptions error:&error];
+        
+        NSLog(@"%@", self.json);
     }
     
     return self;

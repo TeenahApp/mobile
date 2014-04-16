@@ -7,6 +7,8 @@
 //
 
 #import "SecondHandShakeLoginViewController.h"
+#import "UpdateInfoFirstTimeViewController.h"
+
 #import "TreeViewController.h"
 #import "TSweetResponse.h"
 #import "TSweetUsersCommunicator.h"
@@ -32,7 +34,7 @@
     
     NSString * smsToken = _smsTokenTextField.text;
     
-    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
     activityView.center=self.view.center;
     
@@ -43,11 +45,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSLog(@"mobile: %@", _mobile);
-        
         TSweetResponse * tsr = [[UsersCommunicator shared] login:_mobile smsToken:smsToken];
-        
-        NSLog(@"%@", tsr);
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             
@@ -58,14 +56,25 @@
             
             [responseAlert show];
             
-            // TODO: For test only.
-            tsr.code = 204;
-            
             if (tsr.code == 204)
             {
-                UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
                 
-                [self presentViewController:tbc animated:YES completion:nil];
+                // TODO: Login the user.
+                TSweetRest * tsrest = [TSweetRest shared];
+                tsrest.userToken = tsr.json[@"user_token"];
+                
+                if ([tsr.json[@"member_id"] isEqual: @"0"])
+                {
+                    UpdateInfoFirstTimeViewController * updateInfoFirstTimeVC = (UpdateInfoFirstTimeViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"UpdateInfoFirstTime"];
+                    
+                    [self presentViewController:updateInfoFirstTimeVC animated:NO completion:nil];
+                }
+                else
+                {
+                    UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
+                    
+                    [self presentViewController:tbc animated:YES completion:nil];
+                }
             }
         });
     });

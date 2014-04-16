@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD13081E18FAE09600B7DA08 /* PSBaseBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD13081418FAE09600B7DA08 /* PSBaseBranchView.m */; };
+		FD13081F18FAE09600B7DA08 /* PSBaseLeafView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD13081618FAE09600B7DA08 /* PSBaseLeafView.m */; };
+		FD13082018FAE09600B7DA08 /* PSBaseSubtreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD13081818FAE09600B7DA08 /* PSBaseSubtreeView.m */; };
+		FD13082118FAE09600B7DA08 /* PSBaseTreeGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD13081B18FAE09600B7DA08 /* PSBaseTreeGraphView.m */; };
 		FD54660A18F5A66000BFD409 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660918F5A66000BFD409 /* Foundation.framework */; };
 		FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660B18F5A66000BFD409 /* CoreGraphics.framework */; };
 		FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660D18F5A66000BFD409 /* UIKit.framework */; };
@@ -22,6 +26,10 @@
 		FD54663518F5A66000BFD409 /* mobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54663418F5A66000BFD409 /* mobileTests.m */; };
 		FD54664618F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54664518F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m */; };
 		FD576CAF18F70BF600851F90 /* TreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD576CAE18F70BF600851F90 /* TreeViewController.m */; };
+		FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */; };
+		FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD58983C18FEC7FD00A9172F /* UITreeView.m */; };
+		FD59908C18FEEE1400975F7F /* TMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FD59908B18FEEE1400975F7F /* TMember.m */; };
+		FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
 		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
 		FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */; };
@@ -47,6 +55,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD13081318FAE09600B7DA08 /* PSBaseBranchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSBaseBranchView.h; sourceTree = "<group>"; };
+		FD13081418FAE09600B7DA08 /* PSBaseBranchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSBaseBranchView.m; sourceTree = "<group>"; };
+		FD13081518FAE09600B7DA08 /* PSBaseLeafView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSBaseLeafView.h; sourceTree = "<group>"; };
+		FD13081618FAE09600B7DA08 /* PSBaseLeafView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSBaseLeafView.m; sourceTree = "<group>"; };
+		FD13081718FAE09600B7DA08 /* PSBaseSubtreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSBaseSubtreeView.h; sourceTree = "<group>"; };
+		FD13081818FAE09600B7DA08 /* PSBaseSubtreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSBaseSubtreeView.m; sourceTree = "<group>"; };
+		FD13081918FAE09600B7DA08 /* PSBaseTreeGraphView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSBaseTreeGraphView_Internal.h; sourceTree = "<group>"; };
+		FD13081A18FAE09600B7DA08 /* PSBaseTreeGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSBaseTreeGraphView.h; sourceTree = "<group>"; };
+		FD13081B18FAE09600B7DA08 /* PSBaseTreeGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSBaseTreeGraphView.m; sourceTree = "<group>"; };
+		FD13081C18FAE09600B7DA08 /* PSTreeGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTreeGraphDelegate.h; sourceTree = "<group>"; };
+		FD13081D18FAE09600B7DA08 /* PSTreeGraphModelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTreeGraphModelNode.h; sourceTree = "<group>"; };
 		FD54660618F5A66000BFD409 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54660918F5A66000BFD409 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD54660B18F5A66000BFD409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,6 +88,14 @@
 		FD54664518F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstHandShakeLoginViewController.m; sourceTree = "<group>"; };
 		FD576CAD18F70BF600851F90 /* TreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeViewController.h; sourceTree = "<group>"; };
 		FD576CAE18F70BF600851F90 /* TreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeViewController.m; sourceTree = "<group>"; };
+		FD576CB018F733B300851F90 /* UpdateInfoFirstTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateInfoFirstTimeViewController.h; sourceTree = "<group>"; };
+		FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateInfoFirstTimeViewController.m; sourceTree = "<group>"; };
+		FD58983B18FEC7FD00A9172F /* UITreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITreeView.h; sourceTree = "<group>"; };
+		FD58983C18FEC7FD00A9172F /* UITreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITreeView.m; sourceTree = "<group>"; };
+		FD59908A18FEEE1400975F7F /* TMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMember.h; sourceTree = "<group>"; };
+		FD59908B18FEEE1400975F7F /* TMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMember.m; sourceTree = "<group>"; };
+		FD8C2F4718F8224300299A4E /* FirstUploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstUploadPhotoViewController.h; sourceTree = "<group>"; };
+		FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstUploadPhotoViewController.m; sourceTree = "<group>"; };
 		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
 		FDF1F21518F5C891001B53D0 /* TSweetAutoCompletesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetAutoCompletesCommunicator.h; sourceTree = "<group>"; };
 		FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetAutoCompletesCommunicator.m; sourceTree = "<group>"; };
@@ -120,6 +147,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD13081218FAE03800B7DA08 /* PSTreeGraphView */ = {
+			isa = PBXGroup;
+			children = (
+				FD13081318FAE09600B7DA08 /* PSBaseBranchView.h */,
+				FD13081418FAE09600B7DA08 /* PSBaseBranchView.m */,
+				FD13081518FAE09600B7DA08 /* PSBaseLeafView.h */,
+				FD13081618FAE09600B7DA08 /* PSBaseLeafView.m */,
+				FD13081718FAE09600B7DA08 /* PSBaseSubtreeView.h */,
+				FD13081818FAE09600B7DA08 /* PSBaseSubtreeView.m */,
+				FD13081918FAE09600B7DA08 /* PSBaseTreeGraphView_Internal.h */,
+				FD13081A18FAE09600B7DA08 /* PSBaseTreeGraphView.h */,
+				FD13081B18FAE09600B7DA08 /* PSBaseTreeGraphView.m */,
+				FD13081C18FAE09600B7DA08 /* PSTreeGraphDelegate.h */,
+				FD13081D18FAE09600B7DA08 /* PSTreeGraphModelNode.h */,
+			);
+			name = PSTreeGraphView;
+			sourceTree = "<group>";
+		};
 		FD5465FD18F5A66000BFD409 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +198,8 @@
 		FD54660F18F5A66000BFD409 /* mobile */ = {
 			isa = PBXGroup;
 			children = (
+				FD59908918FEEDFA00975F7F /* Models */,
+				FD58983A18FEC7E700A9172F /* Views */,
 				FD54664918F5AEDC00BFD409 /* Libraries */,
 				FD54663F18F5A6FE00BFD409 /* ViewControllers */,
 				FD54661818F5A66000BFD409 /* AppDelegate.h */,
@@ -202,6 +249,10 @@
 				FD54664518F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m */,
 				FDF1F23718F5ECF3001B53D0 /* SecondHandShakeLoginViewController.h */,
 				FDF1F23818F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m */,
+				FD576CB018F733B300851F90 /* UpdateInfoFirstTimeViewController.h */,
+				FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */,
+				FD8C2F4718F8224300299A4E /* FirstUploadPhotoViewController.h */,
+				FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -209,9 +260,28 @@
 		FD54664918F5AEDC00BFD409 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FD13081218FAE03800B7DA08 /* PSTreeGraphView */,
 				FDF1F23618F5C89D001B53D0 /* TSweet */,
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		FD58983A18FEC7E700A9172F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD58983B18FEC7FD00A9172F /* UITreeView.h */,
+				FD58983C18FEC7FD00A9172F /* UITreeView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FD59908918FEEDFA00975F7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FD59908A18FEEE1400975F7F /* TMember.h */,
+				FD59908B18FEEE1400975F7F /* TMember.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		FDF1F23618F5C89D001B53D0 /* TSweet */ = {
@@ -341,17 +411,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */,
 				FD54661A18F5A66000BFD409 /* AppDelegate.m in Sources */,
 				FDF1F23518F5C891001B53D0 /* TSweetUsersCommunicator.m in Sources */,
 				FD54664618F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m in Sources */,
 				FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */,
+				FD13081F18FAE09600B7DA08 /* PSBaseLeafView.m in Sources */,
 				FDF1F23218F5C891001B53D0 /* TSweetTrusteesCommunicator.m in Sources */,
+				FD13082018FAE09600B7DA08 /* PSBaseSubtreeView.m in Sources */,
 				FDF1F23918F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m in Sources */,
 				FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */,
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
+				FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */,
+				FD13082118FAE09600B7DA08 /* PSBaseTreeGraphView.m in Sources */,
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
+				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
 				FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */,
+				FD59908C18FEEE1400975F7F /* TMember.m in Sources */,
 				FDF1F23318F5C891001B53D0 /* TSweetResponse.m in Sources */,
+				FD13081E18FAE09600B7DA08 /* PSBaseBranchView.m in Sources */,
 				FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */,
 				FD54661618F5A66000BFD409 /* main.m in Sources */,
 				FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */,
