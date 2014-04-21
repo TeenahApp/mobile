@@ -25,6 +25,9 @@
     
     self.member = [[TMember alloc] init];
     
+    // Then add the whole view to the main view.
+    //[self addSubview:self.relationsView];
+    
     if (tsr.code == 200)
     {
         [self.member fromJson:tsr.json];
@@ -52,12 +55,33 @@
     myImageView.layer.borderWidth = 4;
     
     myImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self addSubview:myImageView];
     
     UILabel * name = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
     [name setText:self.member.name];
     [self addSubview:name];
     
-    [self addSubview:myImageView];
+    UIButton * addRelationButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addRelationButton setTitle:@"Add" forState:UIControlStateNormal];
+    addRelationButton.center = CGPointMake(myImageView.center.x + 60, myImageView.center.y);
+    
+    [addRelationButton addTarget:self action:@selector(addRelation) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:addRelationButton];
+
+}
+
+-(void)addRelation
+{
+    //NSLog(@"Hello world");
+    [self addSubview:self.relationsView];
+    
+    //[self.relationsView removeFromSuperview];
+    
+    //UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    //AddRelationViewController * addRelationVC = [[AddRelationViewController alloc] init];
+    //[self presentViewController:addRelationVC animated:YES completion:nil];
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -127,7 +151,72 @@
         [self addSubview:node];
     }
      */
+    
+    UITapGestureRecognizer * singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                       action:@selector(handleSingleTap:)];
+    
+    self.relationsView = [[UIView alloc] initWithFrame:self.frame];
+    self.relationsView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    [self.relationsView addGestureRecognizer:singleFingerTap];
+    
+    // Add buttons.
+    
+    // Mother.
+    UIButton * addMotherButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addMotherButton setTitle:@"Mother" forState:UIControlStateNormal];
+    addMotherButton.center = CGPointMake(self.center.x - 100, self.center.y - 100);
+    [self.relationsView addSubview:addMotherButton];
+    
+    // Father.
+    UIButton * addFatherButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addFatherButton setTitle:@"Father" forState:UIControlStateNormal];
+    addFatherButton.center = CGPointMake(self.center.x, self.center.y - 100);
+    [self.relationsView addSubview:addFatherButton];
+    
+    [addFatherButton addTarget:self.delegate action:@selector(didAddRelation) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Partner.
+    UIButton * addPartnerButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addPartnerButton setTitle:@"Partner" forState:UIControlStateNormal];
+    addPartnerButton.center = CGPointMake(self.center.x + 100, self.center.y - 100);
+    [self.relationsView addSubview:addPartnerButton];
+    
+    // Sister.
+    UIButton * addSisterButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addSisterButton setTitle:@"Sister" forState:UIControlStateNormal];
+    addSisterButton.center = CGPointMake(self.center.x - 100, self.center.y);
+    [self.relationsView addSubview:addSisterButton];
+    
+    // Brother.
+    UIButton * addBrotherButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addBrotherButton setTitle:@"Brother" forState:UIControlStateNormal];
+    addBrotherButton.center = CGPointMake(self.center.x + 100, self.center.y);
+    [self.relationsView addSubview:addBrotherButton];
+    
+    // Daughter.
+    UIButton * addDaughterButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addDaughterButton setTitle:@"Daughter" forState:UIControlStateNormal];
+    addDaughterButton.center = CGPointMake(self.center.x - 100, self.center.y + 100);
+    [self.relationsView addSubview:addDaughterButton];
+    
+    // Son.
+    UIButton * addSonButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addSonButton setTitle:@"Son" forState:UIControlStateNormal];
+    addSonButton.center = CGPointMake(self.center.x, self.center.y + 100);
+    [self.relationsView addSubview:addSonButton];
+    
+    // Other.
+    UIButton * addOtherButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];
+    [addOtherButton setTitle:@"Other" forState:UIControlStateNormal];
+    addOtherButton.center = CGPointMake(self.center.x + 100, self.center.y + 100);
+    [self.relationsView addSubview:addOtherButton];
 
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    //NSLog(@"Helloworld");
+    [self.relationsView removeFromSuperview];
 }
 
 

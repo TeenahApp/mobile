@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UITreeView.h"
 
-@interface TreeViewController : UIViewController
+@interface TreeViewController : UIViewController<UITreeViewDelegate>
+
+@property (strong, nonatomic) UITreeView * treeView;
+
+// UITreeView * treeView;
 
 @end

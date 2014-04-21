@@ -1,18 +1,18 @@
 //
-//  TreeViewController.m
+//  AddRelationViewController.m
 //  mobile
 //
-//  Created by Hussam Al-Zughaibi on 6/11/1435 AH.
+//  Created by Hussam Al-Zughaibi on 6/22/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "TreeViewController.h"
+#import "AddRelationViewController.h"
 
-@interface TreeViewController ()
+@interface AddRelationViewController ()
 
 @end
 
-@implementation TreeViewController
+@implementation AddRelationViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,11 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //[self view draw];
-    //[self.view
-     
-    //UITreeView * treeView = (UITreeView *)self.view;
-    //[treeView getMember:@"2"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,22 +35,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    //NSLog(@"helloworld");
-    self.treeView = (UITreeView *)self.view;
-    self.treeView.member.photo = @"zee";
-    [self.treeView getMember:@"2"];
-}
-
--(void)didAddRelation
-{
-    NSLog(@"Add");
-    
-    //[self.treeView removeFromSuperview];
-    
-    [self.treeView.relationsView removeFromSuperview];
-    [self performSegueWithIdentifier:@"AddRelation" sender:self];
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

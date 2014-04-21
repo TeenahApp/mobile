@@ -15,18 +15,18 @@
     //$2y$10$gIc/7Z1TbGLOzjbNtXBHrOJzgIk.AzjQGQryBdxPS21Li2q/XJ7ZO
     
     TSweetRest * tsrest = [TSweetRest shared];
-    tsrest.userToken = @"$2y$10$gIc/7Z1TbGLOzjbNtXBHrOJzgIk.AzjQGQryBdxPS21Li2q/XJ7ZO";
+    tsrest.userToken = @"$2y$10$5oXpuly.YweSNqfyQo8Rve1oS1FlWK3gCZ4mbbLlZWZmzIZcAo/sa";
     
     /*
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     
     FirstHandShakeLoginViewController * firstHandShakeLoginVC = (FirstHandShakeLoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstHandShakeLogin"];
     
     [self.window makeKeyAndVisible];
     
     [self.window.rootViewController presentViewController:firstHandShakeLoginVC animated:NO completion:nil];
-     */
+    
+    */
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
@@ -35,7 +35,6 @@
     [self.window makeKeyAndVisible];
     
     [self.window.rootViewController presentViewController:tbc animated:NO completion:nil];
-    
     
     //[[UsersCommunicator shared] dashboard];
     

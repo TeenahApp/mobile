@@ -10,6 +10,7 @@
 
 #import "TSweetResponse.h"
 #import "TSweetUsersCommunicator.h"
+#import "FirstUploadPhotoViewController.h"
 
 @interface UpdateInfoFirstTimeViewController ()
 
@@ -48,6 +49,22 @@
     }
     
     TSweetResponse * tsr = [[UsersCommunicator shared] initialize:gender name:name dob:dob];
+    
+    if (tsr.code == 201)
+    {
+        if ([gender isEqual: @"male"])
+        {
+            FirstUploadPhotoViewController * FirstUploadPhotoVC = (FirstUploadPhotoViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"FirstUploadPhoto"];
+            
+            [self presentViewController:FirstUploadPhotoVC animated:NO completion:nil];
+        }
+        else
+        {
+            UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
+            [self presentViewController:tbc animated:YES completion:nil];
+        }
+
+    }
 
     //"member_id" = 2;
     //"user_token" = "$2y$10$cHmOiWliDZpb2UhfCwcPrenQgoWhHj0l.Dy.DbK7zYjLfOze5Bz2m";

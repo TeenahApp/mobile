@@ -56,21 +56,26 @@
             
             [responseAlert show];
             
-            if (tsr.code == 204)
+            if (tsr.code == 200)
             {
                 
                 // TODO: Login the user.
                 TSweetRest * tsrest = [TSweetRest shared];
                 tsrest.userToken = tsr.json[@"user_token"];
                 
-                if ([tsr.json[@"member_id"] isEqual: @"0"])
+                // Get the member id as an integer.
+                int member_id = [[tsr.json objectForKey:@"member_id"] intValue];
+                
+                if (member_id == 0)
                 {
+                    NSLog(@"zero");
                     UpdateInfoFirstTimeViewController * updateInfoFirstTimeVC = (UpdateInfoFirstTimeViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"UpdateInfoFirstTime"];
                     
                     [self presentViewController:updateInfoFirstTimeVC animated:NO completion:nil];
                 }
                 else
                 {
+                    NSLog(@"non-zero");
                     UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
                     
                     [self presentViewController:tbc animated:YES completion:nil];
