@@ -25,6 +25,8 @@
 		FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */; };
 		FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD58983C18FEC7FD00A9172F /* UITreeView.m */; };
 		FD59908C18FEEE1400975F7F /* TMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FD59908B18FEEE1400975F7F /* TMember.m */; };
+		FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD81B89B1907F50D0037B479 /* Security.framework */; };
+		FD81B89E1907F83B0037B479 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = FD81B89D1907F83B0037B479 /* readme.md */; };
 		FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */; };
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
@@ -80,6 +82,8 @@
 		FD58983C18FEC7FD00A9172F /* UITreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITreeView.m; sourceTree = "<group>"; };
 		FD59908A18FEEE1400975F7F /* TMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMember.h; sourceTree = "<group>"; };
 		FD59908B18FEEE1400975F7F /* TMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMember.m; sourceTree = "<group>"; };
+		FD81B89B1907F50D0037B479 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FD81B89D1907F83B0037B479 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 		FD8C2F4718F8224300299A4E /* FirstUploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstUploadPhotoViewController.h; sourceTree = "<group>"; };
 		FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstUploadPhotoViewController.m; sourceTree = "<group>"; };
 		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */,
 				FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */,
 				FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */,
 				FD54660A18F5A66000BFD409 /* Foundation.framework in Frameworks */,
@@ -138,6 +143,7 @@
 		FD5465FD18F5A66000BFD409 = {
 			isa = PBXGroup;
 			children = (
+				FD81B89D1907F83B0037B479 /* readme.md */,
 				FD54660F18F5A66000BFD409 /* mobile */,
 				FD54662E18F5A66000BFD409 /* mobileTests */,
 				FD54660818F5A66000BFD409 /* Frameworks */,
@@ -157,6 +163,7 @@
 		FD54660818F5A66000BFD409 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD81B89B1907F50D0037B479 /* Security.framework */,
 				FD54660918F5A66000BFD409 /* Foundation.framework */,
 				FD54660B18F5A66000BFD409 /* CoreGraphics.framework */,
 				FD54660D18F5A66000BFD409 /* UIKit.framework */,
@@ -363,6 +370,7 @@
 			files = (
 				FD54662218F5A66000BFD409 /* Images.xcassets in Resources */,
 				FD54661418F5A66000BFD409 /* InfoPlist.strings in Resources */,
+				FD81B89E1907F83B0037B479 /* readme.md in Resources */,
 				FD54661D18F5A66000BFD409 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

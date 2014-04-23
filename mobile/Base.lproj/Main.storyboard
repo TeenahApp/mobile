@@ -217,13 +217,6 @@
                                     <segment title="Dead"/>
                                 </segments>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsU-o4-WIx">
-                                <rect key="frame" x="145" y="278" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lTQ-GL-vB0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -238,6 +231,18 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="back:" destination="1B7-Cm-UuO" eventType="touchUpInside" id="wfq-Gl-d0g"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="V3R-fN-HmI">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gsU-o4-WIx">
+                                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Add">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addRelation:" destination="1B7-Cm-UuO" eventType="touchUpInside" id="iqM-qf-7Vv"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -267,6 +272,14 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dobTextField" destination="yl9-BX-GgY" id="aCa-GO-O27"/>
+                        <outlet property="firstNameTextField" destination="gxo-hJ-bNu" id="gFR-fC-Ftk"/>
+                        <outlet property="isAliveSegmented" destination="Dph-nW-cSp" id="yM9-i7-b2k"/>
+                        <outlet property="isRootSegmented" destination="KSt-i9-CWn" id="px5-3Z-pWB"/>
+                        <outlet property="keyTextField" destination="dok-va-lfA" id="mIP-BT-Usw"/>
+                        <outlet property="mobileTextField" destination="UET-KV-J0x" id="u2c-oh-xcg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2d-zQ-l4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

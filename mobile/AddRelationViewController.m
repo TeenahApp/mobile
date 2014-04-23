@@ -27,6 +27,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //NSLog(@"%@", self.relation);
+    
+    if ([self.relation isEqual: @"father"]) {
+        self.isRootSegmented.hidden = false;
+    }
+    else
+    {
+        self.isRootSegmented.hidden = true;
+    }
+    
+    //NSLog(@"zeee");
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +49,30 @@
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)addRelation:(id)sender {
+    
+    NSLog(@"%@", self.memberA);
+    NSLog(@"%@", self.relation);
+    
+    // TODO: Do some validation.
+    
+    NSString * isAlive = @"1";
+    NSString * isRoot = @"0";
+    
+    if (self.isAliveSegmented.selectedSegmentIndex == 1)
+    {
+        isAlive = @"0";
+    }
+    
+    if (self.isRootSegmented.selectedSegmentIndex == 1)
+    {
+        isRoot = @"1";
+    }
+    
+    // Try to send the request.
+    TSweetResponse * tsr = [[MembersCommunicator shared] createRelation:self.memberA isAlive:isAlive name:self.firstNameTextField.text relation:self.relation isRoot: isRoot mobile:self.mobileTextField.text dob:self.dobTextField.text];
 }
 
 /*

@@ -31,7 +31,15 @@
     if (tsr.code == 200)
     {
         [self.member fromJson:tsr.json];
-        [self draw];
+        //[self draw];
+        
+        [self drawRect:self.frame];
+        
+        // Call the delegate.
+        NSLog(@"string ----- %@", self.member.memberId);
+        
+        // Update the member id in the add relation view.
+        [self.delegate didUpdateMember: self.member.memberId];
     }
     
     return tsr;
@@ -68,7 +76,25 @@
     [addRelationButton addTarget:self action:@selector(addRelation) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:addRelationButton];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
 
+    /*
+    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextSetLineWidth(context, 3.5f);
+    
+    // TODO: Add relations.
+    CGContextMoveToPoint(context, myImageView.center.x, myImageView.center.y);
+    CGContextAddLineToPoint(context, 200, 200);
+    CGContextStrokePath(context);
+    
+    UIButton * node = [[UIButton alloc] initWithFrame:CGRectMake(200, 200, 80, 20)];
+    
+    [node setTitle:[NSString stringWithFormat:@"%d", 1] forState:UIControlStateNormal];
+    
+    //node.center = CGPointMake(x1, y1);
+     */
+    
 }
 
 -(void)addRelation
@@ -88,11 +114,13 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    //NSLog(@"Draw Rect");
+    NSLog(@"Draw Rect");
     
-    /*
+    
     // Drawing code
     [super drawRect:rect];
+    
+    /*
     
     NSURL * imageURL = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000798785125/3a3fc94a88d08a4c558edda49c47b86e.png"];
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -173,7 +201,7 @@
     addFatherButton.center = CGPointMake(self.center.x, self.center.y - 100);
     [self.relationsView addSubview:addFatherButton];
     
-    [addFatherButton addTarget:self.delegate action:@selector(didAddRelation) forControlEvents:UIControlEventTouchUpInside];
+    [addFatherButton addTarget:self.delegate action:@selector(didAddFather) forControlEvents:UIControlEventTouchUpInside];
     
     // Partner.
     UIButton * addPartnerButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 20)];

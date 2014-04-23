@@ -15,7 +15,8 @@
 
 @protocol UITreeViewDelegate <NSObject>
 
--(void) didAddRelation;
+-(void) didAddFather;
+-(void) didUpdateMember: (NSString *) memberId;
 
 @end
 
@@ -28,6 +29,7 @@
 @property (strong, atomic) UIView * relationsView;
 
 -(TSweetResponse *) getMember: (NSString *) memberId;
+
 -(void) draw;
 -(void) addRelation;
 -(void) handleSingleTap:(UITapGestureRecognizer *)recognizer;

@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TSweetResponse.h"
+#import "TSweetMembersCommunicator.h"
+
 @interface AddRelationViewController : UIViewController
 
+@property (strong, nonatomic) NSString * relation;
+@property (strong, nonatomic) NSString * memberA;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *isRootSegmented;
+
+@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *dobTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *isAliveSegmented;
 @end

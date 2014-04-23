@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "UITreeView.h"
+#import "TreeViewController.h"
 
 @interface TreeViewController : UIViewController<UITreeViewDelegate>
 
 @property (strong, nonatomic) UITreeView * treeView;
+@property (strong, nonatomic) NSString * relation;
+@property (strong, nonatomic) NSString * memberId;
 
 // UITreeView * treeView;
+-(void) showAddRelations;
 
 @end

@@ -32,6 +32,10 @@
      
     //UITreeView * treeView = (UITreeView *)self.view;
     //[treeView getMember:@"2"];
+    //self.treeView.delegate = self;
+    
+    self.treeView = (UITreeView *)self.view;
+    self.treeView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,22 +47,31 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //NSLog(@"helloworld");
-    self.treeView = (UITreeView *)self.view;
     self.treeView.member.photo = @"zee";
     [self.treeView getMember:@"2"];
 }
 
--(void)didAddRelation
+-(void)didAddFather
 {
-    NSLog(@"Add");
+    NSLog(@"Add Father");
     
-    //[self.treeView removeFromSuperview];
+    self.relation = @"father";
     
+    [self showAddRelations];
+}
+
+-(void)showAddRelations
+{
     [self.treeView.relationsView removeFromSuperview];
     [self performSegueWithIdentifier:@"AddRelation" sender:self];
 }
 
-/*
+-(void)didUpdateMember:(NSString *)memberId
+{
+    self.memberId = memberId;
+    NSLog(@"---------------------------- called: %@", memberId);
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -66,7 +79,20 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"AddRelation"])
+    {
+        // Get reference to the destination view controller
+        //YourViewController *vc = [segue destinationViewController];
+        AddRelationViewController *vc = (AddRelationViewController *) [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        //[vc setMyObjectHere:object];
+        vc.relation = self.relation;
+        vc.memberA = self.memberId;
+        
+        NSLog(@"%d", vc.isRootSegmented.selectedSegmentIndex);
+    }
 }
-*/
 
 @end

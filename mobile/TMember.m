@@ -12,12 +12,28 @@
 
 -(id)fromJson:(NSDictionary *)json
 {
-    NSLog(@"=============== RECEIVED %@", json.description);
-    
+    self.memberId = json[@"id"];
     self.name = json[@"name"];
     self.photo = json[@"photo"];
     
+    // TODO: Build the relations.
     
+    //int relationsCount = [json[@"in_relations"] count];
+    NSDictionary * relations = json[@"in_relations"];
+    
+    for(NSDictionary * relatedMember in relations)
+    {
+        //NSLog(@"key=%@", key); //[relations objectForKey:key]);
+        //NSLog(@"%@", relation[@"relationship"]);
+        NSString * relation = relatedMember[@"relationship"];
+        
+        if ([relation isEqual: @"father"])
+        {
+            self.father = [[TMember alloc] init];
+            [self.father fromJson:relatedMember[@"first_member"]];
+        }
+    }
+
     return self;
 }
 
