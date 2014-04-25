@@ -48,14 +48,15 @@
 }
 
 - (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)addRelation:(id)sender {
     
-    NSLog(@"%@", self.memberA);
-    NSLog(@"%@", self.relation);
-    
+    NSLog(@"Member A: %@", self.memberA);
+    NSLog(@"Relation: %@", self.relation);
+
     // TODO: Do some validation.
     
     NSString * isAlive = @"1";
@@ -72,7 +73,13 @@
     }
     
     // Try to send the request.
+    // TODO: Make the animation later.
     TSweetResponse * tsr = [[MembersCommunicator shared] createRelation:self.memberA isAlive:isAlive name:self.firstNameTextField.text relation:self.relation isRoot: isRoot mobile:self.mobileTextField.text dob:self.dobTextField.text];
+    
+    if (tsr.code == 201)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 /*

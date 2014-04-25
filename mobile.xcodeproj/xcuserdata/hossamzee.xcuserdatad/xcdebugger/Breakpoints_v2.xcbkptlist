@@ -6,17 +6,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "mobile/FirstUploadPhotoViewController.m"
-            timestampString = "418949950.750586"
+            filePath = "mobile/UITreeView.m"
+            timestampString = "420120054.257592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "@interface FirstUploadPhotoViewController()"
-            landmarkType = "2">
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "-drawRect:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mobile/UITreeView.m"
-            timestampString = "419984618.940654"
+            timestampString = "420030886.821762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            landmarkName = "-drawRect:"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-goToGetMember:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

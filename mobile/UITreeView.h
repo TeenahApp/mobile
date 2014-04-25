@@ -15,8 +15,21 @@
 
 @protocol UITreeViewDelegate <NSObject>
 
+-(void) didAddMother;
 -(void) didAddFather;
--(void) didUpdateMember: (NSString *) memberId;
+
+-(void) didAddSister;
+-(void) didAddBrother;
+
+-(void) didAddDaughter;
+-(void) didAddSon;
+
+-(void) didAddHusband;
+-(void) didAddWife;
+
+-(void) didUpdateMember: (TMember *) member; //(NSString *) memberId;
+
+-(void) didViewMember;
 
 @end
 
@@ -32,6 +45,7 @@
 
 -(void) draw;
 -(void) addRelation;
+-(void) viewMember;
 -(void) handleSingleTap:(UITapGestureRecognizer *)recognizer;
 
 @end

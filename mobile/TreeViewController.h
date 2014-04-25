@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "UITreeView.h"
 #import "TreeViewController.h"
+#import "ViewMemberTableViewController.h"
 
 @interface TreeViewController : UIViewController<UITreeViewDelegate>
 
 @property (strong, nonatomic) UITreeView * treeView;
 @property (strong, nonatomic) NSString * relation;
-@property (strong, nonatomic) NSString * memberId;
+//@property (strong, nonatomic) NSString * memberId;
+@property (strong, nonatomic) TMember * member;
 
 // UITreeView * treeView;
 -(void) showAddRelations;

@@ -26,13 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
-    //[self view draw];
-    //[self.view
-     
-    //UITreeView * treeView = (UITreeView *)self.view;
-    //[treeView getMember:@"2"];
-    //self.treeView.delegate = self;
     
     self.treeView = (UITreeView *)self.view;
     self.treeView.delegate = self;
@@ -54,9 +49,49 @@
 -(void)didAddFather
 {
     NSLog(@"Add Father");
-    
     self.relation = @"father";
-    
+    [self showAddRelations];
+}
+
+-(void)didAddMother
+{
+    self.relation = @"mother";
+    [self showAddRelations];
+}
+
+-(void)didAddBrother
+{
+    self.relation = @"brother";
+    [self showAddRelations];
+}
+
+-(void)didAddSister
+{
+    self.relation = @"sister";
+    [self showAddRelations];
+}
+
+-(void)didAddDaughter
+{
+    self.relation = @"daughter";
+    [self showAddRelations];
+}
+
+-(void)didAddSon
+{
+    self.relation = @"son";
+    [self showAddRelations];
+}
+
+-(void)didAddWife
+{
+    self.relation = @"wife";
+    [self showAddRelations];
+}
+
+-(void)didAddHusband
+{
+    self.relation = @"husband";
     [self showAddRelations];
 }
 
@@ -66,10 +101,15 @@
     [self performSegueWithIdentifier:@"AddRelation" sender:self];
 }
 
--(void)didUpdateMember:(NSString *)memberId
+-(void)didUpdateMember:(TMember *)member
 {
-    self.memberId = memberId;
-    NSLog(@"---------------------------- called: %@", memberId);
+    self.member = member;
+    NSLog(@"---------------------------- called: %@", self.member.memberId);
+}
+
+-(void)didViewMember
+{
+    [self performSegueWithIdentifier:@"ViewMember" sender:self];
 }
 
 #pragma mark - Navigation
@@ -80,6 +120,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     // Make sure your segue name in storyboard is the same as this line
+
     if ([[segue identifier] isEqualToString:@"AddRelation"])
     {
         // Get reference to the destination view controller
@@ -89,9 +130,17 @@
         // Pass any objects to the view controller here, like...
         //[vc setMyObjectHere:object];
         vc.relation = self.relation;
-        vc.memberA = self.memberId;
+        vc.memberA = self.member.memberId;
         
-        NSLog(@"%d", vc.isRootSegmented.selectedSegmentIndex);
+        //NSLog(@"%d", vc.isRootSegmented.selectedSegmentIndex);
+    }
+    
+    else if ([[segue identifier] isEqualToString:@"ViewMember"])
+    {
+        //NSLog(@"View Member");
+        ViewMemberTableViewController * vc = (ViewMemberTableViewController *) [segue destinationViewController];
+        
+        vc.member = self.member;
     }
 }
 
