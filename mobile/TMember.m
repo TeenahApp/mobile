@@ -14,10 +14,28 @@
 {
     self.memberId = json[@"id"];
     self.name = json[@"name"];
+    self.mobile = json[@"mobile"];
     self.fullname = json[@"fullname"];
     self.gender = json[@"gender"];
     self.photo = json[@"photo"];
+    
     self.dob = json[@"dob"];
+    self.dod = json[@"dob"];
+    
+    self.dobYear = [[self.dob componentsSeparatedByString:@"-"] objectAtIndex:0];
+    self.dodYear = [[self.dod componentsSeparatedByString:@"-"] objectAtIndex:0];
+    
+    // Make the years empty if not set.
+    if ([self.dobYear isEqual: @"0000"])
+    {
+        self.dobYear = @"";
+    }
+    
+    if ([self.dodYear isEqual: @"0000"])
+    {
+        self.dodYear = @"";
+    }
+    
     self.isAlive = [json[@"is_alive"] intValue];
     
     // TODO: self.dobYear.
@@ -27,13 +45,16 @@
     // TODO: Build the relations.
     
     //int relationsCount = [json[@"in_relations"] count];
-    NSDictionary * relations = json[@"in_relations"];
+    //NSDictionary * relations = json[@"in_relations"];
+    
+    self.relations = [[NSDictionary alloc] init];
+    self.relations = json[@"in_relations"];
     
     // Reset every thing.
     self.children = [[NSMutableDictionary alloc] init];
     self.father = nil;
     
-    for(NSDictionary * relatedMember in relations)
+    for(NSDictionary * relatedMember in self.relations)
     {
         //NSLog(@"key=%@", key); //[relations objectForKey:key]);
         //NSLog(@"%@", relation[@"relationship"]);

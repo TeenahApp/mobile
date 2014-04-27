@@ -26,4 +26,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *mobileLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *relationsLabel;
+
 @end

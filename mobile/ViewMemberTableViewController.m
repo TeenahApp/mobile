@@ -60,6 +60,26 @@
     [self.fullnameLabel setText:self.member.fullname];
     [self.dobLabel setText:self.member.dob];
     
+    [self.mobileLabel setTitle:self.member.mobile forState:UIControlStateNormal];
+    
+    NSMutableString * relationsString = [[NSMutableString alloc] init];
+    
+    for (NSDictionary * relatedMember in self.member.relations)
+    {
+        NSString * memberName = relatedMember[@"first_member"][@"name"];
+        NSString * memberRelation = relatedMember[@"relationship"];
+        
+        [relationsString appendString:[NSString stringWithFormat:@"(%@) %@\n", memberRelation, memberName]];
+    }
+    
+    self.relationsLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.relationsLabel.numberOfLines = self.member.relations.count;
+    
+    
+    [self.relationsLabel setText:relationsString];
+    
+    //NSLog(@"%@", relationsString);
+    
     
     //NSString * isAlive = @"Alive";
     
@@ -78,6 +98,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)callMobile:(id)sender
+{
+    NSLog(@"Call");
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.member.mobile]]];
 }
 
 #pragma mark - Table view data source

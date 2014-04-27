@@ -12,13 +12,18 @@
 
 @property (strong, nonatomic) NSString * memberId;
 @property (strong, nonatomic) NSString * name;
+@property (strong, nonatomic) NSString * mobile;
 @property (strong, nonatomic) NSString * fullname;
 @property (strong, nonatomic) NSString * photo;
 @property (strong, nonatomic) NSString * gender;
 @property (strong, nonatomic) NSString * dob;
 @property (strong, nonatomic) NSString * dobYear;
+@property (strong, nonatomic) NSString * dod;
+@property (strong, nonatomic) NSString * dodYear;
+@property (strong, nonatomic) NSString * location;
 @property int isAlive;
 
+@property (strong, nonatomic) NSDictionary * relations;
 @property (strong, nonatomic) TMember * father;
 @property (strong, nonatomic) NSMutableDictionary * children;
 

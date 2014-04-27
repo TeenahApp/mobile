@@ -133,7 +133,12 @@
         shapeLayer.fillColor = [[UIColor clearColor] CGColor];
         
         UIButton * fatherButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
-        [fatherButton setTitle:self.member.father.name forState:UIControlStateNormal];
+        
+        fatherButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        [fatherButton setTitle:[NSString stringWithFormat:@"%@\n%@", self.member.father.name, self.member.father.dobYear] forState:UIControlStateNormal];
+        fatherButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        
         fatherButton.center = CGPointMake(myImageView.center.x, myImageView.center.y - 120);
         
         fatherButton.tag = [self.member.father.memberId intValue];
