@@ -14,3 +14,4 @@ TODO:
 8. Hide keyboard, or show it appropriatly.
 9. Relations and educations and jobs to be added correctly in view member view controller.
 10. Chat to be implemented in the next phase.
+11. Give the variables meaning.

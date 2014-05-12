@@ -40,7 +40,7 @@
 
 -(TSweetResponse *) getMembers: (NSString *) circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%@", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%@/members", circleId];
     return [[TSweetRest shared] get:route];
 }
 

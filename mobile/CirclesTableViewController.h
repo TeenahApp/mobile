@@ -10,8 +10,11 @@
 
 #import "TSweetResponse.h"
 #import "TSweetCirclesCommunicator.h"
+#import "CircleViewController.h"
 
 @interface CirclesTableViewController : UITableViewController
+
+@property (strong, nonatomic) NSDictionary * currentCircle;
 
 @property (strong, nonatomic) NSMutableArray * circles;
 

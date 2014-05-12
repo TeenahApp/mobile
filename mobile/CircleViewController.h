@@ -7,16 +7,41 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "TSweetCirclesCommunicator.h"
 #import "TSweetResponse.h"
+
 #import "PNChart.h"
 
-@interface CircleViewController : UIViewController
+// TODO: Complete this view controller.
 
-@property (weak, nonatomic) IBOutlet UIView *innerView;
+@interface CircleViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) NSDictionary * circle;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *innerView;
 
 @property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 
 @property (strong, nonatomic) NSDictionary * stats;
+
+@property (weak, nonatomic) IBOutlet UIPageControl *pager;
+
+@property (strong, nonatomic) NSArray * pages;
+
+@property (strong, nonatomic) NSMutableArray * locations;
+
+// TODO: Better to be graph.
+//@property (strong, nonatomic) NSMutableArray * educations;
+
+@property (strong, nonatomic) NSMutableArray * educationMajors;
+
+@property (strong, nonatomic) NSMutableArray * companies;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *menuView;
+
+@property (weak, nonatomic) IBOutlet UIButton *membersLabel;
 
 @end

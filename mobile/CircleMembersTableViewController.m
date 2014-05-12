@@ -1,18 +1,18 @@
 //
-//  CirclesTableViewController.m
+//  CircleMembersTableViewController.m
 //  mobile
 //
-//  Created by Hussam Al-Zughaibi on 6/27/1435 AH.
+//  Created by Hussam Al-Zughaibi on 7/13/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "CirclesTableViewController.h"
+#import "CircleMembersTableViewController.h"
 
-@interface CirclesTableViewController ()
+@interface CircleMembersTableViewController ()
 
 @end
 
-@implementation CirclesTableViewController
+@implementation CircleMembersTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,28 +27,23 @@
 {
     [super viewDidLoad];
     
-    self.currentCircle = [[NSDictionary alloc] init];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // TODO:
-    TSweetResponse * tsr = [[CirclesCommunicator shared] get];
+    TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:@"1"];
     
-    self.circles = [[NSMutableArray alloc] init];
+    self.members = [[NSMutableArray alloc] init];
     
-    for (id circle in tsr.json)
+    for (NSDictionary * memberDictionary in tsr.json)
     {
+        TMember * member = [[TMember alloc] init];
+        [member fromJson:memberDictionary];
         
-        [self.circles addObject:circle];
+        [self.members addObject:member];
     }
-    
-    //NSLog(@"%d", self.circles.count);
-    
-    self.titleNavigationItem.title = [NSString stringWithFormat:@"Circles (%d)", self.circles.count];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +63,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.circles.count;
+    return self.members.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,14 +71,44 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSDictionary * current = [self.circles objectAtIndex:indexPath.row];
+    // objectAtIndex:indexPath.row
+    TMember * member = (TMember *) [self.members objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = current[@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ Members", current[@"members_count"]];
-
-    self.currentCircle = current;
+    [cell.textLabel setText:[NSString stringWithFormat:@"%@", member.name]];
     
-    NSLog(@"Cell has been called");
+    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@", member.fullname]];
+    
+    // TODO: Load the images in a separate thread.
+    
+    NSURL * imageURL = nil;
+    
+    if ([member.photo isEqual:[NSNull null]])
+    {
+        // TODO: Fix the image regarding to the gender of the member.
+        //       Display a man with Shmagh, and a woman whit a Hijab.
+        NSLog(@"============= Nil");
+        imageURL = [NSURL URLWithString:@"http://i2.wp.com/www.maas360.com/assets/Uploads/defaultUserIcon.png"];
+    }
+    else
+    {
+        NSLog(@"============= Not nil");
+        imageURL = [NSURL URLWithString:member.photo];
+    }
+    
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage * image = [UIImage imageWithData:imageData];
+    
+    /*
+    cell.imageView.layer.cornerRadius = 20;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.borderWidth = 4;
+    
+    cell.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    */
+    
+    cell.imageView.image = image;
+    
+    //cell.imageView
     
     return cell;
 }
@@ -126,6 +151,7 @@
 }
 */
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -133,24 +159,7 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    if ([[segue identifier] isEqualToString:@"ViewCircle"])
-    {
-        // Get reference to the destination view controller
-        //YourViewController *vc = [segue destinationViewController];
-        CircleViewController *vc = (CircleViewController *) [segue destinationViewController];
-        
-        vc.hidesBottomBarWhenPushed = YES;
-        
-        // Pass any objects to the view controller here, like...
-        //[vc setMyObjectHere:object];
-        //vc.relation = self.relation;
-        //vc.memberA = self.member.memberId;
-        
-        vc.circle = self.currentCircle;
-
-        NSLog(@"prepareForSegue: %@", self.currentCircle);
-    }
 }
+*/
 
 @end
