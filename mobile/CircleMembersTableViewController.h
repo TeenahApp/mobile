@@ -13,8 +13,12 @@
 
 #import "TMember.h"
 
+#import "ViewMemberTableViewController.h"
+
 @interface CircleMembersTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSMutableArray * members;
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

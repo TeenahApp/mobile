@@ -151,7 +151,6 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -159,7 +158,32 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ViewMember"])
+    {
+        // Get reference to the destination view controller
+        //YourViewController *vc = [segue destinationViewController];
+        ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        // Pass any objects to the view controller here, like...
+        //[vc setMyObjectHere:object];
+        //vc.relation = self.relation;
+        //vc.memberA = self.member.memberId;
+        
+        //vc.member = [[TMember alloc] init];
+        //vc.member = self.currentMember;
+        
+        //NSLog(@"---- %ld", (long)self.tableView.indexPathForSelectedRow.row);
+        
+        TMember * member = (TMember *) [self.members objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        
+        vc.member = [[TMember alloc] init];
+        vc.member = member;
+        
+        //NSLog(@"prepareForSegue: %@", self.currentMember.fullname);
+    }
+
 }
-*/
 
 @end

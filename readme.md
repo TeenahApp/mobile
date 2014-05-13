@@ -15,3 +15,4 @@ TODO:
 9. Relations and educations and jobs to be added correctly in view member view controller.
 10. Chat to be implemented in the next phase.
 11. Give the variables meaning.
+12. Implement searching in CircleMembersTableViewController.

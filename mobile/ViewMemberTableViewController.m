@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"View Member Id: %@", self.member.memberId);
+    NSLog(@"View Member Id: %@", self.member.fullname);
     
     NSURL * imageURL = nil;
     
@@ -57,10 +57,10 @@
     
     self.photoImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    [self.fullnameLabel setText:self.member.fullname];
+    [self.fullnameLabel setText:[NSString stringWithFormat:@"%@", self.member.fullname]];
     [self.dobLabel setText:self.member.dob];
     
-    [self.mobileLabel setTitle:self.member.mobile forState:UIControlStateNormal];
+    [self.mobileLabel setTitle:[NSString stringWithFormat:@"%@", self.member.mobile] forState:UIControlStateNormal];
     
     NSMutableString * relationsString = [[NSMutableString alloc] init];
     
@@ -74,8 +74,7 @@
     
     self.relationsLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.relationsLabel.numberOfLines = self.member.relations.count;
-    
-    
+
     [self.relationsLabel setText:relationsString];
     
     //NSLog(@"%@", relationsString);
