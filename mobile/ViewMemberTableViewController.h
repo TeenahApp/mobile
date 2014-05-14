@@ -9,23 +9,18 @@
 #import <UIKit/UIKit.h>
 
 #import "TMember.h"
+#import "UIAvatarCellTableViewCell.h"
 
 @interface ViewMemberTableViewController : UITableViewController
 
 @property (strong, nonatomic) TMember * member;
 
-@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (strong, nonatomic) UIImage * image;
 
-@property (weak, nonatomic) IBOutlet UILabel *fullnameLabel;
+@property (strong, nonatomic) NSArray * sections;
 
-@property (weak, nonatomic) IBOutlet UILabel *dobLabel;
+@property (strong, nonatomic) NSMutableArray * data;
 
-@property (weak, nonatomic) IBOutlet UIButton *isAliveLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *locationLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *mobileLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *relationsLabel;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

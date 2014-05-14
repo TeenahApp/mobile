@@ -17,6 +17,8 @@
 
 @interface CircleMembersTableViewController : UITableViewController
 
+@property (strong, nonatomic) TMember * currentMember;
+
 @property (strong, nonatomic) NSMutableArray * members;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

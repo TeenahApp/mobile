@@ -20,10 +20,14 @@
     self.photo = json[@"photo"];
     
     self.dob = json[@"dob"];
-    self.dod = json[@"dob"];
+    self.dod = json[@"dod"];
     
     self.dobYear = [[self.dob componentsSeparatedByString:@"-"] objectAtIndex:0];
-    self.dodYear = [[self.dod componentsSeparatedByString:@"-"] objectAtIndex:0];
+    
+    if (![self.dod isEqual:[NSNull null]])
+    {
+        self.dodYear = [[self.dod componentsSeparatedByString:@"-"] objectAtIndex:0];
+    }
     
     // Make the years empty if not set.
     if ([self.dobYear isEqual: @"0000"])

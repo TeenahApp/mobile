@@ -113,6 +113,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.currentMember = (TMember *) [self.members objectAtIndex:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"ViewMember" sender:nil];
+    
+    NSLog(@"Clicked: %@", self.currentMember);
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,28 +169,16 @@
     // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqualToString:@"ViewMember"])
     {
+        NSLog(@"prepareForSegue");
+        
         // Get reference to the destination view controller
         //YourViewController *vc = [segue destinationViewController];
+        
         ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
         
         vc.hidesBottomBarWhenPushed = YES;
         
-        // Pass any objects to the view controller here, like...
-        //[vc setMyObjectHere:object];
-        //vc.relation = self.relation;
-        //vc.memberA = self.member.memberId;
-        
-        //vc.member = [[TMember alloc] init];
-        //vc.member = self.currentMember;
-        
-        //NSLog(@"---- %ld", (long)self.tableView.indexPathForSelectedRow.row);
-        
-        TMember * member = (TMember *) [self.members objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        
-        vc.member = [[TMember alloc] init];
-        vc.member = member;
-        
-        //NSLog(@"prepareForSegue: %@", self.currentMember.fullname);
+        vc.member = self.currentMember;
     }
 
 }

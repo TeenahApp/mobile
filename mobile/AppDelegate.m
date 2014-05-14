@@ -12,7 +12,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //$2y$10$gIc/7Z1TbGLOzjbNtXBHrOJzgIk.AzjQGQryBdxPS21Li2q/XJ7ZO
     
     TSweetRest * tsrest = [TSweetRest shared];
     tsrest.userToken = @"$2y$10$5oXpuly.YweSNqfyQo8Rve1oS1FlWK3gCZ4mbbLlZWZmzIZcAo/sa";

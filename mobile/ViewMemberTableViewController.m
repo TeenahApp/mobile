@@ -27,8 +27,50 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"View Member Id: %@", self.member.fullname);
+    self.sections = @[@"Avatar", @"Main Info", @"Personal", @"Contact", @"Relations", @"Educations", @"Jobs"];
     
+    NSMutableArray * relations = [[NSMutableArray alloc]init];
+    NSMutableArray * educations = [[NSMutableArray alloc]init];
+    NSMutableArray * jobs = [[NSMutableArray alloc]init];
+    
+    self.data = [@[
+                  // Section 0: Avatar:
+                  @[
+                      @{@"Avatar": self.member.photo}
+                    ],
+                  
+                  // Section 1: Main Info:
+                  @[
+                      @{@"Fullname": [NSString stringWithFormat:@"%@", self.member.fullname]},
+                      @{@"Life": [NSString stringWithFormat:@"%@ - %@", self.member.dob, self.member.dod]}
+                    ],
+                  
+                  // Section 2: Personal:
+                  @[
+                      @{@"Pulse": [NSString stringWithFormat:@"%d", self.member.isAlive]},
+                      @{@"Location": [NSString stringWithFormat:@"%@", self.member.location]}
+                    ],
+                  
+                  // Section 3: Contact:
+                  @[
+                      @{@"Mobile": [NSString stringWithFormat:@"%@", self.member.mobile]},
+                      @{@"Email:": @"hossam_zee@yahoo.com"}, // TODO: Email
+                      @{@"Phone Work": @"Riyahd"}
+                    ],
+                  
+                  // Section 4: Relations:
+                  relations,
+                  
+                  // Section 5: Educations:
+                  educations,
+                  
+                  // Section 6: Jobs:
+                  jobs,
+                  
+    ] mutableCopy];
+    
+    NSLog(@"%@", self.data.description);
+
     NSURL * imageURL = nil;
     
     if ([self.member.photo isEqual:[NSNull null]])
@@ -42,55 +84,26 @@
         imageURL = [NSURL URLWithString:self.member.photo];
     }
     
+    NSLog(@"%@", imageURL.description);
+    
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
+    self.image = [UIImage imageWithData:imageData];
     
-    //UIImageView * myImageView =
-    
-    [self.photoImageView setImage:image];
-    
-    self.photoImageView.frame = CGRectMake(0, 0, 60, 60);
-    
-    self.photoImageView.layer.cornerRadius = 46;
-    self.photoImageView.layer.masksToBounds = YES;
-    self.photoImageView.layer.borderWidth = 4;
-    
-    self.photoImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    [self.fullnameLabel setText:[NSString stringWithFormat:@"%@", self.member.fullname]];
-    [self.dobLabel setText:self.member.dob];
-    
-    [self.mobileLabel setTitle:[NSString stringWithFormat:@"%@", self.member.mobile] forState:UIControlStateNormal];
-    
-    NSMutableString * relationsString = [[NSMutableString alloc] init];
-    
+    // Relations.
     for (NSDictionary * relatedMember in self.member.relations)
     {
         NSString * memberName = relatedMember[@"first_member"][@"name"];
         NSString * memberRelation = relatedMember[@"relationship"];
-        
-        [relationsString appendString:[NSString stringWithFormat:@"(%@) %@\n", memberRelation, memberName]];
+
+        [relations addObject:@{memberRelation: memberName}];
     }
     
-    self.relationsLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.relationsLabel.numberOfLines = self.member.relations.count;
-
-    [self.relationsLabel setText:relationsString];
+    // TODO: Educations.
+    // TODO: Jobs.
     
-    //NSLog(@"%@", relationsString);
+    NSLog(@"%@", relations.description);
     
     
-    //NSString * isAlive = @"Alive";
-    
-    //if (self.member.)
-    
-    //self.isAliveLabel setTitle:self forState:<#(UIControlState)#>
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,32 +121,78 @@
 
 #pragma mark - Table view data source
 
-/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    /*
+    NSString *sectionTitle = [self.data.allKeys objectAtIndex:section];
+    NSArray *sectionRows = [self.data objectForKey:sectionTitle];
+    return sectionRows.count;
+     */
+    
+    NSArray * rows = [self.data objectAtIndex:section];
+    return rows.count;
 }
- */
 
-/*
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString * temp = [self.sections objectAtIndex:section];
+    
+    if ([temp  isEqual: @"Main Info"] || [temp  isEqual: @"Avatar"])
+    {
+        return nil;
+    }
+    
+    return temp;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSArray * rows = [self.data objectAtIndex:indexPath.section];
+    NSDictionary * info = [rows objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    //NSLog(@"%@", info.description);
+    NSString * key = [[info allKeys] objectAtIndex:0];
+    NSString * value = [info objectForKey:key];
     
-    return cell;
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
+        UIAvatarCellTableViewCell * cell = (UIAvatarCellTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"AvatarCell" forIndexPath:indexPath];
+        
+        [cell.photo setImage:self.image];
+
+        return cell;
+    }
+    else
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        
+        [cell.textLabel setText:(NSString *)key];
+        [cell.detailTextLabel setText:value];
+        
+        return cell;
+    }
+
+    //return cell;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
+        return 120;
+    }
+    else
+    {
+        return tableView.rowHeight;
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
