@@ -248,7 +248,7 @@
 
 - (IBAction)leaveCircle:(id)sender {
     
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Leaving" message:@"Are you sure to leave the circle?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Leaving" message:@"Are you sure to leave this circle?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:nil];
     
     [alert show];
 }

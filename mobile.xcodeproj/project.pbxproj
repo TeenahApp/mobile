@@ -27,6 +27,7 @@
 		FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD58983C18FEC7FD00A9172F /* UITreeView.m */; };
 		FD59908C18FEEE1400975F7F /* TMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FD59908B18FEEE1400975F7F /* TMember.m */; };
 		FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5AA144191AAD6700C44F81 /* CircleViewController.m */; };
+		FD61900D19257464004DF6C4 /* CircleEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD61900C19257464004DF6C4 /* CircleEventsViewController.m */; };
 		FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */; };
 		FD7AB76E190ABCC700E302B8 /* ViewMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB76D190ABCC700E302B8 /* ViewMemberTableViewController.m */; };
 		FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB770190B04E400E302B8 /* CirclesTableViewController.m */; };
@@ -93,6 +94,8 @@
 		FD59908B18FEEE1400975F7F /* TMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMember.m; sourceTree = "<group>"; };
 		FD5AA143191AAD6700C44F81 /* CircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleViewController.h; sourceTree = "<group>"; };
 		FD5AA144191AAD6700C44F81 /* CircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleViewController.m; sourceTree = "<group>"; };
+		FD61900B19257464004DF6C4 /* CircleEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleEventsViewController.h; sourceTree = "<group>"; };
+		FD61900C19257464004DF6C4 /* CircleEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleEventsViewController.m; sourceTree = "<group>"; };
 		FD6666751923E37800AFF4E5 /* UIAvatarCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAvatarCellTableViewCell.h; sourceTree = "<group>"; };
 		FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarCellTableViewCell.m; sourceTree = "<group>"; };
 		FD7AB76C190ABCC700E302B8 /* ViewMemberTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMemberTableViewController.h; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				FD7AB770190B04E400E302B8 /* CirclesTableViewController.m */,
 				FDA9B0F51921320B0015BF8C /* CircleMembersTableViewController.h */,
 				FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */,
+				FD61900B19257464004DF6C4 /* CircleEventsViewController.h */,
+				FD61900C19257464004DF6C4 /* CircleEventsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
 				FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */,
 				FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */,
+				FD61900D19257464004DF6C4 /* CircleEventsViewController.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
 				FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */,
 				FD59908C18FEEE1400975F7F /* TMember.m in Sources */,

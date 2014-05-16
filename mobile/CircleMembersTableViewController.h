@@ -15,12 +15,16 @@
 
 #import "ViewMemberTableViewController.h"
 
-@interface CircleMembersTableViewController : UITableViewController
+@interface CircleMembersTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) TMember * currentMember;
 
 @property (strong, nonatomic) NSMutableArray * members;
 
+@property (strong, nonatomic) NSMutableArray * filteredMembers;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end

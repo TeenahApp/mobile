@@ -27,12 +27,18 @@
 {
     [super viewDidLoad];
     
+    CGRect newBounds = self.tableView.bounds;
+    
+    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
+    self.tableView.bounds = newBounds;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    // TODO: Change the circle id to be a variable, thanks to @ecleel.
     TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:@"1"];
     
     self.members = [[NSMutableArray alloc] init];
@@ -44,6 +50,9 @@
         
         [self.members addObject:member];
     }
+    
+    // This is for searching for members.
+    self.filteredMembers = [[NSMutableArray alloc] initWithCapacity:self.members.count];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,23 +71,37 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return self.members.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return self.filteredMembers.count;
+    }
+    else
+    {
+        return self.members.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
     // objectAtIndex:indexPath.row
-    TMember * member = (TMember *) [self.members objectAtIndex:indexPath.row];
+    
+    TMember * member;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        member = (TMember *) [self.filteredMembers objectAtIndex:indexPath.row];
+    } else {
+        member = (TMember *) [self.members objectAtIndex:indexPath.row];
+    }
     
     [cell.textLabel setText:[NSString stringWithFormat:@"%@", member.name]];
     
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@", member.fullname]];
     
     // TODO: Load the images in a separate thread.
+    
     
     NSURL * imageURL = nil;
     
@@ -98,14 +121,11 @@
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage * image = [UIImage imageWithData:imageData];
     
-    /*
     cell.imageView.layer.cornerRadius = 20;
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.borderWidth = 4;
     
     cell.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    */
-    
     cell.imageView.image = image;
     
     //cell.imageView
@@ -115,11 +135,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
+    if(self.tableView == self.searchDisplayController.searchResultsTableView) {
+        NSLog(@"Searched");
+    }
+    else
+    {
+        NSLog(@"NotSearched");
+    }
+    
     self.currentMember = (TMember *) [self.members objectAtIndex:indexPath.row];
     
-    [self performSegueWithIdentifier:@"ViewMember" sender:nil];
+    //[self performSegueWithIdentifier:@"ViewMember" sender:nil];
     
     NSLog(@"Clicked: %@", self.currentMember);
+     */
+    [self performSegueWithIdentifier:@"ViewMember" sender:tableView];
 }
 
 /*
@@ -160,6 +191,23 @@
 }
 */
 
+#pragma mark Content Filtering
+
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [self.filteredMembers removeAllObjects];
+    
+    // Filter the array using NSPredicate
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    
+    self.filteredMembers = [NSMutableArray arrayWithArray:[self.members filteredArrayUsingPredicate:predicate]];
+    
+    NSLog(@"%@", self.filteredMembers);
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -174,13 +222,40 @@
         // Get reference to the destination view controller
         //YourViewController *vc = [segue destinationViewController];
         
-        ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
+        //ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
         
-        vc.hidesBottomBarWhenPushed = YES;
+        //vc.hidesBottomBarWhenPushed = YES;
         
-        vc.member = self.currentMember;
+        //vc.member = self.currentMember;
+        
+        if(sender == self.searchDisplayController.searchResultsTableView)
+        {
+            NSLog(@"Searched.");
+        }
+        else
+        {
+            NSLog(@"NotSearched.");
+        }
     }
 
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

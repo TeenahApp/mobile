@@ -44,6 +44,9 @@
     
     [self.window.rootViewController presentViewController:fphotovc animated:NO completion:nil];
     */
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
      
     // Override point for customization after application launch.
     return YES;
@@ -74,6 +77,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceToken];
+    NSLog(@"%@", str);
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"%@",str);
 }
 
 @end
