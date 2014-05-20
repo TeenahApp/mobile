@@ -76,19 +76,14 @@
         imageURL = [NSURL URLWithString:self.member.photo];
     }
 
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
+    //NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    //UIImage * image = [UIImage imageWithData:imageData];
     
-    UIImageView * myImageView = [[UIImageView alloc] initWithImage:image];
+    CGFloat imageSize = 60;
+    CGFloat imageX = self.center.x - imageSize/2;
+    CGFloat imageY = self.center.y - imageSize/2;
     
-    myImageView.frame = CGRectMake(0, 0, 60, 60);
-    myImageView.center = self.center;
-    
-    myImageView.layer.cornerRadius = 30;
-    myImageView.layer.masksToBounds = YES;
-    myImageView.layer.borderWidth = 4;
-    
-    myImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    UIAvatarView * myImageView = [[UIAvatarView alloc] initWithURL:imageURL frame:CGRectMake(imageX, imageY, imageSize, imageSize)];
     
     [myImageView setUserInteractionEnabled:YES];
     

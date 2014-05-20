@@ -10,4 +10,11 @@
 
 @interface TCircle : NSObject
 
+@property (strong, nonatomic) NSString * circleId;
+@property (strong, nonatomic) NSString * name;
+@property (strong, nonatomic) NSString * membersCount;
+@property (strong, nonatomic) NSString * isActive;
+
+-(id) fromJson: (NSDictionary *) json;
+
 @end

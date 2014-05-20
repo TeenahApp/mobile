@@ -16,3 +16,11 @@ TODO:
 10. Chat to be implemented in the next phase.
 11. Give the variables meaning.
 12. Implement searching in CircleMembersTableViewController.
+13. Handle errors when calling API.
+14. Choose an appropriate date picker for member DOB.
+15. Circle is not being created for first time when visiting the circles view for second time.
+16. Run command for calculating member ages every day.
+17. Publish the libraries related to TeenahApp project with the latest version (use Pods).
+18. Update the icon of the app.
+19. Implement an avatar view with waiting indicator.
+20. Fix multi-language issue.

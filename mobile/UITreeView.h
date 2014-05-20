@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIAvatarView.h"
+
 #import "TMember.h"
 #import "TSweetResponse.h"
 #import "TSweetMembersCommunicator.h"

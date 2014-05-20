@@ -27,12 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    MNCalendarView *calendarView = [[MNCalendarView alloc] initWithFrame:self.calendarView.bounds];
-    calendarView.selectedDate = [NSDate date];
-    calendarView.delegate = self;
-    
-    [self.calendarView addSubview:calendarView];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,16 +36,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)calendarView:(MNCalendarView *)calendarView shouldSelectDate:(NSDate *)date
-{
-    //NSLog(@"%@", date);
-    return YES;
-}
-
--(int)calendarView:(MNCalendarView *)calendarView getEventsCountForDate:(NSDate *)date
-{
-    return 0;//arc4random_uniform(2) ? 0 : 1;
-}
 
 /*
 #pragma mark - Navigation

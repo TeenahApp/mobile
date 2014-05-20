@@ -10,12 +10,13 @@
 
 #import "TMember.h"
 #import "UIAvatarCellTableViewCell.h"
+#import "UIAvatarView.h"
 
 @interface ViewMemberTableViewController : UITableViewController
 
 @property (strong, nonatomic) TMember * member;
 
-@property (strong, nonatomic) UIImage * image;
+@property (strong, nonatomic) UIAvatarView * image;
 
 @property (strong, nonatomic) NSArray * sections;
 

@@ -22,6 +22,8 @@
                   latitude: (NSString *) latitude
                  longitude: (NSString *) longitude;
 
+-(TSweetResponse *) list;
+
 -(TSweetResponse *) get: (NSString *) eventId;
 
 -(TSweetResponse *) update: (NSString *) eventId

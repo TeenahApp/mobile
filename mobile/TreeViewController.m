@@ -41,9 +41,10 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    // TODO: Get the real member (the logged in member).
     //NSLog(@"helloworld");
     self.treeView.member.photo = @"zee";
-    [self.treeView getMember:@"2"];
+    [self.treeView getMember:@"1"];
 }
 
 -(void)didAddFather

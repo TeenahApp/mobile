@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D64A9436371444F48143C767 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E4E867158A40178A8EA74E /* libPods.a */; };
+		FD4AF16519293B4A00F41129 /* FXForms.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16419293B4A00F41129 /* FXForms.m */; };
+		FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16819293C9900F41129 /* AddEventViewController.m */; };
+		FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16C1929400F00F41129 /* AddEventForm.m */; };
+		FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16F1929E21A00F41129 /* UIAvatarView.m */; };
 		FD54660A18F5A66000BFD409 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660918F5A66000BFD409 /* Foundation.framework */; };
 		FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660B18F5A66000BFD409 /* CoreGraphics.framework */; };
 		FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660D18F5A66000BFD409 /* UIKit.framework */; };
@@ -27,7 +31,8 @@
 		FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD58983C18FEC7FD00A9172F /* UITreeView.m */; };
 		FD59908C18FEEE1400975F7F /* TMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FD59908B18FEEE1400975F7F /* TMember.m */; };
 		FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5AA144191AAD6700C44F81 /* CircleViewController.m */; };
-		FD61900D19257464004DF6C4 /* CircleEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD61900C19257464004DF6C4 /* CircleEventsViewController.m */; };
+		FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5BA84A192AB0B300B37FCC /* TEvent.m */; };
+		FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD61900F19262009004DF6C4 /* EventsTableViewController.m */; };
 		FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */; };
 		FD7AB76E190ABCC700E302B8 /* ViewMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB76D190ABCC700E302B8 /* ViewMemberTableViewController.m */; };
 		FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB770190B04E400E302B8 /* CirclesTableViewController.m */; };
@@ -36,6 +41,8 @@
 		FD85CB12191CE808003707AC /* TCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FD85CB11191CE808003707AC /* TCircle.m */; };
 		FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */; };
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
+		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
+		FD9F4C991926C1F700D10C09 /* UIEditableTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9F4C981926C1F700D10C09 /* UIEditableTextTableViewCell.m */; };
 		FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
 		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
@@ -64,6 +71,14 @@
 /* Begin PBXFileReference section */
 		35148144AD2E4457BCFD4D21 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		99E4E867158A40178A8EA74E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4AF16319293B4A00F41129 /* FXForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXForms.h; sourceTree = "<group>"; };
+		FD4AF16419293B4A00F41129 /* FXForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXForms.m; sourceTree = "<group>"; };
+		FD4AF16719293C9900F41129 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		FD4AF16819293C9900F41129 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		FD4AF16B1929400F00F41129 /* AddEventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventForm.h; sourceTree = "<group>"; };
+		FD4AF16C1929400F00F41129 /* AddEventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventForm.m; sourceTree = "<group>"; };
+		FD4AF16E1929E21A00F41129 /* UIAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAvatarView.h; sourceTree = "<group>"; };
+		FD4AF16F1929E21A00F41129 /* UIAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarView.m; sourceTree = "<group>"; };
 		FD54660618F5A66000BFD409 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54660918F5A66000BFD409 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD54660B18F5A66000BFD409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,8 +109,10 @@
 		FD59908B18FEEE1400975F7F /* TMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMember.m; sourceTree = "<group>"; };
 		FD5AA143191AAD6700C44F81 /* CircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleViewController.h; sourceTree = "<group>"; };
 		FD5AA144191AAD6700C44F81 /* CircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleViewController.m; sourceTree = "<group>"; };
-		FD61900B19257464004DF6C4 /* CircleEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleEventsViewController.h; sourceTree = "<group>"; };
-		FD61900C19257464004DF6C4 /* CircleEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleEventsViewController.m; sourceTree = "<group>"; };
+		FD5BA849192AB0B300B37FCC /* TEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEvent.h; sourceTree = "<group>"; };
+		FD5BA84A192AB0B300B37FCC /* TEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEvent.m; sourceTree = "<group>"; };
+		FD61900E19262009004DF6C4 /* EventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsTableViewController.h; sourceTree = "<group>"; };
+		FD61900F19262009004DF6C4 /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsTableViewController.m; sourceTree = "<group>"; };
 		FD6666751923E37800AFF4E5 /* UIAvatarCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAvatarCellTableViewCell.h; sourceTree = "<group>"; };
 		FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarCellTableViewCell.m; sourceTree = "<group>"; };
 		FD7AB76C190ABCC700E302B8 /* ViewMemberTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMemberTableViewController.h; sourceTree = "<group>"; };
@@ -110,6 +127,9 @@
 		FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstUploadPhotoViewController.m; sourceTree = "<group>"; };
 		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
 		FD9C71011905812A0091849B /* AddRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationViewController.m; sourceTree = "<group>"; };
+		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FD9F4C971926C1F700D10C09 /* UIEditableTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditableTextTableViewCell.h; sourceTree = "<group>"; };
+		FD9F4C981926C1F700D10C09 /* UIEditableTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEditableTextTableViewCell.m; sourceTree = "<group>"; };
 		FDA9B0F51921320B0015BF8C /* CircleMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMembersTableViewController.h; sourceTree = "<group>"; };
 		FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMembersTableViewController.m; sourceTree = "<group>"; };
 		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
@@ -144,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */,
 				FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */,
 				FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */,
 				FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */,
@@ -165,6 +186,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD4AF16619293B5500F41129 /* FXForms */ = {
+			isa = PBXGroup;
+			children = (
+				FD4AF16319293B4A00F41129 /* FXForms.h */,
+				FD4AF16419293B4A00F41129 /* FXForms.m */,
+			);
+			name = FXForms;
+			sourceTree = "<group>";
+		};
+		FD4AF16A19293E5900F41129 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				FD4AF16B1929400F00F41129 /* AddEventForm.h */,
+				FD4AF16C1929400F00F41129 /* AddEventForm.m */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
 		FD5465FD18F5A66000BFD409 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +228,7 @@
 		FD54660818F5A66000BFD409 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD9F4C951926980800D10C09 /* MapKit.framework */,
 				FD81B89B1907F50D0037B479 /* Security.framework */,
 				FD54660918F5A66000BFD409 /* Foundation.framework */,
 				FD54660B18F5A66000BFD409 /* CoreGraphics.framework */,
@@ -202,6 +242,7 @@
 		FD54660F18F5A66000BFD409 /* mobile */ = {
 			isa = PBXGroup;
 			children = (
+				FD4AF16A19293E5900F41129 /* Forms */,
 				FD59908918FEEDFA00975F7F /* Models */,
 				FD58983A18FEC7E700A9172F /* Views */,
 				FD54664918F5AEDC00BFD409 /* Libraries */,
@@ -267,8 +308,10 @@
 				FD7AB770190B04E400E302B8 /* CirclesTableViewController.m */,
 				FDA9B0F51921320B0015BF8C /* CircleMembersTableViewController.h */,
 				FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */,
-				FD61900B19257464004DF6C4 /* CircleEventsViewController.h */,
-				FD61900C19257464004DF6C4 /* CircleEventsViewController.m */,
+				FD61900E19262009004DF6C4 /* EventsTableViewController.h */,
+				FD61900F19262009004DF6C4 /* EventsTableViewController.m */,
+				FD4AF16719293C9900F41129 /* AddEventViewController.h */,
+				FD4AF16819293C9900F41129 /* AddEventViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -276,6 +319,7 @@
 		FD54664918F5AEDC00BFD409 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FD4AF16619293B5500F41129 /* FXForms */,
 				FDF1F23618F5C89D001B53D0 /* TSweet */,
 			);
 			name = Libraries;
@@ -288,6 +332,10 @@
 				FD58983C18FEC7FD00A9172F /* UITreeView.m */,
 				FD6666751923E37800AFF4E5 /* UIAvatarCellTableViewCell.h */,
 				FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */,
+				FD9F4C971926C1F700D10C09 /* UIEditableTextTableViewCell.h */,
+				FD9F4C981926C1F700D10C09 /* UIEditableTextTableViewCell.m */,
+				FD4AF16E1929E21A00F41129 /* UIAvatarView.h */,
+				FD4AF16F1929E21A00F41129 /* UIAvatarView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -299,6 +347,8 @@
 				FD59908B18FEEE1400975F7F /* TMember.m */,
 				FD85CB10191CE808003707AC /* TCircle.h */,
 				FD85CB11191CE808003707AC /* TCircle.m */,
+				FD5BA849192AB0B300B37FCC /* TEvent.h */,
+				FD5BA84A192AB0B300B37FCC /* TEvent.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -476,22 +526,28 @@
 				FDF1F23918F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m in Sources */,
 				FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */,
 				FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */,
+				FD9F4C991926C1F700D10C09 /* UIEditableTextTableViewCell.m in Sources */,
 				FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */,
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
 				FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */,
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
+				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
 				FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */,
 				FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */,
-				FD61900D19257464004DF6C4 /* CircleEventsViewController.m in Sources */,
+				FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */,
+				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
 				FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */,
 				FD59908C18FEEE1400975F7F /* TMember.m in Sources */,
 				FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */,
+				FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */,
 				FDF1F23318F5C891001B53D0 /* TSweetResponse.m in Sources */,
 				FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */,
 				FD54661618F5A66000BFD409 /* main.m in Sources */,
+				FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */,
 				FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */,
+				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,
 				FD576CAF18F70BF600851F90 /* TreeViewController.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
 			);

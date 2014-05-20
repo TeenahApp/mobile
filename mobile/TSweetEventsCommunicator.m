@@ -20,6 +20,12 @@
     return shared;
 }
 
+-(TSweetResponse *)list
+{
+    NSString * route = [NSString stringWithFormat:@"/events"];
+    return [[TSweetRest shared] get:route];
+}
+
 -(TSweetResponse *) create: (NSString *) title
              startDatetime: (NSString *) startDatetime
             finishDatatime: (NSString *) finishDatatime

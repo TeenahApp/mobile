@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
     
+    //UIAvatarView initWith
+    //self.image = [UIAvatarView alloc] initW
+    
     self.sections = @[@"Avatar", @"Main Info", @"Personal", @"Contact", @"Relations", @"Educations", @"Jobs"];
     
     NSMutableArray * relations = [[NSMutableArray alloc]init];
@@ -73,21 +76,16 @@
 
     NSURL * imageURL = nil;
     
-    if ([self.member.photo isEqual:[NSNull null]])
-    {
-        // TODO: Fix the image regarding to the gender of the member.
-        //       Display a man with Shmagh, and a woman whit a Hijab.
-        imageURL = [NSURL URLWithString:@"http://i2.wp.com/www.maas360.com/assets/Uploads/defaultUserIcon.png"];
-    }
-    else
+    if (![self.member.photo isEqual:[NSNull null]])
     {
         imageURL = [NSURL URLWithString:self.member.photo];
     }
     
-    NSLog(@"%@", imageURL.description);
+    self.image = [[UIAvatarView alloc] initWithURL:imageURL frame:CGRectMake(0, 0, 60, 60)];
     
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.image = [UIImage imageWithData:imageData];
+    NSLog(@"self.image = %@", self.image);
+    
+    NSLog(@"viewDidLoad image");
     
     // Relations.
     for (NSDictionary * relatedMember in self.member.relations)
@@ -165,8 +163,12 @@
     {
         UIAvatarCellTableViewCell * cell = (UIAvatarCellTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"AvatarCell" forIndexPath:indexPath];
         
+        /*
         [cell.photo setImage:self.image];
+         */
 
+        cell.photo.image = self.image.image;
+        
         return cell;
     }
     else

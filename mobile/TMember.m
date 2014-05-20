@@ -22,7 +22,10 @@
     self.dob = json[@"dob"];
     self.dod = json[@"dod"];
     
-    self.dobYear = [[self.dob componentsSeparatedByString:@"-"] objectAtIndex:0];
+    if (![self.dob isEqual:[NSNull null]])
+    {
+        self.dobYear = [[self.dob componentsSeparatedByString:@"-"] objectAtIndex:0];
+    }
     
     if (![self.dod isEqual:[NSNull null]])
     {

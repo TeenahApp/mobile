@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AddEventViewController.h"
 
 @implementation AppDelegate
 
@@ -14,7 +15,10 @@
 {
     
     TSweetRest * tsrest = [TSweetRest shared];
+    /*
     tsrest.userToken = @"$2y$10$5oXpuly.YweSNqfyQo8Rve1oS1FlWK3gCZ4mbbLlZWZmzIZcAo/sa";
+     */
+    tsrest.userToken = @"$2y$10$Ve3IfkqfDkusNfqW90H4I.0tblq4GlbDczmfR8WsdCZ7JM04qAjG2";
     
     /*
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -47,7 +51,8 @@
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-     
+
+    
     // Override point for customization after application launch.
     return YES;
 }

@@ -50,9 +50,16 @@
 
     if (self = [super init])
     {
+        /*
         self.apiUrl = @"http://api.teenah-app.com/v1";
         self.appKey = @"MNwPLdo7hVdj5Mj0Jz7diq804sd5Sf";
         self.appSecret = @"$2y$10$9XuWj51VVDY8tuhYghGcIuN2oEL35RnA17GeesMxIm2cKYvDpGBEW";
+         */
+        
+        self.apiUrl = @"http://localhost/~hossamzee/web.api/public/index.php/v1";
+        self.appKey = @"SSxZcuQc2oiCbZ4cQSSZnRp1NdbbzZ";
+        self.appSecret = @"$2y$10$wkmiYLbNwjJ2S3Yo/Vqsj.q4hegPvDxamDaruUrN2Nhs20Nd10ivq";
+        
     }
                 
     return self;

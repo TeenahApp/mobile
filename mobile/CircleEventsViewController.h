@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MNCalendarView/MNCalendarView.h>
 
-@interface CircleEventsViewController : UIViewController <MNCalendarViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UIView *calendarView;
+@interface CircleEventsViewController : UIViewController
 
 @end
