@@ -31,9 +31,9 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)update:(NSString *)socialMediaId account:(NSString *)account
+-(TSweetResponse *)update:(NSInteger)socialMediaId account:(NSString *)account
 {
-    NSString * route = [NSString stringWithFormat:@"/socialmedias/%@", socialMediaId];
+    NSString * route = [NSString stringWithFormat:@"/socialmedias/%d", socialMediaId];
     NSDictionary * parameters = @{
                                   @"account": account
                                   };
@@ -41,9 +41,9 @@
     return [[TSweetRest shared] put:route parameters: parameters];
 }
 
--(TSweetResponse *)delete:(NSString *)socialMediaId
+-(TSweetResponse *)deleteSocialMedia:(NSInteger)socialMediaId
 {
-    NSString * route = [NSString stringWithFormat:@"/socialmedias/%@", socialMediaId];
+    NSString * route = [NSString stringWithFormat:@"/socialmedias/%d", socialMediaId];
     return [[TSweetRest shared] delete:route parameters:nil];
 }
 

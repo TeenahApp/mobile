@@ -20,15 +20,15 @@
     return shared;
 }
 
--(TSweetResponse *)get:(NSString *)memberId
+-(TSweetResponse *)getMember:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d", memberId];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)update:(NSString *)memberId maritalStatus:(NSString *)maritalStatus dob:(NSString *)dob pob:(NSString *)pob dod:(NSString *)dod pod:(NSString *)pod email:(NSString *)email
+-(TSweetResponse *)update:(NSInteger)memberId maritalStatus:(NSString *)maritalStatus dob:(NSDate *)dob pob:(NSString *)pob dod:(NSDate *)dod pod:(NSString *)pod email:(NSString *)email
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d", memberId];
     NSDictionary * parameters = @{
                                     @"marital_status": maritalStatus,
                                     @"dob": dob,
@@ -41,9 +41,9 @@
     return [[TSweetRest shared] put:route parameters: parameters];
 }
 
--(TSweetResponse *)uploadPhoto:(NSString *)memberId data:(NSString *)data extension:(NSString *)extension
+-(TSweetResponse *)uploadPhoto:(NSInteger)memberId data:(NSData *)data extension:(NSString *)extension
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/photos", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/photos", memberId];
     NSDictionary * parameters = @{
                                   @"data": data,
                                   @"extension": extension
@@ -52,14 +52,14 @@
     return [[TSweetRest shared] put:route parameters: parameters];
 }
 
--(TSweetResponse *)createRelation:(NSString *)memberA isAlive:(NSString *)isAlive name:(NSString *)name relation:(NSString *)relation isRoot:(NSString *)isRoot mobile:(NSString *)mobile dob:(NSString *)dob
+-(TSweetResponse *)createRelation:(NSInteger)memberA isAlive:(BOOL)isAlive name:(NSString *)name relation:(NSString *)relation isRoot:(BOOL)isRoot mobile:(NSString *)mobile dob:(NSDate *)dob
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/relations", memberA];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/relations", memberA];
     NSDictionary * parameters = @{
-                                  @"is_alive": isAlive,
+                                  @"is_alive": [NSNumber numberWithBool:isAlive],
                                   @"name": name,
                                   @"relation": relation,
-                                  @"is_root": isRoot,
+                                  @"is_root": [NSNumber numberWithBool:isRoot],
                                   @"mobile": mobile,
                                   @"dob": dob
                                   };
@@ -67,21 +67,21 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)deleteRelation:(NSString *)memberA memberB:(NSString *)memberB
+-(TSweetResponse *)deleteRelation:(NSInteger)memberA memberB:(NSInteger)memberB
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/relations", memberA];
-    NSDictionary * parameters = @{ @"member_b": memberB };
+    NSString * route = [NSString stringWithFormat:@"/members/%d/relations", memberA];
+    NSDictionary * parameters = @{ @"member_b": [NSNumber numberWithInteger:memberB] };
     
     return [[TSweetRest shared] delete:route parameters: parameters];
 }
 
--(TSweetResponse *)createEducation:(NSString *)memberId degree:(NSString *)degree startYear:(NSString *)startYear finishYear:(NSString *)finishYear status:(NSString *)status major:(NSString *)major
+-(TSweetResponse *)createEducation:(NSInteger)memberId degree:(NSString *)degree startYear:(NSInteger)startYear finishYear:(NSInteger)finishYear status:(NSString *)status major:(NSString *)major
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/educations", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/educations", memberId];
     NSDictionary * parameters = @{
                                   @"degree": degree,
-                                  @"start_year": startYear,
-                                  @"finish_year": finishYear,
+                                  @"start_year": [NSNumber numberWithInteger:startYear],
+                                  @"finish_year": [NSNumber numberWithInteger:finishYear],
                                   @"status": status,
                                   @"major": major
                                   };
@@ -89,20 +89,20 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)getEducations:(NSString *)memberId
+-(TSweetResponse *)getEducations:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/educations", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/educations", memberId];
 
     return [[TSweetRest shared] get:route];
 }
 
-- (TSweetResponse *)updateEducation:(NSString *)memberId educationId:(NSString *)educationId degree:(NSString *)degree startYear:(NSString *)startYear finishYear:(NSString *)finishYear status:(NSString *)status major:(NSString *)major
+- (TSweetResponse *)updateEducation:(NSInteger)memberId educationId:(NSInteger)educationId degree:(NSString *)degree startYear:(NSInteger)startYear finishYear:(NSInteger)finishYear status:(NSString *)status major:(NSString *)major
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/educations/%@", memberId, educationId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/educations/%d", memberId, educationId];
     NSDictionary * parameters = @{
                                   @"degree": degree,
-                                  @"start_year": startYear,
-                                  @"finish_year": finishYear,
+                                  @"start_year": [NSNumber numberWithInteger:startYear],
+                                  @"finish_year": [NSNumber numberWithInteger:finishYear],
                                   @"status": status,
                                   @"major": major
                                   };
@@ -110,20 +110,20 @@
     return [[TSweetRest shared] put:route parameters: parameters];
 }
 
--(TSweetResponse *)deleteEducation:(NSString *)memberId educationId:(NSString *)educationId
+-(TSweetResponse *)deleteEducation:(NSInteger)memberId educationId:(NSInteger)educationId
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/educations/%@", memberId, educationId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/educations/%d", memberId, educationId];
 
     return [[TSweetRest shared] delete:route parameters: nil];
 }
 
--(TSweetResponse *)createJob:(NSString *)memberId title:(NSString *)title startYear:(NSString *)startYear finishYear:(NSString *)finishYear status:(NSString *)status company:(NSString *)company
+-(TSweetResponse *)createJob:(NSInteger)memberId title:(NSString *)title startYear:(NSInteger)startYear finishYear:(NSInteger)finishYear status:(NSString *)status company:(NSString *)company
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/jobs", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/jobs", memberId];
     NSDictionary * parameters = @{
                                   @"title": title,
-                                  @"start_year": startYear,
-                                  @"finish_year": finishYear,
+                                  @"start_year": [NSNumber numberWithInteger:startYear],
+                                  @"finish_year": [NSNumber numberWithInteger:finishYear],
                                   @"status": status,
                                   @"company": company
                                   };
@@ -131,20 +131,20 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)getJobs:(NSString *)memberId
+-(TSweetResponse *)getJobs:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/jobs", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/jobs", memberId];
     
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)updateJob:(NSString *)memberId jobId:(NSString *)jobId title:(NSString *)title startYear:(NSString *)startYear finishYear:(NSString *)finishYear status:(NSString *)status company:(NSString *)company
+-(TSweetResponse *)updateJob:(NSInteger)memberId jobId:(NSInteger)jobId title:(NSString *)title startYear:(NSInteger)startYear finishYear:(NSInteger)finishYear status:(NSString *)status company:(NSString *)company
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/jobs/%@", memberId, jobId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/jobs/%d", memberId, jobId];
     NSDictionary * parameters = @{
                                   @"title": title,
-                                  @"start_year": startYear,
-                                  @"finish_year": finishYear,
+                                  @"start_year": [NSNumber numberWithInteger:startYear],
+                                  @"finish_year": [NSNumber numberWithInteger:finishYear],
                                   @"status": status,
                                   @"company": company
                                   };
@@ -152,35 +152,35 @@
     return [[TSweetRest shared] put:route parameters: parameters];
 }
 
--(TSweetResponse *)deleteJob:(NSString *)memberId jobId:(NSString *)jobId
+-(TSweetResponse *)deleteJob:(NSInteger)memberId jobId:(NSInteger)jobId
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/jobs/%@", memberId, jobId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/jobs/%d", memberId, jobId];
     return [[TSweetRest shared] delete:route parameters: nil];
 }
 
--(TSweetResponse *)like:(NSString *)memberId
+-(TSweetResponse *)like:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/like", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/like", memberId];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)comment:(NSString *)memberId comment:(NSString *)comment
+-(TSweetResponse *)comment:(NSInteger)memberId comment:(NSString *)comment
 {
-    NSString * route = [NSString stringWithFormat:@"/members/%@/comment", memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%d/comment", memberId];
     NSDictionary * parameters = @{ @"comment": comment };
     
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)likeComment:(NSString *)memberId commentId:(NSString *)commentId
+-(TSweetResponse *)likeComment:(NSInteger)memberId commentId:(NSInteger)commentId
 {
-    NSString * route = [NSString stringWithFormat:@"members/%@/comments/%@/like", memberId, commentId];
+    NSString * route = [NSString stringWithFormat:@"members/%d/comments/%d/like", memberId, commentId];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)getSocialMedias:(NSString *)memberId
+-(TSweetResponse *)getSocialMedias:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"members/%@/socialmedias", memberId];
+    NSString * route = [NSString stringWithFormat:@"members/%d/socialmedias", memberId];
     return [[TSweetRest shared] get:route];
 }
 

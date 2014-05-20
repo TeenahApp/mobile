@@ -14,7 +14,7 @@
 @interface AddRelationViewController : UIViewController
 
 @property (strong, nonatomic) NSString * relation;
-@property (strong, nonatomic) NSString * memberA;
+@property NSInteger memberA;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *isRootSegmented;
 

@@ -15,44 +15,44 @@
 +(id) shared;
 
 -(TSweetResponse *) create: (NSString *) title
-             startDatetime: (NSString *) startDatetime
-            finishDatatime: (NSString *) finishDatatime
+             startDatetime: (NSDate *) startDatetime
+            finishDatatime: (NSDate *) finishDatatime
                   location: (NSString *) location
-                   circles: (NSString *) circles
-                  latitude: (NSString *) latitude
-                 longitude: (NSString *) longitude;
+                   circles: (NSArray *) circles
+                  latitude: (NSNumber *) latitude
+                 longitude: (NSNumber *) longitude;
 
--(TSweetResponse *) list;
+-(TSweetResponse *) getEvents;
 
--(TSweetResponse *) get: (NSString *) eventId;
+-(TSweetResponse *) getEvent: (NSInteger) eventId;
 
--(TSweetResponse *) update: (NSString *) eventId
+-(TSweetResponse *) update: (NSInteger) eventId
                      title: (NSString *) title
-             startDatetime: (NSString *) startDatetime
-            finishDatatime: (NSString *) finishDatatime
+             startDatetime: (NSDate *) startDatetime
+            finishDatatime: (NSDate *) finishDatatime
                   location: (NSString *) location
-                  latitude: (NSString *) latitude
-                 longitude: (NSString *) longitude;
+                  latitude: (NSNumber *) latitude
+                 longitude: (NSNumber *) longitude;
 
--(TSweetResponse *) delete: (NSString *) eventId;
+-(TSweetResponse *) deleteEvent: (NSInteger) eventId;
 
--(TSweetResponse *) createMedia: (NSString *) eventId
-                       category: (NSString *) category
-                           data: (NSString *) data
+-(TSweetResponse *) createMedia: (NSInteger) eventId
+                       category: (NSString *) category // image, video, sound
+                           data: (NSData *) data
                       extension: (NSString *) extension;
 
--(TSweetResponse *) makeDecision: (NSString *) eventId
-                        decision: (NSString *) decision;
+-(TSweetResponse *) makeDecision: (NSInteger) eventId
+                        decision: (NSString *) decision; // notyet, willcome, apologize
 
--(TSweetResponse *) getDecision: (NSString *) eventId;
+-(TSweetResponse *) getDecision: (NSInteger) eventId;
 
 
--(TSweetResponse *) like: (NSString *) eventId;
+-(TSweetResponse *) like: (NSInteger) eventId;
 
--(TSweetResponse *) comment: (NSString *) eventId
+-(TSweetResponse *) comment: (NSInteger) eventId
                     comment: (NSString *) comment;
 
--(TSweetResponse *) likeComment: (NSString *) eventId
-                      commentId: (NSString *) commentId;
+-(TSweetResponse *) likeComment: (NSInteger) eventId
+                      commentId: (NSInteger) commentId;
 
 @end

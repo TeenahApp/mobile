@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] list];
+    TSweetResponse * tsr = [[EventsCommunicator shared] getEvents];
     
     NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
     [shortDateFormatter setDateFormat:@"yyyy-MM-dd"];

@@ -21,9 +21,9 @@
 
 -(TSweetResponse *) logout;
 
--(TSweetResponse *) initialize: (NSString *) gender
+-(TSweetResponse *) initialize: (NSString *) gender // male, female.
                           name: (NSString *) name
-                           dob: (NSString *) dob;
+                           dob: (NSDate *) dob;
 
 -(TSweetResponse *) dashboard;
 

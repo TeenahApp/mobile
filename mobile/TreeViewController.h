@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) UITreeView * treeView;
 @property (strong, nonatomic) NSString * relation;
-//@property (strong, nonatomic) NSString * memberId;
 @property (strong, nonatomic) TMember * member;
 
 // UITreeView * treeView;

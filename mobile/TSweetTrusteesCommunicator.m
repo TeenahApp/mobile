@@ -20,31 +20,31 @@
     return shared;
 }
 
--(TSweetResponse *)get
+-(TSweetResponse *)getTrustees
 {
     NSString * route = [NSString stringWithFormat:@"/trustees"];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)create:(NSString *)memberId
+-(TSweetResponse *)create:(NSInteger)memberId
 {
     NSString * route = [NSString stringWithFormat:@"/trustees"];
     NSDictionary * parameters = @{
-                                  @"id": memberId
+                                  @"id": [NSNumber numberWithInteger:memberId]
                                   };
     
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)deactivate:(NSString *)memberId
+-(TSweetResponse *)deactivate:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/trustees/%@/deactivate", memberId];
+    NSString * route = [NSString stringWithFormat:@"/trustees/%d/deactivate", memberId];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)activate:(NSString *)memberId
+-(TSweetResponse *)activate:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/trustees/%@/activate", memberId];
+    NSString * route = [NSString stringWithFormat:@"/trustees/%d/activate", memberId];
     return [[TSweetRest shared] get:route];
 }
 

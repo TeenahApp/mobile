@@ -17,9 +17,9 @@
 -(TSweetResponse *) create: (NSString *) name
                    account: (NSString *) account;
 
--(TSweetResponse *) update: (NSString *) socialMediaId
+-(TSweetResponse *) update: (NSInteger) socialMediaId
                    account: (NSString *) account;
 
--(TSweetResponse *) delete: (NSString *) socialMediaId;
+-(TSweetResponse *) deleteSocialMedia: (NSInteger) socialMediaId;
 
 @end

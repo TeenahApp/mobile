@@ -7,26 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMemberRelation.h"
+
+@class TMemberRelation;
 
 @interface TMember : NSObject
 
-@property (strong, nonatomic) NSString * memberId;
+@property NSInteger memberId;
+
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * mobile;
 @property (strong, nonatomic) NSString * fullname;
+
 @property (strong, nonatomic) NSString * photo;
-@property (strong, nonatomic) NSString * gender;
-@property (strong, nonatomic) NSString * dob;
-@property (strong, nonatomic) NSString * dobYear;
-@property (strong, nonatomic) NSString * dod;
-@property (strong, nonatomic) NSString * dodYear;
+
+@property (strong, nonatomic) NSString * gender; // male, female
+
+@property (strong, nonatomic) NSDate * dob;
+@property NSInteger dobYear;
+
+@property (strong, nonatomic) NSDate * dod;
+@property NSInteger dodYear;
+
 @property (strong, nonatomic) NSString * location;
-@property int isAlive;
 
-@property (strong, nonatomic) NSDictionary * relations;
+@property BOOL isAlive;
+@property BOOL isRoot;
+
 @property (strong, nonatomic) TMember * father;
-@property (strong, nonatomic) NSMutableDictionary * children;
 
--(id) fromJson: (NSDictionary *) json;
+@property (strong, nonatomic) NSMutableArray * relations;
+@property (strong, nonatomic) NSMutableArray * children;
+
+@property (nonatomic, strong) NSDate * createdAt;
+@property (nonatomic, strong) NSDate * updatedAt;
+
+-(id) initWithJson: (NSDictionary *) json;
 
 @end

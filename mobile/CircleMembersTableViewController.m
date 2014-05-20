@@ -32,22 +32,14 @@
     newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
     self.tableView.bounds = newBounds;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     // TODO: Change the circle id to be a variable, thanks to @ecleel.
     TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:@"1"];
     
     self.members = [[NSMutableArray alloc] init];
     
-    for (NSDictionary * memberDictionary in tsr.json)
+    for (NSDictionary * tempMember in tsr.json)
     {
-        TMember * member = [[TMember alloc] init];
-        [member fromJson:memberDictionary];
-        
+        TMember * member = [[TMember alloc] initWithJson:tempMember];
         [self.members addObject:member];
     }
     

@@ -36,7 +36,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // TODO:
-    TSweetResponse * tsr = [[CirclesCommunicator shared] get];
+    TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
     
     self.circles = [[NSMutableArray alloc] init];
     

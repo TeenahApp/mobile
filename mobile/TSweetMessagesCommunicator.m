@@ -20,7 +20,7 @@
     return shared;
 }
 
--(TSweetResponse *)sendText:(NSString *)content circles:(NSString *)circles
+-(TSweetResponse *)sendText:(NSString *)content circles:(NSArray *)circles
 {
     NSString * route = [NSString stringWithFormat:@"/messages/texts"];
     NSDictionary * parameters = @{
@@ -31,7 +31,7 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)sendMedia:(NSString *)category data:(NSString *)data extension:(NSString *)extension circles:(NSString *)circles
+-(TSweetResponse *)sendMedia:(NSString *)category data:(NSDate *)data extension:(NSString *)extension circles:(NSArray *)circles
 {
     NSString * route = [NSString stringWithFormat:@"/messages/medias"];
     NSDictionary * parameters = @{

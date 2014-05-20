@@ -29,7 +29,7 @@
 -(void) didAddHusband;
 -(void) didAddWife;
 
--(void) didUpdateMember: (TMember *) member; //(NSString *) memberId;
+-(void) didUpdateMember: (TMember *) member;
 
 -(void) didViewMember;
 
@@ -43,7 +43,7 @@
 @property (strong, atomic) NSString * relation;
 @property (strong, atomic) UIView * relationsView;
 
--(TSweetResponse *) getMember: (NSString *) memberId;
+-(TSweetResponse *) getMember: (NSInteger) memberId;
 
 -(void) draw;
 -(void) addRelation;

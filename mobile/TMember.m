@@ -10,80 +10,75 @@
 
 @implementation TMember
 
--(id)fromJson:(NSDictionary *)json
+-(id)initWithJson:(NSDictionary *)json
 {
-    self.memberId = json[@"id"];
-    self.name = json[@"name"];
-    self.mobile = json[@"mobile"];
-    self.fullname = json[@"fullname"];
-    self.gender = json[@"gender"];
-    self.photo = json[@"photo"];
+    self = [super init];
     
-    self.dob = json[@"dob"];
-    self.dod = json[@"dod"];
-    
-    if (![self.dob isEqual:[NSNull null]])
+    if(self)
     {
-        self.dobYear = [[self.dob componentsSeparatedByString:@"-"] objectAtIndex:0];
-    }
-    
-    if (![self.dod isEqual:[NSNull null]])
-    {
-        self.dodYear = [[self.dod componentsSeparatedByString:@"-"] objectAtIndex:0];
-    }
-    
-    // Make the years empty if not set.
-    if ([self.dobYear isEqual: @"0000"])
-    {
-        self.dobYear = @"";
-    }
-    
-    if ([self.dodYear isEqual: @"0000"])
-    {
-        self.dodYear = @"";
-    }
-    
-    self.isAlive = [json[@"is_alive"] intValue];
-    
-    // TODO: self.dobYear.
-    
-    NSLog(@"PHOTO: ---------- %@", self.photo);
-    
-    // TODO: Build the relations.
-    
-    //int relationsCount = [json[@"in_relations"] count];
-    //NSDictionary * relations = json[@"in_relations"];
-    
-    self.relations = [[NSDictionary alloc] init];
-    self.relations = json[@"in_relations"];
-    
-    // Reset every thing.
-    self.children = [[NSMutableDictionary alloc] init];
-    self.father = nil;
-    
-    for(NSDictionary * relatedMember in self.relations)
-    {
-        //NSLog(@"key=%@", key); //[relations objectForKey:key]);
-        //NSLog(@"%@", relation[@"relationship"]);
-        NSString * relation = relatedMember[@"relationship"];
+        // TODO: MemberRealtion.
         
-        // Add father.
-        if ([relation isEqual: @"father"])
+        self.memberId = [[json objectForKey:@"id"] integerValue];
+        
+        self.name = [json objectForKey:@"name"];
+        self.mobile = [json objectForKey:@"mobile"];
+        self.fullname = [json objectForKey:@"fullname"];
+        
+        self.photo = [json objectForKey:@"photo"];
+        
+        self.gender = [json objectForKey:@"gender"]; // male, female
+        
+        NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
+        [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        self.dob = [json objectForKey:@"dob"]; //[longDateFormatter dateFromString:[json objectForKey:@"dob"]];
+        self.dod = [json objectForKey:@"dob"]; //[longDateFormatter dateFromString:[json objectForKey:@"dob"]];
+        
+        if (self.dob == nil)
         {
-            self.father = [[TMember alloc] init];
-            [self.father fromJson:relatedMember[@"first_member"]];
+            
         }
         
-        // Add children.
-        if ([relation isEqual: @"son"] || [relation isEqual: @"daughter"])
+        NSLog(@"Passsssssssed");
+        
+        // TODO: self.dobYear;
+        // TODO: self.dodYear;
+        
+        self.location = [json objectForKey:@"location"];
+        
+        self.isAlive = (BOOL)[json objectForKey:@"is_alive"];
+        self.isRoot = (BOOL)[json objectForKey:@"is_root"];
+        
+        // Init empty.
+        self.father = nil;
+        self.children = [[NSMutableArray alloc] init];
+        
+        // Get the relations.
+        self.relations = [[NSMutableArray alloc] init];
+        self.relations = [json objectForKey:@"in_relations"];
+        
+        for (NSDictionary * tempMemberRelation in self.relations)
         {
-            TMember * child = [[TMember alloc] init];
-            //[self.children setValue:[child fromJson:relatedMember[@"first_member"]] forKeyPath: relatedMember[@"id"]];
-            [self.children setValue: [child fromJson:relatedMember[@"first_member"]] forKeyPath:[NSString stringWithFormat:@"%@", relatedMember[@"first_member"][@"id"]]];
+            TMemberRelation * memberRelation = [[TMemberRelation alloc] initWithJson:tempMemberRelation];
+            
+            // Check if this relation is a father.
+            if ([memberRelation.relationship isEqual: @"father"])
+            {
+                self.father = memberRelation.firstMember;
+            }
+            
+            // Check if the relation is son or daughter.
+            if ([memberRelation.relationship isEqual: @"son"] || [memberRelation.relationship isEqual: @"daughter"])
+            {
+                [self.children addObject:memberRelation.firstMember];
+            }
         }
         
+        self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
+        self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];
+        
     }
-
+    
     return self;
 }
 

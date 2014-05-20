@@ -27,7 +27,7 @@
         
         //[circles setObject:@"Family and close" forKey:@"1"];
         //[circles setObject:@"Kids" forKey:@"2"];
-        TSweetResponse * tsr = [[CirclesCommunicator shared] get];
+        TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
         
         for (NSDictionary * tempCircle in tsr.json)
         {

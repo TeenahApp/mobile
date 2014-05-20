@@ -119,9 +119,9 @@
     
     NSMutableArray * pairs = [[NSMutableArray alloc] initWithCapacity:0];
     
-    for (NSString * key in parameters) {
-        
-        [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, [parameters[key] urlencode]]];
+    for (id key in parameters)
+    {
+        //[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, [parameters[key] urlencode]]];
     }
     
     NSString * requestParameters = [pairs componentsJoinedByString:@"&"];

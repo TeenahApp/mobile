@@ -43,8 +43,8 @@
 {
     // TODO: Get the real member (the logged in member).
     //NSLog(@"helloworld");
-    self.treeView.member.photo = @"zee";
-    [self.treeView getMember:@"1"];
+
+    [self.treeView getMember:1];
 }
 
 -(void)didAddFather
@@ -105,7 +105,7 @@
 -(void)didUpdateMember:(TMember *)member
 {
     self.member = member;
-    NSLog(@"---------------------------- called: %@", self.member.memberId);
+    NSLog(@"---------------------------- called: %d", self.member.memberId);
 }
 
 -(void)didViewMember
@@ -133,7 +133,7 @@
         // Pass any objects to the view controller here, like...
         //[vc setMyObjectHere:object];
         vc.relation = self.relation;
-        vc.memberA = self.member.memberId;
+        vc.memberA = [NSString stringWithFormat:@"%d", self.member.memberId];
         
         //NSLog(@"%d", vc.isRootSegmented.selectedSegmentIndex);
     }

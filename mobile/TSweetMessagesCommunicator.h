@@ -15,11 +15,11 @@
 +(id) shared;
 
 -(TSweetResponse *) sendText: (NSString *) content
-                     circles: (NSString *) circles;
+                     circles: (NSArray *) circles;
 
 -(TSweetResponse *) sendMedia: (NSString *) category
-                    data: (NSString *) data
+                    data: (NSDate *) data
                     extension: (NSString *) extension
-                      circles: (NSString *) circles;
+                      circles: (NSArray *) circles;
 
 @end

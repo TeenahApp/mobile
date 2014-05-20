@@ -14,22 +14,22 @@
 
 +(id) shared;
 
--(TSweetResponse *) get;
+-(TSweetResponse *) getCircles;
 
 -(TSweetResponse *) create: (NSString *) name
-                   members: (NSString *) members;
+                   members: (NSArray *) members;
 
--(TSweetResponse *) getMembers: (NSString *) circleId;
+-(TSweetResponse *) getMembers: (NSInteger) circleId;
 
--(TSweetResponse *) createMembers: (NSString *) circleId
-                           members: (NSString *) members;
+-(TSweetResponse *) createMembers: (NSInteger) circleId
+                           members: (NSArray *) members;
 
--(TSweetResponse *) leave: (NSString *) circleId;
+-(TSweetResponse *) leave: (NSInteger) circleId;
 
--(TSweetResponse *) getEvents: (NSString *) circleId;
+-(TSweetResponse *) getEvents: (NSInteger) circleId;
 
--(TSweetResponse *) getStats: (NSString *) circleId;
+-(TSweetResponse *) getStats: (NSInteger) circleId;
 
--(TSweetResponse *) fetchMessages: (NSString *) circleId;
+-(TSweetResponse *) fetchMessages: (NSInteger) circleId;
 
 @end

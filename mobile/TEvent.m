@@ -16,13 +16,14 @@
     
     if(self)
     {
-        self.eventId = (NSInteger)[json objectForKey:@"id"];
+        self.eventId = [[json objectForKey:@"id"] integerValue];
         
         self.title = [json objectForKey:@"title"];
         self.location = [json objectForKey:@"location"];
         
-        self.createdBy = (NSInteger)[json objectForKey:@"created_by"];
-        //self.creator;
+        self.createdBy = [[json objectForKey:@"created_by"] integerValue];
+        
+        // TODO: self.creator;
         
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -33,12 +34,12 @@
         self.latitude = (NSNumber *)[json objectForKey:@"latitude"];
         self.longitude = (NSNumber *)[json objectForKey:@"longitude"];
         
-        self.viewsCount = (NSInteger)[json objectForKey:@"views_count"];
-        self.likesCount = (NSInteger)[json objectForKey:@"likes_count"];;
-        self.commentsCount = (NSInteger)[json objectForKey:@"comments_count"];;
+        self.viewsCount = [[json objectForKey:@"views_count"] integerValue];
+        self.likesCount = [[json objectForKey:@"likes_count"] integerValue];
+        self.commentsCount = [[json objectForKey:@"comments_count"] integerValue];
         
         self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
-        self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];;
+        self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];
     }
     
     return self;

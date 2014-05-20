@@ -34,6 +34,7 @@
 		FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5BA84A192AB0B300B37FCC /* TEvent.m */; };
 		FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD61900F19262009004DF6C4 /* EventsTableViewController.m */; };
 		FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */; };
+		FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */; };
 		FD7AB76E190ABCC700E302B8 /* ViewMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB76D190ABCC700E302B8 /* ViewMemberTableViewController.m */; };
 		FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB770190B04E400E302B8 /* CirclesTableViewController.m */; };
 		FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD81B89B1907F50D0037B479 /* Security.framework */; };
@@ -115,6 +116,8 @@
 		FD61900F19262009004DF6C4 /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsTableViewController.m; sourceTree = "<group>"; };
 		FD6666751923E37800AFF4E5 /* UIAvatarCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAvatarCellTableViewCell.h; sourceTree = "<group>"; };
 		FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarCellTableViewCell.m; sourceTree = "<group>"; };
+		FD68D62C192B6C2D003ABCFF /* TMemberRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberRelation.h; sourceTree = "<group>"; };
+		FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberRelation.m; sourceTree = "<group>"; };
 		FD7AB76C190ABCC700E302B8 /* ViewMemberTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMemberTableViewController.h; sourceTree = "<group>"; };
 		FD7AB76D190ABCC700E302B8 /* ViewMemberTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMemberTableViewController.m; sourceTree = "<group>"; };
 		FD7AB76F190B04E400E302B8 /* CirclesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirclesTableViewController.h; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				FD85CB11191CE808003707AC /* TCircle.m */,
 				FD5BA849192AB0B300B37FCC /* TEvent.h */,
 				FD5BA84A192AB0B300B37FCC /* TEvent.m */,
+				FD68D62C192B6C2D003ABCFF /* TMemberRelation.h */,
+				FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,
 				FD576CAF18F70BF600851F90 /* TreeViewController.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
+				FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

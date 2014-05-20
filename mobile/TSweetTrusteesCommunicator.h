@@ -14,12 +14,12 @@
 
 +(id) shared;
 
--(TSweetResponse *) get;
+-(TSweetResponse *) getTrustees;
 
--(TSweetResponse *) create: (NSString *) memberId;
+-(TSweetResponse *) create: (NSInteger) memberId;
 
--(TSweetResponse *) deactivate: (NSString *) memberId;
+-(TSweetResponse *) deactivate: (NSInteger) memberId;
 
--(TSweetResponse *) activate: (NSString *) memberId;
+-(TSweetResponse *) activate: (NSInteger) memberId;
 
 @end

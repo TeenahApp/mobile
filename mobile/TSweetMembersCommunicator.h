@@ -14,79 +14,79 @@
 
 +(id) shared;
 
--(TSweetResponse *) get: (NSString *) memberId;
+-(TSweetResponse *) getMember: (NSInteger) memberId;
 
--(TSweetResponse *) update: (NSString *) memberId
+-(TSweetResponse *) update: (NSInteger) memberId
              maritalStatus: (NSString *) maritalStatus
-                       dob: (NSString *) dob
+                       dob: (NSDate *) dob
                        pob: (NSString *) pob
-                       dod: (NSString *) dod
+                       dod: (NSDate *) dod
                        pod: (NSString *) pod
                      email: (NSString *) email;
 
--(TSweetResponse *) uploadPhoto: (NSString *) memberId
-                           data: (NSString *) data
+-(TSweetResponse *) uploadPhoto: (NSInteger) memberId
+                           data: (NSData *) data
                       extension: (NSString *) extension;
 
--(TSweetResponse *) createRelation: (NSString *) memberA
-                           isAlive: (NSString *) isAlive
+-(TSweetResponse *) createRelation: (NSInteger) memberA
+                           isAlive: (BOOL) isAlive
                               name: (NSString *) name
                           relation: (NSString *) relation
-                            isRoot: (NSString *) isRoot
+                            isRoot: (BOOL) isRoot
                             mobile: (NSString *) mobile
-                               dob: (NSString *) dob;
+                               dob: (NSDate *) dob;
 
--(TSweetResponse *) deleteRelation: (NSString *) memberA
-                           memberB: (NSString *) memberB;
+-(TSweetResponse *) deleteRelation: (NSInteger) memberA
+                           memberB: (NSInteger) memberB;
 
--(TSweetResponse *) createEducation: (NSString *) memberId
+-(TSweetResponse *) createEducation: (NSInteger) memberId
                              degree: (NSString *) degree
-                          startYear: (NSString *) startYear
-                         finishYear: (NSString *) finishYear
+                          startYear: (NSInteger) startYear
+                         finishYear: (NSInteger) finishYear
                              status: (NSString *) status
                               major: (NSString *) major;
 
--(TSweetResponse *) getEducations: (NSString *) memberId;
+-(TSweetResponse *) getEducations: (NSInteger) memberId;
 
--(TSweetResponse *) updateEducation: (NSString *) memberId
-                        educationId: (NSString *) educationId
+-(TSweetResponse *) updateEducation: (NSInteger) memberId
+                        educationId: (NSInteger) educationId
                              degree: (NSString *) degree
-                          startYear: (NSString *) startYear
-                         finishYear: (NSString *) finishYear
+                          startYear: (NSInteger) startYear
+                         finishYear: (NSInteger) finishYear
                              status: (NSString *) status
                               major: (NSString *) major;
 
--(TSweetResponse *) deleteEducation: (NSString *) memberId
-                        educationId: (NSString *) educationId;
+-(TSweetResponse *) deleteEducation: (NSInteger) memberId
+                        educationId: (NSInteger) educationId;
 
--(TSweetResponse *) createJob: (NSString *) memberId
+-(TSweetResponse *) createJob: (NSInteger) memberId
                         title: (NSString *) title
-                    startYear: (NSString *) startYear
-                   finishYear: (NSString *) finishYear
+                    startYear: (NSInteger) startYear
+                   finishYear: (NSInteger) finishYear
                        status: (NSString *) status
                       company: (NSString *) company;
 
--(TSweetResponse *) getJobs: (NSString *) memberId;
+-(TSweetResponse *) getJobs: (NSInteger) memberId;
 
--(TSweetResponse *) updateJob: (NSString *) memberId
-                        jobId: (NSString *) jobId
+-(TSweetResponse *) updateJob: (NSInteger) memberId
+                        jobId: (NSInteger) jobId
                         title: (NSString *) title
-                    startYear: (NSString *) startYear
-                   finishYear: (NSString *) finishYear
+                    startYear: (NSInteger) startYear
+                   finishYear: (NSInteger) finishYear
                        status: (NSString *) status
                         company: (NSString *) company;
 
--(TSweetResponse *) deleteJob: (NSString *) memberId
-                        jobId: (NSString *) jobId;
+-(TSweetResponse *) deleteJob: (NSInteger) memberId
+                        jobId: (NSInteger) jobId;
 
--(TSweetResponse *) like: (NSString *) memberId;
+-(TSweetResponse *) like: (NSInteger) memberId;
 
--(TSweetResponse *) comment: (NSString *) memberId
+-(TSweetResponse *) comment: (NSInteger) memberId
                     comment: (NSString *) comment;
 
--(TSweetResponse *) likeComment: (NSString *) memberId
-                      commentId: (NSString *) commentId;
+-(TSweetResponse *) likeComment: (NSInteger) memberId
+                      commentId: (NSInteger) commentId;
 
--(TSweetResponse *) getSocialMedias: (NSString *) memberId;
+-(TSweetResponse *) getSocialMedias: (NSInteger) memberId;
 
 @end
