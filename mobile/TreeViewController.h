@@ -18,7 +18,6 @@
 @property (strong, nonatomic) NSString * relation;
 @property (strong, nonatomic) TMember * member;
 
-// UITreeView * treeView;
 -(void) showAddRelations;
 
 @end

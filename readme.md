@@ -11,7 +11,6 @@ TODO:
 5. Design a better design.
 6. Make a correct relation when a member adds a brother or a sister.
 7. Get member likes and comments, we implement setting them.
-8. Hide keyboard, or show it appropriatly.
 9. Relations and educations and jobs to be added correctly in view member view controller.
 10. Chat to be implemented in the next phase.
 11. Give the variables meaning.
@@ -23,4 +22,10 @@ TODO:
 17. Publish the libraries related to TeenahApp project with the latest version (use Pods).
 18. Update the icon of the app.
 19. Implement an avatar view with waiting indicator.
+21. Datetime is null when ever the user did not specify it.
+22. Remove adding father/mother whenever there is already one.
+
+DONE:
+
 20. Fix multi-language issue.
+8. Hide keyboard, or show it appropriatly.

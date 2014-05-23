@@ -12,7 +12,7 @@
 #import "UIAvatarCellTableViewCell.h"
 #import "UIAvatarView.h"
 
-@interface ViewMemberTableViewController : UITableViewController
+@interface ViewMemberTableViewController : UITableViewController <UIActionSheetDelegate>
 
 @property (strong, nonatomic) TMember * member;
 

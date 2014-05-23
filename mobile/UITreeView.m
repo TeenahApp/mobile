@@ -35,12 +35,9 @@
         self.member = [[TMember alloc] initWithJson:tsr.json];
         
         [self draw];
-
-        // Call the delegate.
-        //NSLog(@"string ----- %d", self.member.memberId);
         
         // Update the member id in the add relation view.
-        //[self.delegate didUpdateMember: self.member];
+        [self.delegate didUpdateMember: self.member];
     }
     
     return tsr;
@@ -60,21 +57,11 @@
     
     NSURL * imageURL = nil;
     
-    if ([self.member.photo isEqual:[NSNull null]])
+    if (self.member.photo == nil)
     {
-        // TODO: Fix the image regarding to the gender of the member.
-        //       Display a man with Shmagh, and a woman whit a Hijab.
-        NSLog(@"============= Nil");
-        imageURL = [NSURL URLWithString:@"http://i2.wp.com/www.maas360.com/assets/Uploads/defaultUserIcon.png"];
-    }
-    else
-    {
-        NSLog(@"============= Not nil");
         imageURL = [NSURL URLWithString:self.member.photo];
     }
 
-    
-    
     //NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
     //UIImage * image = [UIImage imageWithData:imageData];
     
@@ -92,7 +79,19 @@
     
     UILabel * name = [[UILabel alloc] initWithFrame:CGRectMake(0, myImageView.center.y + 120, self.frame.size.width, 80)];
     
-    NSString * currentName = [NSString stringWithFormat:@"(%@)\n%@", self.member.fullname, self.member.dob];
+    NSMutableString * dobdod = [[NSMutableString alloc] init];
+    
+    if (self.member.dobYear != 0)
+    {
+        [dobdod appendFormat:@"%ld", (long)self.member.dobYear];
+    }
+    
+    if (self.member.dodYear != 0)
+    {
+        [dobdod appendFormat:@" - %ld", (long)self.member.dodYear];
+    }
+    
+    NSString * currentName = [NSString stringWithFormat:@"(%@)\n%@", self.member.fullname, dobdod];
     
     [name setText:currentName];
     
@@ -109,7 +108,6 @@
     
     [self addSubview:addRelationButton];
     
-    
     NSLog(@"%@", self.member.father);
 
     if (self.member.father != nil) {
@@ -118,10 +116,12 @@
         
         // Add father.
         UIBezierPath *path = [UIBezierPath bezierPath];
+        
         [path moveToPoint:CGPointMake(myImageView.center.x, myImageView.center.y)];
         [path addLineToPoint:CGPointMake(myImageView.center.x, myImageView.center.y - 100)];
         
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        
         shapeLayer.path = [path CGPath];
         shapeLayer.strokeColor = [[UIColor whiteColor] CGColor];
         shapeLayer.lineWidth = 3.0;
@@ -131,7 +131,7 @@
         
         fatherButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         
-        [fatherButton setTitle:[NSString stringWithFormat:@"%@\n%d", self.member.father.name, self.member.father.dobYear] forState:UIControlStateNormal];
+        [fatherButton setTitle:[NSString stringWithFormat:@"%@\n%ld", self.member.father.name, (long)self.member.father.dobYear] forState:UIControlStateNormal];
         fatherButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         
         fatherButton.center = CGPointMake(myImageView.center.x, myImageView.center.y - 120);
@@ -139,15 +139,21 @@
         fatherButton.tag = self.member.father.memberId;
         [fatherButton addTarget:self action:@selector(goToGetMember:) forControlEvents:UIControlEventTouchUpInside];
         
-        [self addSubview:fatherButton];
         [self.layer addSublayer:shapeLayer];
+        
+        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+        pathAnimation.duration = 0.5;
+        pathAnimation.fromValue = @(0.0f);
+        pathAnimation.toValue = @(1.0f);
+        
+        [shapeLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
+        
+        [self addSubview:fatherButton];
     }
-    
-    NSLog(@"-------- CHILDREN: %d ---------------- ", [self.member.children count]);
     
     if ([self.member.children count] > 0) {
         
-        int children = [self.member.children count];
+        unsigned long children = [self.member.children count];
         int i = 1;
         
         CGFloat angle = 180.0/(children+1);
@@ -180,7 +186,7 @@
             nodeButton.center = CGPointMake(x1, y1 + 20);
             
             nodeButton.tag = node.memberId;
-            NSLog(@"node_id = %d", node.memberId);
+            NSLog(@"node_id = %ld", (long)node.memberId);
             
             [nodeButton addTarget:self action:@selector(goToGetMember:) forControlEvents:UIControlEventTouchUpInside];
             

@@ -40,13 +40,13 @@
 
 -(TSweetResponse *) getMembers:(NSInteger)circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%d/members", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/members", (long)circleId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) createMembers:(NSInteger)circleId members:(NSArray *)members
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%d/members", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/members", (long)circleId];
     NSDictionary * parameters = @{ @"members": members };
     
     return [[TSweetRest shared] post:route parameters: parameters];
@@ -54,25 +54,25 @@
 
 -(TSweetResponse *) leave:(NSInteger)circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%d/leave", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/leave", (long)circleId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) getEvents:(NSInteger)circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%d/events", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/events", (long)circleId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) getStats:(NSInteger)circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%d/stats", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/stats", (long)circleId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) fetchMessages:(NSInteger)circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%d/messages", circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/messages", (long)circleId];
     return [[TSweetRest shared] get:route];
 }
 

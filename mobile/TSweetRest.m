@@ -10,21 +10,30 @@
 
 @implementation NSString (NSString_Extended)
 
-- (NSString *)urlencode {
+- (NSString *)urlencode
+{
     
     NSMutableString *output = [NSMutableString string];
+    
     const unsigned char *source = (const unsigned char *)[self UTF8String];
-    int sourceLen = strlen((const char *)source);
-    for (int i = 0; i < sourceLen; ++i) {
+    unsigned long sourceLen = strlen((const char *)source);
+    
+    for (int i = 0; i < sourceLen; ++i)
+    {
         const unsigned char thisChar = source[i];
-        if (thisChar == ' '){
+        
+        if (thisChar == ' ')
+        {
             [output appendString:@"+"];
-        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+        }
+        else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
                    (thisChar >= 'a' && thisChar <= 'z') ||
                    (thisChar >= 'A' && thisChar <= 'Z') ||
                    (thisChar >= '0' && thisChar <= '9')) {
             [output appendFormat:@"%c", thisChar];
-        } else {
+        }
+        else
+        {
             [output appendFormat:@"%%%02X", thisChar];
         }
     }
@@ -55,13 +64,13 @@
         self.appKey = @"MNwPLdo7hVdj5Mj0Jz7diq804sd5Sf";
         self.appSecret = @"$2y$10$9XuWj51VVDY8tuhYghGcIuN2oEL35RnA17GeesMxIm2cKYvDpGBEW";
          */
-        
+
         self.apiUrl = @"http://localhost/~hossamzee/web.api/public/index.php/v1";
         self.appKey = @"SSxZcuQc2oiCbZ4cQSSZnRp1NdbbzZ";
         self.appSecret = @"$2y$10$wkmiYLbNwjJ2S3Yo/Vqsj.q4hegPvDxamDaruUrN2Nhs20Nd10ivq";
         
     }
-                
+
     return self;
 }
 
@@ -119,13 +128,70 @@
     
     NSMutableArray * pairs = [[NSMutableArray alloc] initWithCapacity:0];
     
+    NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
+    [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
+    [shortDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
     for (id key in parameters)
     {
-        //[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, [parameters[key] urlencode]]];
+        // Get the value of the key (also the type of the object).
+        id value = parameters[key];
+        NSString * stringValue = @"";
+        
+        NSLog(@"%@\n", key);
+        
+        // Check the type of the object and make a related decision.
+        if ([value isKindOfClass:[NSNull class]]);
+        
+        else if ([value isKindOfClass:[NSNumber class]])
+        {
+            if (strcmp([value objCType], @encode(BOOL)))
+            {
+                stringValue = ([value boolValue] == YES) ? @"1" : @"0";
+            }
+            else
+            {
+                stringValue = [value stringValue];
+            }
+        }
+        
+        else if ([value isKindOfClass:[NSDate class]])
+        {
+            // Check if the key is either dob, dod.
+            if (key == (id)@"dob" || key == (id)@"dod")
+            {
+                stringValue = [shortDateFormatter stringFromDate:value];
+            }
+            else
+            {
+                stringValue = [longDateFormatter stringFromDate:value];
+            }
+        }
+        
+        // NSArray.
+        else if ([value isKindOfClass:[NSArray class]])
+        {
+            stringValue = [NSString stringWithFormat:@"[%@]", [value componentsJoinedByString:@","]];
+        }
+        
+        // NSData.
+        else if ([value isKindOfClass:[NSData class]])
+        {
+            stringValue = [value base64EncodedStringWithOptions:0];
+        }
+        
+        else
+        {
+            stringValue = value;
+        }
+
+        [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, [stringValue urlencode]]];
     }
-    
+
     NSString * requestParameters = [pairs componentsJoinedByString:@"&"];
-    NSLog(@"%@", requestParameters);
+    NSLog(@"parameters = %@", requestParameters);
     
     // Set the body
     [request setHTTPBody:[requestParameters dataUsingEncoding:NSUTF8StringEncoding]];

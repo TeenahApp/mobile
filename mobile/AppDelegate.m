@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "AddEventViewController.h"
 
 @implementation AppDelegate
 

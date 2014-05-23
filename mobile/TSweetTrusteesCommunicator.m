@@ -38,13 +38,13 @@
 
 -(TSweetResponse *)deactivate:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/trustees/%d/deactivate", memberId];
+    NSString * route = [NSString stringWithFormat:@"/trustees/%ld/deactivate", (long)memberId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *)activate:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"/trustees/%d/activate", memberId];
+    NSString * route = [NSString stringWithFormat:@"/trustees/%ld/activate", (long)memberId];
     return [[TSweetRest shared] get:route];
 }
 

@@ -11,13 +11,14 @@
 #import "TSweetCirclesCommunicator.h"
 #import "TSweetResponse.h"
 
+#import "TCircle.h"
 #import "PNChart.h"
 
 // TODO: Complete this view controller.
 
 @interface CircleViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSDictionary * circle;
+@property (strong, nonatomic) TCircle * circle;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *innerView;
 

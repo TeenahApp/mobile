@@ -105,7 +105,7 @@
 -(void)didUpdateMember:(TMember *)member
 {
     self.member = member;
-    NSLog(@"---------------------------- called: %d", self.member.memberId);
+    //NSLog(@"---------------------------- called: %d", self.member.memberId);
 }
 
 -(void)didViewMember
@@ -122,31 +122,29 @@
     // Pass the selected object to the new view controller.
     // Make sure your segue name in storyboard is the same as this line
 
+    NSLog(@"member is being segued: %@", self.member);
+    
     if ([[segue identifier] isEqualToString:@"AddRelation"])
     {
         // Get reference to the destination view controller
-        //YourViewController *vc = [segue destinationViewController];
         AddRelationViewController *vc = (AddRelationViewController *) [segue destinationViewController];
         
-        vc.hidesBottomBarWhenPushed = YES;
-        
-        // Pass any objects to the view controller here, like...
-        //[vc setMyObjectHere:object];
         vc.relation = self.relation;
-        vc.memberA = [NSString stringWithFormat:@"%d", self.member.memberId];
+        vc.memberA = self.member.memberId;
         
-        //NSLog(@"%d", vc.isRootSegmented.selectedSegmentIndex);
+        [vc initWithNibName:nil bundle:nil];
+        
+        vc.hidesBottomBarWhenPushed = YES;
     }
     
     else if ([[segue identifier] isEqualToString:@"ViewMember"])
     {
-        //NSLog(@"View Member");
         ViewMemberTableViewController * vc = (ViewMemberTableViewController *) [segue destinationViewController];
+        vc.member = self.member;
         
         vc.hidesBottomBarWhenPushed = YES;
-        
-        vc.member = self.member;
     }
+
 }
 
 @end

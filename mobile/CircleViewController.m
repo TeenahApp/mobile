@@ -27,13 +27,26 @@
 {
     [super viewDidLoad];
     
+    /*
+    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:@"zee" delegate:self cancelButtonTitle:@"okay" destructiveButtonTitle:nil otherButtonTitles:nil];
+    
+    
+    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
+    
+    if ([window.subviews containsObject:self.view]) {
+        [actionSheet showInView:self.view];
+    } else {
+        [actionSheet showInView:window];
+    }
+     */
+    
     self.locations = [[NSMutableArray alloc] init];
     self.pages = @[@"Members", @"Ages", @"Male Names", @"Female Names", @"Educations", @"Education Majors", @"Companies", @"Locations"];
     
     // Do any additional setup after loading the view.
     [self.innerView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
     
-    TSweetResponse * tsr = [[CirclesCommunicator shared] getStats: self.circle[@"id"]];
+    TSweetResponse * tsr = [[CirclesCommunicator shared] getStats: self.circle.circleId];
    
     [self.mainLabel setText:self.pages[0]];
     
@@ -206,7 +219,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"numberOfRowsInSection: %d", self.locations.count);
+    NSLog(@"numberOfRowsInSection: %lu", (unsigned long)self.locations.count);
     return self.locations.count;
 }
 
@@ -253,7 +266,6 @@
     [alert show];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -263,6 +275,5 @@
     // Pass the selected object to the new view controller.
     //NSLog(@"%@", segue.description);
 }
- */
 
 @end

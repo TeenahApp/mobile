@@ -10,11 +10,21 @@
 
 @interface TCircle : NSObject
 
-@property (strong, nonatomic) NSString * circleId;
-@property (strong, nonatomic) NSString * name;
-@property (strong, nonatomic) NSString * membersCount;
-@property (strong, nonatomic) NSString * isActive;
+@property NSInteger circleId;
+@property NSInteger createdBy;
 
--(id) fromJson: (NSDictionary *) json;
+@property (strong, nonatomic) NSString * name;
+
+@property BOOL isActive;
+
+@property NSInteger membersCount;
+
+@property (nonatomic, strong) NSDate * createdAt;
+@property (nonatomic, strong) NSDate * updatedAt;
+
+// TODO: creator.
+// TODO: members.
+
+-(id) initWithJson: (NSDictionary *) json;
 
 @end

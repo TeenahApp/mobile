@@ -12,6 +12,7 @@
 		FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16819293C9900F41129 /* AddEventViewController.m */; };
 		FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16C1929400F00F41129 /* AddEventForm.m */; };
 		FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16F1929E21A00F41129 /* UIAvatarView.m */; };
+		FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD507C1B192C84050077C55A /* AddRelationForm.m */; };
 		FD54660A18F5A66000BFD409 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660918F5A66000BFD409 /* Foundation.framework */; };
 		FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660B18F5A66000BFD409 /* CoreGraphics.framework */; };
 		FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660D18F5A66000BFD409 /* UIKit.framework */; };
@@ -45,6 +46,16 @@
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FD9F4C991926C1F700D10C09 /* UIEditableTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9F4C981926C1F700D10C09 /* UIEditableTextTableViewCell.m */; };
 		FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */; };
+		FDD150FF192FCC3E00BC41E5 /* TAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD150FE192FCC3E00BC41E5 /* TAccess.m */; };
+		FDD15102192FCD1A00BC41E5 /* TAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15101192FCD1A00BC41E5 /* TAction.m */; };
+		FDD15105192FCEA400BC41E5 /* TCircleEventMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15104192FCEA400BC41E5 /* TCircleEventMember.m */; };
+		FDD15108192FCF7900BC41E5 /* TCircleMessageMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15107192FCF7900BC41E5 /* TCircleMessageMember.m */; };
+		FDD1510B192FD35300BC41E5 /* TEducationMajor.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1510A192FD35300BC41E5 /* TEducationMajor.m */; };
+		FDD1510E192FDA9700BC41E5 /* TEventMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1510D192FDA9700BC41E5 /* TEventMedia.m */; };
+		FDD15111192FDB7300BC41E5 /* TJobCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15110192FDB7300BC41E5 /* TJobCompany.m */; };
+		FDD15114192FDEA400BC41E5 /* TMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15113192FDEA400BC41E5 /* TMedia.m */; };
+		FDD15117192FDF8E00BC41E5 /* TMemberCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15116192FDF8E00BC41E5 /* TMemberCircle.m */; };
+		FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
 		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
 		FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */; };
@@ -80,6 +91,8 @@
 		FD4AF16C1929400F00F41129 /* AddEventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventForm.m; sourceTree = "<group>"; };
 		FD4AF16E1929E21A00F41129 /* UIAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAvatarView.h; sourceTree = "<group>"; };
 		FD4AF16F1929E21A00F41129 /* UIAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarView.m; sourceTree = "<group>"; };
+		FD507C1A192C84050077C55A /* AddRelationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationForm.h; sourceTree = "<group>"; };
+		FD507C1B192C84050077C55A /* AddRelationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationForm.m; sourceTree = "<group>"; };
 		FD54660618F5A66000BFD409 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54660918F5A66000BFD409 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD54660B18F5A66000BFD409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -135,6 +148,26 @@
 		FD9F4C981926C1F700D10C09 /* UIEditableTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEditableTextTableViewCell.m; sourceTree = "<group>"; };
 		FDA9B0F51921320B0015BF8C /* CircleMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMembersTableViewController.h; sourceTree = "<group>"; };
 		FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMembersTableViewController.m; sourceTree = "<group>"; };
+		FDD150FD192FCC3E00BC41E5 /* TAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAccess.h; sourceTree = "<group>"; };
+		FDD150FE192FCC3E00BC41E5 /* TAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAccess.m; sourceTree = "<group>"; };
+		FDD15100192FCD1A00BC41E5 /* TAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAction.h; sourceTree = "<group>"; };
+		FDD15101192FCD1A00BC41E5 /* TAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAction.m; sourceTree = "<group>"; };
+		FDD15103192FCEA400BC41E5 /* TCircleEventMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircleEventMember.h; sourceTree = "<group>"; };
+		FDD15104192FCEA400BC41E5 /* TCircleEventMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircleEventMember.m; sourceTree = "<group>"; };
+		FDD15106192FCF7900BC41E5 /* TCircleMessageMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircleMessageMember.h; sourceTree = "<group>"; };
+		FDD15107192FCF7900BC41E5 /* TCircleMessageMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircleMessageMember.m; sourceTree = "<group>"; };
+		FDD15109192FD35300BC41E5 /* TEducationMajor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEducationMajor.h; sourceTree = "<group>"; };
+		FDD1510A192FD35300BC41E5 /* TEducationMajor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEducationMajor.m; sourceTree = "<group>"; };
+		FDD1510C192FDA9700BC41E5 /* TEventMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEventMedia.h; sourceTree = "<group>"; };
+		FDD1510D192FDA9700BC41E5 /* TEventMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEventMedia.m; sourceTree = "<group>"; };
+		FDD1510F192FDB7300BC41E5 /* TJobCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJobCompany.h; sourceTree = "<group>"; };
+		FDD15110192FDB7300BC41E5 /* TJobCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJobCompany.m; sourceTree = "<group>"; };
+		FDD15112192FDEA400BC41E5 /* TMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMedia.h; sourceTree = "<group>"; };
+		FDD15113192FDEA400BC41E5 /* TMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMedia.m; sourceTree = "<group>"; };
+		FDD15115192FDF8E00BC41E5 /* TMemberCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberCircle.h; sourceTree = "<group>"; };
+		FDD15116192FDF8E00BC41E5 /* TMemberCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberCircle.m; sourceTree = "<group>"; };
+		FDD15118192FE1BE00BC41E5 /* TMemberEducation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberEducation.h; sourceTree = "<group>"; };
+		FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberEducation.m; sourceTree = "<group>"; };
 		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
 		FDF1F21518F5C891001B53D0 /* TSweetAutoCompletesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetAutoCompletesCommunicator.h; sourceTree = "<group>"; };
 		FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetAutoCompletesCommunicator.m; sourceTree = "<group>"; };
@@ -203,6 +236,8 @@
 			children = (
 				FD4AF16B1929400F00F41129 /* AddEventForm.h */,
 				FD4AF16C1929400F00F41129 /* AddEventForm.m */,
+				FD507C1A192C84050077C55A /* AddRelationForm.h */,
+				FD507C1B192C84050077C55A /* AddRelationForm.m */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -354,6 +389,26 @@
 				FD5BA84A192AB0B300B37FCC /* TEvent.m */,
 				FD68D62C192B6C2D003ABCFF /* TMemberRelation.h */,
 				FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */,
+				FDD150FD192FCC3E00BC41E5 /* TAccess.h */,
+				FDD150FE192FCC3E00BC41E5 /* TAccess.m */,
+				FDD15100192FCD1A00BC41E5 /* TAction.h */,
+				FDD15101192FCD1A00BC41E5 /* TAction.m */,
+				FDD15103192FCEA400BC41E5 /* TCircleEventMember.h */,
+				FDD15104192FCEA400BC41E5 /* TCircleEventMember.m */,
+				FDD15106192FCF7900BC41E5 /* TCircleMessageMember.h */,
+				FDD15107192FCF7900BC41E5 /* TCircleMessageMember.m */,
+				FDD15109192FD35300BC41E5 /* TEducationMajor.h */,
+				FDD1510A192FD35300BC41E5 /* TEducationMajor.m */,
+				FDD1510C192FDA9700BC41E5 /* TEventMedia.h */,
+				FDD1510D192FDA9700BC41E5 /* TEventMedia.m */,
+				FDD1510F192FDB7300BC41E5 /* TJobCompany.h */,
+				FDD15110192FDB7300BC41E5 /* TJobCompany.m */,
+				FDD15112192FDEA400BC41E5 /* TMedia.h */,
+				FDD15113192FDEA400BC41E5 /* TMedia.m */,
+				FDD15115192FDF8E00BC41E5 /* TMemberCircle.h */,
+				FDD15116192FDF8E00BC41E5 /* TMemberCircle.m */,
+				FDD15118192FE1BE00BC41E5 /* TMemberEducation.h */,
+				FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -437,6 +492,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "TeenahApp Org";
 				TargetAttributes = {
+					FD54660518F5A66000BFD409 = {
+						DevelopmentTeam = V4LP6LTBPH;
+					};
 					FD54662618F5A66000BFD409 = {
 						TestTargetID = FD54660518F5A66000BFD409;
 					};
@@ -523,7 +581,9 @@
 			files = (
 				FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */,
 				FD54661A18F5A66000BFD409 /* AppDelegate.m in Sources */,
+				FDD1510E192FDA9700BC41E5 /* TEventMedia.m in Sources */,
 				FDF1F23518F5C891001B53D0 /* TSweetUsersCommunicator.m in Sources */,
+				FDD15105192FCEA400BC41E5 /* TCircleEventMember.m in Sources */,
 				FD54664618F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m in Sources */,
 				FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */,
 				FDF1F23218F5C891001B53D0 /* TSweetTrusteesCommunicator.m in Sources */,
@@ -534,12 +594,16 @@
 				FD9F4C991926C1F700D10C09 /* UIEditableTextTableViewCell.m in Sources */,
 				FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */,
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
+				FDD15117192FDF8E00BC41E5 /* TMemberCircle.m in Sources */,
 				FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */,
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
 				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,
+				FDD1510B192FD35300BC41E5 /* TEducationMajor.m in Sources */,
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
 				FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */,
+				FDD15111192FDB7300BC41E5 /* TJobCompany.m in Sources */,
 				FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */,
+				FDD15108192FCF7900BC41E5 /* TCircleMessageMember.m in Sources */,
 				FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */,
 				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
@@ -547,15 +611,20 @@
 				FD59908C18FEEE1400975F7F /* TMember.m in Sources */,
 				FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */,
 				FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */,
+				FDD15114192FDEA400BC41E5 /* TMedia.m in Sources */,
 				FDF1F23318F5C891001B53D0 /* TSweetResponse.m in Sources */,
+				FDD150FF192FCC3E00BC41E5 /* TAccess.m in Sources */,
+				FDD15102192FCD1A00BC41E5 /* TAction.m in Sources */,
 				FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */,
 				FD54661618F5A66000BFD409 /* main.m in Sources */,
 				FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */,
 				FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */,
+				FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */,
 				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,
 				FD576CAF18F70BF600851F90 /* TreeViewController.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
 				FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */,
+				FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,10 +751,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mobile/mobile-Prefix.pch";
 				INFOPLIST_FILE = "mobile/mobile-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -696,10 +768,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mobile/mobile-Prefix.pch";
 				INFOPLIST_FILE = "mobile/mobile-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

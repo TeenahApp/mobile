@@ -98,10 +98,7 @@
     
     // TODO: Educations.
     // TODO: Jobs.
-    
-    NSLog(@"%@", relations.description);
-    
-    
+
 }
 
 - (void)didReceiveMemoryWarning

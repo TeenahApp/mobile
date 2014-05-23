@@ -29,22 +29,27 @@
         
         // Read a default (avatar).
         // TODO: Chagne this avatar into something more beautic.
-        self.image = [UIImage imageNamed:@"Tree"];  
+        self.image = [UIImage imageNamed:@"Avatar"];  
+    
+        if (url != nil)
+        {
         
-        /*
-        // Try to load the URL.
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // Try to load the URL.
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            // Load the URL.
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
                 NSData * imageData = [NSData dataWithContentsOfURL:url];
-                self.image = [UIImage imageWithData:imageData];
+            
+                // Load the URL.
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    // TODO: If the image is not nil.
+                    self.image = [UIImage imageWithData:imageData];
+                });
+            
+                // Done.
+            
             });
             
-            // Done.
-            
-        });
-         */
+        }
         
         self.layer.cornerRadius = frame.size.width/2;
         self.layer.masksToBounds = YES;

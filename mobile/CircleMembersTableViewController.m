@@ -33,7 +33,7 @@
     self.tableView.bounds = newBounds;
     
     // TODO: Change the circle id to be a variable, thanks to @ecleel.
-    TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:@"1"];
+    TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:1];
     
     self.members = [[NSMutableArray alloc] init];
     
@@ -83,9 +83,9 @@
     TMember * member;
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        member = (TMember *) [self.filteredMembers objectAtIndex:indexPath.row];
+        member = [self.filteredMembers objectAtIndex:indexPath.row];
     } else {
-        member = (TMember *) [self.members objectAtIndex:indexPath.row];
+        member = [self.members objectAtIndex:indexPath.row];
     }
     
     [cell.textLabel setText:[NSString stringWithFormat:@"%@", member.name]];
@@ -93,35 +93,7 @@
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@", member.fullname]];
     
     // TODO: Load the images in a separate thread.
-    
-    
-    NSURL * imageURL = nil;
-    
-    if ([member.photo isEqual:[NSNull null]])
-    {
-        // TODO: Fix the image regarding to the gender of the member.
-        //       Display a man with Shmagh, and a woman whit a Hijab.
-        NSLog(@"============= Nil");
-        imageURL = [NSURL URLWithString:@"http://i2.wp.com/www.maas360.com/assets/Uploads/defaultUserIcon.png"];
-    }
-    else
-    {
-        NSLog(@"============= Not nil");
-        imageURL = [NSURL URLWithString:member.photo];
-    }
-    
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
-    
-    cell.imageView.layer.cornerRadius = 20;
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.layer.borderWidth = 4;
-    
-    cell.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    cell.imageView.image = image;
-    
-    //cell.imageView
-    
+
     return cell;
 }
 

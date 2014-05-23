@@ -34,7 +34,8 @@
                           relation: (NSString *) relation
                             isRoot: (BOOL) isRoot
                             mobile: (NSString *) mobile
-                               dob: (NSDate *) dob;
+                               dob: (NSDate *) dob
+                               dod: (NSDate *) dod;
 
 -(TSweetResponse *) deleteRelation: (NSInteger) memberA
                            memberB: (NSInteger) memberB;

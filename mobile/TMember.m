@@ -31,23 +31,41 @@
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         
-        self.dob = [json objectForKey:@"dob"]; //[longDateFormatter dateFromString:[json objectForKey:@"dob"]];
-        self.dod = [json objectForKey:@"dob"]; //[longDateFormatter dateFromString:[json objectForKey:@"dob"]];
+        NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
+        [shortDateFormatter setDateFormat:@"yyyy-MM-dd"];
         
-        if (self.dob == nil)
+        NSDateFormatter * yearDateFormatter = [[NSDateFormatter alloc] init];
+        [yearDateFormatter setDateFormat:@"yyyyy"];
+        
+        NSString * tempDob = [json objectForKey:@"dob"];
+        NSString * tempDod = [json objectForKey:@"dod"];
+        
+        NSLog(@"dob = %@, dod = %@", tempDob, tempDod);
+        
+        if (![tempDob isKindOfClass:[NSNull class]])
         {
-            
+            self.dob = [shortDateFormatter dateFromString:tempDob];
         }
         
-        NSLog(@"Passsssssssed");
+        if (![tempDod isKindOfClass:[NSNull class]])
+        {
+            self.dod = [shortDateFormatter dateFromString:tempDod];
+        }
         
-        // TODO: self.dobYear;
-        // TODO: self.dodYear;
+        if (self.dob != nil)
+        {
+            self.dobYear = [[yearDateFormatter stringFromDate:self.dob] integerValue];
+        }
+
+        if (self.dod != nil)
+        {
+            self.dodYear = [[yearDateFormatter stringFromDate:self.dod] integerValue];
+        }
         
         self.location = [json objectForKey:@"location"];
         
-        self.isAlive = (BOOL)[json objectForKey:@"is_alive"];
-        self.isRoot = (BOOL)[json objectForKey:@"is_root"];
+        self.isAlive = [[json objectForKey:@"is_alive"] boolValue];
+        self.isRoot = [[json objectForKey:@"is_root"] boolValue];
         
         // Init empty.
         self.father = nil;
@@ -80,6 +98,12 @@
     }
     
     return self;
+}
+
+// TODO: Fullfill the description with the correct variable names and values.
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"{id: %ld, dobYear: %ld}", (long)self.memberId, (long)self.dobYear];
 }
 
 @end

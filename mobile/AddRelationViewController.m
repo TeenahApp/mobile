@@ -17,28 +17,26 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    
+    if (self)
+    {
         // Custom initialization
+        
+        self.form = [[AddRelationForm alloc] init];
+        
+        // Set the variables.
+        self.form.relationship = self.relation;
+        self.form.isAlive = YES;
+
+        self.formController.form = self.form;
     }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    //NSLog(@"%@", self.relation);
-    
-    if ([self.relation isEqual: @"father"]) {
-        self.isRootSegmented.hidden = false;
-    }
-    else
-    {
-        self.isRootSegmented.hidden = true;
-    }
-    
-    //NSLog(@"zeee");
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,32 +52,43 @@
 
 - (IBAction)addRelation:(id)sender {
     
-    NSLog(@"Member A: %@", self.memberA);
+    NSLog(@"Member A: %d", self.memberA);
     NSLog(@"Relation: %@", self.relation);
 
     // TODO: Do some validation.
     
-    NSString * isAlive = @"1";
-    NSString * isRoot = @"0";
-    
-    if (self.isAliveSegmented.selectedSegmentIndex == 1)
+    if (self.form.mobile == nil)
     {
-        isAlive = @"0";
+        self.form.mobile = [NSNull null];
     }
     
-    if (self.isRootSegmented.selectedSegmentIndex == 1)
+    if (self.form.dob == nil)
     {
-        isRoot = @"1";
+        self.form.dob = [NSNull null];
     }
+    
+    if (self.form.dod == nil)
+    {
+        self.form.dod = [NSNull null];
+    }
+    
+    NSLog(@"name = %@, is_alive = %d, relation = %@, is_root = %d, mobile = %@, dob = %@, dod = %@", self.form.name, self.form.isAlive, self.relation, self.form.isRoot, self.form.mobile, self.form.dob, self.form.dod);
     
     // Try to send the request.
-    // TODO: Make the animation later.
-    TSweetResponse * tsr = [[MembersCommunicator shared] createRelation:self.memberA isAlive:isAlive name:self.firstNameTextField.text relation:self.relation isRoot: isRoot mobile:self.mobileTextField.text dob:self.dobTextField.text];
+    // TODO: Make the waiting indicator later.
+    TSweetResponse * tsr = [[MembersCommunicator shared] createRelation:self.memberA isAlive:self.form.isAlive name:self.form.name relation:self.relation isRoot: self.form.isRoot mobile:self.form.mobile dob:self.form.dob dod:self.form.dod];
     
     if (tsr.code == 201)
     {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)updateFields
+{
+    //refresh the form
+    self.formController.form = self.formController.form;
+    [self.tableView reloadData];
 }
 
 /*

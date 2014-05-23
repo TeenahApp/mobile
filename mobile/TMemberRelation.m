@@ -18,7 +18,7 @@
     {
         self.relationId = [[json objectForKey:@"id"] integerValue];
         
-        self.isActive = (BOOL)[json objectForKey:@"is_active"];
+        self.isActive = [[json objectForKey:@"is_active"] boolValue];
         
         self.memberA = [[json objectForKey:@"member_a"] integerValue];
         self.memberB = [[json objectForKey:@"member_b"] integerValue];

@@ -27,28 +27,24 @@
 {
     [super viewDidLoad];
     
-    self.currentCircle = [[NSDictionary alloc] init];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // TODO:
+    // TODO: Handling errors and/or warnings.
     TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
     
     self.circles = [[NSMutableArray alloc] init];
     
-    for (id circle in tsr.json)
+    for (NSDictionary * tempCircle in tsr.json)
     {
-        
+        TCircle * circle = [[TCircle alloc] initWithJson:tempCircle];
         [self.circles addObject:circle];
     }
     
-    //NSLog(@"%d", self.circles.count);
-    
-    self.titleNavigationItem.title = [NSString stringWithFormat:@"Circles (%d)", self.circles.count];
+    self.titleNavigationItem.title = [NSString stringWithFormat:@"Circles (%lu)", (unsigned long)self.circles.count];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,10 +72,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSDictionary * current = [self.circles objectAtIndex:indexPath.row];
+    TCircle * current = [self.circles objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = current[@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ Members", current[@"members_count"]];
+    cell.textLabel.text = current.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Members", (long)current.membersCount];
 
     self.currentCircle = current;
     

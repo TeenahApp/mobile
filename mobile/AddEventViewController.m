@@ -24,9 +24,8 @@
         // Custom initialization
         
         NSMutableDictionary * circles = [[NSMutableDictionary alloc] init];
-        
-        //[circles setObject:@"Family and close" forKey:@"1"];
-        //[circles setObject:@"Kids" forKey:@"2"];
+
+        // Reach out for the circles.
         TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
         
         for (NSDictionary * tempCircle in tsr.json)
@@ -34,7 +33,11 @@
             [circles setObject:tempCircle[@"name"] forKey:tempCircle[@"id"]];
         }
         
-        self.formController.form = [[AddEventForm alloc] initWithCircles: circles];
+        AddEventForm * form = [[AddEventForm alloc] initWithCircles:circles];
+        
+        form.startDate = [NSDate date];
+        
+        self.formController.form = form;
     }
     return self;
 }

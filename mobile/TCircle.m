@@ -10,12 +10,25 @@
 
 @implementation TCircle
 
--(id)fromJson:(NSDictionary *)json
+-(id)initWithJson:(NSDictionary *)json
 {
-    self.circleId = json[@"id"];
-    self.name = json[@"name"];
-    self.membersCount = json[@"members_count"];
-    self.isActive = json[@"active"];
+    self = [super init];
+    
+    if(self)
+    {
+        self.circleId = [[json objectForKey:@"id"] integerValue];
+        self.name = [json objectForKey:@"name"];
+        self.isActive = [[json objectForKey:@"is_active"] boolValue];
+        
+        NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
+        [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        // Get some stats.
+        self.membersCount = [[json objectForKey:@"members_count"] integerValue];
+        
+        self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
+        self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];
+    }
     
     return self;
 }

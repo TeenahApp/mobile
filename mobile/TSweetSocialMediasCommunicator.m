@@ -33,7 +33,7 @@
 
 -(TSweetResponse *)update:(NSInteger)socialMediaId account:(NSString *)account
 {
-    NSString * route = [NSString stringWithFormat:@"/socialmedias/%d", socialMediaId];
+    NSString * route = [NSString stringWithFormat:@"/socialmedias/%ld", (long)socialMediaId];
     NSDictionary * parameters = @{
                                   @"account": account
                                   };
@@ -43,7 +43,7 @@
 
 -(TSweetResponse *)deleteSocialMedia:(NSInteger)socialMediaId
 {
-    NSString * route = [NSString stringWithFormat:@"/socialmedias/%d", socialMediaId];
+    NSString * route = [NSString stringWithFormat:@"/socialmedias/%ld", (long)socialMediaId];
     return [[TSweetRest shared] delete:route parameters:nil];
 }
 

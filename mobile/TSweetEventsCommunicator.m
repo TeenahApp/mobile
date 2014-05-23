@@ -44,13 +44,13 @@
 
 -(TSweetResponse *) getEvent:(NSInteger)eventId
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld", (long)eventId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) update:(NSInteger)eventId title:(NSString *)title startDatetime:(NSDate *)startDatetime finishDatatime:(NSDate *)finishDatatime location:(NSString *)location latitude:(NSNumber *)latitude longitude:(NSNumber *)longitude
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld", (long)eventId];
     NSDictionary * parameters = @{
                                   @"title": title,
                                   @"start_datetime": startDatetime,
@@ -65,13 +65,13 @@
 
 -(TSweetResponse *) deleteEvent:(NSInteger)eventId
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld", (long)eventId];
     return [[TSweetRest shared] delete:route parameters: nil];
 }
 
 -(TSweetResponse *) createMedia:(NSInteger)eventId category:(NSString *)category data:(NSData *)data extension:(NSString *)extension
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d/medias", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/medias", (long)eventId];
     NSDictionary * parameters = @{
                                   @"category": category,
                                   @"data": data,
@@ -84,25 +84,25 @@
 
 -(TSweetResponse *) makeDecision:(NSInteger)eventId decision:(NSString *)decision
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d/decision/%@", eventId, decision];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/decision/%@", (long)eventId, decision];
     return [[TSweetRest shared] put:route parameters: nil];
 }
 
 -(TSweetResponse *) getDecision:(NSInteger)eventId
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d/decision", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/decision", (long)eventId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) like:(NSInteger)eventId
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d/like", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/like", (long)eventId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *) comment:(NSInteger)eventId comment:(NSString *)comment
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d/comment", eventId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/comment", (long)eventId];
     NSDictionary * parameters = @{
                                   @"comment": comment
                                   };
@@ -112,7 +112,7 @@
 
 -(TSweetResponse *) likeComment:(NSInteger)eventId commentId:(NSInteger)commentId
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%d/comments/%d", eventId, commentId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/comments/%ld", (long)eventId, (long)commentId];
     return [[TSweetRest shared] get:route];
 }
 
