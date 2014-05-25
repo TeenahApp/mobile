@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;
 
+-(id) initWithJson: (NSDictionary *) json;
+
 @end

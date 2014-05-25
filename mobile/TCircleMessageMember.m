@@ -10,4 +10,22 @@
 
 @implementation TCircleMessageMember
 
+-(id) initWithJson: (NSDictionary *) json
+{
+    self = [super init];
+    
+    if(self)
+    {
+        
+        
+        NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
+        [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
+        self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];
+    }
+    
+    return self;
+}
+
 @end

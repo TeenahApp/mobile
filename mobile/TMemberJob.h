@@ -1,30 +1,30 @@
 //
-//  TMemberEducation.h
+//  TMemberJob.h
 //  mobile
 //
-//  Created by Hussam Al-Zughaibi on 7/24/1435 AH.
+//  Created by Hussam Al-Zughaibi on 7/26/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "TEducationMajor.h"
+#import "TJobCompany.h"
 
-@interface TMemberEducation : NSObject
+@interface TMemberJob : NSObject
 
-@property NSInteger memberEducationId;
+@property NSInteger memberJobId;
 
 @property NSInteger memberId;
-@property NSInteger majorId;
+@property NSInteger companyId;
 
-@property (nonatomic, strong) NSString * degree;
+@property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * status;
 
 @property NSInteger startYear;
 @property NSInteger finishYear;
 
 // major.
-@property (nonatomic, strong) TEducationMajor * major;
+@property (nonatomic, strong) TJobCompany * company;
 
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;

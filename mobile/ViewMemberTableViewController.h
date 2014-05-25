@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "TMember.h"
+#import "TMemberEducation.h"
+
 #import "UIAvatarCellTableViewCell.h"
 #import "UIAvatarView.h"
+
+#import "AddMemberEducationViewController.h"
+#import "AddMemberJobViewController.h"
 
 @interface ViewMemberTableViewController : UITableViewController <UIActionSheetDelegate>
 
@@ -23,5 +28,8 @@
 @property (strong, nonatomic) NSMutableArray * data;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property BOOL canAddEducation;
+@property BOOL canAddJob;
 
 @end

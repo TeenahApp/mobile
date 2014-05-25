@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "TMemberRelation.h"
+#import "TMemberEducation.h"
+#import "TMemberJob.h"
 
 @class TMemberRelation;
 
@@ -52,6 +55,9 @@
 @property (strong, nonatomic) NSMutableArray * relations;
 @property (strong, nonatomic) NSMutableArray * children;
 
+@property (strong, nonatomic) NSMutableArray * educations;
+@property (strong, nonatomic) NSMutableArray * jobs;
+
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;
 
@@ -59,9 +65,7 @@
 // TODO: circles.
 // TODO: createdActions.
 // TODO: affectedActions.
-// TODO: educations.
 // TODO: educationMajors.
-// TODO: jobs.
 // TODO: jobCompanies.
 // TODO: privacies.
 // TODO: outRelations.

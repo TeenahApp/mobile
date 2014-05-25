@@ -78,6 +78,8 @@
 
 -(TSweetResponse *)createEducation:(NSInteger)memberId degree:(NSString *)degree startYear:(NSInteger)startYear finishYear:(NSInteger)finishYear status:(NSString *)status major:(NSString *)major
 {
+    NSLog(@"s = %d, f = %d", startYear, finishYear);
+    
     NSString * route = [NSString stringWithFormat:@"/members/%ld/educations", (long)memberId];
     NSDictionary * parameters = @{
                                   @"degree": degree,
@@ -86,6 +88,8 @@
                                   @"status": status,
                                   @"major": major
                                   };
+    
+    NSLog(@"%@", [parameters allValues]);
     
     return [[TSweetRest shared] post:route parameters: parameters];
 }

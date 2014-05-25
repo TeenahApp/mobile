@@ -27,11 +27,12 @@
 {
     [super viewDidLoad];
     
-    //UIAvatarView initWith
-    //self.image = [UIAvatarView alloc] initW
+    self.canAddEducation = YES;
+    self.canAddJob = YES;
     
     self.sections = @[@"Avatar", @"Main Info", @"Personal", @"Contact", @"Relations", @"Educations", @"Jobs"];
     
+    NSMutableArray * mainInfos = [[NSMutableArray alloc]init];
     NSMutableArray * relations = [[NSMutableArray alloc]init];
     NSMutableArray * educations = [[NSMutableArray alloc]init];
     NSMutableArray * jobs = [[NSMutableArray alloc]init];
@@ -39,26 +40,25 @@
     self.data = [@[
                   // Section 0: Avatar:
                   @[
-                      @{@"Avatar": self.member.photo}
+                      @{@"Avatar": self.member.photo},
                     ],
                   
                   // Section 1: Main Info:
-                  @[
-                      @{@"Fullname": [NSString stringWithFormat:@"%@", self.member.fullname]},
-                      @{@"Life": [NSString stringWithFormat:@"%@ - %@", self.member.dob, self.member.dod]}
-                    ],
+                  mainInfos,
                   
                   // Section 2: Personal:
                   @[
                       @{@"Pulse": [NSString stringWithFormat:@"%d", self.member.isAlive]},
-                      @{@"Location": [NSString stringWithFormat:@"%@", self.member.location]}
+                      @{@"Nick Name": [NSString stringWithFormat:@"%@", self.member.nickname]},
                     ],
                   
                   // Section 3: Contact:
                   @[
+                      @{@"Location": [NSString stringWithFormat:@"%@", self.member.location]},
                       @{@"Mobile": [NSString stringWithFormat:@"%@", self.member.mobile]},
                       @{@"Email:": @"hossam_zee@yahoo.com"}, // TODO: Email
-                      @{@"Phone Work": @"Riyahd"}
+                      @{@"Home Phone": [NSString stringWithFormat:@"%@", self.member.homePhone]},
+                      @{@"Work Phone": [NSString stringWithFormat:@"%@", self.member.workPhone]},
                     ],
                   
                   // Section 4: Relations:
@@ -72,8 +72,11 @@
                   
     ] mutableCopy];
     
-    NSLog(@"%@", self.data.description);
+    // Date Formatter.
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd MM yyyy"];
 
+    // Avatar.
     NSURL * imageURL = nil;
     
     if (![self.member.photo isEqual:[NSNull null]])
@@ -83,9 +86,11 @@
     
     self.image = [[UIAvatarView alloc] initWithURL:imageURL frame:CGRectMake(0, 0, 60, 60)];
     
-    NSLog(@"self.image = %@", self.image);
-    
-    NSLog(@"viewDidLoad image");
+    // Main infos
+    [mainInfos addObject:@{@"Fullname": [NSString stringWithFormat:@"%@", self.member.fullname]}];
+    [mainInfos addObject:@{@"Age": [NSString stringWithFormat:@"%@", self.member.age]}];
+    [mainInfos addObject:@{@"DOB": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dob]]}];
+    [mainInfos addObject:@{@"DOD": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dod]]}];
     
     // Relations.
     for (NSDictionary * relatedMember in self.member.relations)
@@ -96,8 +101,60 @@
         [relations addObject:@{memberRelation: memberName}];
     }
     
-    // TODO: Educations.
-    // TODO: Jobs.
+    NSLog(@"educations count = %d", self.member.educations.count);
+    
+    // Educations.
+    for (TMemberEducation * education in self.member.educations)
+    {
+        NSMutableString * years = [NSMutableString stringWithFormat:@"%d - ", education.startYear];
+        NSMutableString * degreeMajor = [NSMutableString stringWithString:education.degree];
+        
+        if (education.finishYear == 0)
+        {
+            [years appendString:@"Present"];
+        }
+        else
+        {
+            [years appendFormat:@"%d", education.finishYear];
+        }
+        
+        if (education.major != nil)
+        {
+            [degreeMajor appendFormat:@", %@", education.major.name];
+        }
+        
+        // Add the education to education list.
+        [educations addObject:@{years: degreeMajor}];
+    }
+    
+    if (self.canAddEducation == YES)
+    {
+        [educations addObject:@{@"Add": [NSString stringWithFormat:@"%ld", (long)self.member.memberId]}];
+    }
+    
+    // Jobs.
+    for (TMemberJob * job in self.member.jobs)
+    {
+        NSMutableString * years = [NSMutableString stringWithFormat:@"%d - ", job.startYear];
+        NSMutableString * titleCompany = [NSMutableString stringWithFormat:@"%@ at %@", job.title, job.company.name];
+        
+        if (job.finishYear == 0)
+        {
+            [years appendString:@"Present"];
+        }
+        else
+        {
+            [years appendFormat:@"%d", job.finishYear];
+        }
+        
+        // Add the education to education list.
+        [jobs addObject:@{years: titleCompany}];
+    }
+
+    if (self.canAddJob == YES)
+    {
+        [jobs addObject:@{@"Add": [NSString stringWithFormat:@"%ld", (long)self.member.memberId]}];
+    }
 
 }
 
@@ -151,27 +208,43 @@
 {
     NSArray * rows = [self.data objectAtIndex:indexPath.section];
     NSDictionary * info = [rows objectAtIndex:indexPath.row];
-    
-    //NSLog(@"%@", info.description);
+
     NSString * key = [[info allKeys] objectAtIndex:0];
     NSString * value = [info objectForKey:key];
+    
+    NSLog(@"key = %@, section = %d, row = %d", key, indexPath.section, indexPath.row);
     
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         UIAvatarCellTableViewCell * cell = (UIAvatarCellTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"AvatarCell" forIndexPath:indexPath];
-        
-        /*
-        [cell.photo setImage:self.image];
-         */
 
         cell.photo.image = self.image.image;
         
         return cell;
     }
+    
+    else if (indexPath.section == 5 || indexPath.section == 6)
+    {
+        if (indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+        {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell" forIndexPath:indexPath];
+            return cell;
+        }
+        else
+        {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EducationCell" forIndexPath:indexPath];
+
+            cell.textLabel.text = value;
+            cell.detailTextLabel.text = key;
+            
+            return cell;
+        }
+    }
+    
     else
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        
+
         [cell.textLabel setText:(NSString *)key];
         [cell.detailTextLabel setText:value];
         
@@ -231,15 +304,60 @@
 }
 */
 
-/*
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray * rows = [self.data objectAtIndex:indexPath.section];
+    NSDictionary * info = [rows objectAtIndex:indexPath.row];
+    
+    NSString * key = [[info allKeys] objectAtIndex:0];
+    
+    if (indexPath.section == 5 && indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+    {
+        [self performSegueWithIdentifier:@"AddEducation" sender:nil];
+    }
+
+    else if (indexPath.section == 6 && indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+    {
+        [self performSegueWithIdentifier:@"AddJob" sender:nil];
+    }
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //NSLog(@"Called");
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    //sender.
+    
+    if ([[segue identifier] isEqualToString:@"AddEducation"])
+    {
+        // Get reference to the destination view controller
+        AddMemberEducationViewController *vc = (AddMemberEducationViewController *) [segue destinationViewController];
+        vc.memberId = self.member.memberId;
+        
+        NSLog(@"member_id = %d", vc.memberId);
+        
+        [vc initWithNibName:nil bundle:nil];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+    }
+    
+    else if ([[segue identifier] isEqualToString:@"AddJob"])
+    {
+        // Get reference to the destination view controller
+        AddMemberJobViewController *vc = (AddMemberJobViewController *) [segue destinationViewController];
+        vc.memberId = self.member.memberId;
+        
+        NSLog(@"member_id = %d", vc.memberId);
+        
+        [vc initWithNibName:nil bundle:nil];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+    }
+
 }
-*/
 
 @end

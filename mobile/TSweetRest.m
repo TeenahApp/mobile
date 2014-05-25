@@ -147,7 +147,9 @@
         
         else if ([value isKindOfClass:[NSNumber class]])
         {
-            if (strcmp([value objCType], @encode(BOOL)))
+            //NSLog(@"class = %@", value class);
+            
+            if (strcmp([value objCType], @encode(BOOL)) == 0)
             {
                 stringValue = ([value boolValue] == YES) ? @"1" : @"0";
             }

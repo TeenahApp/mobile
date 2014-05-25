@@ -13,6 +13,9 @@
 		FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16C1929400F00F41129 /* AddEventForm.m */; };
 		FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16F1929E21A00F41129 /* UIAvatarView.m */; };
 		FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD507C1B192C84050077C55A /* AddRelationForm.m */; };
+		FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377C719326D07002A62F0 /* TMemberJob.m */; };
+		FD5377CB193272FF002A62F0 /* AddMemberJobForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377CA193272FF002A62F0 /* AddMemberJobForm.m */; };
+		FD5377CE19327569002A62F0 /* AddMemberJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */; };
 		FD54660A18F5A66000BFD409 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660918F5A66000BFD409 /* Foundation.framework */; };
 		FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660B18F5A66000BFD409 /* CoreGraphics.framework */; };
 		FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660D18F5A66000BFD409 /* UIKit.framework */; };
@@ -56,6 +59,8 @@
 		FDD15114192FDEA400BC41E5 /* TMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15113192FDEA400BC41E5 /* TMedia.m */; };
 		FDD15117192FDF8E00BC41E5 /* TMemberCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15116192FDF8E00BC41E5 /* TMemberCircle.m */; };
 		FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */; };
+		FDD1511D192FFEA100BC41E5 /* AddMemberEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */; };
+		FDD15120192FFF2F00BC41E5 /* AddMemberEducationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
 		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
 		FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */; };
@@ -93,6 +98,12 @@
 		FD4AF16F1929E21A00F41129 /* UIAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarView.m; sourceTree = "<group>"; };
 		FD507C1A192C84050077C55A /* AddRelationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationForm.h; sourceTree = "<group>"; };
 		FD507C1B192C84050077C55A /* AddRelationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationForm.m; sourceTree = "<group>"; };
+		FD5377C619326D07002A62F0 /* TMemberJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberJob.h; sourceTree = "<group>"; };
+		FD5377C719326D07002A62F0 /* TMemberJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberJob.m; sourceTree = "<group>"; };
+		FD5377C9193272FF002A62F0 /* AddMemberJobForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberJobForm.h; sourceTree = "<group>"; };
+		FD5377CA193272FF002A62F0 /* AddMemberJobForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberJobForm.m; sourceTree = "<group>"; };
+		FD5377CC19327569002A62F0 /* AddMemberJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberJobViewController.h; sourceTree = "<group>"; };
+		FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberJobViewController.m; sourceTree = "<group>"; };
 		FD54660618F5A66000BFD409 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54660918F5A66000BFD409 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD54660B18F5A66000BFD409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -168,6 +179,10 @@
 		FDD15116192FDF8E00BC41E5 /* TMemberCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberCircle.m; sourceTree = "<group>"; };
 		FDD15118192FE1BE00BC41E5 /* TMemberEducation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberEducation.h; sourceTree = "<group>"; };
 		FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberEducation.m; sourceTree = "<group>"; };
+		FDD1511B192FFEA100BC41E5 /* AddMemberEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberEducationViewController.h; sourceTree = "<group>"; };
+		FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberEducationViewController.m; sourceTree = "<group>"; };
+		FDD1511E192FFF2F00BC41E5 /* AddMemberEducationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberEducationForm.h; sourceTree = "<group>"; };
+		FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberEducationForm.m; sourceTree = "<group>"; };
 		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
 		FDF1F21518F5C891001B53D0 /* TSweetAutoCompletesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetAutoCompletesCommunicator.h; sourceTree = "<group>"; };
 		FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetAutoCompletesCommunicator.m; sourceTree = "<group>"; };
@@ -238,6 +253,10 @@
 				FD4AF16C1929400F00F41129 /* AddEventForm.m */,
 				FD507C1A192C84050077C55A /* AddRelationForm.h */,
 				FD507C1B192C84050077C55A /* AddRelationForm.m */,
+				FDD1511E192FFF2F00BC41E5 /* AddMemberEducationForm.h */,
+				FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */,
+				FD5377C9193272FF002A62F0 /* AddMemberJobForm.h */,
+				FD5377CA193272FF002A62F0 /* AddMemberJobForm.m */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -350,6 +369,10 @@
 				FD61900F19262009004DF6C4 /* EventsTableViewController.m */,
 				FD4AF16719293C9900F41129 /* AddEventViewController.h */,
 				FD4AF16819293C9900F41129 /* AddEventViewController.m */,
+				FDD1511B192FFEA100BC41E5 /* AddMemberEducationViewController.h */,
+				FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */,
+				FD5377CC19327569002A62F0 /* AddMemberJobViewController.h */,
+				FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -409,6 +432,8 @@
 				FDD15116192FDF8E00BC41E5 /* TMemberCircle.m */,
 				FDD15118192FE1BE00BC41E5 /* TMemberEducation.h */,
 				FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */,
+				FD5377C619326D07002A62F0 /* TMemberJob.h */,
+				FD5377C719326D07002A62F0 /* TMemberJob.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -583,6 +608,7 @@
 				FD54661A18F5A66000BFD409 /* AppDelegate.m in Sources */,
 				FDD1510E192FDA9700BC41E5 /* TEventMedia.m in Sources */,
 				FDF1F23518F5C891001B53D0 /* TSweetUsersCommunicator.m in Sources */,
+				FDD15120192FFF2F00BC41E5 /* AddMemberEducationForm.m in Sources */,
 				FDD15105192FCEA400BC41E5 /* TCircleEventMember.m in Sources */,
 				FD54664618F5AD1B00BFD409 /* FirstHandShakeLoginViewController.m in Sources */,
 				FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */,
@@ -590,6 +616,7 @@
 				FD7AB76E190ABCC700E302B8 /* ViewMemberTableViewController.m in Sources */,
 				FDF1F23918F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m in Sources */,
 				FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */,
+				FDD1511D192FFEA100BC41E5 /* AddMemberEducationViewController.m in Sources */,
 				FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */,
 				FD9F4C991926C1F700D10C09 /* UIEditableTextTableViewCell.m in Sources */,
 				FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */,
@@ -600,11 +627,13 @@
 				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,
 				FDD1510B192FD35300BC41E5 /* TEducationMajor.m in Sources */,
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
+				FD5377CB193272FF002A62F0 /* AddMemberJobForm.m in Sources */,
 				FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */,
 				FDD15111192FDB7300BC41E5 /* TJobCompany.m in Sources */,
 				FDF1F22E18F5C891001B53D0 /* TSweetMediasCommunicator.m in Sources */,
 				FDD15108192FCF7900BC41E5 /* TCircleMessageMember.m in Sources */,
 				FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */,
+				FD5377CE19327569002A62F0 /* AddMemberJobViewController.m in Sources */,
 				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
 				FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */,
@@ -622,6 +651,7 @@
 				FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */,
 				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,
 				FD576CAF18F70BF600851F90 /* TreeViewController.m in Sources */,
+				FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
 				FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */,
 				FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */,

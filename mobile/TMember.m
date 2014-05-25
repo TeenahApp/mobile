@@ -16,8 +16,6 @@
     
     if(self)
     {
-        // TODO: MemberRealtion.
-        
         self.memberId = [[json objectForKey:@"id"] integerValue];
         
         self.name = [json objectForKey:@"name"];
@@ -90,6 +88,24 @@
             {
                 [self.children addObject:memberRelation.firstMember];
             }
+        }
+        
+        // Educations.
+        self.educations = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary * tempEducation in [json objectForKey:@"educations"])
+        {
+            TMemberEducation * education = [[TMemberEducation alloc] initWithJson:tempEducation];
+            [self.educations addObject:education];
+        }
+        
+        // Jobs.
+        self.jobs = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary * tempJob in [json objectForKey:@"jobs"])
+        {
+            TMemberJob * job = [[TMemberJob alloc] initWithJson:tempJob];
+            [self.jobs addObject:job];
         }
         
         self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
