@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose a destination" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"View Medias", @"Edit Member", nil];
+    
     self.canAddEducation = YES;
     self.canAddJob = YES;
     
@@ -88,7 +90,7 @@
     
     // Main infos
     [mainInfos addObject:@{@"Fullname": [NSString stringWithFormat:@"%@", self.member.fullname]}];
-    [mainInfos addObject:@{@"Age": [NSString stringWithFormat:@"%@", self.member.age]}];
+    [mainInfos addObject:@{@"Age": [NSString stringWithFormat:@"%ld", (long)self.member.age]}];
     [mainInfos addObject:@{@"DOB": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dob]]}];
     [mainInfos addObject:@{@"DOD": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dod]]}];
     
@@ -211,9 +213,7 @@
 
     NSString * key = [[info allKeys] objectAtIndex:0];
     NSString * value = [info objectForKey:key];
-    
-    NSLog(@"key = %@, section = %d, row = %d", key, indexPath.section, indexPath.row);
-    
+
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         UIAvatarCellTableViewCell * cell = (UIAvatarCellTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"AvatarCell" forIndexPath:indexPath];
@@ -263,6 +263,17 @@
     else
     {
         return tableView.rowHeight;
+    }
+}
+
+- (IBAction)moreClicked:(id)sender {
+    
+    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
+    
+    if ([window.subviews containsObject:self.view]) {
+        [self.actionSheet showInView:self.view];
+    } else {
+        [self.actionSheet showInView:window];
     }
 }
 

@@ -33,11 +33,11 @@
             [circles setObject:tempCircle[@"name"] forKey:tempCircle[@"id"]];
         }
         
-        AddEventForm * form = [[AddEventForm alloc] initWithCircles:circles];
+        self.form = [[AddEventForm alloc] initWithCircles:circles];
         
-        form.startDate = [NSDate date];
+        self.form.startDate = [NSDate date];
         
-        self.formController.form = form;
+        self.formController.form = self.form;
     }
     return self;
 }
@@ -62,23 +62,19 @@
     //[self.tableView reloadData];
 }
 
-- (IBAction)addEvent:(id)sender {
-    //self.formController
-    //NSLog(@"%@", self.formController.form);
-    
-    AddEventForm * form = (AddEventForm *)self.formController.form;
-    
+-(void)submitAddingEventForm
+{  
     // TODO: Validation.
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
-    NSString * circlesString = [NSString stringWithFormat:@"[%@]", [form.circles componentsJoinedByString:@","]];
+    //NSString * circlesString = [NSString stringWithFormat:@"[%@]", [form.circles componentsJoinedByString:@","]];
     
     // Send the adding request.
     // TODO: Remember to make latitude and longitude.
-    TSweetResponse * tsr = [[EventsCommunicator shared] create:form.title startDatetime:[dateFormatter stringFromDate:form.startDate] finishDatatime:[dateFormatter stringFromDate:form.finishDate] location:form.location circles:circlesString latitude:@"0.0" longitude:@"0.0"];
-
+    TSweetResponse * tsr = [[EventsCommunicator shared] create:self.form.title startDatetime:self.form.startDate finishDatatime:self.form.finishDate location:self.form.location circles:self.form.circles latitude:[NSNumber numberWithFloat:self.form.coordinates.coordinate.latitude] longitude:[NSNumber numberWithFloat:self.form.coordinates.coordinate.longitude]];
+    
     // TODO: Show an alert telling the user that everything is okay.
     
     // Done

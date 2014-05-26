@@ -40,13 +40,14 @@
              //we do that by adding the header key to the first field in the group
              
              @{FXFormFieldKey: @"title", FXFormFieldHeader: @"Snippet"},
-             @{FXFormFieldKey: @"location"},
              
-             @{FXFormFieldKey: @"startDate", FXFormFieldHeader: @"Time"},
-             @{FXFormFieldKey: @"finishDate"},
+             @{FXFormFieldKey: @"location", FXFormFieldTitle: @"City", FXFormFieldHeader: @"Location"},
              
-             //@{FXFormFieldKey: @"circles", FXFormFieldOptions: self.circles, FXFormFieldHeader: @"Circles/Invited"},
+             @{FXFormFieldKey: @"coordinates", FXFormFieldViewController: @"LocationMapViewController"},
              
+             @{FXFormFieldKey: @"startDate", FXFormFieldHeader: @"Time", FXFormFieldType: FXFormFieldTypeDateTime},
+             @{FXFormFieldKey: @"finishDate", FXFormFieldType: FXFormFieldTypeDateTime},
+
   
             @{FXFormFieldKey: @"circles", FXFormFieldOptions: self.circleKeys, FXFormFieldValueTransformer: ^(id input)
                {
@@ -55,6 +56,16 @@
 
                }, FXFormFieldHeader: @"Invited"},
     ];
+}
+
+-(NSString *)coordinatesFieldDescription
+{
+    return self.coordinates? [NSString stringWithFormat:@"%f, %f", self.coordinates.coordinate.latitude, self.coordinates.coordinate.longitude] : nil;
+}
+
+-(NSArray *)extraFields
+{
+    return @[ @{FXFormFieldTitle: @"Submit", FXFormFieldHeader: @"", FXFormFieldAction: @"submitAddingEventForm"} ];
 }
 
 @end

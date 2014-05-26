@@ -16,6 +16,8 @@
 		FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377C719326D07002A62F0 /* TMemberJob.m */; };
 		FD5377CB193272FF002A62F0 /* AddMemberJobForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377CA193272FF002A62F0 /* AddMemberJobForm.m */; };
 		FD5377CE19327569002A62F0 /* AddMemberJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */; };
+		FD5377D919337DCD002A62F0 /* LocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377D719337DCD002A62F0 /* LocationMapViewController.m */; };
+		FD5377DA19337DCD002A62F0 /* LocationMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5377D819337DCD002A62F0 /* LocationMapViewController.xib */; };
 		FD54660A18F5A66000BFD409 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660918F5A66000BFD409 /* Foundation.framework */; };
 		FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660B18F5A66000BFD409 /* CoreGraphics.framework */; };
 		FD54660E18F5A66000BFD409 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54660D18F5A66000BFD409 /* UIKit.framework */; };
@@ -61,6 +63,7 @@
 		FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */; };
 		FDD1511D192FFEA100BC41E5 /* AddMemberEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */; };
 		FDD15120192FFF2F00BC41E5 /* AddMemberEducationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */; };
+		FDE4A8901933C8FF00E3B866 /* ViewEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE4A88F1933C8FF00E3B866 /* ViewEventTableViewController.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
 		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
 		FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21A18F5C891001B53D0 /* TSweetEventsCommunicator.m */; };
@@ -104,6 +107,9 @@
 		FD5377CA193272FF002A62F0 /* AddMemberJobForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberJobForm.m; sourceTree = "<group>"; };
 		FD5377CC19327569002A62F0 /* AddMemberJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberJobViewController.h; sourceTree = "<group>"; };
 		FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberJobViewController.m; sourceTree = "<group>"; };
+		FD5377D619337DCD002A62F0 /* LocationMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMapViewController.h; sourceTree = "<group>"; };
+		FD5377D719337DCD002A62F0 /* LocationMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMapViewController.m; sourceTree = "<group>"; };
+		FD5377D819337DCD002A62F0 /* LocationMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationMapViewController.xib; sourceTree = "<group>"; };
 		FD54660618F5A66000BFD409 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54660918F5A66000BFD409 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD54660B18F5A66000BFD409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -183,6 +189,8 @@
 		FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberEducationViewController.m; sourceTree = "<group>"; };
 		FDD1511E192FFF2F00BC41E5 /* AddMemberEducationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberEducationForm.h; sourceTree = "<group>"; };
 		FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberEducationForm.m; sourceTree = "<group>"; };
+		FDE4A88E1933C8FF00E3B866 /* ViewEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEventTableViewController.h; sourceTree = "<group>"; };
+		FDE4A88F1933C8FF00E3B866 /* ViewEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEventTableViewController.m; sourceTree = "<group>"; };
 		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
 		FDF1F21518F5C891001B53D0 /* TSweetAutoCompletesCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSweetAutoCompletesCommunicator.h; sourceTree = "<group>"; };
 		FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSweetAutoCompletesCommunicator.m; sourceTree = "<group>"; };
@@ -249,6 +257,7 @@
 		FD4AF16A19293E5900F41129 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
+				FD5377D519337D95002A62F0 /* ViewControllers */,
 				FD4AF16B1929400F00F41129 /* AddEventForm.h */,
 				FD4AF16C1929400F00F41129 /* AddEventForm.m */,
 				FD507C1A192C84050077C55A /* AddRelationForm.h */,
@@ -259,6 +268,16 @@
 				FD5377CA193272FF002A62F0 /* AddMemberJobForm.m */,
 			);
 			name = Forms;
+			sourceTree = "<group>";
+		};
+		FD5377D519337D95002A62F0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD5377D619337DCD002A62F0 /* LocationMapViewController.h */,
+				FD5377D719337DCD002A62F0 /* LocationMapViewController.m */,
+				FD5377D819337DCD002A62F0 /* LocationMapViewController.xib */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		FD5465FD18F5A66000BFD409 = {
@@ -373,6 +392,8 @@
 				FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */,
 				FD5377CC19327569002A62F0 /* AddMemberJobViewController.h */,
 				FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */,
+				FDE4A88E1933C8FF00E3B866 /* ViewEventTableViewController.h */,
+				FDE4A88F1933C8FF00E3B866 /* ViewEventTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -551,6 +572,7 @@
 			files = (
 				FD54662218F5A66000BFD409 /* Images.xcassets in Resources */,
 				FD54661418F5A66000BFD409 /* InfoPlist.strings in Resources */,
+				FD5377DA19337DCD002A62F0 /* LocationMapViewController.xib in Resources */,
 				FD81B89E1907F83B0037B479 /* readme.md in Resources */,
 				FD54661D18F5A66000BFD409 /* Main.storyboard in Resources */,
 			);
@@ -637,6 +659,7 @@
 				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
 				FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */,
+				FDE4A8901933C8FF00E3B866 /* ViewEventTableViewController.m in Sources */,
 				FD59908C18FEEE1400975F7F /* TMember.m in Sources */,
 				FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */,
 				FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */,
@@ -652,6 +675,7 @@
 				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,
 				FD576CAF18F70BF600851F90 /* TreeViewController.m in Sources */,
 				FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */,
+				FD5377D919337DCD002A62F0 /* LocationMapViewController.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
 				FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */,
 				FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */,

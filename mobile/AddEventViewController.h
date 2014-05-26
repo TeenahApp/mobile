@@ -17,4 +17,6 @@
 
 @interface AddEventViewController : FXFormViewController
 
+@property (nonatomic, strong) AddEventForm * form;
+
 @end

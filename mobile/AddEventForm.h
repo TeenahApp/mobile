@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+
 #import "FXForms.h"
 
 @interface AddEventForm : NSObject <FXForm>
@@ -14,7 +16,9 @@
 -(id)initWithCircles: (NSMutableDictionary *) circles;
 
 @property (nonatomic, copy) NSString *title;
+
 @property (nonatomic, copy) NSString *location;
+@property (nonatomic, strong) CLLocation * coordinates;
 
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *finishDate;

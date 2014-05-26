@@ -29,6 +29,8 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) UIActionSheet * actionSheet;
+
 @property BOOL canAddEducation;
 @property BOOL canAddJob;
 
