@@ -27,6 +27,7 @@
 @property NSNumber * longitude;
 
 @property NSInteger viewsCount;
+@property NSInteger comingsCount;
 @property NSInteger likesCount;
 @property NSInteger commentsCount;
 

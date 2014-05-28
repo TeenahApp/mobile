@@ -94,13 +94,19 @@
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *) like:(NSInteger)eventId
+-(TSweetResponse *) likeEvent:(NSInteger)eventId
 {
     NSString * route = [NSString stringWithFormat:@"/events/%ld/like", (long)eventId];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *) comment:(NSInteger)eventId comment:(NSString *)comment
+-(TSweetResponse *) getEventComments:(NSInteger)eventId
+{
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/comments", (long)eventId];
+    return [[TSweetRest shared] get:route];
+}
+
+-(TSweetResponse *) commentOnEvent:(NSInteger)eventId comment:(NSString *)comment
 {
     NSString * route = [NSString stringWithFormat:@"/events/%ld/comment", (long)eventId];
     NSDictionary * parameters = @{
@@ -110,9 +116,9 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *) likeComment:(NSInteger)eventId commentId:(NSInteger)commentId
+-(TSweetResponse *) likeCommentOnEvent:(NSInteger)eventId commentId:(NSInteger)commentId
 {
-    NSString * route = [NSString stringWithFormat:@"/events/%ld/comments/%ld", (long)eventId, (long)commentId];
+    NSString * route = [NSString stringWithFormat:@"/events/%ld/comments/%ld/like", (long)eventId, (long)commentId];
     return [[TSweetRest shared] get:route];
 }
 

@@ -14,7 +14,15 @@
 
 #import "TEvent.h"
 
-@interface ViewEventTableViewController : UITableViewController
+#import "UIEventStatsTableViewCell.h"
+#import "UIEventDecisionTableViewCell.h"
+
+#import "ViewMemberTableViewController.h"
+#import "ViewEventCommentsTableViewController.h"
+
+@interface ViewEventTableViewController : UITableViewController <UIEventDecisionTableViewCellDelegate>
+
+@property NSInteger eventId;
 
 @property (nonatomic, strong) TEvent * event;
 
@@ -23,5 +31,9 @@
 @property (strong, nonatomic) NSMutableArray * data;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (nonatomic, strong) MKPointAnnotation * annotation;
+
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @end

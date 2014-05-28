@@ -12,6 +12,7 @@
 #import "TSweetEventsCommunicator.h"
 
 #import "AddEventViewController.h"
+#import "ViewEventTableViewController.h"
 
 #import "TEvent.h"
 

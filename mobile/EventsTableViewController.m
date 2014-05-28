@@ -168,6 +168,25 @@
         vc.hidesBottomBarWhenPushed = YES;
     }
     
+    else if ([[segue identifier] isEqualToString:@"ViewEvent"])
+    {
+        ViewEventTableViewController *vc = (ViewEventTableViewController *) [segue destinationViewController];
+        
+        UITableView * table = (UITableView *)sender;
+        NSIndexPath * indexPath = [table indexPathForSelectedRow];
+        
+        //NSLog(@"path = %@", indexPath);
+        
+        NSMutableArray * rows = [self.data objectAtIndex:indexPath.section];
+        TEvent * event = (TEvent *)[rows objectAtIndex:indexPath.row];
+        
+        // Set the event id to be opened.
+        vc.eventId = event.eventId;
+        
+        //[vc initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+    }
+    
     
 }
 

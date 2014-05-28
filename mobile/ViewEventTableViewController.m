@@ -26,37 +26,81 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.annotation = [[MKPointAnnotation alloc] init];
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] getEvent:1];
+    TSweetResponse * tsr = [[EventsCommunicator shared] getEvent:self.eventId];
     
     if (tsr.code == 200)
     {
         self.event = [[TEvent alloc] initWithJson:tsr.json];
     }
     
+    // Get the decision of the current member.
+    NSString * decision = @"notyet";
+    
+    TSweetResponse * decisionTsr = [[EventsCommunicator alloc] getDecision:self.eventId];
+    
+    if (decisionTsr.code == 200)
+    {
+        decision = [decisionTsr.json objectForKey:@"decision"];
+    }
+    
     // Set some initial values.
     self.title = self.event.title;
     
     CLLocation * coordinates = [[CLLocation alloc] initWithLatitude:[self.event.latitude floatValue] longitude:[self.event.longitude floatValue]];
+    
     self.mapView.centerCoordinate = coordinates.coordinate;
+
+    self.annotation.coordinate = coordinates.coordinate;
+    self.annotation.title = self.event.location;
+    
+    [self.mapView addAnnotation:self.annotation];
+    
+    // Display it.
+    [self.mapView selectAnnotation:self.annotation animated:YES];
     
     NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
     [longDateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
     
-    NSString * eventTime = [NSString stringWithFormat:@"%@ - %@", [longDateFormatter stringFromDate:self.event.startsAt], [longDateFormatter stringFromDate:self.event.finishesAt]];
+    //NSString * eventTime = [NSString stringWithFormat:@"%@ - %@", [longDateFormatter stringFromDate:self.event.startsAt], [longDateFormatter stringFromDate:self.event.finishesAt]];
     
-    NSString * eventStats = [NSString stringWithFormat:@"L %d, C %d", self.event.likesCount, self.event.commentsCount];
-    
-    self.sections = @[@"Main Info", @"Comments"];
+    self.sections = @[@"Main Info", @"Decision", @"Creator", @"Comments", @"Medias"];
     
     self.data = [@[
+                   
+                   // Section 0: Main Info.
                    @[
-                       @{eventTime: eventStats},
-                       @{@"Decision": @"willcome"}
+                       @{@"Stats": @{
+                                        @"coming": [NSString stringWithFormat:@"%d", self.event.comingsCount],
+                                        @"likes": [NSString stringWithFormat:@"%d", self.event.likesCount],
+                                        @"views": [NSString stringWithFormat:@"%d", self.event.viewsCount],
+                                        @"comments": [NSString stringWithFormat:@"%d", self.event.commentsCount],
+                                    }
+                        },
+                       @{@"Starts at": [longDateFormatter stringFromDate:self.event.startsAt]},
+                       @{@"Finishes at": [longDateFormatter stringFromDate:self.event.finishesAt]},
                     ],
                    
+                   // Section 1: Decision.
                    @[
-                       @{@"1": @"Hello world"},
+                       @{@"Decision": decision},
+                    ],
+                   
+                   // Section 2: Creator.
+                   @[
+                       @{@"Creator": self.event.creator},
+                    ],
+                   
+                   // Section 3: Comments.
+                   @[
+                       @{@"Add": (self.event.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %d comments or add.", self.event.commentsCount]},
+                    ],
+                   
+                   // Section 4: Medias.
+                   @[
+                       @{@"Add": @"Add a media"},
                     ],
     ] mutableCopy];
     
@@ -96,51 +140,103 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     NSArray * rows = [self.data objectAtIndex:indexPath.section];
     NSDictionary * info = [rows objectAtIndex:indexPath.row];
     
     NSString * key = [[info allKeys] objectAtIndex:0];
+    
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
+        NSDictionary * value = [info objectForKey:key];
+        
+        NSLog(@"value = %@", value);
+        
+        UIEventStatsTableViewCell *cell = (UIEventStatsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"EventStatsCell" forIndexPath:indexPath];
+        
+        NSLog(@"cell views = %@", [value objectForKey:@"views"]);
+        
+        [cell.comingCountButton setTitle:[value objectForKey:@"coming"] forState:UIControlStateNormal];
+        [cell.likesCountButton setTitle:[value objectForKey:@"likes"] forState:UIControlStateNormal];
+        [cell.viewsCountButton setTitle:[value objectForKey:@"views"] forState:UIControlStateNormal];
+        [cell.commentsCountButton setTitle:[value objectForKey:@"comments"] forState:UIControlStateNormal];
+        
+        return cell;
+    }
+    else if (indexPath.section == 2 && indexPath.row == 0)
+    {
+        TMember * creator = (TMember *)[info objectForKey:key];
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CreatorCell" forIndexPath:indexPath];
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", creator.name];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", creator.fullname];
+        
+        return cell;
+    }
+    
     NSString * value = [info objectForKey:key];
     
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0)
-        {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TimeCell" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
         
-            cell.textLabel.text = key;
-            cell.detailTextLabel.text = value;
-            
+        cell.textLabel.text = key;
+        cell.detailTextLabel.text = value;
+        
+        return cell;
+    }
+    
+    else if (indexPath.section == 1)
+    {
+        if ([value isEqual:@"notyet"])
+        {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DecisionCell" forIndexPath:indexPath];
             return cell;
         }
         else
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DecisionCell" forIndexPath:indexPath];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
+            
+            cell.textLabel.text = @"Yours";
+            cell.detailTextLabel.text = value;
             
             return cell;
         }
     }
 
     // It is a comment then.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell" forIndexPath:indexPath];
+    cell.textLabel.text = value;
+
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    if (indexPath.section == 0 && indexPath.row == 0)
     {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TimeCell"];
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"EventStatsCell"];
         return cell.bounds.size.height;
     }
+    
     else
     {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell"];
         return cell.bounds.size.height;
     }
+}
+
+- (IBAction)like:(id)sender {
+    NSLog(@"You are attempting to like an event.");
+    
+    /*
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Like" message:@"You likes this event" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    
+    [alert show];
+     */
+    
+    TSweetResponse * tsr = [[EventsCommunicator shared] likeEvent:self.event.eventId];
 }
 
 /*
@@ -181,7 +277,24 @@
 }
 */
 
-/*
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 3)
+    {
+        [self performSegueWithIdentifier:@"ViewComments" sender:tableView];
+    }
+}
+
+-(void)didSayWillCome
+{
+    TSweetResponse * tsr = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"willcome"];
+}
+
+-(void)didSayApologize
+{
+    TSweetResponse * tsr = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"apologize"];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -189,7 +302,23 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ViewMember"])
+    {
+        ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.member = self.event.creator;
+    }
+    
+    else if ([[segue identifier] isEqualToString:@"ViewComments"])
+    {
+        ViewEventCommentsTableViewController *vc = (ViewEventCommentsTableViewController *) [segue destinationViewController];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        vc.eventId = self.eventId;
+    }
+
 }
-*/
 
 @end

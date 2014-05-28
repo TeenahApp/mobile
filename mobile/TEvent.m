@@ -22,6 +22,7 @@
         self.location = [json objectForKey:@"location"];
         
         self.createdBy = [[json objectForKey:@"created_by"] integerValue];
+        self.creator = [[TMember alloc] initWithJson:[json objectForKey:@"creator"]];
         
         // TODO: self.creator;
         
@@ -35,6 +36,7 @@
         self.longitude = (NSNumber *)[json objectForKey:@"longitude"];
         
         self.viewsCount = [[json objectForKey:@"views_count"] integerValue];
+        self.comingsCount = [[json objectForKey:@"comings_count"] integerValue];
         self.likesCount = [[json objectForKey:@"likes_count"] integerValue];
         self.commentsCount = [[json objectForKey:@"comments_count"] integerValue];
         

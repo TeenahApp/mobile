@@ -1,0 +1,41 @@
+//
+//  UITabInputView.h
+//  mobile
+//
+//  Created by Hussam Al-Zughaibi on 7/28/1435 AH.
+//  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <FlatUIKit.h>
+
+#define kTabInputHeight 40
+#define kPadding 6
+
+#define kTextFieldWidthPercentage 75
+#define kDoneButtonWidthPercentage 15
+
+@protocol UITabInputViewDelegate <NSObject>
+
+-(void) didTouchDoneButton;
+
+@end
+
+@interface UITabInputView : UIView <UITextFieldDelegate>
+
+@property (nonatomic, assign) id<UITabInputViewDelegate> delegate;
+
+@property CGRect screenRect;
+@property CGFloat screenWidth;
+@property CGFloat screenHeight;
+
+@property CGRect keyboardFrame;
+
+@property CGFloat defaultKBY;
+
+@property (nonatomic, strong) UITextField * textField;
+@property (nonatomic, strong) FUIButton * doneButton;
+
+-(id)initWithDelegate:(id)delegate;
+
+@end

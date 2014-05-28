@@ -14,12 +14,12 @@
 
 +(id) shared;
 
--(TSweetResponse *) like: (NSInteger) mediaId;
+-(TSweetResponse *) likeMedia: (NSInteger) mediaId;
 
--(TSweetResponse *) comment: (NSInteger) mediaId
+-(TSweetResponse *) commentOnMedia: (NSInteger) mediaId
                     comment: (NSString *) comment;
 
--(TSweetResponse *) likeComment: (NSInteger) mediaId
+-(TSweetResponse *) likeCommentOnMedia: (NSInteger) mediaId
                       commentId: (NSInteger) commentId;
 
 @end

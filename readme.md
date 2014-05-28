@@ -25,7 +25,8 @@ TODO:
 21. Datetime is null when ever the user did not specify it.
 22. Remove adding father/mother whenever there is already one.
 23. Change the file names into something more appropriate.
-14. Done with the updating educations.
+24. Done with the updating educations.
+25. Make every non-selection cell clear color.
 
 DONE:
 

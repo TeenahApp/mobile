@@ -46,13 +46,14 @@
 
 -(TSweetResponse *) getDecision: (NSInteger) eventId;
 
+-(TSweetResponse *) likeEvent: (NSInteger) eventId;
 
--(TSweetResponse *) like: (NSInteger) eventId;
+-(TSweetResponse *) getEventComments: (NSInteger) eventId;
 
--(TSweetResponse *) comment: (NSInteger) eventId
+-(TSweetResponse *) commentOnEvent: (NSInteger) eventId
                     comment: (NSString *) comment;
 
--(TSweetResponse *) likeComment: (NSInteger) eventId
+-(TSweetResponse *) likeCommentOnEvent: (NSInteger) eventId
                       commentId: (NSInteger) commentId;
 
 @end

@@ -163,13 +163,13 @@
     return [[TSweetRest shared] delete:route parameters: nil];
 }
 
--(TSweetResponse *)like:(NSInteger)memberId
+-(TSweetResponse *)likeMember:(NSInteger)memberId
 {
     NSString * route = [NSString stringWithFormat:@"/members/%ld/like", (long)memberId];
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)comment:(NSInteger)memberId comment:(NSString *)comment
+-(TSweetResponse *)commentOnMember:(NSInteger)memberId comment:(NSString *)comment
 {
     NSString * route = [NSString stringWithFormat:@"/members/%ld/comment", (long)memberId];
     NSDictionary * parameters = @{ @"comment": comment };

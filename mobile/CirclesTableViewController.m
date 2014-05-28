@@ -77,6 +77,7 @@
     cell.textLabel.text = current.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Members", (long)current.membersCount];
 
+    // TODO: This is not correct.
     self.currentCircle = current;
     
     NSLog(@"Cell has been called");

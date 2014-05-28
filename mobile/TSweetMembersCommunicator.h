@@ -80,9 +80,9 @@
 -(TSweetResponse *) deleteJob: (NSInteger) memberId
                         jobId: (NSInteger) jobId;
 
--(TSweetResponse *) like: (NSInteger) memberId;
+-(TSweetResponse *) likeMember: (NSInteger) memberId;
 
--(TSweetResponse *) comment: (NSInteger) memberId
+-(TSweetResponse *) commentOnMember: (NSInteger) memberId
                     comment: (NSString *) comment;
 
 -(TSweetResponse *) likeComment: (NSInteger) memberId
