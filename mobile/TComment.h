@@ -21,6 +21,10 @@
 
 @property (nonatomic, strong) TMember * creator;
 
+@property NSInteger likesCount;
+
+@property BOOL hasLiked;
+
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;
 

@@ -1,18 +1,18 @@
 //
-//  ViewEventTableViewController.m
+//  ViewMediaTableViewController.m
 //  mobile
 //
-//  Created by Hussam Al-Zughaibi on 7/27/1435 AH.
+//  Created by Hussam Al-Zughaibi on 8/1/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "ViewEventTableViewController.h"
+#import "ViewMediaTableViewController.h"
 
-@interface ViewEventTableViewController ()
+@interface ViewMediaTableViewController ()
 
 @end
 
-@implementation ViewEventTableViewController
+@implementation ViewMediaTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,53 +26,51 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.annotation = [[MKPointAnnotation alloc] init];
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] getEvent:self.eventId];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    if (tsr.code == 200)
-    {
-        self.event = [[TEvent alloc] initWithJson:tsr.json];
-    }
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // Get the decision of the current member.
-    NSString * decision = @"notyet";
+    TSweetResponse * tsr = [[MediasCommunicator shared] getMedia:self.media.mediaId];
     
-    TSweetResponse * decisionTsr = [[EventsCommunicator alloc] getDecision:self.eventId];
+    // Set the new media variable.
+    self.media = [[TMedia alloc] initWithJson:tsr.json];
     
-    if (decisionTsr.code == 200)
-    {
-        decision = [decisionTsr.json objectForKey:@"decision"];
-    }
-    
-    // Disable the like button if already liked.
-    if (self.event.hasLiked == YES)
+    // Check if the current user has liked the media.
+    if (self.media.hasLiked == YES)
     {
         [self.likeButton setEnabled:NO];
     }
     
-    // Set some initial values.
-    self.title = self.event.title;
+    TSweetResponse * creatorTSR = [[MembersCommunicator shared] getMember:self.media.createdBy];
+    self.media.creator = [[TMember alloc] initWithJson:creatorTSR.json];
     
-    CLLocation * coordinates = [[CLLocation alloc] initWithLatitude:[self.event.latitude floatValue] longitude:[self.event.longitude floatValue]];
+    NSURL * URL = [NSURL URLWithString:self.media.url];
     
-    self.mapView.centerCoordinate = coordinates.coordinate;
-
-    self.annotation.coordinate = coordinates.coordinate;
-    self.annotation.title = self.event.location;
-    
-    [self.mapView addAnnotation:self.annotation];
-    
-    // Display it.
-    [self.mapView selectAnnotation:self.annotation animated:YES];
+    // Try to load the URL.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSData * imageData = [NSData dataWithContentsOfURL:URL];
+        
+        self.image = [UIImage imageWithData:imageData];
+        
+        // Load the URL.
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self.imageView setImage:self.image];
+        });
+        
+        // Done.
+        
+    });
     
     NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
     [longDateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
     
     //NSString * eventTime = [NSString stringWithFormat:@"%@ - %@", [longDateFormatter stringFromDate:self.event.startsAt], [longDateFormatter stringFromDate:self.event.finishesAt]];
     
-    self.sections = @[@"Main Info", @"Decision", @"Creator", @"Comments", @"Medias"];
+    self.sections = @[@"Main Info", @"Creator", @"Comments"];
     
     self.data = [@[
                    
@@ -80,43 +78,25 @@
                    @[
                        
                        @{@"Stats": @[
-                                        @{@"label": @"Coming", @"count": [NSString stringWithFormat:@"%d", self.event.comingsCount]},
-                                        @{@"label": @"Likes", @"count": [NSString stringWithFormat:@"%d", self.event.likesCount]},
-                                        @{@"label": @"Views", @"count": [NSString stringWithFormat:@"%d", self.event.viewsCount]},
-                                        @{@"label": @"Cmnts", @"count": [NSString stringWithFormat:@"%d", self.event.commentsCount]},
-                                    ]
-                        },
+                                    @{@"label": @"Views", @"count": [NSString stringWithFormat:@"%d", self.media.viewsCount]},
+                                    @{@"label": @"Likes", @"count": [NSString stringWithFormat:@"%d", self.media.likesCount]},
+                                    @{@"label": @"Cmnts", @"count": [NSString stringWithFormat:@"%d", self.media.commentsCount]},
+                                 ]
+                         },
                        
-                       @{@"Starts at": [longDateFormatter stringFromDate:self.event.startsAt]},
-                       @{@"Finishes at": [longDateFormatter stringFromDate:self.event.finishesAt]},
+                       @{@"Created at": [longDateFormatter stringFromDate:self.media.createdAt]},
                     ],
                    
-                   // Section 1: Decision.
+                   // Section 1: Creator.
                    @[
-                       @{@"Decision": decision},
+                       @{@"Creator": self.media.creator},
                     ],
                    
-                   // Section 2: Creator.
+                   // Section 2: Comments.
                    @[
-                       @{@"Creator": self.event.creator},
-                    ],
-                   
-                   // Section 3: Comments.
-                   @[
-                       @{@"Add": (self.event.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %d comments or add.", self.event.commentsCount]},
-                    ],
-                   
-                   // Section 4: Medias.
-                   @[
-                       @{@"Add": (self.event.medias.count == 0) ? @"Add a media." : [NSString stringWithFormat:@"View the %d medias or add.", self.event.medias.count]},
+                       @{@"Add": (self.media.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %d comments or add.", self.media.commentsCount]},
                     ],
     ] mutableCopy];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,21 +120,8 @@
     return rows.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString * temp = [self.sections objectAtIndex:section];
-    
-    if ([temp isEqual:@"Main Info"])
-    {
-        temp = @"";
-    }
-    
-    return temp;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     NSArray * rows = [self.data objectAtIndex:indexPath.section];
     NSDictionary * info = [rows objectAtIndex:indexPath.row];
     
@@ -165,12 +132,12 @@
         NSArray * columns = [info objectForKey:key];
         
         UIMultiColumnsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"StatsCell" forIndexPath:indexPath];
-
+        
         [cell setColumns:columns];
         
         return cell;
     }
-    else if (indexPath.section == 2 && indexPath.row == 0)
+    else if (indexPath.section == 1 && indexPath.row == 0)
     {
         TMember * creator = (TMember *)[info objectForKey:key];
         
@@ -194,33 +161,27 @@
         return cell;
     }
     
-    else if (indexPath.section == 1)
-    {
-        if ([value isEqual:@"notyet"])
-        {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DecisionCell" forIndexPath:indexPath];
-            return cell;
-        }
-        else
-        {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
-            
-            cell.textLabel.text = @"Yours";
-            cell.detailTextLabel.text = value;
-            
-            return cell;
-        }
-    }
-
     // It is a comment then.
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell" forIndexPath:indexPath];
     cell.textLabel.text = value;
-
+    
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString * temp = [self.sections objectAtIndex:section];
+    
+    if ([temp isEqual:@"Main Info"])
+    {
+        temp = @"";
+    }
+    
+    return temp;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"StatsCell"];
@@ -234,16 +195,17 @@
     }
 }
 
-- (IBAction)like:(id)sender {
-    NSLog(@"You are attempting to like an event.");
-    
-    /*
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Like" message:@"You likes this event" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    
-    [alert show];
-     */
-    
-    TSweetResponse * tsr = [[EventsCommunicator shared] likeEvent:self.event.eventId];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2 && indexPath.row == 0)
+    {
+        [self performSegueWithIdentifier:@"ViewComments" sender:tableView];
+    }
+}
+
+- (IBAction)like:(id)sender
+{
+    TSweetResponse * tsr = [[MediasCommunicator shared] likeMedia:self.media.mediaId];
 }
 
 /*
@@ -284,28 +246,6 @@
 }
 */
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 3)
-    {
-        [self performSegueWithIdentifier:@"ViewComments" sender:tableView];
-    }
-    else if (indexPath.section == 4)
-    {
-        [self performSegueWithIdentifier:@"ViewMedias" sender:tableView];
-    }
-}
-
--(void)didSayWillCome
-{
-    TSweetResponse * tsr = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"willcome"];
-}
-
--(void)didSayApologize
-{
-    TSweetResponse * tsr = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"apologize"];
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -318,7 +258,7 @@
         ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
         
         vc.hidesBottomBarWhenPushed = YES;
-        vc.member = self.event.creator;
+        vc.member = self.media.creator;
     }
     
     else if ([[segue identifier] isEqualToString:@"ViewComments"])
@@ -327,20 +267,10 @@
         
         vc.hidesBottomBarWhenPushed = YES;
         
-        vc.area = @"event";
-        vc.affectedId = self.eventId;
+        vc.area = @"media";
+        vc.affectedId = self.media.mediaId;
     }
     
-    else if ([[segue identifier] isEqualToString:@"ViewMedias"])
-    {
-        ViewEventMediasViewController *vc = (ViewEventMediasViewController *) [segue destinationViewController];
-        
-        vc.hidesBottomBarWhenPushed = YES;
-        
-        vc.eventId = self.eventId;
-        vc.medias = self.event.medias;
-    }
-
 }
 
 @end

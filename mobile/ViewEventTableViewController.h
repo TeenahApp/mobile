@@ -16,9 +16,11 @@
 
 #import "UIEventStatsTableViewCell.h"
 #import "UIEventDecisionTableViewCell.h"
+#import "UIMultiColumnsTableViewCell.h"
 
 #import "ViewMemberTableViewController.h"
-#import "ViewEventCommentsTableViewController.h"
+#import "CommentsTableViewController.h"
+#import "ViewEventMediasViewController.h"
 
 @interface ViewEventTableViewController : UITableViewController <UIEventDecisionTableViewCellDelegate>
 

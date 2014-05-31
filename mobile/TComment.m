@@ -24,6 +24,10 @@
         self.content = [json objectForKey:@"content"];
 
         self.creator = [[TMember alloc] initWithJson:[json objectForKey:@"creator"]];
+        
+        self.hasLiked = [[json objectForKey:@"has_liked"] boolValue];
+        
+        self.likesCount = [[json objectForKey:@"likes_count"] integerValue];
 
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

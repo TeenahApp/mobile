@@ -1,5 +1,5 @@
 //
-//  ViewEventCommentsTableViewController.h
+//  CommentsTableViewController.h
 //  mobile
 //
 //  Created by Hussam Al-Zughaibi on 7/28/1435 AH.
@@ -12,14 +12,17 @@
 
 #import "TSweetResponse.h"
 #import "TSweetEventsCommunicator.h"
+#import "TSweetMediasCommunicator.h"
 
 #import "TComment.h"
 
 #import "UICommentTableViewCell.h"
 
-@interface ViewEventCommentsTableViewController : UITableViewController <UITabInputViewDelegate>
+@interface CommentsTableViewController : UITableViewController <UITabInputViewDelegate>
 
-@property NSInteger eventId;
+@property (nonatomic, strong) NSString * area;
+
+@property NSInteger affectedId;
 
 @property (nonatomic, strong) UITabInputView * tabInput;
 

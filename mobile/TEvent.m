@@ -24,8 +24,6 @@
         self.createdBy = [[json objectForKey:@"created_by"] integerValue];
         self.creator = [[TMember alloc] initWithJson:[json objectForKey:@"creator"]];
         
-        // TODO: self.creator;
-        
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         
@@ -35,10 +33,21 @@
         self.latitude = (NSNumber *)[json objectForKey:@"latitude"];
         self.longitude = (NSNumber *)[json objectForKey:@"longitude"];
         
+        self.hasLiked = [[json objectForKey:@"has_liked"] boolValue];
+        
         self.viewsCount = [[json objectForKey:@"views_count"] integerValue];
         self.comingsCount = [[json objectForKey:@"comings_count"] integerValue];
         self.likesCount = [[json objectForKey:@"likes_count"] integerValue];
         self.commentsCount = [[json objectForKey:@"comments_count"] integerValue];
+        
+        // Medias.
+        self.medias = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary * tempMedia in [json objectForKey:@"medias"])
+        {
+            TEventMedia * eventMedia = [[TEventMedia alloc] initWithJson:tempMedia];
+            [self.medias addObject:eventMedia];
+        }
         
         self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
         self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];

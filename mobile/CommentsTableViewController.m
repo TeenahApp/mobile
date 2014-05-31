@@ -1,21 +1,21 @@
 //
-//  ViewEventCommentsTableViewController.m
+//  CommentsTableViewController.m
 //  mobile
 //
 //  Created by Hussam Al-Zughaibi on 7/28/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "ViewEventCommentsTableViewController.h"
+#import "CommentsTableViewController.h"
 
-@interface ViewEventCommentsTableViewController ()
+@interface CommentsTableViewController ()
 
 @end
 
 #define kCommentInputHeight 40
 #define kPadding 4
 
-@implementation ViewEventCommentsTableViewController
+@implementation CommentsTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,7 +36,18 @@
     
     [self.view addGestureRecognizer:tap];
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] getEventComments:self.eventId];
+    TSweetResponse * tsr;
+    
+    //=
+    if ([self.area isEqual:@"event"])
+    {
+        tsr = [[EventsCommunicator shared] getEventComments:self.affectedId];
+    }
+
+    else if ([self.area isEqual:@"media"])
+    {
+        tsr = [[MediasCommunicator shared] getMediaComments:self.affectedId];
+    }
     
     // Define the comments array.
     self.sections = [[NSMutableArray alloc] init];
@@ -92,35 +103,35 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICommentTableViewCell *cell = (UICommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
+    UICommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     TComment * comment = [self.comments objectAtIndex:indexPath.row];
 
-    cell.memberNameLabel.text = comment.creator.fullname;
-    cell.contentLabel.text = comment.content;
-    
-    // Set the comment id.
-    cell.likeButton.tag = comment.commentId;
-    
+    [cell initWithComment:comment];
     [cell.likeButton addTarget:self action:@selector(likeComment:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
 
-/*
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
-    [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    return [longDateFormatter stringFromDate:[self.sections objectAtIndex:section]];
+    TComment * comment = [self.comments objectAtIndex:indexPath.row];
+    return [UICommentTableViewCell cellHeightWithContent:comment.content width:self.view.bounds.size.width];
 }
- */
 
 -(void)didTouchDoneButton
 {
+    TSweetResponse * tsr;
+    
     // TODO: Done with validation.
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] commentOnEvent:self.eventId comment:self.tabInput.textField.text];
+    if ([self.area isEqual:@"event"])
+    {
+        tsr = [[EventsCommunicator shared] commentOnEvent:self.affectedId comment:self.tabInput.textField.text];
+    }
+    else if ([self.area isEqual:@"media"])
+    {
+        tsr = [[MediasCommunicator shared] commentOnMedia:self.affectedId comment:self.tabInput.textField.text];
+    }
     
     if (tsr.code == 204)
     {
@@ -134,8 +145,17 @@
 -(void)likeComment:(id)sender
 {
     NSInteger commentId = ((UIButton *)sender).tag;
+
+    TSweetResponse * tsr;
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] likeCommentOnEvent:self.eventId commentId:commentId];
+    if ([self.area isEqual:@"event"])
+    {
+        tsr = [[EventsCommunicator shared] likeCommentOnEvent:self.affectedId commentId:commentId];
+    }
+    else if ([self.area isEqual:@"media"])
+    {
+        tsr = [[MediasCommunicator shared] likeCommentOnMedia:self.affectedId commentId:commentId];
+    }
     
     NSLog(@"Liked this comment.");
 }

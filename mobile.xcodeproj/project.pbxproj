@@ -38,10 +38,11 @@
 		FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */; };
 		FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD58983C18FEC7FD00A9172F /* UITreeView.m */; };
 		FD59908C18FEEE1400975F7F /* TMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FD59908B18FEEE1400975F7F /* TMember.m */; };
+		FD5A6A82193A36FE00CE9E10 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5A6A81193A36FE00CE9E10 /* SettingsTableViewController.m */; };
 		FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5AA144191AAD6700C44F81 /* CircleViewController.m */; };
 		FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5BA84A192AB0B300B37FCC /* TEvent.m */; };
 		FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD61900F19262009004DF6C4 /* EventsTableViewController.m */; };
-		FD635C651934FE4E007B3AAE /* ViewEventCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C641934FE4E007B3AAE /* ViewEventCommentsTableViewController.m */; };
+		FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C641934FE4E007B3AAE /* CommentsTableViewController.m */; };
 		FD635C681935070C007B3AAE /* UICommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C671935070C007B3AAE /* UICommentTableViewCell.m */; };
 		FD635C6B19352B35007B3AAE /* UITabInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C6A19352B35007B3AAE /* UITabInputView.m */; };
 		FD6666771923E37800AFF4E5 /* UIAvatarCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6666761923E37800AFF4E5 /* UIAvatarCellTableViewCell.m */; };
@@ -55,6 +56,10 @@
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FDA0E19719364FE300F31A0A /* TComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19619364FE300F31A0A /* TComment.m */; };
+		FDA0E19A193741B300F31A0A /* ViewEventMediasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E199193741B300F31A0A /* ViewEventMediasViewController.m */; };
+		FDA0E19D19377F0500F31A0A /* UIMediaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19C19377F0500F31A0A /* UIMediaCollectionViewCell.m */; };
+		FDA0E1A01937A35B00F31A0A /* ViewMediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19F1937A35B00F31A0A /* ViewMediaTableViewController.m */; };
+		FDA0E1A41937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E1A31937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m */; };
 		FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */; };
 		FDD150FF192FCC3E00BC41E5 /* TAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD150FE192FCC3E00BC41E5 /* TAccess.m */; };
 		FDD15102192FCD1A00BC41E5 /* TAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15101192FCD1A00BC41E5 /* TAction.m */; };
@@ -147,14 +152,16 @@
 		FD58983C18FEC7FD00A9172F /* UITreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITreeView.m; sourceTree = "<group>"; };
 		FD59908A18FEEE1400975F7F /* TMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMember.h; sourceTree = "<group>"; };
 		FD59908B18FEEE1400975F7F /* TMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMember.m; sourceTree = "<group>"; };
+		FD5A6A80193A36FE00CE9E10 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		FD5A6A81193A36FE00CE9E10 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		FD5AA143191AAD6700C44F81 /* CircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleViewController.h; sourceTree = "<group>"; };
 		FD5AA144191AAD6700C44F81 /* CircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleViewController.m; sourceTree = "<group>"; };
 		FD5BA849192AB0B300B37FCC /* TEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEvent.h; sourceTree = "<group>"; };
 		FD5BA84A192AB0B300B37FCC /* TEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEvent.m; sourceTree = "<group>"; };
 		FD61900E19262009004DF6C4 /* EventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsTableViewController.h; sourceTree = "<group>"; };
 		FD61900F19262009004DF6C4 /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsTableViewController.m; sourceTree = "<group>"; };
-		FD635C631934FE4E007B3AAE /* ViewEventCommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEventCommentsTableViewController.h; sourceTree = "<group>"; };
-		FD635C641934FE4E007B3AAE /* ViewEventCommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEventCommentsTableViewController.m; sourceTree = "<group>"; };
+		FD635C631934FE4E007B3AAE /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
+		FD635C641934FE4E007B3AAE /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
 		FD635C661935070C007B3AAE /* UICommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICommentTableViewCell.h; sourceTree = "<group>"; };
 		FD635C671935070C007B3AAE /* UICommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICommentTableViewCell.m; sourceTree = "<group>"; };
 		FD635C6919352B35007B3AAE /* UITabInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabInputView.h; sourceTree = "<group>"; };
@@ -178,6 +185,14 @@
 		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDA0E19519364FE300F31A0A /* TComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TComment.h; sourceTree = "<group>"; };
 		FDA0E19619364FE300F31A0A /* TComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TComment.m; sourceTree = "<group>"; };
+		FDA0E198193741B300F31A0A /* ViewEventMediasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEventMediasViewController.h; sourceTree = "<group>"; };
+		FDA0E199193741B300F31A0A /* ViewEventMediasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEventMediasViewController.m; sourceTree = "<group>"; };
+		FDA0E19B19377F0500F31A0A /* UIMediaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMediaCollectionViewCell.h; sourceTree = "<group>"; };
+		FDA0E19C19377F0500F31A0A /* UIMediaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMediaCollectionViewCell.m; sourceTree = "<group>"; };
+		FDA0E19E1937A35B00F31A0A /* ViewMediaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMediaTableViewController.h; sourceTree = "<group>"; };
+		FDA0E19F1937A35B00F31A0A /* ViewMediaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMediaTableViewController.m; sourceTree = "<group>"; };
+		FDA0E1A21937CC9E00F31A0A /* UIMultiColumnsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMultiColumnsTableViewCell.h; sourceTree = "<group>"; };
+		FDA0E1A31937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMultiColumnsTableViewCell.m; sourceTree = "<group>"; };
 		FDA9B0F51921320B0015BF8C /* CircleMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMembersTableViewController.h; sourceTree = "<group>"; };
 		FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMembersTableViewController.m; sourceTree = "<group>"; };
 		FDD150FD192FCC3E00BC41E5 /* TAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAccess.h; sourceTree = "<group>"; };
@@ -271,6 +286,10 @@
 				FD0C3E5D1934B027001A5DB2 /* UIEventStatsTableViewCell.m */,
 				FD635C661935070C007B3AAE /* UICommentTableViewCell.h */,
 				FD635C671935070C007B3AAE /* UICommentTableViewCell.m */,
+				FDA0E19B19377F0500F31A0A /* UIMediaCollectionViewCell.h */,
+				FDA0E19C19377F0500F31A0A /* UIMediaCollectionViewCell.m */,
+				FDA0E1A21937CC9E00F31A0A /* UIMultiColumnsTableViewCell.h */,
+				FDA0E1A31937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -394,6 +413,8 @@
 		FD54663F18F5A6FE00BFD409 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FDA0E198193741B300F31A0A /* ViewEventMediasViewController.h */,
+				FDA0E199193741B300F31A0A /* ViewEventMediasViewController.m */,
 				FD5AA143191AAD6700C44F81 /* CircleViewController.h */,
 				FD5AA144191AAD6700C44F81 /* CircleViewController.m */,
 				FD7AB76C190ABCC700E302B8 /* ViewMemberTableViewController.h */,
@@ -424,8 +445,12 @@
 				FD5377CD19327569002A62F0 /* AddMemberJobViewController.m */,
 				FDE4A88E1933C8FF00E3B866 /* ViewEventTableViewController.h */,
 				FDE4A88F1933C8FF00E3B866 /* ViewEventTableViewController.m */,
-				FD635C631934FE4E007B3AAE /* ViewEventCommentsTableViewController.h */,
-				FD635C641934FE4E007B3AAE /* ViewEventCommentsTableViewController.m */,
+				FD635C631934FE4E007B3AAE /* CommentsTableViewController.h */,
+				FD635C641934FE4E007B3AAE /* CommentsTableViewController.m */,
+				FDA0E19E1937A35B00F31A0A /* ViewMediaTableViewController.h */,
+				FDA0E19F1937A35B00F31A0A /* ViewMediaTableViewController.m */,
+				FD5A6A80193A36FE00CE9E10 /* SettingsTableViewController.h */,
+				FD5A6A81193A36FE00CE9E10 /* SettingsTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -670,6 +695,7 @@
 				FD635C6B19352B35007B3AAE /* UITabInputView.m in Sources */,
 				FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */,
 				FDF1F23218F5C891001B53D0 /* TSweetTrusteesCommunicator.m in Sources */,
+				FDA0E19D19377F0500F31A0A /* UIMediaCollectionViewCell.m in Sources */,
 				FD7AB76E190ABCC700E302B8 /* ViewMemberTableViewController.m in Sources */,
 				FDF1F23918F5ECF3001B53D0 /* SecondHandShakeLoginViewController.m in Sources */,
 				FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */,
@@ -679,10 +705,12 @@
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
 				FDD15117192FDF8E00BC41E5 /* TMemberCircle.m in Sources */,
 				FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */,
+				FD5A6A82193A36FE00CE9E10 /* SettingsTableViewController.m in Sources */,
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
 				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,
 				FDD1510B192FD35300BC41E5 /* TEducationMajor.m in Sources */,
-				FD635C651934FE4E007B3AAE /* ViewEventCommentsTableViewController.m in Sources */,
+				FDA0E19A193741B300F31A0A /* ViewEventMediasViewController.m in Sources */,
+				FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */,
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
 				FD5377CB193272FF002A62F0 /* AddMemberJobForm.m in Sources */,
 				FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */,
@@ -715,6 +743,8 @@
 				FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */,
 				FD5377D919337DCD002A62F0 /* LocationMapViewController.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
+				FDA0E1A01937A35B00F31A0A /* ViewMediaTableViewController.m in Sources */,
+				FDA0E1A41937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m in Sources */,
 				FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */,
 				FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */,
 			);

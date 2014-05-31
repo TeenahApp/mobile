@@ -1,18 +1,18 @@
 //
-//  CirclesTableViewController.m
+//  SettingsTableViewController.m
 //  mobile
 //
-//  Created by Hussam Al-Zughaibi on 6/27/1435 AH.
+//  Created by Hussam Al-Zughaibi on 8/3/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "CirclesTableViewController.h"
+#import "SettingsTableViewController.h"
 
-@interface CirclesTableViewController ()
+@interface SettingsTableViewController ()
 
 @end
 
-@implementation CirclesTableViewController
+@implementation SettingsTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,18 +33,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // TODO: Handling errors and/or warnings.
-    TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
     
-    self.circles = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary * tempCircle in tsr.json)
-    {
-        TCircle * circle = [[TCircle alloc] initWithJson:tempCircle];
-        [self.circles addObject:circle];
-    }
-    
-    self.titleNavigationItem.title = [NSString stringWithFormat:@"Circles (%lu)", (unsigned long)self.circles.count];
+    NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
+
+    // Set the version number.
+    [self.appVersionLabel setText:build];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,38 +52,57 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.circles.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    TCircle * current = [self.circles objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = current.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Members", (long)current.membersCount];
-    
-    NSLog(@"Cell has been called");
-    
-    return cell;
+    return 2;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TCircle * selectedCircle = (TCircle *)[self.circles objectAtIndex:indexPath.row];
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
+        [self goToEditMember];
+    }
     
-    self.currentCircle = selectedCircle;
-    
-    [self performSegueWithIdentifier:@"ViewCircle" sender:tableView];
+    else if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        [self goToLogoutMember];
+    }
+    else if (indexPath.section == 1 && indexPath.row == 1)
+    {
+        [self goToTeenahAppWebsite];
+    }
 }
+
+-(void)goToEditMember
+{
+    
+}
+
+-(void)goToTeenahAppWebsite
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.teenah-app.com"]];
+}
+
+-(void)goToLogoutMember
+{
+    
+}
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -129,6 +142,7 @@
 }
 */
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -136,19 +150,7 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    if ([[segue identifier] isEqualToString:@"ViewCircle"])
-    {
-        // Get reference to the destination view controller
-        //YourViewController *vc = [segue destinationViewController];
-        CircleViewController *vc = (CircleViewController *) [segue destinationViewController];
-        
-        vc.hidesBottomBarWhenPushed = YES;
- 
-        vc.circle = self.currentCircle;
-
-        //NSLog(@"prepareForSegue: %@", self.currentCircle);
-    }
 }
+*/
 
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "TMember.h"
+#import "TEventMedia.h"
 
 @interface TEvent : NSObject
 
@@ -26,10 +27,14 @@
 @property NSNumber * latitude;
 @property NSNumber * longitude;
 
+@property BOOL hasLiked;
+
 @property NSInteger viewsCount;
 @property NSInteger comingsCount;
 @property NSInteger likesCount;
 @property NSInteger commentsCount;
+
+@property (nonatomic, strong) NSMutableArray * medias;
 
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;

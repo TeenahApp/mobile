@@ -6,19 +6,30 @@
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
+// TODO: Fix the lining issue.
+// TODO: Fix the avatar.
+
 #import <UIKit/UIKit.h>
+
+#import "TComment.h"
+
+#define kPadding 8
+
+#define kAvatarSize 44
+
+#define kAvatarPercentage 20
+#define kDisplayNamePercentage 60
+#define kLikeIconPercentage 10
+#define kLikesCountPercentage 10
+#define kDatetimePercentage 80
 
 @interface UICommentTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIButton * likeButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *memberPhoto;
+-(void)initWithComment:(TComment *)comment;
 
-@property (weak, nonatomic) IBOutlet UILabel *memberNameLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *likeButton;
-
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
++(CGFloat)cellHeightWithContent:(NSString *)content width:(CGFloat)width;
++(UILabel *)getContentLabelWithContent:(NSString *)content width:(CGFloat)width;
 
 @end

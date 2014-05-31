@@ -27,6 +27,12 @@ TODO:
 23. Change the file names into something more appropriate.
 24. Done with the updating educations.
 25. Make every non-selection cell clear color.
+26. If a member likes a comment of other member, he should not be able to like the same comment again.
+27. Fix the thumb.
+28. Publish the cell views as an open source pods.
+29. Make home page (tree) scrollable.
+30. Shorten the fullname or display name.
+31. Get the members whome invited to an event.
 
 DONE:
 

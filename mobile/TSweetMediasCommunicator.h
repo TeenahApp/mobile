@@ -14,6 +14,10 @@
 
 +(id) shared;
 
+-(TSweetResponse *) getMedia: (NSInteger) mediaId;
+
+-(TSweetResponse *) getMediaComments: (NSInteger) mediaId;
+
 -(TSweetResponse *) likeMedia: (NSInteger) mediaId;
 
 -(TSweetResponse *) commentOnMedia: (NSInteger) mediaId

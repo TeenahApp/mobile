@@ -20,9 +20,21 @@
     return shared;
 }
 
+-(TSweetResponse *) getMedia:(NSInteger)mediaId
+{
+    NSString * route = [NSString stringWithFormat:@"/medias/%ld", (long)mediaId];
+    return [[TSweetRest shared] get:route];
+}
+
 -(TSweetResponse *) likeMedia:(NSInteger)mediaId
 {
     NSString * route = [NSString stringWithFormat:@"/medias/%ld/like", (long)mediaId];
+    return [[TSweetRest shared] get:route];
+}
+
+-(TSweetResponse *) getMediaComments:(NSInteger)mediaId
+{
+    NSString * route = [NSString stringWithFormat:@"/medias/%ld/comments", (long)mediaId];
     return [[TSweetRest shared] get:route];
 }
 
