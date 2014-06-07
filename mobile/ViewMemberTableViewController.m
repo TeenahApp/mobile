@@ -25,74 +25,130 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"viewDidLoad has been called.");
+    
     [super viewDidLoad];
     
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose a destination" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"View Medias", @"Edit Member", nil];
+    if (self.member.hasLiked == YES)
+    {
+        [self.likeButton setEnabled:NO];
+    }
     
     self.canAddEducation = YES;
     self.canAddJob = YES;
     
-    self.sections = @[@"Avatar", @"Main Info", @"Personal", @"Contact", @"Relations", @"Educations", @"Jobs"];
+    self.degrees = @{
+                     @"elementary": @"إبتدائي", @"intermediate": @"متوسّط", @"secondary": @"ثانوي",
+                     @"diploma": @"دبلوم", @"licentiate": @"إجازة", @"bachelor": @"بكالوريوس",
+                     @"master": @"ماجستير", @"doctorate": @"دكتوراه",
+    };
+    
+    //  father, stepfather, father-in-law, mother, stepmother, mother-in-law, sister, brother, son, stepson, daughter, stepdaughter, son-in-law, daughter-in-law, wife, husband.
+    
+    self.relations = @{
+                    @"": @"",
+    };
+    
+    NSString * isAliveString = @"حيّ يرزق";
+    
+    if (self.member.isAlive == NO)
+    {
+        isAliveString = @"متوفّى";
+    }
+
+    self.sections = @[@"Main Info", @"المعلومات الأوليّة", @"الإتصال", @"العلاقات", @"التعليم", @"العمل", @"التعليقات", @"الصور"];
     
     NSMutableArray * mainInfos = [[NSMutableArray alloc]init];
+    NSMutableArray * contacts = [[NSMutableArray alloc]init];
     NSMutableArray * relations = [[NSMutableArray alloc]init];
     NSMutableArray * educations = [[NSMutableArray alloc]init];
     NSMutableArray * jobs = [[NSMutableArray alloc]init];
     
     self.data = [@[
-                  // Section 0: Avatar:
-                  @[
-                      @{@"Avatar": self.member.photo},
-                    ],
                   
-                  // Section 1: Main Info:
+                  // Section 0: Main Info:
                   mainInfos,
                   
-                  // Section 2: Personal:
+                  // Section 1: Personal:
                   @[
-                      @{@"Pulse": [NSString stringWithFormat:@"%d", self.member.isAlive]},
-                      @{@"Nick Name": [NSString stringWithFormat:@"%@", self.member.nickname]},
+                      @{@"الاسم الكامل": [NSString stringWithFormat:@"%@", self.member.fullname]},
+                      @{@"النبض": [NSString stringWithFormat:@"%@", isAliveString]},
                     ],
-                  
-                  // Section 3: Contact:
-                  @[
-                      @{@"Location": [NSString stringWithFormat:@"%@", self.member.location]},
-                      @{@"Mobile": [NSString stringWithFormat:@"%@", self.member.mobile]},
-                      @{@"Email:": @"hossam_zee@yahoo.com"}, // TODO: Email
-                      @{@"Home Phone": [NSString stringWithFormat:@"%@", self.member.homePhone]},
-                      @{@"Work Phone": [NSString stringWithFormat:@"%@", self.member.workPhone]},
-                    ],
-                  
-                  // Section 4: Relations:
+
+                  // Section 2: Contact:
+                  contacts,
+
+                  // Section 3: Relations:
                   relations,
                   
-                  // Section 5: Educations:
+                  // Section 4: Educations:
                   educations,
                   
-                  // Section 6: Jobs:
+                  // Section 5: Jobs:
                   jobs,
                   
+                  // Section 6: Comments.
+                  @[
+                      @{@"Add": (self.member.commentsCount == 0) ? @"إضافة تعليق." : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة.", (long)self.member.commentsCount]},
+                    ],
+                  
+                  // Section 7: Medias.
+                  @[
+                      @{@"Add": (self.member.mediasCount == 0) ? @"إضافة صورة." : [NSString stringWithFormat:@"عرض الصورة الـ %ld أو إضافة.", (long)self.member.mediasCount]},
+                    ],
+
     ] mutableCopy];
     
     // Date Formatter.
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd MM yyyy"];
-
-    // Avatar.
-    NSURL * imageURL = nil;
-    
-    if (![self.member.photo isEqual:[NSNull null]])
-    {
-        imageURL = [NSURL URLWithString:self.member.photo];
-    }
-    
-    self.image = [[UIAvatarView alloc] initWithURL:imageURL frame:CGRectMake(0, 0, 60, 60)];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     
     // Main infos
-    [mainInfos addObject:@{@"Fullname": [NSString stringWithFormat:@"%@", self.member.fullname]}];
-    [mainInfos addObject:@{@"Age": [NSString stringWithFormat:@"%ld", (long)self.member.age]}];
-    [mainInfos addObject:@{@"DOB": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dob]]}];
-    [mainInfos addObject:@{@"DOD": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dod]]}];
+    [mainInfos addObject:
+     @{@"Stats":
+           @[
+              @{@"label": @"سنة", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.age]},
+              @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.likesCount]},
+              @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.viewsCount]},
+              @{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.commentsCount]}
+            ]
+       }];
+
+    if (self.member.dob != nil)
+    {
+        [mainInfos addObject:@{@"تاربخ الميلاد": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dob]]}];
+    }
+    
+    if (self.member.dod != nil)
+    {
+        [mainInfos addObject:@{@"تاريخ الوفاة": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dod]]}];
+    }
+    
+    // Contacts.
+    if (self.member.location != nil)
+    {
+        [contacts addObject:@{@"الإقامة": [NSString stringWithFormat:@"%@", self.member.location]}];
+    }
+    
+    if (self.member.mobile != nil)
+    {
+        [contacts addObject:@{@"الجوّال": [NSString stringWithFormat:@"%@", self.member.mobile]}];
+    }
+    
+    if (self.member.email != nil)
+    {
+        [contacts addObject:@{@"البريد الإلكتروني": [NSString stringWithFormat:@"%@", self.member.email]}];
+    }
+    
+    if (self.member.homePhone != nil)
+    {
+        [contacts addObject:@{@"هاتف المنزل": [NSString stringWithFormat:@"%@", self.member.homePhone]}];
+    }
+    
+    if (self.member.workPhone != nil)
+    {
+        [contacts addObject:@{@"هاتف العمل": [NSString stringWithFormat:@"%@", self.member.workPhone]}];
+    }
     
     // Relations.
     for (NSDictionary * relatedMember in self.member.relations)
@@ -103,30 +159,28 @@
         [relations addObject:@{memberRelation: memberName}];
     }
     
-    NSLog(@"educations count = %d", self.member.educations.count);
-    
     // Educations.
     for (TMemberEducation * education in self.member.educations)
     {
-        NSMutableString * years = [NSMutableString stringWithFormat:@"%d - ", education.startYear];
-        NSMutableString * degreeMajor = [NSMutableString stringWithString:education.degree];
+        NSMutableString * years = [NSMutableString stringWithFormat:@"%ld - ", (long)education.startYear];
+        NSString * major = @"";
         
         if (education.finishYear == 0)
         {
-            [years appendString:@"Present"];
+            [years appendString:@"الآن"];
         }
         else
         {
-            [years appendFormat:@"%d", education.finishYear];
+            [years appendFormat:@"%ld", (long)education.finishYear];
         }
         
         if (education.major != nil)
         {
-            [degreeMajor appendFormat:@", %@", education.major.name];
+            major = education.major.name;
         }
         
         // Add the education to education list.
-        [educations addObject:@{years: degreeMajor}];
+        [educations addObject:@{@"maintitle": self.degrees[education.degree], @"subtitle": major, @"details": years}];
     }
     
     if (self.canAddEducation == YES)
@@ -137,26 +191,31 @@
     // Jobs.
     for (TMemberJob * job in self.member.jobs)
     {
-        NSMutableString * years = [NSMutableString stringWithFormat:@"%d - ", job.startYear];
-        NSMutableString * titleCompany = [NSMutableString stringWithFormat:@"%@ at %@", job.title, job.company.name];
+        NSMutableString * years = [NSMutableString stringWithFormat:@"%ld - ", (long)job.startYear];
         
         if (job.finishYear == 0)
         {
-            [years appendString:@"Present"];
+            [years appendString:@"الآن"];
         }
         else
         {
-            [years appendFormat:@"%d", job.finishYear];
+            [years appendFormat:@"%ld", (long)job.finishYear];
         }
-        
-        // Add the education to education list.
-        [jobs addObject:@{years: titleCompany}];
+
+        // Add the job to job list.
+        [jobs addObject:@{@"maintitle": job.title, @"subtitle": job.company.name, @"details": years}];
     }
 
     if (self.canAddJob == YES)
     {
         [jobs addObject:@{@"Add": [NSString stringWithFormat:@"%ld", (long)self.member.memberId]}];
     }
+    
+    self.image.layer.cornerRadius = 48.0;
+    self.image.layer.masksToBounds = YES;
+    
+    // Fill the display name of the member.
+    [self.displayNameButton setTitle:self.member.displayName forState:UIControlStateNormal];
 
 }
 
@@ -168,8 +227,6 @@
 
 - (IBAction)callMobile:(id)sender
 {
-    NSLog(@"Call");
-    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.member.mobile]]];
 }
 
@@ -183,13 +240,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    /*
-    NSString *sectionTitle = [self.data.allKeys objectAtIndex:section];
-    NSArray *sectionRows = [self.data objectForKey:sectionTitle];
-    return sectionRows.count;
-     */
-    
     NSArray * rows = [self.data objectAtIndex:section];
     return rows.count;
 }
@@ -198,7 +248,7 @@
 {
     NSString * temp = [self.sections objectAtIndex:section];
     
-    if ([temp  isEqual: @"Main Info"] || [temp  isEqual: @"Avatar"])
+    if ([temp  isEqual: @"Main Info"])
     {
         return nil;
     }
@@ -212,108 +262,89 @@
     NSDictionary * info = [rows objectAtIndex:indexPath.row];
 
     NSString * key = [[info allKeys] objectAtIndex:0];
-    NSString * value = [info objectForKey:key];
-
+    
     if (indexPath.section == 0 && indexPath.row == 0)
     {
-        UIAvatarCellTableViewCell * cell = (UIAvatarCellTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"AvatarCell" forIndexPath:indexPath];
-
-        cell.photo.image = self.image.image;
+        NSArray * columns = [info objectForKey:key];
+        
+        UIMultiColumnsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"statsCell" forIndexPath:indexPath];
+        
+        [cell setColumns:columns];
         
         return cell;
     }
-    
-    else if (indexPath.section == 5 || indexPath.section == 6)
+
+    else
     {
-        if (indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+        if (indexPath.section >= 4)
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell" forIndexPath:indexPath];
-            return cell;
+            if (indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gotoCell" forIndexPath:indexPath];
+                return cell;
+            }
+            else
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"careerCell" forIndexPath:indexPath];
+
+                UILabel * topLabel = (UILabel *)[cell viewWithTag:66];
+                [topLabel setText:[info objectForKey:@"maintitle"]];
+                
+                UILabel * subLabel = (UILabel *)[cell viewWithTag:77];
+                [subLabel setText:[info objectForKey:@"subtitle"]];
+                
+                UILabel * detailsLabel = (UILabel *)[cell viewWithTag:88];
+                [detailsLabel setText:[info objectForKey:@"details"]];
+            
+                return cell;
+            }
         }
         else
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EducationCell" forIndexPath:indexPath];
-
-            cell.textLabel.text = value;
-            cell.detailTextLabel.text = key;
+            NSString * value = [info objectForKey:key];
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
+            
+            [cell.textLabel setText:(NSString *)key];
+            [cell.detailTextLabel setText:value];
             
             return cell;
         }
     }
-    
-    else
-    {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-        [cell.textLabel setText:(NSString *)key];
-        [cell.detailTextLabel setText:value];
-        
-        return cell;
-    }
-
-    //return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 0)
     {
-        return 120;
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"statsCell"];
+        return cell.bounds.size.height;
     }
+    
     else
     {
-        return tableView.rowHeight;
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
+        return cell.bounds.size.height;
     }
 }
 
-- (IBAction)moreClicked:(id)sender {
-    
-    UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
-    
-    if ([window.subviews containsObject:self.view]) {
-        [self.actionSheet showInView:self.view];
-    } else {
-        [self.actionSheet showInView:window];
-    }
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)like:(id)sender
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        self.likeResponse = [[MembersCommunicator shared] likeMember:self.member.memberId];
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the action has been taken.
+            self.member.hasLiked = YES;
+            [self.likeButton setEnabled:NO];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -322,12 +353,12 @@
     
     NSString * key = [[info allKeys] objectAtIndex:0];
     
-    if (indexPath.section == 5 && indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+    if (indexPath.section == 4 && indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
     {
         [self performSegueWithIdentifier:@"AddEducation" sender:nil];
     }
 
-    else if (indexPath.section == 6 && indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
+    else if (indexPath.section == 5 && indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
     {
         [self performSegueWithIdentifier:@"AddJob" sender:nil];
     }
@@ -338,19 +369,12 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //NSLog(@"Called");
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    //sender.
-    
     if ([[segue identifier] isEqualToString:@"AddEducation"])
     {
         // Get reference to the destination view controller
         AddMemberEducationViewController *vc = (AddMemberEducationViewController *) [segue destinationViewController];
         vc.memberId = self.member.memberId;
-        
-        NSLog(@"member_id = %d", vc.memberId);
-        
+
         [vc initWithNibName:nil bundle:nil];
         
         vc.hidesBottomBarWhenPushed = YES;
@@ -361,8 +385,6 @@
         // Get reference to the destination view controller
         AddMemberJobViewController *vc = (AddMemberJobViewController *) [segue destinationViewController];
         vc.memberId = self.member.memberId;
-        
-        NSLog(@"member_id = %d", vc.memberId);
         
         [vc initWithNibName:nil bundle:nil];
         

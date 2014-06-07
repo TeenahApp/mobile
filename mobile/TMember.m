@@ -38,8 +38,6 @@
         NSString * tempDob = [json objectForKey:@"dob"];
         NSString * tempDod = [json objectForKey:@"dod"];
         
-        NSLog(@"dob = %@, dod = %@", tempDob, tempDod);
-        
         if (![tempDob isKindOfClass:[NSNull class]])
         {
             self.dob = [shortDateFormatter dateFromString:tempDob];
@@ -50,6 +48,9 @@
             self.dod = [shortDateFormatter dateFromString:tempDod];
         }
         
+        self.dobYear = 0;
+        self.dodYear = 0;
+        
         if (self.dob != nil)
         {
             self.dobYear = [[yearDateFormatter stringFromDate:self.dob] integerValue];
@@ -59,6 +60,30 @@
         {
             self.dodYear = [[yearDateFormatter stringFromDate:self.dod] integerValue];
         }
+        
+        // TODO:
+        NSMutableString * displayYears = [[NSMutableString alloc]init];
+        
+        if (self.dobYear != 0)
+        {
+            [displayYears appendFormat:@"%ld", (long)self.dobYear];
+        }
+        
+        if (self.dodYear != 0)
+        {
+            [displayYears appendFormat:@" - %ld", (long)self.dodYear];
+        }
+        
+        if ([self.fullname isKindOfClass:[NSNull class]])
+        {
+            self.displayName = self.name;
+        }
+        else
+        {
+            self.displayName = self.fullname;
+        }
+        
+        self.displayYears = displayYears;
         
         self.location = [json objectForKey:@"location"];
         
@@ -107,6 +132,13 @@
             TMemberJob * job = [[TMemberJob alloc] initWithJson:tempJob];
             [self.jobs addObject:job];
         }
+        
+        self.hasLiked = [[json objectForKey:@"has_liked"] boolValue];
+        
+        self.viewsCount = [[json objectForKey:@"views_count"] integerValue];
+        self.likesCount = [[json objectForKey:@"likes_count"] integerValue];
+        self.commentsCount = [[json objectForKey:@"comments_count"] integerValue];
+        self.mediasCount = [[json objectForKey:@"medias_count"] integerValue];
         
         self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
         self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];

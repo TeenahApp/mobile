@@ -68,11 +68,9 @@
     [self.mapView selectAnnotation:self.annotation animated:YES];
     
     NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
-    [longDateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+    [longDateFormatter setDateFormat:@"dd MMM yyyy HH:mm:ss"];
     
-    //NSString * eventTime = [NSString stringWithFormat:@"%@ - %@", [longDateFormatter stringFromDate:self.event.startsAt], [longDateFormatter stringFromDate:self.event.finishesAt]];
-    
-    self.sections = @[@"Main Info", @"Decision", @"Creator", @"Comments", @"Medias"];
+    self.sections = @[@"Main Info", @"القرار", @"أُنشئت بواسطة", @"التعليقات", @"الصور"];
     
     self.data = [@[
                    
@@ -80,15 +78,15 @@
                    @[
                        
                        @{@"Stats": @[
-                                        @{@"label": @"Coming", @"count": [NSString stringWithFormat:@"%d", self.event.comingsCount]},
-                                        @{@"label": @"Likes", @"count": [NSString stringWithFormat:@"%d", self.event.likesCount]},
-                                        @{@"label": @"Views", @"count": [NSString stringWithFormat:@"%d", self.event.viewsCount]},
-                                        @{@"label": @"Cmnts", @"count": [NSString stringWithFormat:@"%d", self.event.commentsCount]},
+                                        @{@"label": @"حاضر", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.comingsCount]},
+                                        @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.likesCount]},
+                                        @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.viewsCount]},
+                                        @{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.commentsCount]},
                                     ]
                         },
                        
-                       @{@"Starts at": [longDateFormatter stringFromDate:self.event.startsAt]},
-                       @{@"Finishes at": [longDateFormatter stringFromDate:self.event.finishesAt]},
+                       @{@"يبدأ في": [longDateFormatter stringFromDate:self.event.startsAt]},
+                       @{@"ينتهي في": [longDateFormatter stringFromDate:self.event.finishesAt]},
                     ],
                    
                    // Section 1: Decision.
@@ -103,12 +101,12 @@
                    
                    // Section 3: Comments.
                    @[
-                       @{@"Add": (self.event.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %d comments or add.", self.event.commentsCount]},
+                       @{@"Add": (self.event.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %ld comments or add.", (long)self.event.commentsCount]},
                     ],
                    
                    // Section 4: Medias.
                    @[
-                       @{@"Add": (self.event.medias.count == 0) ? @"Add a media." : [NSString stringWithFormat:@"View the %d medias or add.", self.event.medias.count]},
+                       @{@"Add": (self.event.medias.count == 0) ? @"Add a media." : [NSString stringWithFormat:@"View the %lu medias or add.", (long)self.event.medias.count]},
                     ],
     ] mutableCopy];
     
@@ -146,7 +144,7 @@
     
     if ([temp isEqual:@"Main Info"])
     {
-        temp = @"";
+        temp = nil;
     }
     
     return temp;
@@ -234,16 +232,22 @@
     }
 }
 
-- (IBAction)like:(id)sender {
-    NSLog(@"You are attempting to like an event.");
-    
-    /*
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Like" message:@"You likes this event" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    
-    [alert show];
-     */
-    
-    TSweetResponse * tsr = [[EventsCommunicator shared] likeEvent:self.event.eventId];
+- (IBAction)like:(id)sender
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        self.likeResponse = [[EventsCommunicator shared] likeEvent:self.event.eventId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the action has been taken.
+            self.event.hasLiked = YES;
+            [self.likeButton setEnabled:NO];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 /*

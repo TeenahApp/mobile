@@ -17,6 +17,9 @@
 @interface AddMemberJobViewController : FXFormViewController
 
 @property (nonatomic, strong) AddMemberJobForm * form;
+
 @property NSInteger memberId;
+
+@property (nonatomic, strong) UIAlertView * alert;
 
 @end

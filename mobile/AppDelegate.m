@@ -12,45 +12,65 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // $2y$10$7te/GxO0AwqUhZ61IMOLSuWp94LPK1M1fzu0Qks6u/YusvUvWKDIK
+    // TEMP.USER.TOKEN
     
-    TSweetRest * tsrest = [TSweetRest shared];
-    /*
-    tsrest.userToken = @"$2y$10$5oXpuly.YweSNqfyQo8Rve1oS1FlWK3gCZ4mbbLlZWZmzIZcAo/sa";
-     */
-    tsrest.userToken = @"$2y$10$Ve3IfkqfDkusNfqW90H4I.0tblq4GlbDczmfR8WsdCZ7JM04qAjG2";
+    //[UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
+    //[UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
     
-    /*
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    FirstHandShakeLoginViewController * firstHandShakeLoginVC = (FirstHandShakeLoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstHandShakeLogin"];
-    
-    [self.window makeKeyAndVisible];
-    
-    [self.window.rootViewController presentViewController:firstHandShakeLoginVC animated:NO completion:nil];
-    
-    */
+    [UICKeyChainStore setString:@"TEMP.USER.TOKEN" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+    [UICKeyChainStore setString:@"1" forKey:@"memberid" service:@"com.teenah-app.mobile"];
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    UITabBarController *tbc = [storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
+    //vc = (TreeTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TreeTableView"];
     
-    [self.window makeKeyAndVisible];
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
     
-    [self.window.rootViewController presentViewController:tbc animated:NO completion:nil];
-    
-    //[[UsersCommunicator shared] dashboard];
-    
-    /*
-     FirstUploadPhotoViewController * fphotovc = (FirstUploadPhotoViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstUploadPhoto"];
-    
-    [self.window makeKeyAndVisible];
-    
-    [self.window.rootViewController presentViewController:fphotovc animated:NO completion:nil];
-    */
-    
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    if (store[@"usertoken"] == nil)
+    {
+        FirstHandShakeLoginTableViewController * fhsltvc = (FirstHandShakeLoginTableViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstHandShakeLogin"];
+        
+        [self.window makeKeyAndVisible];
+        [self.window.rootViewController presentViewController:fhsltvc animated:NO completion:nil];
+    }
+    else
+    {
+        TSweetRest * restAPI = [TSweetRest shared];
+        
+        // Set the current user token.
+        restAPI.userToken = store[@"usertoken"];
+        
+        // Check if the user is logged in for the first time.
+        if (store[@"memberid"] == nil || [store[@"memberid"] isEqual:@"0"])
+        {
+            UpdateInfoFirstTimeViewController * uftvc = (UpdateInfoFirstTimeViewController *) [storyboard instantiateViewControllerWithIdentifier:@"UpdateInfoFirstTime"];
+            
+            [uftvc initWithNibName:nil bundle:nil];
+            
+            UINavigationController * navigationController = [[UINavigationController alloc]
+                                    initWithRootViewController:uftvc];
+            
+            self.window.rootViewController = navigationController;
+            [self.window makeKeyAndVisible];
+        }
+        else
+        {
+            NSLog(@"HasLoggedInAndUpdated");
 
+            UITabBarController * tbc = [storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
+            UINavigationController * tbnc = tbc.viewControllers[0];
+
+            TreeTableViewController * tvc = (TreeTableViewController *)tbnc.viewControllers[0];
+            tvc.memberId = [store[@"memberid"] integerValue];
+            
+            [self.window makeKeyAndVisible];
+            [self.window.rootViewController presentViewController:tbc animated:NO completion:nil];
+        }
+    }
+
+    // Get the device token to be used for notifications.
+    //[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     // Override point for customization after application launch.
     return YES;

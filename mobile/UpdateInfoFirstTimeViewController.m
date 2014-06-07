@@ -27,7 +27,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         // Custom initialization
+
+        self.form = [[UpdateMemberFirstTimeForm alloc] init];
+        self.form.gender = @"ذكر";
+        
+        self.formController.form = self.form;
     }
     return self;
 }
@@ -35,39 +41,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
+    
+    UIColor * teenahAppBlueColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
+
+    self.navigationController.navigationBar.barTintColor = teenahAppBlueColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
-- (IBAction)updateInfo:(id)sender {
-    
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+-(void)submitUpdatingMemberInfoForm
+{
     NSString * gender = @"male";
-    NSString * name = _firstNameTextField.text;
-    NSString * dob = _dobTextField.text;
     
-    if (_genderSegmented.selectedSegmentIndex == 1)
+    if ([self.form.gender isEqual:@"أنثى"])
     {
         gender = @"female";
     }
     
-    TSweetResponse * tsr = [[UsersCommunicator shared] initialize:gender name:name dob:dob];
+    TSweetResponse * tsr = [[UsersCommunicator shared] initialize:gender name:self.form.firstName dob:self.form.dob];
     
     if (tsr.code == 201)
     {
+        NSString * memberId = tsr.json[@"member_id"];
+        
+        [UICKeyChainStore setString:memberId forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+        
         if ([gender isEqual: @"male"])
         {
-            FirstUploadPhotoViewController * FirstUploadPhotoVC = (FirstUploadPhotoViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"FirstUploadPhoto"];
-            
-            [self presentViewController:FirstUploadPhotoVC animated:NO completion:nil];
+            [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
         }
         else
         {
-            UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
-            [self presentViewController:tbc animated:YES completion:nil];
+            [self performSegueWithIdentifier:@"showMainTabBarView" sender:self];
         }
-
     }
 
-    //"member_id" = 2;
-    //"user_token" = "$2y$10$cHmOiWliDZpb2UhfCwcPrenQgoWhHj0l.Dy.DbK7zYjLfOze5Bz2m";
+    // Done.
+    [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
 }
 
 - (void)didReceiveMemoryWarning

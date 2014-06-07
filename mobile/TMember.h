@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * fullname;
 @property (strong, nonatomic) NSString * nickname;
+@property (strong, nonatomic) NSString * displayName;
 
 @property (strong, nonatomic) NSString * photo;
 
@@ -40,6 +41,8 @@
 @property (strong, nonatomic) NSDate * dod;
 @property NSInteger dodYear;
 
+@property (strong, nonatomic) NSString * displayYears;
+
 @property NSInteger age;
 
 @property (strong, nonatomic) NSString * location;
@@ -57,6 +60,13 @@
 
 @property (strong, nonatomic) NSMutableArray * educations;
 @property (strong, nonatomic) NSMutableArray * jobs;
+
+@property BOOL hasLiked;
+
+@property NSInteger viewsCount;
+@property NSInteger likesCount;
+@property NSInteger commentsCount;
+@property NSInteger mediasCount;
 
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;

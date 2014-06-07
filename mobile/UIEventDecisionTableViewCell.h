@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FlatUIKit.h>
 
 @protocol UIEventDecisionTableViewCellDelegate <NSObject>
 
@@ -20,7 +19,7 @@
 
 @property (nonatomic, assign) id<UIEventDecisionTableViewCellDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet FUIButton *willComeButton;
-@property (weak, nonatomic) IBOutlet FUIButton *apologizeButton;
+@property (weak, nonatomic) IBOutlet UIButton *willComeButton;
+@property (weak, nonatomic) IBOutlet UIButton *apologizeButton;
 
 @end

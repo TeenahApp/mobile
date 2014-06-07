@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Security/Security.h>
+#import <UICKeyChainStore.h>
 
-//#import "TSweetResponse.h"
-//#import "TSweetRest.h"
-//#import "TSweetUsersCommunicator.h"
+#import "FirstHandShakeLoginTableViewController.h"
+#import "UpdateInfoFirstTimeViewController.h"
+#import "TreeTableViewController.h"
 
-#import "FirstHandShakeLoginViewController.h"
-#import "FirstUploadPhotoViewController.h"
 #import "TSweetUsersCommunicator.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

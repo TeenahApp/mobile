@@ -21,21 +21,20 @@
     if (self) {
         
         // Custom initialization
-        // TODO: Consider removing none from education.
         
         NSMutableDictionary * degrees = [[NSMutableDictionary alloc] init];
         NSMutableDictionary * statuses = [[NSMutableDictionary alloc] init];
         
         degrees = [
                    @{
-                        @"elementary": @"Elementary", @"intermediate": @"Intermediate", @"secondary": @"Secondary",
-                        @"diploma": @"Diploma", @"licentiate": @"Licentiate", @"bachelor": @"Bachelor",
-                        @"master": @"Master", @"doctorate": @"Doctorate",
+                        @"elementary": @"إبتدائي", @"intermediate": @"متوسّط", @"secondary": @"ثانوي",
+                        @"diploma": @"دبلوم", @"licentiate": @"إجازة", @"bachelor": @"بكالوريوس",
+                        @"master": @"ماجستير", @"doctorate": @"دكتوراه",
                     }
         mutableCopy];
         
         statuses = [@{
-                      @"ongoing": @"On Going", @"finished": @"Finished", @"pending": @"Pending", @"dropped": @"Dropped"
+                      @"ongoing": @"جارية", @"finished": @"منتهية", @"pending": @"معلّقة", @"dropped": @"محذوفة"
                     }
         mutableCopy];
 
@@ -45,6 +44,8 @@
         self.form.status = @"ongoing";
         
         self.formController.form = self.form;
+        
+        //self.alert = [[UIAlertView alloc] init];
     }
     return self;
 }
@@ -70,10 +71,25 @@
 
 -(void)submitAddingEducationForm
 {
-    NSLog(@"submitAddingEducationForm");
-    NSLog(@"s = %d, f = %d", self.form.startYear, self.form.finishYear);
+    // Validation.
     
-    // TODO: Validation.
+    if (self.form.startYear == 0)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة البدء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً"otherButtonTitles:nil];
+        
+        [self.alert show];
+        
+        return;
+    }
+    
+    if (![self.form.status isEqual:@"ongoing"] && self.form.finishYear == 0)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة الانتهاء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        
+        [self.alert show];
+        
+        return;
+    }
     
     NSString * major = @"";
     
@@ -86,6 +102,7 @@
     
     if (tsr.code == 201)
     {
+        // TODO: Fix the returning back issue.
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

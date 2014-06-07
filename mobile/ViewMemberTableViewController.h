@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 
 #import "TMember.h"
 #import "TMemberEducation.h"
 
-#import "UIAvatarCellTableViewCell.h"
-#import "UIAvatarView.h"
+#import "UIMultiColumnsTableViewCell.h"
 
 #import "AddMemberEducationViewController.h"
 #import "AddMemberJobViewController.h"
@@ -21,7 +21,10 @@
 
 @property (strong, nonatomic) TMember * member;
 
-@property (strong, nonatomic) UIAvatarView * image;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIButton *displayNameButton;
+
+@property (nonatomic, strong) TSweetResponse * likeResponse;
 
 @property (strong, nonatomic) NSArray * sections;
 
@@ -29,9 +32,13 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) UIActionSheet * actionSheet;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *likeButton;
 
 @property BOOL canAddEducation;
 @property BOOL canAddJob;
+
+@property (nonatomic, strong) NSDictionary * degrees;
+
+@property (nonatomic, strong) NSDictionary * relations;
 
 @end

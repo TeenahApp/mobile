@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UICKeyChainStore.h>
+
+#import "TSweetResponse.h"
+#import "TSweetUsersCommunicator.h"
+
+#import "FirstUploadPhotoTableViewController.h"
 
 @interface SettingsTableViewController : UITableViewController
 

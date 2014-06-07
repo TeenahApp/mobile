@@ -24,7 +24,7 @@
         NSMutableDictionary * statuses = [[NSMutableDictionary alloc] init];
         
         statuses = [@{
-                      @"ongoing": @"On Going", @"finished": @"Finished", @"pending": @"Pending", @"dropped": @"Dropped"
+                      @"ongoing": @"جاري", @"finished": @"متقاعد", @"pending": @"معلّق", @"dropped": @"مستقيل"
                       }
         mutableCopy];
         
@@ -39,14 +39,36 @@
 
 -(void)submitAddingJobForm
 {
-    NSLog(@"submitAddingJobForm");
-    NSLog(@"s = %d, f = %d", self.form.startYear, self.form.finishYear);
+    if (self.form.startYear == 0)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة البدء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً"otherButtonTitles:nil];
+        
+        [self.alert show];
+        
+        return;
+    }
     
-    // TODO: Validation.
+    if (![self.form.status isEqual:@"ongoing"] && self.form.finishYear == 0)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة الانتهاء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        
+        [self.alert show];
+        
+        return;
+    }
     
-    TSweetResponse * tsr = [[MembersCommunicator shared] createJob:self.memberId title:self.form.title startYear:self.form.startYear finishYear:self.form.finishYear status:self.form.status company:self.form.company];
+    if (self.form.title == nil || self.form.company == nil)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تعبئة المسمّى الوظيفي و جهة العمل." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        
+        [self.alert show];
+        
+        return;
+    }
     
-    if (tsr.code == 201)
+    TSweetResponse * createJobResponse = [[MembersCommunicator shared] createJob:self.memberId title:self.form.title startYear:self.form.startYear finishYear:self.form.finishYear status:self.form.status company:self.form.company];
+    
+    if (createJobResponse.code == 201)
     {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

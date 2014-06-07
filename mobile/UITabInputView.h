@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FlatUIKit.h>
 
 #define kTabInputHeight 40
 #define kPadding 6
@@ -34,7 +33,7 @@
 @property CGFloat defaultKBY;
 
 @property (nonatomic, strong) UITextField * textField;
-@property (nonatomic, strong) FUIButton * doneButton;
+@property (nonatomic, strong) UIButton * doneButton;
 
 -(id)initWithDelegate:(id)delegate;
 

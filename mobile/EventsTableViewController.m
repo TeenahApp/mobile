@@ -32,7 +32,7 @@
     TSweetResponse * tsr = [[EventsCommunicator shared] getEvents];
     
     NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
-    [shortDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [shortDateFormatter setDateFormat:@"dd MMM yyyy"];
     
     // Initialize the sections array.
     self.sections = [[NSMutableArray alloc] init];
@@ -48,7 +48,6 @@
         
         if (![self.sections containsObject:startDateString])
         {
-            NSLog(@"Happened");
             [self.sections addObject:startDateString];
             [self.data addObject:[[NSMutableArray alloc] init]];
             
@@ -60,13 +59,12 @@
         [temp addObject:event];
     }
     
-    //NSLog(@"data = %@", self.data);
+    UIColor * teenahAppBlueColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationController.navigationBar.barTintColor = teenahAppBlueColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning

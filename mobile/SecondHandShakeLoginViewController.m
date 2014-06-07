@@ -69,6 +69,7 @@
                 if (member_id == 0)
                 {
                     NSLog(@"zero");
+                    
                     UpdateInfoFirstTimeViewController * updateInfoFirstTimeVC = (UpdateInfoFirstTimeViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"UpdateInfoFirstTime"];
                     
                     [self presentViewController:updateInfoFirstTimeVC animated:NO completion:nil];
@@ -76,6 +77,7 @@
                 else
                 {
                     NSLog(@"non-zero");
+                    
                     UITabBarController *tbc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
                     
                     [self presentViewController:tbc animated:YES completion:nil];
@@ -91,6 +93,14 @@
     // Do any additional setup after loading the view.
     
     NSLog(@"%@", self.mobile);
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    //NSLog(@"Called");
+    
+    //[self.view setNeedsDisplay];
+    [self.smsTokenTextField setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning

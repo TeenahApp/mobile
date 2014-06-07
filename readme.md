@@ -33,6 +33,8 @@ TODO:
 29. Make home page (tree) scrollable.
 30. Shorten the fullname or display name.
 31. Get the members whome invited to an event.
+32. Disable error logs to appear on production.
+33. Remove FlatUI Kit since there is no need.
 
 DONE:
 

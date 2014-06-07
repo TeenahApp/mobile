@@ -26,26 +26,12 @@
     
     // Will come button.
     
-    self.willComeButton.buttonColor = [UIColor turquoiseColor];
-    self.willComeButton.shadowColor = [UIColor greenSeaColor];
-    
-    //self.willComeButton.shadowHeight = 3.0f;
-    //self.willComeButton.cornerRadius = 6.0f;
-    
-    //self.willComeButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    
-    [self.willComeButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    self.willComeButton.backgroundColor = [UIColor greenColor];
+    [self.willComeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     // Apologize button.
-    self.apologizeButton.buttonColor = [UIColor alizarinColor];
-    self.apologizeButton.shadowColor = [UIColor pomegranateColor];
-    
-    //self.apologizeButton.shadowHeight = 3.0f;
-    //self.apologizeButton.cornerRadius = 6.0f;
-    
-    //self.apologizeButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    
-    [self.apologizeButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    self.apologizeButton.backgroundColor = [UIColor redColor];
+    [self.apologizeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self.willComeButton addTarget:self.delegate action:@selector(didSayWillCome) forControlEvents:UIControlEventTouchUpInside];
     [self.apologizeButton addTarget:self.delegate action:@selector(didSayApologize) forControlEvents:UIControlEventTouchUpInside];

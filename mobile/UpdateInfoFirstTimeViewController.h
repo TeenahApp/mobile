@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UICKeyChainStore.h>
 
-@interface UpdateInfoFirstTimeViewController : UIViewController
+#import "FXForms.h"
+#import "UpdateMemberFirstTimeForm.h"
+
+@interface UpdateInfoFirstTimeViewController : FXFormViewController
+
+@property (strong, nonatomic) UpdateMemberFirstTimeForm * form;
 
 @end

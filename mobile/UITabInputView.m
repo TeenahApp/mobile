@@ -56,14 +56,14 @@
         [self addSubview:self.textField];
         
         // Button.
-        self.doneButton = [[FUIButton alloc] initWithFrame:
+        self.doneButton = [[UIButton alloc] initWithFrame:
                            CGRectMake(inputWidth+(kPadding*2), kPadding/2, doneWidth+(kPadding*3.8), kTabInputHeight-(kPadding))];
         
-        self.doneButton.buttonColor = [UIColor turquoiseColor];
+        self.doneButton.backgroundColor = [UIColor blueColor];
         
         [self.doneButton setTitle:@"Send" forState:UIControlStateNormal];
        
-        [self.doneButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+        [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         self.delegate = delegate;
         

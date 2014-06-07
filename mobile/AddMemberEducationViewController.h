@@ -17,6 +17,9 @@
 @interface AddMemberEducationViewController : FXFormViewController
 
 @property (nonatomic, strong) AddMemberEducationForm * form;
+
 @property NSInteger memberId;
+
+@property (nonatomic, strong) UIAlertView * alert;
 
 @end

@@ -36,6 +36,8 @@
 
 @property (nonatomic, strong) MKPointAnnotation * annotation;
 
-@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *likeButton;
+
+@property (strong, nonatomic) TSweetResponse * likeResponse;
 
 @end

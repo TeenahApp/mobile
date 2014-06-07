@@ -27,18 +27,19 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
     
     NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
 
     // Set the version number.
     [self.appVersionLabel setText:build];
+    
+    UIColor * teenahAppBlueColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
+    
+    self.navigationController.navigationBar.barTintColor = teenahAppBlueColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,18 +50,6 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 2;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 0)
@@ -70,9 +59,14 @@
     
     else if (indexPath.section == 0 && indexPath.row == 1)
     {
+        [self goToUploadPhoto];
+    }
+    
+    else if (indexPath.section == 1 && indexPath.row == 0)
+    {
         [self goToLogoutMember];
     }
-    else if (indexPath.section == 1 && indexPath.row == 1)
+    else if (indexPath.section == 2 && indexPath.row == 1)
     {
         [self goToTeenahAppWebsite];
     }
@@ -83,66 +77,26 @@
     
 }
 
+-(void)goToUploadPhoto
+{
+    [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
+}
+
 -(void)goToTeenahAppWebsite
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.teenah-app.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.teenah-app.com/about.html"]];
 }
 
 -(void)goToLogoutMember
 {
+    TSweetResponse * logoutResponse = [[UsersCommunicator shared] logout];
     
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
+    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
     
-    // Configure the cell...
-    
-    return cell;
+    [self performSegueWithIdentifier:@"showLoginView" sender:self];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -150,7 +104,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqual:@"showUploadPhotoView"])
+    {
+        FirstUploadPhotoTableViewController * fuptvc = (FirstUploadPhotoTableViewController *)[segue destinationViewController];
+        fuptvc.hidesBottomBarWhenPushed = YES;
+    }
 }
-*/
 
 @end

@@ -80,7 +80,6 @@ NSString * data;
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     //self.presentedViewController; self.imagePicker animated:
-    
     [self presentViewController:self.imagePicker animated:NO completion:nil];
 }
 

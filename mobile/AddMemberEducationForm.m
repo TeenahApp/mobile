@@ -11,9 +11,7 @@
 @implementation AddMemberEducationForm
 
 -(id)initWithDegrees:(NSMutableDictionary *)degrees statuses:(NSMutableDictionary *)statuses
-{
-    NSLog(@"AddMemberEducation created.");
-    
+{   
     self = [super init];
     
     if(self)
@@ -52,31 +50,31 @@
 {
     NSMutableArray * temp = [[NSMutableArray alloc] init];
     
-    [temp addObject:@{FXFormFieldKey: @"degree", FXFormFieldOptions: self.degreeKeys, FXFormFieldValueTransformer: ^(id input)
+    [temp addObject:@{FXFormFieldKey: @"degree", FXFormFieldTitle: @"الدرجة العلمية", FXFormFieldOptions: self.degreeKeys, FXFormFieldValueTransformer: ^(id input)
                       {
         NSInteger index = (NSInteger)[self.degreeKeys indexOfObject:input];
         return [self.degreeValues objectAtIndex:index];
         
-    }, FXFormFieldHeader: @"Degree/Major", FXFormFieldAction: @"updateFields"}];
+    }, FXFormFieldHeader: @"الدرجة العلمية و التخصّص", FXFormFieldAction: @"updateFields"}];
     
     
     if (![self.degree isEqual:@"none"] && ![self.degree isEqual:@"elementary"] && ![self.degree isEqual:@"intermediate"])
     {
-        [temp addObject:@{FXFormFieldKey: @"major"}];
+        [temp addObject:@{FXFormFieldKey: @"major", FXFormFieldTitle: @"التخصّص"}];
     }
     
-    [temp addObject:@{FXFormFieldKey: @"startYear", FXFormFieldOptions: self.years, FXFormFieldHeader: @"Years", FXFormFieldPlaceholder: @"-"}];
+    [temp addObject:@{FXFormFieldKey: @"startYear", FXFormFieldOptions: self.years, FXFormFieldHeader: @"سنوات الدراسة", FXFormFieldPlaceholder: @"-", FXFormFieldTitle: @"سنة البدء"}];
     
     [temp addObject:@{FXFormFieldKey: @"status", FXFormFieldOptions: self.statusKeys, FXFormFieldValueTransformer: ^(id input)
     {
         NSInteger index = (NSInteger)[self.statusKeys indexOfObject:input];
                          return [self.statusValues objectAtIndex:index];
                          
-    }, FXFormFieldAction: @"updateFields"}];
+    }, FXFormFieldAction: @"updateFields", FXFormFieldTitle: @"حالة الدراسة"}];
     
     if (![self.status isEqual:@"ongoing"])
     {
-        [temp addObject:@{FXFormFieldKey: @"finishYear", FXFormFieldOptions: self.years, FXFormFieldPlaceholder: @"-"}];
+        [temp addObject:@{FXFormFieldKey: @"finishYear", FXFormFieldOptions: self.years, FXFormFieldPlaceholder: @"-", FXFormFieldTitle: @"سنة الانتهاء"}];
     }
     
     return temp;
@@ -84,7 +82,7 @@
 
 -(NSArray *)extraFields
 {
-    return @[ @{FXFormFieldTitle: @"Submit", FXFormFieldHeader: @"", FXFormFieldAction: @"submitAddingEducationForm"} ];
+    return @[ @{FXFormFieldTitle: @"إضافة التعليم", FXFormFieldHeader: @"", FXFormFieldAction: @"submitAddingEducationForm", @"textLabel.color": [UIColor colorWithRed:8./255.0 green:188/255.0 blue:0 alpha:1]} ];
 }
 
 

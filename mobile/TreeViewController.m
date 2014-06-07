@@ -44,7 +44,7 @@
     // TODO: Get the real member (the logged in member).
     //NSLog(@"helloworld");
 
-    [self.treeView getMember:1];
+    [self.treeView getMember:self.memberId];
 }
 
 -(void)didAddFather
