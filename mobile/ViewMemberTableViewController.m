@@ -43,10 +43,8 @@
                      @"master": @"ماجستير", @"doctorate": @"دكتوراه",
     };
     
-    //  father, stepfather, father-in-law, mother, stepmother, mother-in-law, sister, brother, son, stepson, daughter, stepdaughter, son-in-law, daughter-in-law, wife, husband.
-    
     self.relations = @{
-                    @"": @"",
+                       @"father": @"أب", @"stepfather": @"زوج الأم", @"father-in-law": @"أب الزوج", @"mother": @"أم", @"stepmother": @"زوج الأم", @"mother-in-law": @"أم الزوج", @"sister": @"أخت", @"brother": @"أخ", @"son": @"ابن", @"stepson": @"ابن الزوج", @"daughter": @"ابنة", @"stepdaughter": @"ابنة الزوج", @"son-in-law": @"زوج البنت", @"daughter-in-law": @"زوجة الابن", @"wife": @"زوجة", @"husband": @"زوج"
     };
     
     NSString * isAliveString = @"حيّ يرزق";
@@ -56,9 +54,10 @@
         isAliveString = @"متوفّى";
     }
 
-    self.sections = @[@"Main Info", @"المعلومات الأوليّة", @"الإتصال", @"العلاقات", @"التعليم", @"العمل", @"التعليقات", @"الصور"];
+    self.sections = @[@"Main Info", @"المعلومات الأوليّة", @"الإتصال", @"العلاقات", @"التعليم", @"العمل", @"التعليقات", @"الصور", @""];
     
     NSMutableArray * mainInfos = [[NSMutableArray alloc]init];
+    NSMutableArray * personal = [[NSMutableArray alloc]init];
     NSMutableArray * contacts = [[NSMutableArray alloc]init];
     NSMutableArray * relations = [[NSMutableArray alloc]init];
     NSMutableArray * educations = [[NSMutableArray alloc]init];
@@ -70,10 +69,7 @@
                   mainInfos,
                   
                   // Section 1: Personal:
-                  @[
-                      @{@"الاسم الكامل": [NSString stringWithFormat:@"%@", self.member.fullname]},
-                      @{@"النبض": [NSString stringWithFormat:@"%@", isAliveString]},
-                    ],
+                  personal,
 
                   // Section 2: Contact:
                   contacts,
@@ -89,12 +85,17 @@
                   
                   // Section 6: Comments.
                   @[
-                      @{@"Add": (self.member.commentsCount == 0) ? @"إضافة تعليق." : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة.", (long)self.member.commentsCount]},
+                      @{@"Add": (self.member.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.member.commentsCount]},
                     ],
                   
                   // Section 7: Medias.
                   @[
-                      @{@"Add": (self.member.mediasCount == 0) ? @"إضافة صورة." : [NSString stringWithFormat:@"عرض الصورة الـ %ld أو إضافة.", (long)self.member.mediasCount]},
+                      @{@"Add": (self.member.mediasCount == 0) ? @"إضافة صورة" : [NSString stringWithFormat:@"عرض الصورة الـ %ld أو إضافة", (long)self.member.mediasCount]},
+                    ],
+                  
+                  // Section 8: Update.
+                  @[
+                      @{@"Update": @""}
                     ],
 
     ] mutableCopy];
@@ -124,6 +125,20 @@
         [mainInfos addObject:@{@"تاريخ الوفاة": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dod]]}];
     }
     
+    // Personal.
+    [personal addObject:@{@"الاسم الكامل": [NSString stringWithFormat:@"%@", self.member.fullname]}];
+    [personal addObject:@{@"النبض": [NSString stringWithFormat:@"%@", isAliveString]}];
+    
+    if (self.member.pob != nil)
+    {
+        [personal addObject:@{@"مكان الميلاد": [NSString stringWithFormat:@"%@", self.member.pob]}];
+    }
+    
+    if (self.member.pod != nil)
+    {
+        [personal addObject:@{@"مكان الوفاة": [NSString stringWithFormat:@"%@", self.member.pod]}];
+    }
+    
     // Contacts.
     if (self.member.location != nil)
     {
@@ -134,6 +149,8 @@
     {
         [contacts addObject:@{@"الجوّال": [NSString stringWithFormat:@"%@", self.member.mobile]}];
     }
+    
+    NSLog(@"email = %@", self.member.email);
     
     if (self.member.email != nil)
     {
@@ -154,7 +171,7 @@
     for (NSDictionary * relatedMember in self.member.relations)
     {
         NSString * memberName = relatedMember[@"first_member"][@"name"];
-        NSString * memberRelation = relatedMember[@"relationship"];
+        NSString * memberRelation = self.relations[relatedMember[@"relationship"]];
 
         [relations addObject:@{memberRelation: memberName}];
     }
@@ -185,7 +202,7 @@
     
     if (self.canAddEducation == YES)
     {
-        [educations addObject:@{@"Add": [NSString stringWithFormat:@"%ld", (long)self.member.memberId]}];
+        [educations addObject:@{@"Add": @"إضافة"}];
     }
     
     // Jobs.
@@ -208,7 +225,7 @@
 
     if (self.canAddJob == YES)
     {
-        [jobs addObject:@{@"Add": [NSString stringWithFormat:@"%ld", (long)self.member.memberId]}];
+        [jobs addObject:@{@"Add": @"إضافة"}];
     }
     
     self.image.layer.cornerRadius = 48.0;
@@ -280,7 +297,17 @@
         {
             if (indexPath.row == rows.count - 1 && [key isEqual:@"Add"])
             {
+                NSString * value = [info objectForKey:key];
+                
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gotoCell" forIndexPath:indexPath];
+                cell.textLabel.text = value;
+                
+                return cell;
+            }
+            
+            if (indexPath.row == rows.count - 1 && [key isEqual:@"Update"])
+            {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"updateCell" forIndexPath:indexPath];
                 return cell;
             }
             else
@@ -362,9 +389,18 @@
     {
         [self performSegueWithIdentifier:@"AddJob" sender:nil];
     }
+    
+    else if (indexPath.section == 6)
+    {
+        [self performSegueWithIdentifier:@"showCommentsView" sender:nil];
+    }
+    
+    else if (indexPath.section == 8)
+    {
+        [self performSegueWithIdentifier:@"updateInfo" sender:nil];
+    }
 }
 
-#pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -389,6 +425,24 @@
         [vc initWithNibName:nil bundle:nil];
         
         vc.hidesBottomBarWhenPushed = YES;
+    }
+    
+    else if([[segue identifier] isEqualToString:@"updateInfo"])
+    {
+        UpdateMemberInfoViewController *vc = (UpdateMemberInfoViewController *) [segue destinationViewController];
+        vc.member = self.member;
+        
+        [vc initWithNibName:nil bundle:nil];
+    }
+    
+    else if ([[segue identifier] isEqualToString:@"showCommentsView"])
+    {
+        CommentsTableViewController *vc = (CommentsTableViewController *) [segue destinationViewController];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        vc.area = @"member";
+        vc.affectedId = self.member.memberId;
     }
 
 }

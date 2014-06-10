@@ -39,6 +39,15 @@
     self.tabBarController.tabBar.tintColor = teenahAppBlueColor;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (self.memberId == 0)
+    {
+        UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
+        [self updateMember:[store[@"memberid"] integerValue]];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -164,7 +173,7 @@
             {
                 self.member = [[TMember alloc] initWithJson:memberResponse.json];
             }
-            
+
             [self.tableView reloadData];
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];

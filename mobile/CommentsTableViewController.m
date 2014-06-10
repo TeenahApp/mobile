@@ -12,9 +12,6 @@
 
 @end
 
-#define kCommentInputHeight 40
-#define kPadding 4
-
 @implementation CommentsTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,21 +33,32 @@
     
     [self.view addGestureRecognizer:tap];
     
-    TSweetResponse * tsr;
+    [self loadComments];
     
-    //=
+    self.dateFormatter = [[NSDateFormatter alloc]init];
+    [self.dateFormatter setDateFormat:@"ddMMyyHHmmss"];
+}
+
+-(void)loadComments
+{
+    TSweetResponse * tsr;
+
     if ([self.area isEqual:@"event"])
     {
         tsr = [[EventsCommunicator shared] getEventComments:self.affectedId];
     }
-
+    
     else if ([self.area isEqual:@"media"])
     {
         tsr = [[MediasCommunicator shared] getMediaComments:self.affectedId];
     }
     
+    else if ([self.area isEqual:@"member"])
+    {
+        tsr = [[MembersCommunicator shared] getMemberComments:self.affectedId];
+    }
+    
     // Define the comments array.
-    self.sections = [[NSMutableArray alloc] init];
     self.comments = [[NSMutableArray alloc] init];
     
     if (tsr.code == 200)
@@ -59,14 +67,9 @@
         {
             TComment * comment = [[TComment alloc] initWithJson:tempComment];
             
-            NSLog(@"%@", comment);
-            
-            [self.sections addObject:comment.createdAt];
             [self.comments addObject:comment];
         }
     }
-    
-    //NSLog(@"comments: %@", self.comments);
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -103,100 +106,132 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     TComment * comment = [self.comments objectAtIndex:indexPath.row];
 
-    [cell initWithComment:comment];
-    [cell.likeButton addTarget:self action:@selector(likeComment:) forControlEvents:UIControlEventTouchUpInside];
+    UILabel * contentLabel = (UILabel *)[cell viewWithTag:44];
+    contentLabel.text = comment.content;
+    
+    UIButton * creatorButton = (UIButton *)[cell viewWithTag:22];
+    [creatorButton setTitle:comment.creator.displayName forState:UIControlStateNormal];
+    
+    UILabel * createdAtLabel = (UILabel *)[cell viewWithTag:33];
+    [createdAtLabel setText:[self.dateFormatter stringFromDate:comment.createdAt]];
+    
+    UILabel * likesLabel = (UILabel *)[cell viewWithTag:55];
+    likesLabel.text = [NSString stringWithFormat:@"%ld",(long)comment.likesCount];
+    
+    UIButton * likeButton = (UIButton *)[cell viewWithTag:66];
+    
+    if (comment.hasLiked == YES)
+    {
+        [likeButton setEnabled:NO];
+    }
+    else
+    {
+        self.currentComment = comment;
+        [likeButton addTarget:self action:@selector(likeComment:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
+}
+
+-(void)didTouchDoneButton
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * tsr;
+        
+        // TODO: Done with validation.
+        
+        if ([self.area isEqual:@"event"])
+        {
+            tsr = [[EventsCommunicator shared] commentOnEvent:self.affectedId comment:self.tabInput.textField.text];
+        }
+        else if ([self.area isEqual:@"media"])
+        {
+            tsr = [[MediasCommunicator shared] commentOnMedia:self.affectedId comment:self.tabInput.textField.text];
+        }
+        else if ([self.area isEqual:@"member"])
+        {
+            tsr = [[MembersCommunicator shared] commentOnMember:self.affectedId comment:self.tabInput.textField.text];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (tsr.code == 204)
+            {
+                NSLog(@"Done.");
+                
+                self.tabInput.textField.text = @"";
+                [self dismissKeyboard];
+                
+                [self loadComments];
+                [self.tableView reloadData];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+    
+}
+
+-(void)likeComment:(id)sender
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Get the member information.
+        TSweetResponse * tsr;
+        
+        if ([self.area isEqual:@"event"])
+        {
+            tsr = [[EventsCommunicator shared] likeCommentOnEvent:self.affectedId commentId:self.currentComment.commentId];
+        }
+        else if ([self.area isEqual:@"media"])
+        {
+            tsr = [[MediasCommunicator shared] likeCommentOnMedia:self.affectedId commentId:self.currentComment.commentId];
+        }
+        else if ([self.area isEqual:@"member"])
+        {
+            tsr = [[MembersCommunicator shared] likeCommentOnMember:self.affectedId commentId:self.currentComment.commentId];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the response code is not successful.
+            if (tsr.code == 204)
+            {
+                self.currentComment.likesCount++;
+            }
+            
+            [self.tableView reloadData];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TComment * comment = [self.comments objectAtIndex:indexPath.row];
-    return [UICommentTableViewCell cellHeightWithContent:comment.content width:self.view.bounds.size.width];
-}
-
--(void)didTouchDoneButton
-{
-    TSweetResponse * tsr;
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 280, 100)];
     
-    // TODO: Done with validation.
+    label.numberOfLines = 0;
     
-    if ([self.area isEqual:@"event"])
-    {
-        tsr = [[EventsCommunicator shared] commentOnEvent:self.affectedId comment:self.tabInput.textField.text];
-    }
-    else if ([self.area isEqual:@"media"])
-    {
-        tsr = [[MediasCommunicator shared] commentOnMedia:self.affectedId comment:self.tabInput.textField.text];
-    }
+    //label.backgroundColor = [UIColor redColor];
+    label.font = [UIFont systemFontOfSize:15];
+    label.text = comment.content;
+    label.backgroundColor = [UIColor redColor];
     
-    if (tsr.code == 204)
-    {
-        NSLog(@"Done.");
-        
-        self.tabInput.textField.text = @"";
-        [self dismissKeyboard];
-    }
-}
-
--(void)likeComment:(id)sender
-{
-    NSInteger commentId = ((UIButton *)sender).tag;
-
-    TSweetResponse * tsr;
+    [label sizeToFit];
     
-    if ([self.area isEqual:@"event"])
-    {
-        tsr = [[EventsCommunicator shared] likeCommentOnEvent:self.affectedId commentId:commentId];
-    }
-    else if ([self.area isEqual:@"media"])
-    {
-        tsr = [[MediasCommunicator shared] likeCommentOnMedia:self.affectedId commentId:commentId];
-    }
-    
-    NSLog(@"Liked this comment.");
+    // Return.
+    return label.frame.size.height + 40 + 20;
 }
- 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

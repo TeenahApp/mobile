@@ -16,7 +16,7 @@
 
 -(TSweetResponse *) getMember: (NSInteger) memberId;
 
--(TSweetResponse *) update: (NSInteger) memberId
+-(TSweetResponse *) updateMember: (NSInteger) memberId
              maritalStatus: (NSString *) maritalStatus
                        dob: (NSDate *) dob
                        pob: (NSString *) pob
@@ -80,12 +80,14 @@
 -(TSweetResponse *) deleteJob: (NSInteger) memberId
                         jobId: (NSInteger) jobId;
 
+-(TSweetResponse *) getMemberComments: (NSInteger) memberId;
+
 -(TSweetResponse *) likeMember: (NSInteger) memberId;
 
 -(TSweetResponse *) commentOnMember: (NSInteger) memberId
                     comment: (NSString *) comment;
 
--(TSweetResponse *) likeComment: (NSInteger) memberId
+-(TSweetResponse *) likeCommentOnMember: (NSInteger) memberId
                       commentId: (NSInteger) commentId;
 
 -(TSweetResponse *) getSocialMedias: (NSInteger) memberId;

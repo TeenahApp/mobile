@@ -19,12 +19,42 @@
         self.memberId = [[json objectForKey:@"id"] integerValue];
         
         self.name = [json objectForKey:@"name"];
-        self.mobile = [json objectForKey:@"mobile"];
         self.fullname = [json objectForKey:@"fullname"];
         
         self.photo = [json objectForKey:@"photo"];
         
-        self.gender = [json objectForKey:@"gender"]; // male, female
+        self.gender = [json objectForKey:@"gender"];
+        self.maritalStatus = [json objectForKey:@"marital_status"];
+        
+        self.mobile = [json objectForKey:@"mobile"];
+        self.email = [json objectForKey:@"email"];
+        self.homePhone = [json objectForKey:@"home_phone"];
+        self.workPhone = [json objectForKey:@"work_phone"];
+        
+        if ([self.mobile isKindOfClass:[NSNull class]] || [self.mobile isEqual:@""])
+        {
+            self.mobile = nil;
+        }
+        
+        if ([self.email isKindOfClass:[NSNull class]] || [self.email isEqual:@""])
+        {
+            self.email = nil;
+        }
+        
+        if ([self.homePhone isKindOfClass:[NSNull class]] || [self.homePhone isEqual:@""])
+        {
+            self.homePhone = nil;
+        }
+        
+        if ([self.workPhone isKindOfClass:[NSNull class]] || [self.workPhone isEqual:@""])
+        {
+            self.workPhone = nil;
+        }
+        
+        if ([self.maritalStatus isKindOfClass:[NSNull class]])
+        {
+            self.maritalStatus = nil;
+        }
         
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -85,7 +115,27 @@
         
         self.displayYears = displayYears;
         
+        self.age = [[json objectForKey:@"age"] integerValue];
+        
+        self.pob = [json objectForKey:@"pob"];
+        self.pod = [json objectForKey:@"pod"];
+        
+        if ([self.pob isKindOfClass:[NSNull class]] || [self.pob isEqual:@""])
+        {
+            self.pob = nil;
+        }
+        
+        if ([self.pod isKindOfClass:[NSNull class]] || [self.pod isEqual:@""])
+        {
+            self.pod = nil;
+        }
+
         self.location = [json objectForKey:@"location"];
+        
+        if ([self.location isKindOfClass:[NSNull class]])
+        {
+            self.location = nil;
+        }
         
         self.isAlive = [[json objectForKey:@"is_alive"] boolValue];
         self.isRoot = [[json objectForKey:@"is_root"] boolValue];

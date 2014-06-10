@@ -26,7 +26,7 @@
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *)update:(NSInteger)memberId maritalStatus:(NSString *)maritalStatus dob:(NSDate *)dob pob:(NSString *)pob dod:(NSDate *)dod pod:(NSString *)pod email:(NSString *)email
+-(TSweetResponse *)updateMember:(NSInteger)memberId maritalStatus:(NSString *)maritalStatus dob:(NSDate *)dob pob:(NSString *)pob dod:(NSDate *)dod pod:(NSString *)pod email:(NSString *)email
 {
     NSString * route = [NSString stringWithFormat:@"/members/%ld", (long)memberId];
     NSDictionary * parameters = @{
@@ -78,8 +78,6 @@
 
 -(TSweetResponse *)createEducation:(NSInteger)memberId degree:(NSString *)degree startYear:(NSInteger)startYear finishYear:(NSInteger)finishYear status:(NSString *)status major:(NSString *)major
 {
-    NSLog(@"s = %d, f = %d", startYear, finishYear);
-    
     NSString * route = [NSString stringWithFormat:@"/members/%ld/educations", (long)memberId];
     NSDictionary * parameters = @{
                                   @"degree": degree,
@@ -163,6 +161,12 @@
     return [[TSweetRest shared] delete:route parameters: nil];
 }
 
+-(TSweetResponse *) getMemberComments:(NSInteger)memberId
+{
+    NSString * route = [NSString stringWithFormat:@"/members/%ld/comments", (long)memberId];
+    return [[TSweetRest shared] get:route];
+}
+
 -(TSweetResponse *)likeMember:(NSInteger)memberId
 {
     NSString * route = [NSString stringWithFormat:@"/members/%ld/like", (long)memberId];
@@ -177,15 +181,15 @@
     return [[TSweetRest shared] post:route parameters: parameters];
 }
 
--(TSweetResponse *)likeComment:(NSInteger)memberId commentId:(NSInteger)commentId
+-(TSweetResponse *)likeCommentOnMember:(NSInteger)memberId commentId:(NSInteger)commentId
 {
-    NSString * route = [NSString stringWithFormat:@"members/%ld/comments/%ld/like", (long)memberId, (long)commentId];
+    NSString * route = [NSString stringWithFormat:@"/members/%ld/comments/%ld/like", (long)memberId, (long)commentId];
     return [[TSweetRest shared] get:route];
 }
 
 -(TSweetResponse *)getSocialMedias:(NSInteger)memberId
 {
-    NSString * route = [NSString stringWithFormat:@"members/%ld/socialmedias", (long)memberId];
+    NSString * route = [NSString stringWithFormat:@"/members/%ld/socialmedias", (long)memberId];
     return [[TSweetRest shared] get:route];
 }
 

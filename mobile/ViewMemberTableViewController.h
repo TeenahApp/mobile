@@ -16,6 +16,8 @@
 
 #import "AddMemberEducationViewController.h"
 #import "AddMemberJobViewController.h"
+#import "UpdateMemberInfoViewController.h"
+#import "CommentsTableViewController.h"
 
 @interface ViewMemberTableViewController : UITableViewController <UIActionSheetDelegate>
 

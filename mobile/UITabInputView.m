@@ -41,6 +41,14 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        
+        // Set the borders of the view.
+        view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        view.layer.borderWidth = .25f;
+        
+        [self addSubview:view];
+        
         CGFloat inputWidth = (self.bounds.size.width-(kPadding)) * kTextFieldWidthPercentage/100;
         CGFloat doneWidth = (self.bounds.size.width-(kPadding)) * kDoneButtonWidthPercentage/100;
         
@@ -48,7 +56,7 @@
         self.textField = [[UITextField alloc] initWithFrame:
                                    CGRectMake(kPadding, kPadding, inputWidth, kTabInputHeight-(kPadding*2))];
         
-        self.textField.placeholder = @"Have a say.";
+        self.textField.placeholder = @"قُل خيراً.";
         self.textField.font = [UIFont systemFontOfSize:16];
 
         self.textField.delegate = self;
@@ -59,9 +67,9 @@
         self.doneButton = [[UIButton alloc] initWithFrame:
                            CGRectMake(inputWidth+(kPadding*2), kPadding/2, doneWidth+(kPadding*3.8), kTabInputHeight-(kPadding))];
         
-        self.doneButton.backgroundColor = [UIColor blueColor];
+        self.doneButton.backgroundColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
         
-        [self.doneButton setTitle:@"Send" forState:UIControlStateNormal];
+        [self.doneButton setTitle:@"إرسال" forState:UIControlStateNormal];
        
         [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         

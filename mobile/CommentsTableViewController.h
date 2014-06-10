@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 
 #import "UITabInputView.h"
 
 #import "TSweetResponse.h"
+
 #import "TSweetEventsCommunicator.h"
 #import "TSweetMediasCommunicator.h"
+#import "TSweetMembersCommunicator.h"
 
 #import "TComment.h"
 
@@ -29,5 +32,9 @@
 @property (nonatomic, strong) NSMutableArray * sections; // AKA: datetimes.
 
 @property (nonatomic, strong) NSMutableArray *  comments;
+
+@property (nonatomic, strong) TComment * currentComment;
+
+@property (nonatomic, strong) NSDateFormatter * dateFormatter;
 
 @end

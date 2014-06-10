@@ -18,8 +18,8 @@
     //[UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
     //[UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
     
-    [UICKeyChainStore setString:@"TEMP.USER.TOKEN" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
-    [UICKeyChainStore setString:@"1" forKey:@"memberid" service:@"com.teenah-app.mobile"];
+    //[UICKeyChainStore setString:@"TEMP.USER.TOKEN" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+    //[UICKeyChainStore setString:@"1" forKey:@"memberid" service:@"com.teenah-app.mobile"];
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
