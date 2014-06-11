@@ -31,6 +31,11 @@
         self.homePhone = [json objectForKey:@"home_phone"];
         self.workPhone = [json objectForKey:@"work_phone"];
         
+        if ([self.photo isKindOfClass:[NSNull class]] || [self.photo isEqual:@""])
+        {
+            self.photo = nil;
+        }
+        
         if ([self.mobile isKindOfClass:[NSNull class]] || [self.mobile isEqual:@""])
         {
             self.mobile = nil;

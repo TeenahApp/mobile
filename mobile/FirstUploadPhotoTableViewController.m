@@ -26,23 +26,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+
     self.photoButton.layer.masksToBounds = YES;
     self.photoButton.layer.cornerRadius = 48.0f;
     self.photoButton.layer.borderWidth = 3.0f;
     self.photoButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Get the member information.
+        TSweetResponse * memberResponse = [[MembersCommunicator shared] getMember:self.memberId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the response code is not successful.
+            if (memberResponse.code == 200)
+            {
+                self.member = [[TMember alloc] initWithJson:memberResponse.json];
+                
+                // Then load the image.
+                if (self.member.photo != nil)
+                {
+                    // TODO: Show wait indicator.
+                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        
+                        NSURL * photoUrl = [NSURL URLWithString:self.member.photo];
+                        
+                        // Get the member photo.
+                        NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+                        UIImage * photo = [[UIImage alloc]initWithData:data];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.photoButton setBackgroundImage:photo forState:UIControlStateNormal];
+                        });
+                    });
+                }
+            }
+
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+    
+    NSLog(@"before = %@", self.member.photo);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)skip:(id)sender
@@ -66,11 +98,66 @@
     
     self.chosenImage = info[UIImagePickerControllerOriginalImage];
     
-    //UIImage * compressedImage = [self compressImage:self.chosenImage scale:0.1];
+    self.compressedImage = [self compressImage:self.chosenImage scale:0.5];
     
-    [self.photoButton setBackgroundImage:self.chosenImage forState:UIControlStateNormal];
+    [self.photoButton setBackgroundImage:self.compressedImage forState:UIControlStateNormal];
     
     [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.isFirst == YES)
+    {
+        return 2;
+    }
+    
+    return 1;
+}
+
+- (IBAction)uploadPhoto:(id)sender
+{   
+    if (self.chosenImage == nil)
+    {
+        // Show an alert message and return.
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء اختيار صورة ليتم رفعها." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+        
+        return;
+    }
+    
+    NSData * data = [NSData dataWithData:UIImagePNGRepresentation(self.compressedImage)];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * uploadResponse = [[MembersCommunicator shared] uploadPhoto:self.memberId data:data extension:@"png"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Done.
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+
+        });
+    });
+}
+
+-(UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale
+{
+    // Calculate new size given scale factor.
+    CGSize originalSize = original.size;
+    CGSize newSize = CGSizeMake(originalSize.width * scale, originalSize.height * scale);
+    
+    // Scale the original image to match the new size.
+    UIGraphicsBeginImageContext(newSize);
+    [original drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    
+    UIImage* compressedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return compressedImage;
 }
 
 /*

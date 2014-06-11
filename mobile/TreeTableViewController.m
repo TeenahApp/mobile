@@ -103,6 +103,23 @@
         
         [cell.dispalyNameButton setTitle:self.member.displayName forState:UIControlStateNormal];
         [cell.dobdodLabel setText:self.member.displayYears];
+
+        if (self.member.photo != nil)
+        {
+            // TODO: Show wait indicator.
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                
+                NSURL * photoUrl = [NSURL URLWithString:self.member.photo];
+                
+                // Get the member photo.
+                NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+                UIImage * photo = [[UIImage alloc]initWithData:data];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.photo setImage:photo];
+                });
+            });
+        }
         
         return cell;
     }

@@ -40,6 +40,9 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
+    self.memberId = [store[@"memberid"] integerValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,6 +110,10 @@
     if ([[segue identifier] isEqual:@"showUploadPhotoView"])
     {
         FirstUploadPhotoTableViewController * fuptvc = (FirstUploadPhotoTableViewController *)[segue destinationViewController];
+        
+        fuptvc.memberId = self.memberId;
+        fuptvc.isFirst = NO;
+        
         fuptvc.hidesBottomBarWhenPushed = YES;
     }
 }

@@ -18,5 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *appVersionLabel;
 
+@property NSInteger memberId;
 
 @end

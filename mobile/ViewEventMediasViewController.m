@@ -120,11 +120,6 @@
     return compressedImage;
 }
 
-- (NSString *)encodeToBase64String:(UIImage *)image
-{
-    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:0];
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

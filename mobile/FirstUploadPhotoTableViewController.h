@@ -7,12 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
+
+#import "TSweetResponse.h"
+#import "TSweetMembersCommunicator.h"
+
+#import "TMember.h"
 
 @interface FirstUploadPhotoTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) UIImage * chosenImage;
+@property (strong, nonatomic) UIImage * compressedImage;
 @property (strong, nonatomic) UIImagePickerController * imagePicker;
 
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
+
+@property (nonatomic, strong) TMember * member;
+@property NSInteger memberId;
+@property BOOL isFirst;
+
+@property (nonatomic, strong) UIAlertView * alert;
 
 @end

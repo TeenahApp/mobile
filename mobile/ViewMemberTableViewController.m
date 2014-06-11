@@ -54,7 +54,7 @@
         isAliveString = @"متوفّى";
     }
 
-    self.sections = @[@"Main Info", @"المعلومات الأوليّة", @"الإتصال", @"العلاقات", @"التعليم", @"العمل", @"التعليقات", @"الصور", @""];
+    self.sections = @[@"Main Info", @"المعلومات الأوليّة", @"الإتصال", @"العلاقات", @"التعليم", @"العمل", @"التعليقات", @""];
     
     NSMutableArray * mainInfos = [[NSMutableArray alloc]init];
     NSMutableArray * personal = [[NSMutableArray alloc]init];
@@ -87,11 +87,7 @@
                   @[
                       @{@"Add": (self.member.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.member.commentsCount]},
                     ],
-                  
-                  // Section 7: Medias.
-                  @[
-                      @{@"Add": (self.member.mediasCount == 0) ? @"إضافة صورة" : [NSString stringWithFormat:@"عرض الصورة الـ %ld أو إضافة", (long)self.member.mediasCount]},
-                    ],
+
                   
                   // Section 8: Update.
                   @[
@@ -231,6 +227,23 @@
     self.image.layer.cornerRadius = 48.0;
     self.image.layer.masksToBounds = YES;
     
+    if (self.member.photo != nil)
+    {
+        // TODO: Show wait indicator.
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            NSURL * photoUrl = [NSURL URLWithString:self.member.photo];
+            
+            // Get the member photo.
+            NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+            UIImage * photo = [[UIImage alloc]initWithData:data];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.image setImage:photo];
+            });
+        });
+    }
+    
     // Fill the display name of the member.
     [self.displayNameButton setTitle:self.member.displayName forState:UIControlStateNormal];
 
@@ -358,6 +371,7 @@
 - (IBAction)like:(id)sender
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         self.likeResponse = [[MembersCommunicator shared] likeMember:self.member.memberId];
@@ -395,7 +409,7 @@
         [self performSegueWithIdentifier:@"showCommentsView" sender:nil];
     }
     
-    else if (indexPath.section == 8)
+    else if (indexPath.section == 7)
     {
         [self performSegueWithIdentifier:@"updateInfo" sender:nil];
     }

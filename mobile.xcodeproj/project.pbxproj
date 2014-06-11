@@ -58,7 +58,6 @@
 		FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD81B89B1907F50D0037B479 /* Security.framework */; };
 		FD81B89E1907F83B0037B479 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = FD81B89D1907F83B0037B479 /* readme.md */; };
 		FD85CB12191CE808003707AC /* TCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FD85CB11191CE808003707AC /* TCircle.m */; };
-		FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */; };
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FDA0E19719364FE300F31A0A /* TComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19619364FE300F31A0A /* TComment.m */; };
@@ -196,8 +195,6 @@
 		FD81B89D1907F83B0037B479 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 		FD85CB10191CE808003707AC /* TCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircle.h; sourceTree = "<group>"; };
 		FD85CB11191CE808003707AC /* TCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircle.m; sourceTree = "<group>"; };
-		FD8C2F4718F8224300299A4E /* FirstUploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstUploadPhotoViewController.h; sourceTree = "<group>"; };
-		FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstUploadPhotoViewController.m; sourceTree = "<group>"; };
 		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
 		FD9C71011905812A0091849B /* AddRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationViewController.m; sourceTree = "<group>"; };
 		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -450,8 +447,6 @@
 				FD576CAE18F70BF600851F90 /* TreeViewController.m */,
 				FD576CB018F733B300851F90 /* UpdateInfoFirstTimeViewController.h */,
 				FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */,
-				FD8C2F4718F8224300299A4E /* FirstUploadPhotoViewController.h */,
-				FD8C2F4818F8224300299A4E /* FirstUploadPhotoViewController.m */,
 				FD7AB76F190B04E400E302B8 /* CirclesTableViewController.h */,
 				FD7AB770190B04E400E302B8 /* CirclesTableViewController.m */,
 				FDA9B0F51921320B0015BF8C /* CircleMembersTableViewController.h */,
@@ -626,6 +621,9 @@
 					FD54660518F5A66000BFD409 = {
 						DevelopmentTeam = V4LP6LTBPH;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
 							com.apple.Keychain = {
 								enabled = 0;
 							};
@@ -736,7 +734,6 @@
 				FD5A6A85193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m in Sources */,
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
 				FDD15117192FDF8E00BC41E5 /* TMemberCircle.m in Sources */,
-				FD8C2F4918F8224300299A4E /* FirstUploadPhotoViewController.m in Sources */,
 				FD5A6A82193A36FE00CE9E10 /* SettingsTableViewController.m in Sources */,
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
 				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,

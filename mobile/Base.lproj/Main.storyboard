@@ -1009,6 +1009,9 @@
                                                         <color key="titleColor" red="0.31266267660000002" green="0.73706552930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="uploadPhoto:" destination="muu-n9-Q6K" eventType="touchUpInside" id="zMj-AW-6hY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1763,9 +1766,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ghp-LU-FB7"/>
+        <segue reference="5ry-4C-25B"/>
         <segue reference="IG7-Dy-u21"/>
-        <segue reference="oFT-fs-cQL"/>
         <segue reference="2TB-Se-08s"/>
+        <segue reference="76z-Gc-o5h"/>
     </inferredMetricsTieBreakers>
 </document>
