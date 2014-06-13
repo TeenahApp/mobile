@@ -29,6 +29,8 @@
     
     [super viewDidLoad];
     
+    NSLog(@"member = %@", self.member);
+    
     if (self.member.hasLiked == YES)
     {
         [self.likeButton setEnabled:NO];

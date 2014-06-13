@@ -133,6 +133,25 @@
         [likeButton addTarget:self action:@selector(likeComment:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+    UIImageView * imageView = (UIImageView *)[cell viewWithTag:11];
+    
+    if (comment.creator.photo != nil)
+    {
+        // TODO: Show wait indicator.
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            NSURL * photoUrl = [NSURL URLWithString:comment.creator.photo];
+            
+            // Get the member photo.
+            NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+            UIImage * photo = [[UIImage alloc]initWithData:data];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [imageView setImage:photo];
+            });
+        });
+    }
+    
     return cell;
 }
 
@@ -169,7 +188,9 @@
                 [self dismissKeyboard];
                 
                 [self loadComments];
+
                 [self.tableView reloadData];
+                [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];

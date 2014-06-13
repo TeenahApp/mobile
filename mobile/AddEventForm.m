@@ -39,22 +39,22 @@
              //we want to add a group header for the field set of fields
              //we do that by adding the header key to the first field in the group
              
-             @{FXFormFieldKey: @"title", FXFormFieldHeader: @"Snippet"},
+             @{FXFormFieldKey: @"title", FXFormFieldTitle: @"عنوان المناسبة", FXFormFieldHeader: @"نبذة"},
              
-             @{FXFormFieldKey: @"location", FXFormFieldTitle: @"City", FXFormFieldHeader: @"Location"},
+             @{FXFormFieldKey: @"location", FXFormFieldTitle: @"المدينة", FXFormFieldHeader: @"الموقع"},
              
-             @{FXFormFieldKey: @"coordinates", FXFormFieldViewController: @"LocationMapViewController"},
+             @{FXFormFieldKey: @"coordinates", FXFormFieldTitle: @"الإحداثيات", FXFormFieldViewController: @"LocationMapViewController"},
              
-             @{FXFormFieldKey: @"startDate", FXFormFieldHeader: @"Time", FXFormFieldType: FXFormFieldTypeDateTime},
-             @{FXFormFieldKey: @"finishDate", FXFormFieldType: FXFormFieldTypeDateTime},
+             @{FXFormFieldKey: @"startDate", FXFormFieldTitle: @"وقت البدء", FXFormFieldHeader: @"الوقت", FXFormFieldType: FXFormFieldTypeDateTime},
+             @{FXFormFieldKey: @"finishDate", FXFormFieldTitle: @"وقت الإنتهاء", FXFormFieldType: FXFormFieldTypeDateTime},
 
   
-            @{FXFormFieldKey: @"circles", FXFormFieldOptions: self.circleKeys, FXFormFieldValueTransformer: ^(id input)
+             @{FXFormFieldKey: @"circles", FXFormFieldTitle: @"الدوائر", FXFormFieldOptions: self.circleKeys, FXFormFieldValueTransformer: ^(id input)
                {
                    NSInteger index = (NSInteger)[self.circleKeys indexOfObject:input];
                    return [self.circleValues objectAtIndex:index];
 
-               }, FXFormFieldHeader: @"Invited"},
+               }, FXFormFieldHeader: @"المدعوون"},
     ];
 }
 
@@ -65,7 +65,7 @@
 
 -(NSArray *)extraFields
 {
-    return @[ @{FXFormFieldTitle: @"Submit", FXFormFieldHeader: @"", FXFormFieldAction: @"submitAddingEventForm"} ];
+    return @[ @{FXFormFieldTitle: @"إضافة المناسبة", FXFormFieldHeader: @"", FXFormFieldAction: @"submitAddingEventForm", @"textLabel.color": [UIColor colorWithRed:8./255.0 green:188/255.0 blue:0 alpha:1]} ];
 }
 
 @end

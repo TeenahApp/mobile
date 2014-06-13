@@ -27,8 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    NSLog(@"mediasCount = %d", self.medias.count);
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,11 +42,25 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIMediaCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MediaCell" forIndexPath:indexPath];
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mediaCell" forIndexPath:indexPath];
     
     TEventMedia * eventMedia = (TEventMedia *)[self.medias objectAtIndex:indexPath.row];
-    
-    [cell loadImage:[NSURL URLWithString:eventMedia.media.url]];
+
+    // TODO: Show wait indicator.
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+        NSURL * photoUrl = [NSURL URLWithString:eventMedia.media.url];
+            
+        // Get the member photo.
+        NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+        UIImage * photo = [[UIImage alloc]initWithData:data];
+            
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //[cell.photo setImage:photo];
+            UIImageView * imageView = (UIImageView *)[cell viewWithTag:11];
+            [imageView setImage:photo];
+        });
+    });
     
     return cell;
 }
@@ -71,25 +83,35 @@
     
     UIImage * compressedImage = [self compressImage:self.chosenImage scale:0.8];
     
-    //[self.imageView setImage:compressedImage];
-    
-    //NSString * base64image = [self encodeToBase64String:compressedImage];
-    
-    //NSLog(@"%@", base64image);
-    
-    //int size = [base64image length];
-    
-    // TODO: Check if the chosen file is an image.
-    // TODO: Check the size if appropriate.
-    //NSLog(@"%d", size);
-    
-    // Set the image data to be uploaded.
-    //self.data = base64image;
-    //NSLog(@"%@\n\n---------------------------", self.data);
-    
     // Upload the media.
     NSData * data = [NSData dataWithData:UIImagePNGRepresentation(compressedImage)];
-    TSweetResponse * tsr = [[EventsCommunicator shared] createMedia:self.eventId category:@"image" data:data extension:@"png"];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Get the member information.
+        TSweetResponse * createMediaResponse = [[EventsCommunicator shared] createMedia:self.eventId category:@"image" data:data extension:@"png"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the response code is not successful.
+            if (createMediaResponse.code == 200)
+            {
+                //self.member = [[TMember alloc] initWithJson:memberResponse.json];
+                TMedia * newMedia = [[TMedia alloc] initWithJson:createMediaResponse.json];
+                TEventMedia * newEventMedia = [[TEventMedia alloc] init];
+                
+                newEventMedia.media = newMedia;
+                
+                [self.medias addObject:newEventMedia];
+            }
+            
+            [self.collectionView reloadData];
+
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }

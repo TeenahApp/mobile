@@ -146,6 +146,24 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@", creator.name];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", creator.fullname];
         
+        // TODO: Stopped in here.
+        if (creator.photo != nil)
+        {
+            // TODO: Show wait indicator.
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                
+                NSURL * photoUrl = [NSURL URLWithString:creator.photo];
+                
+                // Get the member photo.
+                NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+                UIImage * photo = [[UIImage alloc]initWithData:data];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.imageView setImage:photo];
+                });
+            });
+        }
+        
         return cell;
     }
     

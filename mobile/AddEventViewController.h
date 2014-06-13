@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 
 #import "TSweetResponse.h"
 #import "TSweetCirclesCommunicator.h"
@@ -15,8 +16,16 @@
 #import "FXForms.h"
 #import "AddEventForm.h"
 
+#import "TEvent.h"
+
+#import "ViewEventTableViewController.h"
+
 @interface AddEventViewController : FXFormViewController
 
 @property (nonatomic, strong) AddEventForm * form;
+
+@property (nonatomic, strong) UIAlertView * alert;
+
+@property (nonatomic, strong) TEvent * event;
 
 @end

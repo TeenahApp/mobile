@@ -14,8 +14,6 @@
 #import "TEventMedia.h"
 #import "TMedia.h"
 
-#import "UIMediaCollectionViewCell.h"
-
 #import "ViewMediaTableViewController.h"
 
 @interface ViewEventMediasViewController : UICollectionViewController  <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
@@ -28,8 +26,6 @@
 
 @property (strong, nonatomic) UIImage * chosenImage;
 @property (strong, nonatomic) UIImagePickerController * imagePicker;
-
-@property (weak, nonatomic) NSString * data;
 
 - (UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale;
 - (NSString *)encodeToBase64String:(UIImage *)image;

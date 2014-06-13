@@ -206,7 +206,7 @@
 // TODO: Fullfill the description with the correct variable names and values.
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"{id: %ld, dobYear: %ld}", (long)self.memberId, (long)self.dobYear];
+    return [NSString stringWithFormat:@"{id: %ld, dobYear: %ld, hasLiked: %d}", (long)self.memberId, (long)self.dobYear, self.hasLiked];
 }
 
 @end

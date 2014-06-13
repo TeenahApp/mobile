@@ -37,13 +37,14 @@
     }
     
     // Get the decision of the current member.
-    NSString * decision = @"notyet";
+    //NSString * decision = @"notyet";
+    self.decision = @"notyet";
     
     TSweetResponse * decisionTsr = [[EventsCommunicator alloc] getDecision:self.eventId];
     
     if (decisionTsr.code == 200)
     {
-        decision = [decisionTsr.json objectForKey:@"decision"];
+        self.decision = [decisionTsr.json objectForKey:@"decision"];
     }
     
     // Disable the like button if already liked.
@@ -91,7 +92,7 @@
                    
                    // Section 1: Decision.
                    @[
-                       @{@"Decision": decision},
+                       @{@"Decision": self.decision},
                     ],
                    
                    // Section 2: Creator.
@@ -101,12 +102,12 @@
                    
                    // Section 3: Comments.
                    @[
-                       @{@"Add": (self.event.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %ld comments or add.", (long)self.event.commentsCount]},
+                       @{@"Add": (self.event.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض الـ %ld تعليقات أو إضافة", (long)self.event.commentsCount]},
                     ],
                    
                    // Section 4: Medias.
                    @[
-                       @{@"Add": (self.event.medias.count == 0) ? @"Add a media." : [NSString stringWithFormat:@"View the %lu medias or add.", (long)self.event.medias.count]},
+                       @{@"Add": (self.event.medias.count == 0) ? @"إضافة صورة" : [NSString stringWithFormat:@"عرض الـ %lu صور أو إضافة", (long)self.event.medias.count]},
                     ],
     ] mutableCopy];
     
@@ -162,7 +163,7 @@
     {
         NSArray * columns = [info objectForKey:key];
         
-        UIMultiColumnsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"StatsCell" forIndexPath:indexPath];
+        UIMultiColumnsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"statsCell" forIndexPath:indexPath];
 
         [cell setColumns:columns];
         
@@ -172,10 +173,27 @@
     {
         TMember * creator = (TMember *)[info objectForKey:key];
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CreatorCell" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"creatorCell" forIndexPath:indexPath];
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@", creator.name];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", creator.fullname];
+        
+        if (creator.photo != nil)
+        {
+            // TODO: Show wait indicator.
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                
+                NSURL * photoUrl = [NSURL URLWithString:creator.photo];
+                
+                // Get the member photo.
+                NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+                UIImage * photo = [[UIImage alloc]initWithData:data];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.imageView setImage:photo];
+                });
+            });
+        }
         
         return cell;
     }
@@ -184,7 +202,7 @@
     
     if (indexPath.section == 0)
     {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
         
         cell.textLabel.text = key;
         cell.detailTextLabel.text = value;
@@ -196,22 +214,37 @@
     {
         if ([value isEqual:@"notyet"])
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DecisionCell" forIndexPath:indexPath];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"decisionCell" forIndexPath:indexPath];
+            
+            UIButton * willComeButton = (UIButton *)[cell viewWithTag:11];
+            [willComeButton addTarget:self action:@selector(didSayWillCome) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIButton * apologizeButton = (UIButton *)[cell viewWithTag:22];
+            [apologizeButton addTarget:self action:@selector(didSayApologize) forControlEvents:UIControlEventTouchUpInside];
+            
             return cell;
         }
         else
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
             
-            cell.textLabel.text = @"Yours";
-            cell.detailTextLabel.text = value;
+            cell.textLabel.text = @"قرارك";
+            
+            NSString * yours = @"تنوي الحضور";
+            
+            if ([value isEqual:@"apologize"])
+            {
+                yours = @"تعتذر عن الحضور";
+            }
+            
+            cell.detailTextLabel.text = yours;
             
             return cell;
         }
     }
 
     // It is a comment then.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addCell" forIndexPath:indexPath];
     cell.textLabel.text = value;
 
     return cell;
@@ -221,13 +254,13 @@
 {    
     if (indexPath.section == 0 && indexPath.row == 0)
     {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"StatsCell"];
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"statsCell"];
         return cell.bounds.size.height;
     }
     
     else
     {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell"];
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
         return cell.bounds.size.height;
     }
 }
@@ -292,22 +325,46 @@
 {
     if (indexPath.section == 3)
     {
-        [self performSegueWithIdentifier:@"ViewComments" sender:tableView];
+        [self performSegueWithIdentifier:@"showComments" sender:tableView];
     }
     else if (indexPath.section == 4)
     {
-        [self performSegueWithIdentifier:@"ViewMedias" sender:tableView];
+        [self performSegueWithIdentifier:@"showMedias" sender:tableView];
     }
 }
 
 -(void)didSayWillCome
 {
-    TSweetResponse * tsr = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"willcome"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * decideResponse = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"willcome"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.decision = @"willcome";
+            
+            //[self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 -(void)didSayApologize
 {
-    TSweetResponse * tsr = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"apologize"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * decideResponse = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"apologize"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.decision = @"apologize";
+            
+            //[self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 #pragma mark - Navigation
@@ -317,7 +374,7 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"ViewMember"])
+    if ([[segue identifier] isEqualToString:@"showMember"])
     {
         ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
         
@@ -325,7 +382,7 @@
         vc.member = self.event.creator;
     }
     
-    else if ([[segue identifier] isEqualToString:@"ViewComments"])
+    else if ([[segue identifier] isEqualToString:@"showComments"])
     {
         CommentsTableViewController *vc = (CommentsTableViewController *) [segue destinationViewController];
         
@@ -335,7 +392,7 @@
         vc.affectedId = self.eventId;
     }
     
-    else if ([[segue identifier] isEqualToString:@"ViewMedias"])
+    else if ([[segue identifier] isEqualToString:@"showMedias"])
     {
         ViewEventMediasViewController *vc = (ViewEventMediasViewController *) [segue destinationViewController];
         

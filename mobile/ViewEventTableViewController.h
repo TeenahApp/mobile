@@ -14,19 +14,19 @@
 
 #import "TEvent.h"
 
-#import "UIEventStatsTableViewCell.h"
-#import "UIEventDecisionTableViewCell.h"
 #import "UIMultiColumnsTableViewCell.h"
 
 #import "ViewMemberTableViewController.h"
 #import "CommentsTableViewController.h"
 #import "ViewEventMediasViewController.h"
 
-@interface ViewEventTableViewController : UITableViewController <UIEventDecisionTableViewCellDelegate>
+@interface ViewEventTableViewController : UITableViewController
 
 @property NSInteger eventId;
 
 @property (nonatomic, strong) TEvent * event;
+
+@property (nonatomic, strong) NSString * decision;
 
 @property (strong, nonatomic) NSArray * sections;
 

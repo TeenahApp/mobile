@@ -89,7 +89,7 @@
             
             cell.textLabel.text = self.member.father.displayName;
             cell.detailTextLabel.text = self.member.father.displayYears;
-            
+
             cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
             cell.imageView.layer.masksToBounds = YES;
             
@@ -134,6 +134,23 @@
         
         cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
         cell.imageView.layer.masksToBounds = YES;
+        
+        if (relatedMember.photo != nil)
+        {
+            // TODO: Show wait indicator.
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                
+                NSURL * photoUrl = [NSURL URLWithString:relatedMember.photo];
+
+                // Get the member photo.
+                NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+                UIImage * photo = [[UIImage alloc]initWithData:data];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.imageView setImage:photo];
+                });
+            });
+        }
         
         return cell;
     }

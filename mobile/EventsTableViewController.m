@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    TSweetResponse * tsr = [[EventsCommunicator shared] getEvents];
+    TSweetResponse * getEventsResponse = [[EventsCommunicator shared] getEvents];
     
     NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
     [shortDateFormatter setDateFormat:@"dd MMM yyyy"];
@@ -40,9 +40,9 @@
     
     int section = -1;
     
-    for (NSDictionary * eventJson in tsr.json)
+    for (NSDictionary * tempEvent in getEventsResponse.json)
     {
-        TEvent * event = [[TEvent alloc] initWithJson:eventJson];
+        TEvent * event = [[TEvent alloc] initWithJson:tempEvent];
 
         NSString * startDateString = [shortDateFormatter stringFromDate:event.startsAt];
         
@@ -50,7 +50,7 @@
         {
             [self.sections addObject:startDateString];
             [self.data addObject:[[NSMutableArray alloc] init]];
-            
+
             section++;
         }
         
@@ -108,49 +108,11 @@
     return [self.sections objectAtIndex:section];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Navigation
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"ViewEvent" sender:tableView];
+    [self performSegueWithIdentifier:@"showEvent" sender:tableView];
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -158,7 +120,7 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"AddEvent"])
+    if ([[segue identifier] isEqualToString:@"showAddEvent"])
     {
         AddEventViewController *vc = (AddEventViewController *) [segue destinationViewController];
 
@@ -166,7 +128,7 @@
         vc.hidesBottomBarWhenPushed = YES;
     }
     
-    else if ([[segue identifier] isEqualToString:@"ViewEvent"])
+    else if ([[segue identifier] isEqualToString:@"showEvent"])
     {
         ViewEventTableViewController *vc = (ViewEventTableViewController *) [segue destinationViewController];
         

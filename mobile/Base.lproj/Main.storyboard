@@ -319,12 +319,12 @@
                     <navigationItem key="navigationItem" title="المناسبات" id="wGy-QC-jIs">
                         <barButtonItem key="rightBarButtonItem" image="Plus" style="plain" id="K4d-Tx-nfk">
                             <connections>
-                                <segue destination="lVZ-g2-Rw4" kind="push" identifier="AddEvent" id="S7Q-p7-iER"/>
+                                <segue destination="lVZ-g2-Rw4" kind="push" identifier="showAddEvent" id="S7Q-p7-iER"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="vAH-id-DuU" kind="push" identifier="ViewEvent" id="Apj-Nu-HMS"/>
+                        <segue destination="vAH-id-DuU" kind="push" identifier="showEvent" id="Apj-Nu-HMS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1x-Qc-QQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -345,10 +345,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="إضافة مناسبة" id="1H0-zI-vrX"/>
+                    <connections>
+                        <segue destination="vAH-id-DuU" kind="push" identifier="showEvent" id="skq-tD-bNe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlJ-Gh-o5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3126" y="-1454"/>
+            <point key="canvasLocation" x="3131" y="-1454"/>
         </scene>
         <!--View Event Medias View Controller-->
         <scene sceneID="kcK-l8-sIz">
@@ -357,6 +360,7 @@
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="02q-gp-5bl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="iCu-xa-O2i">
                             <size key="itemSize" width="104" height="104"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -364,23 +368,20 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaCell" id="HTg-VQ-TKc" customClass="UIMediaCollectionViewCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mediaCell" id="HTg-VQ-TKc">
                                 <rect key="frame" x="0.0" y="64" width="104" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0b4-LF-O8V">
+                                        <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0b4-LF-O8V">
                                             <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <outlet property="imageView" destination="0b4-LF-O8V" id="xbr-dU-PvF"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -389,7 +390,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="qxI-pY-G1u">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="G1K-sU-Zsz">
+                        <barButtonItem key="rightBarButtonItem" image="Plus" id="G1K-sU-Zsz">
                             <connections>
                                 <action selector="addMediaDidClicked:" destination="v6M-bT-Vps" id="h77-SH-bIW"/>
                             </connections>
@@ -403,7 +404,7 @@
             </objects>
             <point key="canvasLocation" x="4881" y="-1213"/>
         </scene>
-        <!--View Media Table View Controller - View Media-->
+        <!--View Media Table View Controller - عرض الصورة-->
         <scene sceneID="adL-lf-sLw">
             <objects>
                 <tableViewController id="JMX-zD-jOT" customClass="ViewMediaTableViewController" sceneMemberID="viewController">
@@ -503,8 +504,8 @@
                             <outlet property="delegate" destination="JMX-zD-jOT" id="xtP-9B-T0Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="View Media" id="BzL-PR-bE0">
-                        <barButtonItem key="rightBarButtonItem" title="Like" id="k5W-1Z-c0T">
+                    <navigationItem key="navigationItem" title="عرض الصورة" id="BzL-PR-bE0">
+                        <barButtonItem key="rightBarButtonItem" image="Heart" id="k5W-1Z-c0T">
                             <connections>
                                 <action selector="like:" destination="JMX-zD-jOT" id="IVw-CO-s93"/>
                             </connections>
@@ -551,6 +552,10 @@
                                         <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="twT-zP-0cL">
                                             <rect key="frame" x="20" y="10" width="38" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="38" id="B0r-cp-ssv"/>
+                                                <constraint firstAttribute="height" constant="38" id="LWc-jP-w63"/>
+                                            </constraints>
                                         </imageView>
                                         <button opaque="NO" tag="22" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-rZ-hDz">
                                             <rect key="frame" x="66" y="10" width="130" height="18"/>
@@ -619,7 +624,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </mapView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CreatorCell" textLabel="1b2-A1-UG2" detailTextLabel="tHb-Sz-y9M" imageView="qHv-pp-ruC" style="IBUITableViewCellStyleSubtitle" id="Ixp-Fm-cKW">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="creatorCell" textLabel="1b2-A1-UG2" detailTextLabel="tHb-Sz-y9M" imageView="qHv-pp-ruC" style="IBUITableViewCellStyleSubtitle" id="Ixp-Fm-cKW">
                                 <rect key="frame" x="0.0" y="319" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ixp-Fm-cKW" id="zjs-7d-4Zb">
@@ -647,10 +652,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Qva-Jx-bgt" kind="push" identifier="ViewMember" id="LcY-o9-jJc"/>
+                                    <segue destination="Qva-Jx-bgt" kind="push" identifier="showMember" id="LcY-o9-jJc"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatsCell" rowHeight="64" id="zFZ-8D-QwU" customClass="UIMultiColumnsTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="statsCell" rowHeight="64" id="zFZ-8D-QwU" customClass="UIMultiColumnsTableViewCell">
                                 <rect key="frame" x="0.0" y="363" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFZ-8D-QwU" id="JLt-vM-vvx">
@@ -658,7 +663,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InfoCell" textLabel="fhK-LB-vuM" detailTextLabel="Skx-nL-fws" style="IBUITableViewCellStyleValue2" id="xMY-iK-sr9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCell" textLabel="fhK-LB-vuM" detailTextLabel="Skx-nL-fws" style="IBUITableViewCellStyleValue2" id="xMY-iK-sr9">
                                 <rect key="frame" x="0.0" y="427" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xMY-iK-sr9" id="JF3-2J-yXd">
@@ -682,35 +687,35 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DecisionCell" id="NFH-Og-37D" customClass="UIEventDecisionTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="decisionCell" id="NFH-Og-37D">
                                 <rect key="frame" x="0.0" y="471" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NFH-Og-37D" id="4mz-s6-3Ha">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vj-Xf-eLj" customClass="FUIButton">
+                                        <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vj-Xf-eLj">
                                             <rect key="frame" x="20" y="7" width="136" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="I Will Come">
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="أنوي الحضور">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiJ-x3-QIc" customClass="FUIButton">
+                                        <button opaque="NO" tag="22" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiJ-x3-QIc">
                                             <rect key="frame" x="164" y="7" width="136" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="I Apologize">
+                                            <color key="backgroundColor" red="1" green="0.33800824029999998" blue="0.1589631346" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="أعتذر عن الحضور">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="apologizeButton" destination="xiJ-x3-QIc" id="vBU-B8-JL2"/>
-                                    <outlet property="willComeButton" destination="8vj-Xf-eLj" id="U81-Lw-oO0"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AddCell" textLabel="Ynz-yj-jjB" style="IBUITableViewCellStyleDefault" id="KZT-eV-g9l">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="addCell" textLabel="Ynz-yj-jjB" style="IBUITableViewCellStyleDefault" id="KZT-eV-g9l">
                                 <rect key="frame" x="0.0" y="515" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KZT-eV-g9l" id="MJQ-Bi-iLh">
@@ -743,8 +748,8 @@
                     <connections>
                         <outlet property="likeButton" destination="6Yf-D6-d6S" id="Gnr-4h-8WM"/>
                         <outlet property="mapView" destination="OnI-oH-VRW" id="FA5-Tu-1mS"/>
-                        <segue destination="3L4-oi-qvU" kind="push" identifier="ViewComments" id="eOu-fK-l8m"/>
-                        <segue destination="v6M-bT-Vps" kind="push" identifier="ViewMedias" id="esv-91-2U7"/>
+                        <segue destination="3L4-oi-qvU" kind="push" identifier="showComments" id="eOu-fK-l8m"/>
+                        <segue destination="v6M-bT-Vps" kind="push" identifier="showMedias" id="esv-91-2U7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULM-Wt-T6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1768,7 +1773,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="5ry-4C-25B"/>
         <segue reference="IG7-Dy-u21"/>
+        <segue reference="skq-tD-bNe"/>
+        <segue reference="oFT-fs-cQL"/>
         <segue reference="2TB-Se-08s"/>
-        <segue reference="76z-Gc-o5h"/>
     </inferredMetricsTieBreakers>
 </document>
