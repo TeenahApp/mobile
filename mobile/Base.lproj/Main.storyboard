@@ -57,7 +57,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khw-m0-K7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040" y="1358"/>
+            <point key="canvasLocation" x="2040" y="1446"/>
         </scene>
         <!--Circle Chats Table View Controller - الدردشات-->
         <scene sceneID="kuR-wj-feR">
@@ -157,11 +157,73 @@
                         <segue destination="JMX-zD-jOT" kind="push" identifier="showMedia" id="Pqp-qE-sVe"/>
                         <segue destination="N3R-pj-CSp" kind="push" identifier="showCircleEvents" id="QvK-NN-VIj"/>
                         <segue destination="Ufl-II-ehb" kind="push" identifier="showCircleMembers" id="Qlh-E8-xzR"/>
+                        <segue destination="xek-1d-3pr" kind="push" identifier="showCircleStats" id="3nv-ht-VpI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXX-bu-sfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="894"/>
+            <point key="canvasLocation" x="2510" y="1446"/>
+        </scene>
+        <!--View Circle Stats Table View Controller-->
+        <scene sceneID="Y7Q-gY-hiU">
+            <objects>
+                <tableViewController id="xek-1d-3pr" customClass="ViewCircleStatsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="dvv-Up-V3K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="multiColumnsCell" rowHeight="64" id="PWt-MH-8gg" customClass="UIMultiColumnsTableViewCell">
+                                <rect key="frame" x="0.0" y="119" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWt-MH-8gg" id="Gxq-4s-faW">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" textLabel="MWN-74-aqY" detailTextLabel="Z3Z-p4-70e" style="IBUITableViewCellStyleValue1" id="qZ3-pW-LFp">
+                                <rect key="frame" x="0.0" y="183" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qZ3-pW-LFp" id="hxo-Pk-4vL">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MWN-74-aqY">
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z3Z-p4-70e">
+                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chartCell" rowHeight="220" id="3pU-wt-Fta">
+                                <rect key="frame" x="0.0" y="227" width="320" height="220"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3pU-wt-Fta" id="qv9-V0-A9H">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xek-1d-3pr" id="mlf-jE-89C"/>
+                            <outlet property="delegate" destination="xek-1d-3pr" id="7m2-bw-5PE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="AB2-r0-3Ex"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITb-EX-CLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3084" y="2173"/>
         </scene>
         <!--Circle View Controller - Circle-->
         <scene sceneID="vDD-38-oUH">
@@ -212,9 +274,6 @@
                                         <state key="normal" title="Members">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="Ufl-II-ehb" kind="push" identifier="ViewCircleMembers" id="BrG-ZY-kd5"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54U-Sq-LPm">
                                         <rect key="frame" x="0.0" y="195" width="166" height="30"/>
@@ -270,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dYP-0S-Ngi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="1697"/>
+            <point key="canvasLocation" x="1622" y="2785"/>
         </scene>
         <!--Circle Members Table View Controller - أفراد الدائرة-->
         <scene sceneID="oMZ-Ti-Q6Y">
@@ -341,7 +400,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3228" y="2163"/>
+            <point key="canvasLocation" x="3084" y="1446"/>
         </scene>
         <!--Events Table View Controller - المناسبات-->
         <scene sceneID="UzY-KT-AfY">
@@ -1180,7 +1239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFy-kU-2dP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3228" y="1377"/>
+            <point key="canvasLocation" x="3740" y="2729"/>
         </scene>
         <!--View Member Table View Controller - الفرد-->
         <scene sceneID="4lG-OV-xjD">
@@ -1480,7 +1539,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naT-Wu-QR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1514" y="1358"/>
+            <point key="canvasLocation" x="1514" y="1446"/>
         </scene>
         <!--Navigation Controller - المناسبات-->
         <scene sceneID="mUb-XX-qG9">
@@ -1922,7 +1981,6 @@
         <segue reference="hbd-4k-V2n"/>
         <segue reference="J4P-Vd-9bA"/>
         <segue reference="Pqp-qE-sVe"/>
-        <segue reference="Qlh-E8-xzR"/>
         <segue reference="eOu-fK-l8m"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -45,7 +45,6 @@
 		FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C641934FE4E007B3AAE /* CommentsTableViewController.m */; };
 		FD635C6B19352B35007B3AAE /* UITabInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C6A19352B35007B3AAE /* UITabInputView.m */; };
 		FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */; };
-		FD697A071941C7F600D571E2 /* UIChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A061941C7F600D571E2 /* UIChatTableViewCell.m */; };
 		FD697A0A19448EBE00D571E2 /* UpdateMemberInfoForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A0919448EBE00D571E2 /* UpdateMemberInfoForm.m */; };
 		FD697A0D1944A63600D571E2 /* UpdateMemberInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A0C1944A63600D571E2 /* UpdateMemberInfoViewController.m */; };
 		FD7AB76E190ABCC700E302B8 /* ViewMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7AB76D190ABCC700E302B8 /* ViewMemberTableViewController.m */; };
@@ -56,6 +55,7 @@
 		FD96ECD4194B89FF0030F6BE /* CircleChatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD3194B89FF0030F6BE /* CircleChatsTableViewController.m */; };
 		FD96ECD7194BE5C20030F6BE /* TMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD6194BE5C20030F6BE /* TMessage.m */; };
 		FD96ECDA194CE9990030F6BE /* TMessageMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD9194CE9990030F6BE /* TMessageMedia.m */; };
+		FD96ECDD194F24A90030F6BE /* ViewCircleStatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECDC194F24A90030F6BE /* ViewCircleStatsTableViewController.m */; };
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FDA0E19719364FE300F31A0A /* TComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19619364FE300F31A0A /* TComment.m */; };
@@ -168,8 +168,6 @@
 		FD635C6A19352B35007B3AAE /* UITabInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabInputView.m; sourceTree = "<group>"; };
 		FD68D62C192B6C2D003ABCFF /* TMemberRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberRelation.h; sourceTree = "<group>"; };
 		FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberRelation.m; sourceTree = "<group>"; };
-		FD697A051941C7F600D571E2 /* UIChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIChatTableViewCell.h; sourceTree = "<group>"; };
-		FD697A061941C7F600D571E2 /* UIChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIChatTableViewCell.m; sourceTree = "<group>"; };
 		FD697A0819448EBE00D571E2 /* UpdateMemberInfoForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMemberInfoForm.h; sourceTree = "<group>"; };
 		FD697A0919448EBE00D571E2 /* UpdateMemberInfoForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateMemberInfoForm.m; sourceTree = "<group>"; };
 		FD697A0B1944A63600D571E2 /* UpdateMemberInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMemberInfoViewController.h; sourceTree = "<group>"; };
@@ -188,6 +186,8 @@
 		FD96ECD6194BE5C20030F6BE /* TMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMessage.m; sourceTree = "<group>"; };
 		FD96ECD8194CE9990030F6BE /* TMessageMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMessageMedia.h; sourceTree = "<group>"; };
 		FD96ECD9194CE9990030F6BE /* TMessageMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMessageMedia.m; sourceTree = "<group>"; };
+		FD96ECDB194F24A90030F6BE /* ViewCircleStatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCircleStatsTableViewController.h; sourceTree = "<group>"; };
+		FD96ECDC194F24A90030F6BE /* ViewCircleStatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCircleStatsTableViewController.m; sourceTree = "<group>"; };
 		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
 		FD9C71011905812A0091849B /* AddRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationViewController.m; sourceTree = "<group>"; };
 		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -286,8 +286,6 @@
 				FDA0E1A31937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m */,
 				FD530C9D193F13E600ACFC2A /* UITreeNodeTableViewCell.h */,
 				FD530C9E193F13E600ACFC2A /* UITreeNodeTableViewCell.m */,
-				FD697A051941C7F600D571E2 /* UIChatTableViewCell.h */,
-				FD697A061941C7F600D571E2 /* UIChatTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -416,6 +414,8 @@
 		FD54663F18F5A6FE00BFD409 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FD96ECDB194F24A90030F6BE /* ViewCircleStatsTableViewController.h */,
+				FD96ECDC194F24A90030F6BE /* ViewCircleStatsTableViewController.m */,
 				FD96ECD2194B89FF0030F6BE /* CircleChatsTableViewController.h */,
 				FD96ECD3194B89FF0030F6BE /* CircleChatsTableViewController.m */,
 				FD530C99193D931C00ACFC2A /* TreeTableViewController.h */,
@@ -733,7 +733,6 @@
 				FDD15108192FCF7900BC41E5 /* TCircleMessageMember.m in Sources */,
 				FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */,
 				FD5377CE19327569002A62F0 /* AddMemberJobViewController.m in Sources */,
-				FD697A071941C7F600D571E2 /* UIChatTableViewCell.m in Sources */,
 				FD96ECDA194CE9990030F6BE /* TMessageMedia.m in Sources */,
 				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
 				FD697A0A19448EBE00D571E2 /* UpdateMemberInfoForm.m in Sources */,
@@ -758,6 +757,7 @@
 				FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */,
 				FD5377D919337DCD002A62F0 /* LocationMapViewController.m in Sources */,
 				FDF1F22D18F5C891001B53D0 /* TSweetEventsCommunicator.m in Sources */,
+				FD96ECDD194F24A90030F6BE /* ViewCircleStatsTableViewController.m in Sources */,
 				FD530C9B193D931C00ACFC2A /* TreeTableViewController.m in Sources */,
 				FDA0E1A01937A35B00F31A0A /* ViewMediaTableViewController.m in Sources */,
 				FDA0E1A41937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m in Sources */,

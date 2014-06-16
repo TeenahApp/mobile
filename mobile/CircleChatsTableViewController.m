@@ -293,10 +293,14 @@
         EventsTableViewController * vc = (EventsTableViewController *)[segue destinationViewController];
         vc.circleId = self.circleId;
     }
-    
     else if ([[segue identifier] isEqual:@"showCircleMembers"])
     {
         CircleMembersTableViewController * vc = (CircleMembersTableViewController *)[segue destinationViewController];
+        vc.circleId = self.circleId;
+    }
+    else if ([[segue identifier] isEqual:@"showCircleStats"])
+    {
+        ViewCircleStatsTableViewController * vc = (ViewCircleStatsTableViewController *)[segue destinationViewController];
         vc.circleId = self.circleId;
     }
 }
@@ -312,7 +316,7 @@
     {
         case 0:
         {
-            
+            [self performSegueWithIdentifier:@"showCircleStats" sender:nil];
         }
         break;
             

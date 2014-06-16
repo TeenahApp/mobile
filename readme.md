@@ -20,6 +20,10 @@ TODO:
 33. Validate chat messages before sending.
 35. Add members to a specific circle.
 36. Add circles.
+37. Trustees.
+38. Privacies.
+39. SSL.
+40. Don't draw the labels and buttons and objects generally twice (context: multi-columns cell).
 
 DONE:
 

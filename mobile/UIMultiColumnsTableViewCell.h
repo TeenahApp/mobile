@@ -15,6 +15,7 @@
 @interface UIMultiColumnsTableViewCell : UITableViewCell
 
 @property CGFloat columnHeight;
+@property BOOL hasDrawn;
 
 - (void)setColumns:(NSArray *)columns;
 

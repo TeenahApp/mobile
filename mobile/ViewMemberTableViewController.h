@@ -29,7 +29,6 @@
 @property (nonatomic, strong) TSweetResponse * likeResponse;
 
 @property (strong, nonatomic) NSArray * sections;
-
 @property (strong, nonatomic) NSMutableArray * data;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

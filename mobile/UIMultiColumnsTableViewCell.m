@@ -29,6 +29,10 @@
 - (void)setColumns:(NSArray *)columns
 {
     // Notice: y is always zero.
+    if (self.hasDrawn == YES)
+    {
+        return;
+    }
     
     CGFloat columnWidth = self.contentView.bounds.size.width/columns.count;
     
@@ -65,6 +69,8 @@
         
         x = x + columnWidth;
     }
+    
+    self.hasDrawn = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

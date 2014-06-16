@@ -19,6 +19,7 @@
 #import "TMedia.h"
 
 #import "ViewMediaTableViewController.h"
+#import "ViewCircleStatsTableViewController.h"
 #import "EventsTableViewController.h"
 #import "CircleMembersTableViewController.h"
 
