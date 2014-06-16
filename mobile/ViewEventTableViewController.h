@@ -18,7 +18,7 @@
 
 #import "ViewMemberTableViewController.h"
 #import "CommentsTableViewController.h"
-#import "ViewEventMediasViewController.h"
+#import "ViewMediasViewController.h"
 
 @interface ViewEventTableViewController : UITableViewController
 

@@ -27,13 +27,13 @@
 {
     [super viewDidLoad];
     
-    CGRect newBounds = self.tableView.bounds;
-    
-    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
-    self.tableView.bounds = newBounds;
+//    CGRect newBounds = self.tableView.bounds;
+//    
+//    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
+//    self.tableView.bounds = newBounds;
     
     // TODO: Change the circle id to be a variable, thanks to @ecleel.
-    TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:1];
+    TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:self.circleId];
     
     self.members = [[NSMutableArray alloc] init];
     
@@ -93,67 +93,28 @@
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@", member.fullname]];
     
     // TODO: Load the images in a separate thread.
+    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
+    cell.imageView.layer.masksToBounds = YES;
+    
+    if (member.photo != nil)
+    {
+        // TODO: Show wait indicator.
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            NSURL * photoUrl = [NSURL URLWithString:member.photo];
+            
+            // Get the member photo.
+            NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+            UIImage * photo = [[UIImage alloc]initWithData:data];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell.imageView setImage:photo];
+            });
+        });
+    }
 
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*
-    if(self.tableView == self.searchDisplayController.searchResultsTableView) {
-        NSLog(@"Searched");
-    }
-    else
-    {
-        NSLog(@"NotSearched");
-    }
-    
-    self.currentMember = (TMember *) [self.members objectAtIndex:indexPath.row];
-    
-    //[self performSegueWithIdentifier:@"ViewMember" sender:nil];
-    
-    NSLog(@"Clicked: %@", self.currentMember);
-     */
-    [self performSegueWithIdentifier:@"ViewMember" sender:tableView];
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark Content Filtering
 
@@ -170,38 +131,6 @@
     self.filteredMembers = [NSMutableArray arrayWithArray:[self.members filteredArrayUsingPredicate:predicate]];
     
     NSLog(@"%@", self.filteredMembers);
-}
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"ViewMember"])
-    {
-        NSLog(@"prepareForSegue");
-        
-        // Get reference to the destination view controller
-        //YourViewController *vc = [segue destinationViewController];
-        
-        //ViewMemberTableViewController *vc = (ViewMemberTableViewController *) [segue destinationViewController];
-        
-        //vc.hidesBottomBarWhenPushed = YES;
-        
-        //vc.member = self.currentMember;
-        
-        if(sender == self.searchDisplayController.searchResultsTableView)
-        {
-            NSLog(@"Searched.");
-        }
-        else
-        {
-            NSLog(@"NotSearched.");
-        }
-    }
-
 }
 
 #pragma mark - UISearchDisplayController Delegate Methods

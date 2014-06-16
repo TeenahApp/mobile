@@ -13,6 +13,7 @@
 #import "TSweetUsersCommunicator.h"
 
 #import "FirstUploadPhotoTableViewController.h"
+#import "UpdateMemberInfoViewController.h"
 
 @interface SettingsTableViewController : UITableViewController
 

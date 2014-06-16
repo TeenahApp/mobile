@@ -10,7 +10,8 @@
 
 #import "TSweetResponse.h"
 #import "TSweetCirclesCommunicator.h"
-#import "CircleViewController.h"
+
+#import "CircleChatsTableViewController.h"
 
 #import "TCircle.h"
 

@@ -34,7 +34,7 @@
     [self.view addGestureRecognizer:tap];
     
     [self loadComments];
-    
+
     self.dateFormatter = [[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"ddMMyyHHmmss"];
 }
@@ -74,9 +74,15 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    self.tabInput = [[UITabInputView alloc] initWithDelegate:self];
+    self.tabInput = [[UITabInputView alloc] initWithDelegate:self hasAttachButton:NO];
     
     [self.view.superview addSubview:self.tabInput];
+    
+    if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+    {
+        CGPoint offset = CGPointMake(0, (self.tableView.contentSize.height - self.tableView.frame.size.height) + 20);
+        [self.tableView setContentOffset:offset animated:YES];
+    }
 }
 
 -(void)dismissKeyboard
@@ -190,7 +196,6 @@
                 [self loadComments];
 
                 [self.tableView reloadData];
-                [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];

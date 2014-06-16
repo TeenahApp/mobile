@@ -16,7 +16,10 @@ TODO:
 25. Make every non-selection cell clear color.
 27. Fix the thumb.
 30. Shorten the fullname or display name.
-32. Taste, taste, and taste.
+32. Taste, taste, and more taste.
+33. Validate chat messages before sending.
+35. Add members to a specific circle.
+36. Add circles.
 
 DONE:
 

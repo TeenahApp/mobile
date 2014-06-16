@@ -17,6 +17,8 @@
 
 @interface CircleMembersTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
+@property NSInteger circleId;
+
 @property (strong, nonatomic) TMember * currentMember;
 
 @property (strong, nonatomic) NSMutableArray * members;

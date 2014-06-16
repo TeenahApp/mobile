@@ -1,14 +1,14 @@
 //
-//  TCircle.m
+//  TMessage.m
 //  mobile
 //
-//  Created by Hussam Al-Zughaibi on 7/10/1435 AH.
+//  Created by Hussam Al-Zughaibi on 8/17/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "TCircle.h"
+#import "TMessage.h"
 
-@implementation TCircle
+@implementation TMessage
 
 -(id)initWithJson:(NSDictionary *)json
 {
@@ -16,9 +16,9 @@
     
     if(self)
     {
-        self.circleId = [[json objectForKey:@"id"] integerValue];
-        self.name = [json objectForKey:@"name"];
-        self.isActive = [[json objectForKey:@"is_active"] boolValue];
+        self.messageId = [[json objectForKey:@"id"] integerValue];
+        self.category = [json objectForKey:@"category"];
+        self.content = [json objectForKey:@"content"];
         
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -26,8 +26,14 @@
         self.createdBy = [[json objectForKey:@"created_by"] integerValue];
         self.creator = [[TMember alloc] initWithJson:[json objectForKey:@"creator"]];
         
-        // Get some stats.
-        self.membersCount = [[json objectForKey:@"members_count"] integerValue];
+        // Medias.
+        self.medias = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary * tempMessageMedia in [json objectForKey:@"medias"])
+        {
+            TMessageMedia * messageMedia = [[TMessageMedia alloc] initWithJson:tempMessageMedia];
+            [self.medias addObject:messageMedia];
+        }
         
         self.createdAt = [longDateFormatter dateFromString: [json objectForKey:@"created_at"]];
         self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];

@@ -30,6 +30,8 @@
 
 -(TSweetResponse *) getStats: (NSInteger) circleId;
 
--(TSweetResponse *) fetchMessages: (NSInteger) circleId;
+-(TSweetResponse *) getLatestUnread: (NSInteger) circleId;
+
+-(TSweetResponse *) getLatestRead: (NSInteger) circleId;
 
 @end

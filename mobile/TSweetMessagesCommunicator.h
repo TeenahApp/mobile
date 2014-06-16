@@ -18,7 +18,7 @@
                      circles: (NSArray *) circles;
 
 -(TSweetResponse *) sendMedia: (NSString *) category
-                    data: (NSDate *) data
+                    data: (NSData *) data
                     extension: (NSString *) extension
                       circles: (NSArray *) circles;
 

@@ -14,7 +14,6 @@
 		FD4AF16519293B4A00F41129 /* FXForms.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16419293B4A00F41129 /* FXForms.m */; };
 		FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16819293C9900F41129 /* AddEventViewController.m */; };
 		FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16C1929400F00F41129 /* AddEventForm.m */; };
-		FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16F1929E21A00F41129 /* UIAvatarView.m */; };
 		FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD507C1B192C84050077C55A /* AddRelationForm.m */; };
 		FD530C9B193D931C00ACFC2A /* TreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD530C9A193D931C00ACFC2A /* TreeTableViewController.m */; };
 		FD530C9F193F13E600ACFC2A /* UITreeNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD530C9E193F13E600ACFC2A /* UITreeNodeTableViewCell.m */; };
@@ -36,7 +35,6 @@
 		FD54663318F5A66000BFD409 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD54663118F5A66000BFD409 /* InfoPlist.strings */; };
 		FD54663518F5A66000BFD409 /* mobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54663418F5A66000BFD409 /* mobileTests.m */; };
 		FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */; };
-		FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD58983C18FEC7FD00A9172F /* UITreeView.m */; };
 		FD59908C18FEEE1400975F7F /* TMember.m in Sources */ = {isa = PBXBuildFile; fileRef = FD59908B18FEEE1400975F7F /* TMember.m */; };
 		FD5A6A82193A36FE00CE9E10 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5A6A81193A36FE00CE9E10 /* SettingsTableViewController.m */; };
 		FD5A6A85193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5A6A84193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m */; };
@@ -47,7 +45,6 @@
 		FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C641934FE4E007B3AAE /* CommentsTableViewController.m */; };
 		FD635C6B19352B35007B3AAE /* UITabInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C6A19352B35007B3AAE /* UITabInputView.m */; };
 		FD68D62E192B6C2D003ABCFF /* TMemberRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */; };
-		FD697A041941C6A500D571E2 /* CircleChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A031941C6A500D571E2 /* CircleChatTableViewController.m */; };
 		FD697A071941C7F600D571E2 /* UIChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A061941C7F600D571E2 /* UIChatTableViewCell.m */; };
 		FD697A0A19448EBE00D571E2 /* UpdateMemberInfoForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A0919448EBE00D571E2 /* UpdateMemberInfoForm.m */; };
 		FD697A0D1944A63600D571E2 /* UpdateMemberInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD697A0C1944A63600D571E2 /* UpdateMemberInfoViewController.m */; };
@@ -56,10 +53,13 @@
 		FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD81B89B1907F50D0037B479 /* Security.framework */; };
 		FD81B89E1907F83B0037B479 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = FD81B89D1907F83B0037B479 /* readme.md */; };
 		FD85CB12191CE808003707AC /* TCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FD85CB11191CE808003707AC /* TCircle.m */; };
+		FD96ECD4194B89FF0030F6BE /* CircleChatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD3194B89FF0030F6BE /* CircleChatsTableViewController.m */; };
+		FD96ECD7194BE5C20030F6BE /* TMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD6194BE5C20030F6BE /* TMessage.m */; };
+		FD96ECDA194CE9990030F6BE /* TMessageMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD9194CE9990030F6BE /* TMessageMedia.m */; };
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FDA0E19719364FE300F31A0A /* TComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19619364FE300F31A0A /* TComment.m */; };
-		FDA0E19A193741B300F31A0A /* ViewEventMediasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E199193741B300F31A0A /* ViewEventMediasViewController.m */; };
+		FDA0E19A193741B300F31A0A /* ViewMediasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E199193741B300F31A0A /* ViewMediasViewController.m */; };
 		FDA0E1A01937A35B00F31A0A /* ViewMediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19F1937A35B00F31A0A /* ViewMediaTableViewController.m */; };
 		FDA0E1A41937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E1A31937CC9E00F31A0A /* UIMultiColumnsTableViewCell.m */; };
 		FDA9B0F71921320B0015BF8C /* CircleMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA9B0F61921320B0015BF8C /* CircleMembersTableViewController.m */; };
@@ -113,8 +113,6 @@
 		FD4AF16819293C9900F41129 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		FD4AF16B1929400F00F41129 /* AddEventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventForm.h; sourceTree = "<group>"; };
 		FD4AF16C1929400F00F41129 /* AddEventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventForm.m; sourceTree = "<group>"; };
-		FD4AF16E1929E21A00F41129 /* UIAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAvatarView.h; sourceTree = "<group>"; };
-		FD4AF16F1929E21A00F41129 /* UIAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAvatarView.m; sourceTree = "<group>"; };
 		FD507C1A192C84050077C55A /* AddRelationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationForm.h; sourceTree = "<group>"; };
 		FD507C1B192C84050077C55A /* AddRelationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationForm.m; sourceTree = "<group>"; };
 		FD530C99193D931C00ACFC2A /* TreeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeTableViewController.h; sourceTree = "<group>"; };
@@ -150,8 +148,6 @@
 		FD54664118F5A76C00BFD409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		FD576CB018F733B300851F90 /* UpdateInfoFirstTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateInfoFirstTimeViewController.h; sourceTree = "<group>"; };
 		FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateInfoFirstTimeViewController.m; sourceTree = "<group>"; };
-		FD58983B18FEC7FD00A9172F /* UITreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITreeView.h; sourceTree = "<group>"; };
-		FD58983C18FEC7FD00A9172F /* UITreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITreeView.m; sourceTree = "<group>"; };
 		FD59908A18FEEE1400975F7F /* TMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMember.h; sourceTree = "<group>"; };
 		FD59908B18FEEE1400975F7F /* TMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMember.m; sourceTree = "<group>"; };
 		FD5A6A80193A36FE00CE9E10 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -172,8 +168,6 @@
 		FD635C6A19352B35007B3AAE /* UITabInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabInputView.m; sourceTree = "<group>"; };
 		FD68D62C192B6C2D003ABCFF /* TMemberRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemberRelation.h; sourceTree = "<group>"; };
 		FD68D62D192B6C2D003ABCFF /* TMemberRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemberRelation.m; sourceTree = "<group>"; };
-		FD697A021941C6A500D571E2 /* CircleChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleChatTableViewController.h; sourceTree = "<group>"; };
-		FD697A031941C6A500D571E2 /* CircleChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleChatTableViewController.m; sourceTree = "<group>"; };
 		FD697A051941C7F600D571E2 /* UIChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIChatTableViewCell.h; sourceTree = "<group>"; };
 		FD697A061941C7F600D571E2 /* UIChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIChatTableViewCell.m; sourceTree = "<group>"; };
 		FD697A0819448EBE00D571E2 /* UpdateMemberInfoForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMemberInfoForm.h; sourceTree = "<group>"; };
@@ -188,13 +182,19 @@
 		FD81B89D1907F83B0037B479 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 		FD85CB10191CE808003707AC /* TCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircle.h; sourceTree = "<group>"; };
 		FD85CB11191CE808003707AC /* TCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircle.m; sourceTree = "<group>"; };
+		FD96ECD2194B89FF0030F6BE /* CircleChatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleChatsTableViewController.h; sourceTree = "<group>"; };
+		FD96ECD3194B89FF0030F6BE /* CircleChatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleChatsTableViewController.m; sourceTree = "<group>"; };
+		FD96ECD5194BE5C20030F6BE /* TMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMessage.h; sourceTree = "<group>"; };
+		FD96ECD6194BE5C20030F6BE /* TMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMessage.m; sourceTree = "<group>"; };
+		FD96ECD8194CE9990030F6BE /* TMessageMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMessageMedia.h; sourceTree = "<group>"; };
+		FD96ECD9194CE9990030F6BE /* TMessageMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMessageMedia.m; sourceTree = "<group>"; };
 		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
 		FD9C71011905812A0091849B /* AddRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationViewController.m; sourceTree = "<group>"; };
 		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDA0E19519364FE300F31A0A /* TComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TComment.h; sourceTree = "<group>"; };
 		FDA0E19619364FE300F31A0A /* TComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TComment.m; sourceTree = "<group>"; };
-		FDA0E198193741B300F31A0A /* ViewEventMediasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEventMediasViewController.h; sourceTree = "<group>"; };
-		FDA0E199193741B300F31A0A /* ViewEventMediasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEventMediasViewController.m; sourceTree = "<group>"; };
+		FDA0E198193741B300F31A0A /* ViewMediasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMediasViewController.h; sourceTree = "<group>"; };
+		FDA0E199193741B300F31A0A /* ViewMediasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMediasViewController.m; sourceTree = "<group>"; };
 		FDA0E19E1937A35B00F31A0A /* ViewMediaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMediaTableViewController.h; sourceTree = "<group>"; };
 		FDA0E19F1937A35B00F31A0A /* ViewMediaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMediaTableViewController.m; sourceTree = "<group>"; };
 		FDA0E1A21937CC9E00F31A0A /* UIMultiColumnsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMultiColumnsTableViewCell.h; sourceTree = "<group>"; };
@@ -416,14 +416,14 @@
 		FD54663F18F5A6FE00BFD409 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FD697A021941C6A500D571E2 /* CircleChatTableViewController.h */,
-				FD697A031941C6A500D571E2 /* CircleChatTableViewController.m */,
+				FD96ECD2194B89FF0030F6BE /* CircleChatsTableViewController.h */,
+				FD96ECD3194B89FF0030F6BE /* CircleChatsTableViewController.m */,
 				FD530C99193D931C00ACFC2A /* TreeTableViewController.h */,
 				FD530C9A193D931C00ACFC2A /* TreeTableViewController.m */,
 				FD5A6A83193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.h */,
 				FD5A6A84193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m */,
-				FDA0E198193741B300F31A0A /* ViewEventMediasViewController.h */,
-				FDA0E199193741B300F31A0A /* ViewEventMediasViewController.m */,
+				FDA0E198193741B300F31A0A /* ViewMediasViewController.h */,
+				FDA0E199193741B300F31A0A /* ViewMediasViewController.m */,
 				FD5AA143191AAD6700C44F81 /* CircleViewController.h */,
 				FD5AA144191AAD6700C44F81 /* CircleViewController.m */,
 				FD7AB76C190ABCC700E302B8 /* ViewMemberTableViewController.h */,
@@ -475,10 +475,6 @@
 			isa = PBXGroup;
 			children = (
 				FD0C3E581934834E001A5DB2 /* Cells */,
-				FD58983B18FEC7FD00A9172F /* UITreeView.h */,
-				FD58983C18FEC7FD00A9172F /* UITreeView.m */,
-				FD4AF16E1929E21A00F41129 /* UIAvatarView.h */,
-				FD4AF16F1929E21A00F41129 /* UIAvatarView.m */,
 				FD635C6919352B35007B3AAE /* UITabInputView.h */,
 				FD635C6A19352B35007B3AAE /* UITabInputView.m */,
 			);
@@ -520,6 +516,10 @@
 				FD5377C719326D07002A62F0 /* TMemberJob.m */,
 				FDA0E19519364FE300F31A0A /* TComment.h */,
 				FDA0E19619364FE300F31A0A /* TComment.m */,
+				FD96ECD5194BE5C20030F6BE /* TMessage.h */,
+				FD96ECD6194BE5C20030F6BE /* TMessage.m */,
+				FD96ECD8194CE9990030F6BE /* TMessageMedia.h */,
+				FD96ECD9194CE9990030F6BE /* TMessageMedia.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -699,7 +699,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD58983D18FEC7FD00A9172F /* UITreeView.m in Sources */,
 				FD530C9F193F13E600ACFC2A /* UITreeNodeTableViewCell.m in Sources */,
 				FD54661A18F5A66000BFD409 /* AppDelegate.m in Sources */,
 				FDD1510E192FDA9700BC41E5 /* TEventMedia.m in Sources */,
@@ -713,6 +712,7 @@
 				FD7AB771190B04E400E302B8 /* CirclesTableViewController.m in Sources */,
 				FDD1511D192FFEA100BC41E5 /* AddMemberEducationViewController.m in Sources */,
 				FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */,
+				FD96ECD4194B89FF0030F6BE /* CircleChatsTableViewController.m in Sources */,
 				FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */,
 				FD5A6A85193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m in Sources */,
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
@@ -721,7 +721,7 @@
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
 				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,
 				FDD1510B192FD35300BC41E5 /* TEducationMajor.m in Sources */,
-				FDA0E19A193741B300F31A0A /* ViewEventMediasViewController.m in Sources */,
+				FDA0E19A193741B300F31A0A /* ViewMediasViewController.m in Sources */,
 				FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */,
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,
 				FD5377CB193272FF002A62F0 /* AddMemberJobForm.m in Sources */,
@@ -734,9 +734,9 @@
 				FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */,
 				FD5377CE19327569002A62F0 /* AddMemberJobViewController.m in Sources */,
 				FD697A071941C7F600D571E2 /* UIChatTableViewCell.m in Sources */,
+				FD96ECDA194CE9990030F6BE /* TMessageMedia.m in Sources */,
 				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
 				FD697A0A19448EBE00D571E2 /* UpdateMemberInfoForm.m in Sources */,
-				FD697A041941C6A500D571E2 /* CircleChatTableViewController.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
 				FD5A6A88193A844900CE9E10 /* SecondHandShakeLoginTableViewController.m in Sources */,
 				FDE4A8901933C8FF00E3B866 /* ViewEventTableViewController.m in Sources */,
@@ -744,6 +744,7 @@
 				FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */,
 				FDA0E19719364FE300F31A0A /* TComment.m in Sources */,
 				FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */,
+				FD96ECD7194BE5C20030F6BE /* TMessage.m in Sources */,
 				FDD15114192FDEA400BC41E5 /* TMedia.m in Sources */,
 				FDF1F23318F5C891001B53D0 /* TSweetResponse.m in Sources */,
 				FDD150FF192FCC3E00BC41E5 /* TAccess.m in Sources */,
@@ -751,7 +752,6 @@
 				FD697A0D1944A63600D571E2 /* UpdateMemberInfoViewController.m in Sources */,
 				FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */,
 				FD54661618F5A66000BFD409 /* main.m in Sources */,
-				FD4AF1701929E21A00F41129 /* UIAvatarView.m in Sources */,
 				FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */,
 				FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */,
 				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,

@@ -1,18 +1,18 @@
 //
-//  ViewEventMediasViewController.m
+//  ViewMediasViewController.m
 //  mobile
 //
 //  Created by Hussam Al-Zughaibi on 8/1/1435 AH.
 //  Copyright (c) 1435 AH TeenahApp Org. All rights reserved.
 //
 
-#import "ViewEventMediasViewController.h"
+#import "ViewMediasViewController.h"
 
-@interface ViewEventMediasViewController ()
+@interface ViewMediasViewController ()
 
 @end
 
-@implementation ViewEventMediasViewController
+@implementation ViewMediasViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

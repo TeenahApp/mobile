@@ -70,9 +70,15 @@
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *) fetchMessages:(NSInteger)circleId
+-(TSweetResponse *) getLatestRead:(NSInteger)circleId
 {
-    NSString * route = [NSString stringWithFormat:@"/circles/%ld/messages", (long)circleId];
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/messages/read", (long)circleId];
+    return [[TSweetRest shared] get:route];
+}
+
+-(TSweetResponse *) getLatestUnread:(NSInteger)circleId
+{
+    NSString * route = [NSString stringWithFormat:@"/circles/%ld/messages/unread", (long)circleId];
     return [[TSweetRest shared] get:route];
 }
 

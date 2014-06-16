@@ -70,7 +70,7 @@
     
     //NSString * eventTime = [NSString stringWithFormat:@"%@ - %@", [longDateFormatter stringFromDate:self.event.startsAt], [longDateFormatter stringFromDate:self.event.finishesAt]];
     
-    self.sections = @[@"Main Info", @"Creator", @"Comments"];
+    self.sections = @[@"Main Info", @"أُنشئت بواسطة", @"التعليقات"];
     
     self.data = [@[
                    
@@ -78,13 +78,13 @@
                    @[
                        
                        @{@"Stats": @[
-                                    @{@"label": @"Views", @"count": [NSString stringWithFormat:@"%d", self.media.viewsCount]},
-                                    @{@"label": @"Likes", @"count": [NSString stringWithFormat:@"%d", self.media.likesCount]},
-                                    @{@"label": @"Cmnts", @"count": [NSString stringWithFormat:@"%d", self.media.commentsCount]},
+                                    @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.viewsCount]},
+                                    @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.likesCount]},
+                                    @{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.commentsCount]},
                                  ]
                          },
                        
-                       @{@"Created at": [longDateFormatter stringFromDate:self.media.createdAt]},
+                       @{@"أُضيفت بتاريخ": [longDateFormatter stringFromDate:self.media.createdAt]},
                     ],
                    
                    // Section 1: Creator.
@@ -94,7 +94,7 @@
                    
                    // Section 2: Comments.
                    @[
-                       @{@"Add": (self.media.commentsCount == 0) ? @"Add a comment." : [NSString stringWithFormat:@"View the %d comments or add.", self.media.commentsCount]},
+                       @{@"Add": (self.media.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض الـ %ld تعليقات أو إضافة", (long)self.media.commentsCount]},
                     ],
     ] mutableCopy];
 }
@@ -223,46 +223,22 @@
 
 - (IBAction)like:(id)sender
 {
-    TSweetResponse * tsr = [[MediasCommunicator shared] likeMedia:self.media.mediaId];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * likeResponse = [[MediasCommunicator shared] likeMedia:self.media.mediaId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the action has been taken.
+            self.media.hasLiked = YES;
+            [self.likeButton setEnabled:NO];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Navigation
 

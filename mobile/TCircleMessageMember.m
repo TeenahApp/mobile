@@ -10,13 +10,20 @@
 
 @implementation TCircleMessageMember
 
--(id) initWithJson: (NSDictionary *) json
+-(id)initWithJson: (NSDictionary *) json
 {
     self = [super init];
     
     if(self)
     {
+        self.circleId = [[json objectForKey:@"circle_id"] integerValue];
+        self.messageId = [[json objectForKey:@"message_id"] integerValue];
+        self.memberId = [[json objectForKey:@"member_id"] integerValue];
         
+        self.message = [[TMessage alloc] initWithJson:[json objectForKey:@"message"]];
+        self.member = [[TMember alloc] initWithJson:[json objectForKey:@"member"]];
+
+        self.status = [json objectForKey:@"status"];
         
         NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
         [longDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

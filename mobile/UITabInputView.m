@@ -19,7 +19,7 @@
     return self;
 }
 
--(id)initWithDelegate:(id)delegate
+-(id)initWithDelegate:(id)delegate hasAttachButton:(BOOL)hasAttachButton
 {
     self = [super init];
     
@@ -52,9 +52,18 @@
         CGFloat inputWidth = (self.bounds.size.width-(kPadding)) * kTextFieldWidthPercentage/100;
         CGFloat doneWidth = (self.bounds.size.width-(kPadding)) * kDoneButtonWidthPercentage/100;
         
+        CGFloat inputW = inputWidth;
+        CGFloat inputX = kPadding;
+        
+        if (hasAttachButton == YES)
+        {
+            inputW -= kTabInputHeight-(kPadding);
+            inputX += kTabInputHeight-(kPadding);
+        }
+        
         // Text field.
         self.textField = [[UITextField alloc] initWithFrame:
-                                   CGRectMake(kPadding, kPadding, inputWidth, kTabInputHeight-(kPadding*2))];
+                                   CGRectMake(inputX, kPadding, inputW, kTabInputHeight-(kPadding*2))];
         
         self.textField.placeholder = @"قُل خيراً.";
         self.textField.font = [UIFont systemFontOfSize:16];
@@ -63,7 +72,7 @@
         
         [self addSubview:self.textField];
         
-        // Button.
+        // Done button.
         self.doneButton = [[UIButton alloc] initWithFrame:
                            CGRectMake(inputWidth+(kPadding*2), kPadding/2, doneWidth+(kPadding*3.8), kTabInputHeight-(kPadding))];
         
@@ -78,6 +87,19 @@
         [self.doneButton addTarget:self.delegate action:@selector(didTouchDoneButton) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:self.doneButton];
+        
+        if (hasAttachButton == YES)
+        {
+            self.attachButton = [[UIButton alloc] initWithFrame:CGRectMake(kPadding/2, kPadding/2, kTabInputHeight-(kPadding), kTabInputHeight-(kPadding))];
+        
+            [self.attachButton setImage:[UIImage imageNamed:@"Paper"] forState:UIControlStateNormal];
+        
+            self.delegate = delegate;
+            
+            [self.attachButton addTarget:self.delegate action:@selector(didTouchAttachButton) forControlEvents:UIControlEventTouchUpInside];
+        
+            [self addSubview:self.attachButton];
+        }
     }
     return self;
 }

@@ -1,5 +1,5 @@
 //
-//  ViewEventMediasViewController.h
+//  ViewMediasViewController.h
 //  mobile
 //
 //  Created by Hussam Al-Zughaibi on 8/1/1435 AH.
@@ -16,9 +16,11 @@
 
 #import "ViewMediaTableViewController.h"
 
-@interface ViewEventMediasViewController : UICollectionViewController  <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ViewMediasViewController : UICollectionViewController  <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property NSInteger eventId;
+@property NSInteger circleId;
+
 @property (nonatomic, strong) NSMutableArray * medias;
 
 @property NSInteger selectedMediaId;
@@ -28,6 +30,5 @@
 @property (strong, nonatomic) UIImagePickerController * imagePicker;
 
 - (UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale;
-- (NSString *)encodeToBase64String:(UIImage *)image;
 
 @end

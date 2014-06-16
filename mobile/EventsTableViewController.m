@@ -29,7 +29,16 @@
 {
     [super viewDidLoad];
     
-    TSweetResponse * getEventsResponse = [[EventsCommunicator shared] getEvents];
+    TSweetResponse * getEventsResponse;
+    
+    if (self.circleId == 0)
+    {
+        getEventsResponse = [[EventsCommunicator shared] getEvents];
+    }
+    else
+    {
+        getEventsResponse = [[CirclesCommunicator shared] getEvents:self.circleId];
+    }
     
     NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
     [shortDateFormatter setDateFormat:@"dd MMM yyyy"];

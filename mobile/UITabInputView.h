@@ -17,6 +17,7 @@
 @protocol UITabInputViewDelegate <NSObject>
 
 -(void) didTouchDoneButton;
+-(void) didTouchAttachButton;
 
 @end
 
@@ -33,8 +34,9 @@
 @property CGFloat defaultKBY;
 
 @property (nonatomic, strong) UITextField * textField;
+@property (nonatomic, strong) UIButton * attachButton;
 @property (nonatomic, strong) UIButton * doneButton;
 
--(id)initWithDelegate:(id)delegate;
+-(id)initWithDelegate:(id)delegate hasAttachButton:(BOOL)hasAttachButton;
 
 @end

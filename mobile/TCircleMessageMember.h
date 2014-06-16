@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TMember.h"
+#import "TMessage.h"
+
 @interface TCircleMessageMember : NSObject
 
 @property NSInteger circleMessageMemberId;
@@ -18,7 +21,12 @@
 
 @property (nonatomic, strong) NSString * status;
 
+@property (nonatomic, strong) TMessage * message;
+@property (nonatomic, strong) TMember * member;
+
 @property (nonatomic, strong) NSDate * createdAt;
 @property (nonatomic, strong) NSDate * updatedAt;
+
+-(id)initWithJson: (NSDictionary *) json;
 
 @end

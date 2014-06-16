@@ -18,6 +18,8 @@
 
 @interface EventsTableViewController : UITableViewController
 
+@property NSInteger circleId;
+
 @property (nonatomic, strong) NSMutableArray * sections;
 @property (nonatomic, strong) NSMutableArray * data;
 

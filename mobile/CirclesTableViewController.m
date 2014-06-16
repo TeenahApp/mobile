@@ -34,11 +34,11 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // TODO: Handling errors and/or warnings.
-    TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
+    TSweetResponse * getCirclesResponse = [[CirclesCommunicator shared] getCircles];
     
     self.circles = [[NSMutableArray alloc] init];
     
-    for (NSDictionary * tempCircle in tsr.json)
+    for (NSDictionary * tempCircle in getCirclesResponse.json)
     {
         TCircle * circle = [[TCircle alloc] initWithJson:tempCircle];
         [self.circles addObject:circle];
@@ -76,15 +76,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
     TCircle * current = [self.circles objectAtIndex:indexPath.row];
     
     cell.textLabel.text = current.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Members", (long)current.membersCount];
-    
-    NSLog(@"Cell has been called");
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld فرد", (long)current.membersCount];
     
     return cell;
 }
@@ -95,46 +93,8 @@
     
     self.currentCircle = selectedCircle;
     
-    [self performSegueWithIdentifier:@"ViewCircle" sender:tableView];
+    [self performSegueWithIdentifier:@"showCircleChats" sender:tableView];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Navigation
 
@@ -144,17 +104,13 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([[segue identifier] isEqualToString:@"ViewCircle"])
+    if ([[segue identifier] isEqualToString:@"showCircleChats"])
     {
-        // Get reference to the destination view controller
-        //YourViewController *vc = [segue destinationViewController];
-        CircleViewController *vc = (CircleViewController *) [segue destinationViewController];
+        CircleChatsTableViewController * vc = (CircleChatsTableViewController *)[segue destinationViewController];
         
-        vc.hidesBottomBarWhenPushed = YES;
- 
-        vc.circle = self.currentCircle;
+        vc.circleId = self.currentCircle.circleId;
 
-        //NSLog(@"prepareForSegue: %@", self.currentCircle);
+        vc.hidesBottomBarWhenPushed = YES;
     }
 }
 

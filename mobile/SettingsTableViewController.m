@@ -73,11 +73,27 @@
     {
         [self goToTeenahAppWebsite];
     }
+    else if (indexPath.section == 3 && indexPath.row == 0)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/matej"]];
+    }
+    else if (indexPath.section == 3 && indexPath.row == 1)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/kevinzhow"]];
+    }
+    else if (indexPath.section == 3 && indexPath.row == 2)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/kishikawakatsumi"]];
+    }
+    else if (indexPath.section == 3 && indexPath.row == 3)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/nicklockwood"]];
+    }
 }
 
 -(void)goToEditMember
 {
-    
+    [self performSegueWithIdentifier:@"showUpdateMember" sender:nil];
 }
 
 -(void)goToUploadPhoto
@@ -115,6 +131,19 @@
         fuptvc.isFirst = NO;
         
         fuptvc.hidesBottomBarWhenPushed = YES;
+    }
+    
+    else if ([[segue identifier] isEqual:@"showUpdateMember"])
+    {
+        UpdateMemberInfoViewController * vc = (UpdateMemberInfoViewController *)[segue destinationViewController];
+        
+        TSweetResponse * getMemberResponse = [[MembersCommunicator shared] getMember:self.memberId];
+        TMember * member = [[TMember alloc] initWithJson:getMemberResponse.json];
+        
+        vc.member = member;
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [vc initWithNibName:nil bundle:nil];
     }
 }
 
