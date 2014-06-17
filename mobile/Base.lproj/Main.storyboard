@@ -164,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="2510" y="1446"/>
         </scene>
-        <!--View Circle Stats Table View Controller-->
+        <!--View Circle Stats Table View Controller - إحصائيات الدائرة-->
         <scene sceneID="Y7Q-gY-hiU">
             <objects>
                 <tableViewController id="xek-1d-3pr" customClass="ViewCircleStatsTableViewController" sceneMemberID="viewController">
@@ -219,7 +219,7 @@
                             <outlet property="delegate" destination="xek-1d-3pr" id="7m2-bw-5PE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="AB2-r0-3Ex"/>
+                    <navigationItem key="navigationItem" title="إحصائيات الدائرة" id="AB2-r0-3Ex"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITb-EX-CLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

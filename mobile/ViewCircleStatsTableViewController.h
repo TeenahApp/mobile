@@ -11,6 +11,9 @@
 #import <UIKit/UIKit.h>
 #import <PNChart/PNChart.h>
 
+#import "TSweetResponse.h"
+#import "TSweetCirclesCommunicator.h"
+
 #import "UIMultiColumnsTableViewCell.h"
 
 @interface ViewCircleStatsTableViewController : UITableViewController

@@ -27,7 +27,11 @@
 {
     [super viewDidLoad];
     
-    self.sections = @[@"Numbers", @"Ages", @"Numbers", @"Male Names", @"Female Names", @"Locations", @"Educations"];//, @"Education Majors", @"Jobs", @"Companies"];
+    // Get the stats from the API.
+    TSweetResponse * getCircleStatsResponse = [[CirclesCommunicator shared] getStats:self.circleId];
+    NSDictionary * stats = getCircleStatsResponse.json;
+    
+    self.sections = @[@"التعداد", @"الفئات العمرية", @"Numbers", @"Male Names", @"Female Names", @"Locations", @"Educations", @"Education Majors", @"Jobs", @"Companies"];
     
     NSMutableArray * numbers1 = [[NSMutableArray alloc]init];
     NSMutableArray * ages = [[NSMutableArray alloc]init];
@@ -36,6 +40,9 @@
     NSMutableArray * femaleNames = [[NSMutableArray alloc]init];
     NSMutableArray * locations = [[NSMutableArray alloc]init];
     NSMutableArray * educations = [[NSMutableArray alloc]init];
+    NSMutableArray * educationMajors = [[NSMutableArray alloc]init];
+    NSMutableArray * jobs = [[NSMutableArray alloc]init];
+    NSMutableArray * companies = [[NSMutableArray alloc]init];
     
     self.data = [@[
                    
@@ -43,22 +50,31 @@
                    numbers1,
                    
                    // Section 1: Ages:
-                   ages,
+                   @[@{@"ages": ages}],
                    
                    // Section 2: Numbers2:
                    numbers2,
                    
                    // Section 3: Male names.
-                   maleNames,
+                   @[@{@"males": maleNames}],
                    
                    // Section 4: Female names.
-                   femaleNames,
+                   @[@{@"females": femaleNames}],
                    
                    // Section 5: Locations.
                    locations,
                    
                    // Section 6: Educations.
-                   educations,
+                   @[@{@"educations": educations}],
+                   
+                   // Section 7: Education majors.
+                   educationMajors,
+
+                   // Section 8: Jobs.
+                   jobs,
+                   
+                   // Section 9: Companies.
+                   companies,
                    
     ] mutableCopy];
     
@@ -66,51 +82,85 @@
     [numbers1 addObject:
     @{@"Numbers1.Row1":
            @[
-               @{@"label": @"سنة", @"count": [NSString stringWithFormat:@"%ld", (long)132]},
-               @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)4534]},
-               @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)678]},
+               @{@"label": @"الأفراد", @"count": [stats objectForKey:@"members_count"]},
+               @{@"label": @"الذكور", @"count": [stats objectForKey:@"males_count"]},
+               @{@"label": @"الإناث", @"count": [stats objectForKey:@"females_count"]},
             ]
     }];
     
     [numbers1 addObject:
      @{@"Numbers1.Row2":
            @[
-               @{@"label": @"سنة", @"count": [NSString stringWithFormat:@"%ld", (long)132]},
-               @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)4534]},
-               @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)678]},
+               @{@"label": @"الأحياء الأفراد", @"count": [stats objectForKey:@"alive_members_count"]},
+               @{@"label": @"الأحياء الذكور", @"count": [stats objectForKey:@"alive_males_count"]},
+               @{@"label": @"الأحياء الإناث", @"count": [stats objectForKey:@"alive_females_count"]},
             ]
     }];
     
     // 1. Ages.
-    [ages addObject:@{@"title": @"any"}];
+    for (NSDictionary * tempAge in [stats objectForKey:@"ages"])
+    {
+        [ages addObject:@{@"label": [tempAge objectForKey:@"ranges"], @"value": [tempAge objectForKey:@"counts"], @"color": PNGreen}];
+    }
     
     // 2. Numbers 2
     [numbers2 addObject:
      @{@"Numbers2":
            @[
-               @{@"label": @"مناسبة", @"count": [NSString stringWithFormat:@"%ld", (long)132]},
-               @{@"label": @"رسالة", @"count": [NSString stringWithFormat:@"%ld", (long)4534]},
-               @{@"label": @"صورة", @"count": [NSString stringWithFormat:@"%ld", (long)678]},
+               @{@"label": @"مناسبة", @"count": [stats objectForKey:@"events_count"]},
+               @{@"label": @"رسالة", @"count": [stats objectForKey:@"messages_count"]},
+               @{@"label": @"صورة", @"count": [stats objectForKey:@"medias_count"]},
             ]
     }];
     
     // 3. Male names.
-    [maleNames addObject:@{@"title": @"any"}];
+    for (NSDictionary * tempMName in [stats objectForKey:@"male_names"])
+    {
+        [maleNames addObject:@{@"label": [tempMName objectForKey:@"name"], @"value": [tempMName objectForKey:@"members_count"], @"color": PNBlue}];
+    }
     
     // 4. Female names.
-    [femaleNames addObject:@{@"title": @"any"}];
+    for (NSDictionary * tempFName in [stats objectForKey:@"female_names"])
+    {
+        [femaleNames addObject:@{@"label": [tempFName objectForKey:@"name"], @"value": [tempFName objectForKey:@"members_count"], @"color": PNRed}];
+    }
     
     // 5. Locations.
-    [locations addObject:@{@"title": @"any"}];
-    
-    // 6. Educations.
-    [educations addObject:@{@"title": @"any"}];
+    for (NSDictionary * tempLocation in [stats objectForKey:@"locations"])
+    {
+        [locations addObject:@{[NSString stringWithFormat:@"%@", [tempLocation objectForKey:@"location"]]: [NSString stringWithFormat:@"%@", [tempLocation objectForKey:@"members_count"]]}];
+    }
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 6. Educations.
+    for (NSDictionary * tempEducation in [stats objectForKey:@"educations"])
+    {
+        [educations addObject:@{@"label": [tempEducation objectForKey:@"degree"], @"value": [tempEducation objectForKey:@"members_count"], @"color": PNLightBlue}];
+    }
+
+    // 7. Education majors.
+    // TODO: Should be one line if-else.
+    for (NSDictionary * tempEMajor in [stats objectForKey:@"education_majors"])
+    {
+        NSDictionary * major = [tempEMajor objectForKey:@"major"];
+        
+        if ([major isKindOfClass:[NSNull class]])
+        {
+            [educationMajors addObject:@{@"غير محدّد": [NSString stringWithFormat:@"%@", [tempEMajor objectForKey:@"members_count"]]}];
+        }
+        else
+        {
+            [educationMajors addObject:@{[NSString stringWithFormat:@"%@", [major objectForKey:@"name"]]: [NSString stringWithFormat:@"%@", [tempEMajor objectForKey:@"members_count"]]}];
+        }
+    }
+
+    // 8. Jobs.
+    for (NSDictionary * tempJob in [stats objectForKey:@"jobs"])
+    {
+        [jobs addObject:@{[NSString stringWithFormat:@"%@", [tempJob objectForKey:@"title"]]: [NSString stringWithFormat:@"%@", [tempJob objectForKey:@"members_count"]]}];
+    }
+
+    // 9. Companies.
+    [companies  addObject:@{@"title": @"any"}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,11 +188,10 @@
 {
     NSArray * rows = [self.data objectAtIndex:indexPath.section];
     NSDictionary * info = [rows objectAtIndex:indexPath.row];
-    
-    NSString * key = [[info allKeys] objectAtIndex:0];
-    
+
     if (indexPath.section == 0 || indexPath.section == 2)
     {
+        NSString * key = [[info allKeys] objectAtIndex:0];
         NSArray * columns = [info objectForKey:key];
 
         UIMultiColumnsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"multiColumnsCell" forIndexPath:indexPath];
@@ -153,36 +202,58 @@
     }
     else if (indexPath.section == 1 || indexPath.section == 3 || indexPath.section == 4 || indexPath.section == 6)
     {
+        NSString * key = [[info allKeys] objectAtIndex:0];
+        NSArray * items = [info objectForKey:key];
+        
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"chartCell" forIndexPath:indexPath];
         
-        if (cell.contentView.subviews.count == 0) // This line to prevent drawing the chart again.
+        [cell.contentView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
+        
+        PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(cell.contentView.frame.origin.x + kChartCellPadding, cell.contentView.frame.origin.y + kChartCellPadding, cell.contentView.frame.size.width - kChartCellPadding, cell.contentView.frame.size.height - kChartCellPadding)];
+        
+        barChart.backgroundColor = [UIColor clearColor];
+        
+        barChart.yLabelFormatter = ^(CGFloat yValue)
         {
-            // TODO: Remove the chart from the view.
-            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(cell.contentView.frame.origin.x + kChartCellPadding, cell.contentView.frame.origin.y + kChartCellPadding, cell.contentView.frame.size.width - kChartCellPadding, cell.contentView.frame.size.height - kChartCellPadding)];
+            CGFloat yValueParsed = yValue;
+            NSString * labelText = [NSString stringWithFormat:@"%1.f",yValueParsed];
+            return labelText;
+        };
         
-            barChart.backgroundColor = [UIColor clearColor];
-        
-            barChart.yLabelFormatter = ^(CGFloat yValue)
-            {
-                CGFloat yValueParsed = yValue;
-                NSString * labelText = [NSString stringWithFormat:@"%1.f",yValueParsed];
-                return labelText;
-            };
-        
-            barChart.labelMarginTop = 5.0;
+        barChart.labelMarginTop = 5.0;
 
-            [barChart setXLabels:@[@"SEP 1",@"SEP 2",@"SEP 3",@"SEP 4",@"SEP 5",@"SEP 6",@"SEP 7"]];
-            [barChart setYValues:@[@1,@24,@12,@18,@30,@10,@21]];
-            [barChart setStrokeColors:@[PNGreen,PNGreen,PNRed,PNGreen,PNGreen,PNYellow,PNGreen]];
-            [barChart strokeChart];
+        NSMutableArray * xLables = [[NSMutableArray alloc]init];
+        NSMutableArray * yLables = [[NSMutableArray alloc]init];
+        NSMutableArray * colors = [[NSMutableArray alloc]init];
 
-            [cell.contentView addSubview:barChart];
+        for (NSDictionary * item in items)
+        {
+            [xLables addObject:[item objectForKey:@"label"]];
+            [yLables addObject:[item objectForKey:@"value"]];
+            [colors addObject:[item objectForKey:@"color"]];
         }
+
+        [barChart setXLabels:xLables];
+        [barChart setYValues:yLables];
+        [barChart setStrokeColors:colors];
+        
+        [barChart strokeChart];
+        
+        [cell.contentView addSubview:barChart];
 
         return cell;
     }
     
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+    
+    NSString * key = [[info allKeys] objectAtIndex:0];
+    NSString * value = [info objectForKey:key];
+
+    cell.textLabel.text = key;
+    cell.detailTextLabel.text = value;
+    
+    info;
+
     return cell;
 }
 

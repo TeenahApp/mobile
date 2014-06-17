@@ -24,6 +24,7 @@ TODO:
 38. Privacies.
 39. SSL.
 40. Don't draw the labels and buttons and objects generally twice (context: multi-columns cell).
+41. Issue when sending a text message in the circles, need to know what is happining.
 
 DONE:
 
