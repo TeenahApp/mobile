@@ -56,6 +56,9 @@
 		FD96ECD7194BE5C20030F6BE /* TMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD6194BE5C20030F6BE /* TMessage.m */; };
 		FD96ECDA194CE9990030F6BE /* TMessageMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECD9194CE9990030F6BE /* TMessageMedia.m */; };
 		FD96ECDD194F24A90030F6BE /* ViewCircleStatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECDC194F24A90030F6BE /* ViewCircleStatsTableViewController.m */; };
+		FD96ECF9195219F00030F6BE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD96ECF8195219F00030F6BE /* AddressBook.framework */; };
+		FD96ECFB195219F60030F6BE /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD96ECFA195219F60030F6BE /* AddressBookUI.framework */; };
+		FD96ECFE195389BC0030F6BE /* AddCircleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECFD195389BC0030F6BE /* AddCircleTableViewController.m */; };
 		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FDA0E19719364FE300F31A0A /* TComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19619364FE300F31A0A /* TComment.m */; };
@@ -188,6 +191,10 @@
 		FD96ECD9194CE9990030F6BE /* TMessageMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMessageMedia.m; sourceTree = "<group>"; };
 		FD96ECDB194F24A90030F6BE /* ViewCircleStatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCircleStatsTableViewController.h; sourceTree = "<group>"; };
 		FD96ECDC194F24A90030F6BE /* ViewCircleStatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCircleStatsTableViewController.m; sourceTree = "<group>"; };
+		FD96ECF8195219F00030F6BE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		FD96ECFA195219F60030F6BE /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		FD96ECFC195389BC0030F6BE /* AddCircleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCircleTableViewController.h; sourceTree = "<group>"; };
+		FD96ECFD195389BC0030F6BE /* AddCircleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCircleTableViewController.m; sourceTree = "<group>"; };
 		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
 		FD9C71011905812A0091849B /* AddRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationViewController.m; sourceTree = "<group>"; };
 		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -257,6 +264,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD96ECFB195219F60030F6BE /* AddressBookUI.framework in Frameworks */,
+				FD96ECF9195219F00030F6BE /* AddressBook.framework in Frameworks */,
 				FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */,
 				FD81B89C1907F50D0037B479 /* Security.framework in Frameworks */,
 				FD54660C18F5A66000BFD409 /* CoreGraphics.framework in Frameworks */,
@@ -353,6 +362,8 @@
 		FD54660818F5A66000BFD409 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD96ECFA195219F60030F6BE /* AddressBookUI.framework */,
+				FD96ECF8195219F00030F6BE /* AddressBook.framework */,
 				FD9F4C951926980800D10C09 /* MapKit.framework */,
 				FD81B89B1907F50D0037B479 /* Security.framework */,
 				FD54660918F5A66000BFD409 /* Foundation.framework */,
@@ -458,6 +469,8 @@
 				FD1F1A1A193CAC43009638F5 /* FirstUploadPhotoTableViewController.m */,
 				FD697A0B1944A63600D571E2 /* UpdateMemberInfoViewController.h */,
 				FD697A0C1944A63600D571E2 /* UpdateMemberInfoViewController.m */,
+				FD96ECFC195389BC0030F6BE /* AddCircleTableViewController.h */,
+				FD96ECFD195389BC0030F6BE /* AddCircleTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -721,6 +734,7 @@
 				FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */,
 				FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */,
 				FDD1510B192FD35300BC41E5 /* TEducationMajor.m in Sources */,
+				FD96ECFE195389BC0030F6BE /* AddCircleTableViewController.m in Sources */,
 				FDA0E19A193741B300F31A0A /* ViewMediasViewController.m in Sources */,
 				FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */,
 				FD576CB218F733B300851F90 /* UpdateInfoFirstTimeViewController.m in Sources */,

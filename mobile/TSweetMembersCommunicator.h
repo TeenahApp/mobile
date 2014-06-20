@@ -92,4 +92,6 @@
 
 -(TSweetResponse *) getSocialMedias: (NSInteger) memberId;
 
+-(TSweetResponse *) getMemberIdByMobile:(NSString *)mobile;
+
 @end

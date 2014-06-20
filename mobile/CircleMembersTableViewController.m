@@ -26,13 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    CGRect newBounds = self.tableView.bounds;
-//    
-//    newBounds.origin.y = newBounds.origin.y + self.searchBar.bounds.size.height;
-//    self.tableView.bounds = newBounds;
-    
-    // TODO: Change the circle id to be a variable, thanks to @ecleel.
+
+    [self loadMembers];
+}
+
+-(void)loadMembers
+{
+    // Get the members of the circle id.
     TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:self.circleId];
     
     self.members = [[NSMutableArray alloc] init];
@@ -45,6 +45,8 @@
     
     // This is for searching for members.
     self.filteredMembers = [[NSMutableArray alloc] initWithCapacity:self.members.count];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,9 +79,6 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    // objectAtIndex:indexPath.row
-    
     TMember * member;
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -92,9 +91,9 @@
     
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@", member.fullname]];
     
-    // TODO: Load the images in a separate thread.
-    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-    cell.imageView.layer.masksToBounds = YES;
+    // Load the images in a separate thread.
+//    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
+//    cell.imageView.layer.masksToBounds = YES;
     
     if (member.photo != nil)
     {
@@ -127,10 +126,89 @@
     // Filter the array using NSPredicate
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
-    
     self.filteredMembers = [NSMutableArray arrayWithArray:[self.members filteredArrayUsingPredicate:predicate]];
+}
+
+- (IBAction)addMember:(id)sender
+{
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     
-    NSLog(@"%@", self.filteredMembers);
+    picker.peoplePickerDelegate = self;
+    
+    [self presentViewController:picker animated:NO completion:nil];
+}
+
+#pragma mark - ABPeoplePicker
+
+-(void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    // Ensure that the user picked a phone property.
+    if(property == kABPersonPhoneProperty)
+    {
+        ABMultiValueRef phone = ABRecordCopyValue(person, property);
+        NSString * chosenMobile = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, ABMultiValueGetIndexForIdentifier(phone, identifier));
+        
+        // Clean the mobile a bit.
+        NSString * mobile = [self mobileFormatWithString:chosenMobile];
+        
+        NSLog(@"mobile = %@", mobile);
+        
+        // Get the member information.
+        TSweetResponse * getMemberIdResponse = [[MembersCommunicator shared] getMemberIdByMobile:mobile];
+        
+        if (getMemberIdResponse.code == 200)
+        {
+            // Get the member id as an integer.
+            NSInteger memberId = [[getMemberIdResponse.json objectForKey:@"id"] integerValue];
+            
+            // Try to add the member to the circle.
+            TSweetResponse * createMembersResponse = [[CirclesCommunicator shared] createMembers:self.circleId members:@[@(memberId)]];
+            
+            if (createMembersResponse.code == 201)
+            {
+                [self loadMembers];
+                
+                self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّت عملية إضافة الفرد بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه قد يكون أضُيف مسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+        }
+        else
+        {
+            self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه ليس مضافاً في قاعدة بيانات تطبيق تينه." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+            [self.alert show];
+        }
+
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
+    return NO;
+}
+
+-(NSString *)mobileFormatWithString:(NSString *)mobile
+{
+    // Special case.
+    if (mobile.length == 10)
+    {
+        return [NSString stringWithFormat:@"966%lld", [mobile longLongValue]];
+    }
+
+    // Remove the characters.
+    mobile = [[mobile componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+
+    // Remove the leading zeros.
+    mobile = [NSString stringWithFormat:@"%lld", [mobile longLongValue]];
+    
+    return mobile;
 }
 
 #pragma mark - UISearchDisplayController Delegate Methods

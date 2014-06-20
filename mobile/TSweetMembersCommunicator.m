@@ -193,4 +193,10 @@
     return [[TSweetRest shared] get:route];
 }
 
+-(TSweetResponse *)getMemberIdByMobile:(NSString *)mobile
+{
+    NSString * route = [NSString stringWithFormat:@"/mobiles/%@/member", mobile];
+    return [[TSweetRest shared] get:route];
+}
+
 @end

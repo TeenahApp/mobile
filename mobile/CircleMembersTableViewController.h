@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBookUI/AddressBookUI.h>
 
+#import "TSweetMembersCommunicator.h"
 #import "TSweetCirclesCommunicator.h"
 #import "TSweetResponse.h"
 
@@ -15,7 +17,7 @@
 
 #import "ViewMemberTableViewController.h"
 
-@interface CircleMembersTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface CircleMembersTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property NSInteger circleId;
 
@@ -28,5 +30,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (strong, nonatomic) UIAlertView * alert;
+
+-(NSString *)mobileFormatWithString:(NSString *)mobile;
 
 @end

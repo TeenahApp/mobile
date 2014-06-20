@@ -20,6 +20,8 @@
 
 @property NSInteger circleId;
 
+@property (nonatomic, strong) NSDictionary * degrees;
+
 @property (strong, nonatomic) NSArray * sections;
 @property (strong, nonatomic) NSMutableArray * data;
 

@@ -27,11 +27,17 @@
 {
     [super viewDidLoad];
     
+    self.degrees = @{
+                     @"elementary": @"إبتدائي", @"intermediate": @"متوسّط", @"secondary": @"ثانوي",
+                     @"diploma": @"دبلوم", @"licentiate": @"إجازة", @"bachelor": @"بكالوريوس",
+                     @"master": @"ماجستير", @"doctorate": @"دكتوراه",
+    };
+    
     // Get the stats from the API.
     TSweetResponse * getCircleStatsResponse = [[CirclesCommunicator shared] getStats:self.circleId];
     NSDictionary * stats = getCircleStatsResponse.json;
     
-    self.sections = @[@"التعداد", @"الفئات العمرية", @"Numbers", @"Male Names", @"Female Names", @"Locations", @"Educations", @"Education Majors", @"Jobs", @"Companies"];
+    self.sections = @[@"التعداد", @"الفئات العمرية", @"", @"أسماء الذكور", @"أسماء الإناث", @"أماكن الإقامة", @"التعليم", @"التخصّصات", @"الوظائف", @"جهات العمل"];
     
     NSMutableArray * numbers1 = [[NSMutableArray alloc]init];
     NSMutableArray * ages = [[NSMutableArray alloc]init];
@@ -128,29 +134,25 @@
     // 5. Locations.
     for (NSDictionary * tempLocation in [stats objectForKey:@"locations"])
     {
-        [locations addObject:@{[NSString stringWithFormat:@"%@", [tempLocation objectForKey:@"location"]]: [NSString stringWithFormat:@"%@", [tempLocation objectForKey:@"members_count"]]}];
+        NSString * location = [[tempLocation objectForKey:@"location"] isKindOfClass:[NSNull class]] ? @"غير محدّد" : [tempLocation objectForKey:@"location"];
+        [locations addObject:@{location: [NSString stringWithFormat:@"%@", [tempLocation objectForKey:@"members_count"]]}];
     }
 
     // 6. Educations.
     for (NSDictionary * tempEducation in [stats objectForKey:@"educations"])
     {
-        [educations addObject:@{@"label": [tempEducation objectForKey:@"degree"], @"value": [tempEducation objectForKey:@"members_count"], @"color": PNLightBlue}];
+        [educations addObject:@{@"label": self.degrees[[tempEducation objectForKey:@"degree"]], @"value": [tempEducation objectForKey:@"members_count"], @"color": PNLightBlue}];
     }
 
     // 7. Education majors.
-    // TODO: Should be one line if-else.
     for (NSDictionary * tempEMajor in [stats objectForKey:@"education_majors"])
     {
         NSDictionary * major = [tempEMajor objectForKey:@"major"];
         
-        if ([major isKindOfClass:[NSNull class]])
-        {
-            [educationMajors addObject:@{@"غير محدّد": [NSString stringWithFormat:@"%@", [tempEMajor objectForKey:@"members_count"]]}];
-        }
-        else
-        {
-            [educationMajors addObject:@{[NSString stringWithFormat:@"%@", [major objectForKey:@"name"]]: [NSString stringWithFormat:@"%@", [tempEMajor objectForKey:@"members_count"]]}];
-        }
+        NSString * majorName = [major isKindOfClass:[NSNull class]] ? @"غير محدّد" : [NSString stringWithFormat:@"%@", [major objectForKey:@"name"]];
+        NSString * membersCount = [NSString stringWithFormat:@"%@", [tempEMajor objectForKey:@"members_count"]];
+        
+        [educationMajors addObject:@{majorName: membersCount}];
     }
 
     // 8. Jobs.
@@ -160,7 +162,15 @@
     }
 
     // 9. Companies.
-    [companies  addObject:@{@"title": @"any"}];
+    for (NSDictionary * tempCompany in [stats objectForKey:@"companies"])
+    {
+        NSDictionary * company = [tempCompany objectForKey:@"company"];
+        
+        NSString * companyName = [company isKindOfClass:[NSNull class]] ? @"غير محدّد" : [NSString stringWithFormat:@"%@", [company objectForKey:@"name"]];
+        NSString * membersCount = [NSString stringWithFormat:@"%@", [tempCompany objectForKey:@"members_count"]];
+        
+        [companies addObject:@{companyName: membersCount}];
+    }
 }
 
 - (void)didReceiveMemoryWarning

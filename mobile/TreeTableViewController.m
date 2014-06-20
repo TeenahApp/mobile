@@ -90,8 +90,8 @@
             cell.textLabel.text = self.member.father.displayName;
             cell.detailTextLabel.text = self.member.father.displayYears;
 
-            cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-            cell.imageView.layer.masksToBounds = YES;
+//            cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
+//            cell.imageView.layer.masksToBounds = YES;
             
             return cell;
         }
@@ -131,9 +131,9 @@
         
         cell.textLabel.text = relatedMember.name;
         cell.detailTextLabel.text = relatedMember.displayYears;
-        
-        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-        cell.imageView.layer.masksToBounds = YES;
+
+//        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
+//        cell.imageView.layer.masksToBounds = YES;
         
         if (relatedMember.photo != nil)
         {
