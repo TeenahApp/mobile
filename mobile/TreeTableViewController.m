@@ -37,6 +37,12 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
     self.tabBarController.tabBar.tintColor = teenahAppBlueColor;
+    
+    self.relationStrings = @{
+                       @"father": @"أب", @"stepfather": @"زوج الأم", @"father-in-law": @"أب الزوج", @"mother": @"أم", @"stepmother": @"زوج الأم", @"mother-in-law": @"أم الزوج", @"sister": @"أخت", @"brother": @"أخ", @"son": @"ابن", @"stepson": @"ابن الزوج", @"daughter": @"ابنة", @"stepdaughter": @"ابنة الزوج", @"son-in-law": @"زوج البنت", @"daughter-in-law": @"زوجة الابن", @"wife": @"زوجة", @"husband": @"زوج"
+    };
+
+    self.relations = [[NSMutableArray alloc]init];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -207,12 +213,71 @@
             {
                 self.member = [[TMember alloc] initWithJson:memberResponse.json];
             }
+            
+            // Flush the relations that the user can add.
+            [self.relations removeAllObjects];
+            
+            // Check if the member has already a father.
+            if (self.member.father == nil && self.member.isRoot == NO)
+            {
+                [self.relations addObject:@"father"];
+            }
+            
+            // Check if the member has already a mother.
+            if (self.member.mother == nil)
+            {
+                [self.relations addObject:@"mother"];
+            }
+            
+            [self.relations addObject:@"brother"];
+            [self.relations addObject:@"sister"];
+            [self.relations addObject:@"son"];
+            [self.relations addObject:@"daughter"];
+            
+            // Check if the member is a male/female.
+            if ([self.member.gender isEqual: @"male"])
+            {
+                [self.relations addObject:@"wife"];
+            }
+            else
+            {
+                [self.relations addObject:@"husband"];
+            }
 
             [self.tableView reloadData];
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
+}
+
+
+- (IBAction)addRelation:(id)sender
+{
+    // Fullfill the action sheet.
+    self.actionSheet = [[UIActionSheet alloc]init];//[[UIActionSheet alloc]initWithTitle:@"إضافة علاقة" delegate:self cancelButtonTitle:@"إلغاء" destructiveButtonTitle:nil otherButtonTitles:nil];
+    
+    self.actionSheet.title = @"إضافة علاقة";
+    self.actionSheet.delegate = self;
+    
+    for (NSString * relation in self.relations)
+    {
+        [self.actionSheet addButtonWithTitle:[self.relationStrings objectForKey:relation]];
+    }
+
+    self.actionSheet.cancelButtonIndex = [self.actionSheet addButtonWithTitle:@"إلغاء"];
+    
+    // Show the action sheet.
+    [self.actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex < self.relations.count)
+    {
+        self.currentRelation = [self.relations objectAtIndex:buttonIndex];
+        [self performSegueWithIdentifier:@"showAddRelation" sender:nil];
+    }
 }
 
 #pragma mark - Navigation
@@ -224,8 +289,24 @@
     // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqual:@"showMemberView"])
     {
-        ViewMemberTableViewController * vc = [segue destinationViewController];
+        ViewMemberTableViewController * vc = (ViewMemberTableViewController *)[segue destinationViewController];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
         vc.member = self.member;
+    }
+    
+    else if ([[segue identifier] isEqual:@"showAddRelation"])
+    {
+        AddMemberRelationViewController * vc = (AddMemberRelationViewController *)[segue destinationViewController];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        vc.memberA = self.member.memberId;
+        vc.relation = self.currentRelation;
+        vc.acceptedRelations = self.relations;
+        
+        [vc initWithNibName:nil bundle:nil];
     }
 }
 

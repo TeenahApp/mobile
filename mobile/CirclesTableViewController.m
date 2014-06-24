@@ -27,22 +27,7 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    // TODO: Handling errors and/or warnings.
-    TSweetResponse * getCirclesResponse = [[CirclesCommunicator shared] getCircles];
-    
     self.circles = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary * tempCircle in getCirclesResponse.json)
-    {
-        TCircle * circle = [[TCircle alloc] initWithJson:tempCircle];
-        [self.circles addObject:circle];
-    }
     
     UIColor * teenahAppBlueColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
     
@@ -50,8 +35,36 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Get the member information.
+        TSweetResponse * getCirclesResponse = [[CirclesCommunicator shared] getCircles];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the response code is not successful.
+            if (getCirclesResponse.code == 200)
+            {
+                [self.circles removeAllObjects];
+                
+                for (NSDictionary * tempCircle in getCirclesResponse.json)
+                {
+                    TCircle * circle = [[TCircle alloc] initWithJson:tempCircle];
+                    [self.circles addObject:circle];
+                }
+            }
+            
+            [self.tableView reloadData];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,6 +123,13 @@
         
         vc.circleId = self.currentCircle.circleId;
 
+        vc.hidesBottomBarWhenPushed = YES;
+    }
+    
+    else if ([[segue identifier] isEqualToString:@"showAddCircle"])
+    {
+        AddCircleTableViewController * vc = (AddCircleTableViewController *)[segue destinationViewController];
+        
         vc.hidesBottomBarWhenPushed = YES;
     }
 }

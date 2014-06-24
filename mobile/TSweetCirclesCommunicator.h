@@ -16,7 +16,7 @@
 
 -(TSweetResponse *) getCircles;
 
--(TSweetResponse *) create: (NSString *) name
+-(TSweetResponse *) createCircle: (NSString *) name
                    members: (NSArray *) members;
 
 -(TSweetResponse *) getMembers: (NSInteger) circleId;

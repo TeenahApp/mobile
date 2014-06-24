@@ -100,10 +100,7 @@
         [self.alert show];
         return;
     }
-    
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    
+
     // Send the adding request.
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

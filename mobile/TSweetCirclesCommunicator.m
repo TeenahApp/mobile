@@ -26,7 +26,7 @@
     return [[TSweetRest shared] get:route];
 }
 
--(TSweetResponse *) create: (NSString *) name
+-(TSweetResponse *) createCircle: (NSString *) name
                    members: (NSString *) members
 {
     NSString * route = [NSString stringWithFormat:@"/circles"];

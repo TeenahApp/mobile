@@ -14,7 +14,7 @@
 		FD4AF16519293B4A00F41129 /* FXForms.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16419293B4A00F41129 /* FXForms.m */; };
 		FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16819293C9900F41129 /* AddEventViewController.m */; };
 		FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF16C1929400F00F41129 /* AddEventForm.m */; };
-		FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD507C1B192C84050077C55A /* AddRelationForm.m */; };
+		FD507C1C192C84050077C55A /* AddMemberRelationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FD507C1B192C84050077C55A /* AddMemberRelationForm.m */; };
 		FD530C9B193D931C00ACFC2A /* TreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD530C9A193D931C00ACFC2A /* TreeTableViewController.m */; };
 		FD530C9F193F13E600ACFC2A /* UITreeNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD530C9E193F13E600ACFC2A /* UITreeNodeTableViewCell.m */; };
 		FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5377C719326D07002A62F0 /* TMemberJob.m */; };
@@ -39,7 +39,6 @@
 		FD5A6A82193A36FE00CE9E10 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5A6A81193A36FE00CE9E10 /* SettingsTableViewController.m */; };
 		FD5A6A85193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5A6A84193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m */; };
 		FD5A6A88193A844900CE9E10 /* SecondHandShakeLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5A6A87193A844900CE9E10 /* SecondHandShakeLoginTableViewController.m */; };
-		FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5AA144191AAD6700C44F81 /* CircleViewController.m */; };
 		FD5BA84B192AB0B300B37FCC /* TEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5BA84A192AB0B300B37FCC /* TEvent.m */; };
 		FD61901019262009004DF6C4 /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD61900F19262009004DF6C4 /* EventsTableViewController.m */; };
 		FD635C651934FE4E007B3AAE /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD635C641934FE4E007B3AAE /* CommentsTableViewController.m */; };
@@ -59,7 +58,7 @@
 		FD96ECF9195219F00030F6BE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD96ECF8195219F00030F6BE /* AddressBook.framework */; };
 		FD96ECFB195219F60030F6BE /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD96ECFA195219F60030F6BE /* AddressBookUI.framework */; };
 		FD96ECFE195389BC0030F6BE /* AddCircleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96ECFD195389BC0030F6BE /* AddCircleTableViewController.m */; };
-		FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddRelationViewController.m */; };
+		FD9C71021905812A0091849B /* AddMemberRelationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9C71011905812A0091849B /* AddMemberRelationViewController.m */; };
 		FD9F4C961926980800D10C09 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9F4C951926980800D10C09 /* MapKit.framework */; };
 		FDA0E19719364FE300F31A0A /* TComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E19619364FE300F31A0A /* TComment.m */; };
 		FDA0E19A193741B300F31A0A /* ViewMediasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0E199193741B300F31A0A /* ViewMediasViewController.m */; };
@@ -116,8 +115,8 @@
 		FD4AF16819293C9900F41129 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		FD4AF16B1929400F00F41129 /* AddEventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventForm.h; sourceTree = "<group>"; };
 		FD4AF16C1929400F00F41129 /* AddEventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventForm.m; sourceTree = "<group>"; };
-		FD507C1A192C84050077C55A /* AddRelationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationForm.h; sourceTree = "<group>"; };
-		FD507C1B192C84050077C55A /* AddRelationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationForm.m; sourceTree = "<group>"; };
+		FD507C1A192C84050077C55A /* AddMemberRelationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberRelationForm.h; sourceTree = "<group>"; };
+		FD507C1B192C84050077C55A /* AddMemberRelationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberRelationForm.m; sourceTree = "<group>"; };
 		FD530C99193D931C00ACFC2A /* TreeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeTableViewController.h; sourceTree = "<group>"; };
 		FD530C9A193D931C00ACFC2A /* TreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeTableViewController.m; sourceTree = "<group>"; };
 		FD530C9C193E792400ACFC2A /* mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = mobile.entitlements; sourceTree = "<group>"; };
@@ -159,8 +158,6 @@
 		FD5A6A84193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstHandShakeLoginTableViewController.m; sourceTree = "<group>"; };
 		FD5A6A86193A844900CE9E10 /* SecondHandShakeLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondHandShakeLoginTableViewController.h; sourceTree = "<group>"; };
 		FD5A6A87193A844900CE9E10 /* SecondHandShakeLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondHandShakeLoginTableViewController.m; sourceTree = "<group>"; };
-		FD5AA143191AAD6700C44F81 /* CircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleViewController.h; sourceTree = "<group>"; };
-		FD5AA144191AAD6700C44F81 /* CircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleViewController.m; sourceTree = "<group>"; };
 		FD5BA849192AB0B300B37FCC /* TEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEvent.h; sourceTree = "<group>"; };
 		FD5BA84A192AB0B300B37FCC /* TEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEvent.m; sourceTree = "<group>"; };
 		FD61900E19262009004DF6C4 /* EventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsTableViewController.h; sourceTree = "<group>"; };
@@ -195,8 +192,8 @@
 		FD96ECFA195219F60030F6BE /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		FD96ECFC195389BC0030F6BE /* AddCircleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCircleTableViewController.h; sourceTree = "<group>"; };
 		FD96ECFD195389BC0030F6BE /* AddCircleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCircleTableViewController.m; sourceTree = "<group>"; };
-		FD9C71001905812A0091849B /* AddRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRelationViewController.h; sourceTree = "<group>"; };
-		FD9C71011905812A0091849B /* AddRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRelationViewController.m; sourceTree = "<group>"; };
+		FD9C71001905812A0091849B /* AddMemberRelationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberRelationViewController.h; sourceTree = "<group>"; };
+		FD9C71011905812A0091849B /* AddMemberRelationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberRelationViewController.m; sourceTree = "<group>"; };
 		FD9F4C951926980800D10C09 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDA0E19519364FE300F31A0A /* TComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TComment.h; sourceTree = "<group>"; };
 		FDA0E19619364FE300F31A0A /* TComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TComment.m; sourceTree = "<group>"; };
@@ -314,8 +311,8 @@
 				FD5377D519337D95002A62F0 /* ViewControllers */,
 				FD4AF16B1929400F00F41129 /* AddEventForm.h */,
 				FD4AF16C1929400F00F41129 /* AddEventForm.m */,
-				FD507C1A192C84050077C55A /* AddRelationForm.h */,
-				FD507C1B192C84050077C55A /* AddRelationForm.m */,
+				FD507C1A192C84050077C55A /* AddMemberRelationForm.h */,
+				FD507C1B192C84050077C55A /* AddMemberRelationForm.m */,
 				FDD1511E192FFF2F00BC41E5 /* AddMemberEducationForm.h */,
 				FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */,
 				FD5377C9193272FF002A62F0 /* AddMemberJobForm.h */,
@@ -435,12 +432,10 @@
 				FD5A6A84193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m */,
 				FDA0E198193741B300F31A0A /* ViewMediasViewController.h */,
 				FDA0E199193741B300F31A0A /* ViewMediasViewController.m */,
-				FD5AA143191AAD6700C44F81 /* CircleViewController.h */,
-				FD5AA144191AAD6700C44F81 /* CircleViewController.m */,
 				FD7AB76C190ABCC700E302B8 /* ViewMemberTableViewController.h */,
 				FD7AB76D190ABCC700E302B8 /* ViewMemberTableViewController.m */,
-				FD9C71001905812A0091849B /* AddRelationViewController.h */,
-				FD9C71011905812A0091849B /* AddRelationViewController.m */,
+				FD9C71001905812A0091849B /* AddMemberRelationViewController.h */,
+				FD9C71011905812A0091849B /* AddMemberRelationViewController.m */,
 				FD576CB018F733B300851F90 /* UpdateInfoFirstTimeViewController.h */,
 				FD576CB118F733B300851F90 /* UpdateInfoFirstTimeViewController.m */,
 				FD7AB76F190B04E400E302B8 /* CirclesTableViewController.h */,
@@ -726,7 +721,6 @@
 				FDD1511D192FFEA100BC41E5 /* AddMemberEducationViewController.m in Sources */,
 				FDF1F23018F5C891001B53D0 /* TSweetMessagesCommunicator.m in Sources */,
 				FD96ECD4194B89FF0030F6BE /* CircleChatsTableViewController.m in Sources */,
-				FD5AA145191AAD6700C44F81 /* CircleViewController.m in Sources */,
 				FD5A6A85193A40F900CE9E10 /* FirstHandShakeLoginTableViewController.m in Sources */,
 				FDF1F23118F5C891001B53D0 /* TSweetSocialMediasCommunicator.m in Sources */,
 				FDD15117192FDF8E00BC41E5 /* TMemberCircle.m in Sources */,
@@ -754,7 +748,7 @@
 				FD5A6A88193A844900CE9E10 /* SecondHandShakeLoginTableViewController.m in Sources */,
 				FDE4A8901933C8FF00E3B866 /* ViewEventTableViewController.m in Sources */,
 				FD59908C18FEEE1400975F7F /* TMember.m in Sources */,
-				FD9C71021905812A0091849B /* AddRelationViewController.m in Sources */,
+				FD9C71021905812A0091849B /* AddMemberRelationViewController.m in Sources */,
 				FDA0E19719364FE300F31A0A /* TComment.m in Sources */,
 				FD4AF16D1929400F00F41129 /* AddEventForm.m in Sources */,
 				FD96ECD7194BE5C20030F6BE /* TMessage.m in Sources */,
@@ -766,7 +760,7 @@
 				FDF1F23418F5C891001B53D0 /* TSweetRest.m in Sources */,
 				FD54661618F5A66000BFD409 /* main.m in Sources */,
 				FDF1F22F18F5C891001B53D0 /* TSweetMembersCommunicator.m in Sources */,
-				FD507C1C192C84050077C55A /* AddRelationForm.m in Sources */,
+				FD507C1C192C84050077C55A /* AddMemberRelationForm.m in Sources */,
 				FD4AF16919293C9900F41129 /* AddEventViewController.m in Sources */,
 				FD5377C819326D07002A62F0 /* TMemberJob.m in Sources */,
 				FD5377D919337DCD002A62F0 /* LocationMapViewController.m in Sources */,

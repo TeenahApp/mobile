@@ -32,7 +32,7 @@
                            isAlive: (BOOL) isAlive
                               name: (NSString *) name
                           relation: (NSString *) relation
-                            isRoot: (BOOL) isRoot
+                    secondRelation: (NSString *) secondRelation
                             mobile: (NSString *) mobile
                                dob: (NSDate *) dob
                                dod: (NSDate *) dod;

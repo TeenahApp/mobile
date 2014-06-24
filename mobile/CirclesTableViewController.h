@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 
 #import "TSweetResponse.h"
 #import "TSweetCirclesCommunicator.h"
 
 #import "CircleChatsTableViewController.h"
+#import "AddCircleTableViewController.h"
 
 #import "TCircle.h"
 

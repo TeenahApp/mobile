@@ -54,6 +54,7 @@
 @property (strong, nonatomic) NSString * bloodType;
 
 @property (strong, nonatomic) TMember * father;
+@property (strong, nonatomic) TMember * mother;
 
 @property (strong, nonatomic) NSMutableArray * relations;
 @property (strong, nonatomic) NSMutableArray * children;

@@ -52,14 +52,14 @@
     return [[TSweetRest shared] put:route parameters: parameters];
 }
 
--(TSweetResponse *)createRelation:(NSInteger)memberA isAlive:(BOOL)isAlive name:(NSString *)name relation:(NSString *)relation isRoot:(BOOL)isRoot mobile:(NSString *)mobile dob:(NSDate *)dob dod:(NSDate *)dod
+-(TSweetResponse *)createRelation:(NSInteger)memberA isAlive:(BOOL)isAlive name:(NSString *)name relation:(NSString *)relation secondRelation:(NSString *)secondRelation mobile:(NSString *)mobile dob:(NSDate *)dob dod:(NSDate *)dod
 {
     NSString * route = [NSString stringWithFormat:@"/members/%ld/relations", (long)memberA];
     NSDictionary * parameters = @{
                                   @"is_alive": [NSNumber numberWithBool:isAlive],
                                   @"name": name,
                                   @"relation": relation,
-                                  @"is_root": [NSNumber numberWithBool:isRoot],
+                                  @"second_relation": secondRelation,
                                   @"mobile": mobile,
                                   @"dob": dob,
                                   @"dod": dod

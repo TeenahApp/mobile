@@ -147,6 +147,7 @@
         
         // Init empty.
         self.father = nil;
+        self.mother = nil;
         self.children = [[NSMutableArray alloc] init];
         
         // Get the relations.
@@ -161,6 +162,12 @@
             if ([memberRelation.relationship isEqual: @"father"])
             {
                 self.father = memberRelation.firstMember;
+            }
+            
+            // Check if this relation is a mother.
+            if ([memberRelation.relationship isEqual: @"mother"])
+            {
+                self.mother = memberRelation.firstMember;
             }
             
             // Check if the relation is son or daughter.

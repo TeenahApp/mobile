@@ -135,7 +135,7 @@
     
     picker.peoplePickerDelegate = self;
     
-    [self presentViewController:picker animated:NO completion:nil];
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 #pragma mark - ABPeoplePicker

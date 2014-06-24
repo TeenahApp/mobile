@@ -13,7 +13,7 @@
 #import "TMember.h"
 #import "TSweetResponse.h"
 #import "TSweetMembersCommunicator.h"
-#import "AddRelationViewController.h"
+#import "AddMemberRelationViewController.h"
 
 @protocol UITreeViewDelegate <NSObject>
 

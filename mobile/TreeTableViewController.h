@@ -17,14 +17,22 @@
 
 #import "TMember.h"
 
+#import "AddMemberRelationViewController.h"
 #import "ViewMemberTableViewController.h"
 
-@interface TreeTableViewController : UITableViewController
+@interface TreeTableViewController : UITableViewController <UIActionSheetDelegate>
 
 @property NSInteger memberId;
 
 @property (nonatomic, strong) TMember * member;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) UIActionSheet * actionSheet;
+
+@property (strong, nonatomic) NSDictionary * relationStrings;
+@property (strong, nonatomic) NSMutableArray * relations;
+
+@property (strong, nonatomic) NSString * currentRelation;
 
 @end
