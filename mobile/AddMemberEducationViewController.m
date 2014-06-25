@@ -98,13 +98,30 @@
         major = self.form.major;
     }
     
-    TSweetResponse * tsr = [[MembersCommunicator shared] createEducation:self.memberId degree:self.form.degree startYear:self.form.startYear finishYear:self.form.finishYear status:self.form.status major:major];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    if (tsr.code == 201)
-    {
-        // TODO: Fix the returning back issue.
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Try to create an education.
+        TSweetResponse * createEducationResponse = [[MembersCommunicator shared] createEducation:self.memberId degree:self.form.degree startYear:self.form.startYear finishYear:self.form.finishYear status:self.form.status major:major];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Check if the response code is not successful.
+            if (createEducationResponse.code == 201)
+            {
+                // TODO: Fix the returning back issue.
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء إضافة التعليم، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 /*

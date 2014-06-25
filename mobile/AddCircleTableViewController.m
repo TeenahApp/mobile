@@ -228,7 +228,7 @@
             NSString * name = [getMemberIdResponse.json objectForKey:@"name"];
             BOOL alreadyExists = NO;
             
-            // TODO: Check if the member has been alredy added to the members array.
+            // Check if the member has been alredy added to the members array.
             for (NSDictionary * tempMember in self.members)
             {
                 NSString * tempMemberMobile = [tempMember objectForKey:@"mobile"];

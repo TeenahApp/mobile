@@ -29,12 +29,6 @@
     
     self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"إلغاء" destructiveButtonTitle:nil otherButtonTitles:@"عرض الإحصائيات", @"عرض المناسبات", @"استعراض الأفراد", @"مغادرة الدائرة", nil];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     TSweetResponse * getLatestReadResponse = [[CirclesCommunicator shared] getLatestRead:self.circleId];
     
     // Define the messages array.
@@ -169,6 +163,15 @@
 -(void)didTouchDoneButton
 {
     NSArray * circles = @[[NSString stringWithFormat:@"%ld", (long)self.circleId]];
+    
+    NSString * trimmedText = [self.tabInput.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedText isEqual:@""])
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء كتابة نص لتتمكن من إرساله." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+        return;
+    }
     
     // Send the message.
     TSweetResponse * sendTextResponse = [[MessagesCommunicator shared] sendText:self.tabInput.textField.text circles:circles];
@@ -354,8 +357,20 @@
 {
     if (buttonIndex == 1)
     {
-        TSweetResponse * leaveCircleResponse = [[CirclesCommunicator shared]leave:self.circleId];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            // Get the member information.
+            TSweetResponse * leaveCircleResponse = [[CirclesCommunicator shared]leave:self.circleId];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+        });
+
     }
 }
 

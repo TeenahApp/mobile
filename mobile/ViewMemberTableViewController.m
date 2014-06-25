@@ -115,7 +115,7 @@
 
     if (self.member.dob != nil)
     {
-        [mainInfos addObject:@{@"تاربخ الميلاد": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dob]]}];
+        [mainInfos addObject:@{@"تاريخ الميلاد": [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.member.dob]]}];
     }
     
     if (self.member.dod != nil)

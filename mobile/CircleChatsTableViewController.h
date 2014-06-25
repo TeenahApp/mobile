@@ -40,6 +40,8 @@
 @property (strong, nonatomic) UIImage * chosenImage;
 @property (strong, nonatomic) UIImagePickerController * imagePicker;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 - (UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale;
 
 @end

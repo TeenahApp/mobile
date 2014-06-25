@@ -26,9 +26,9 @@
         NSMutableDictionary * circles = [[NSMutableDictionary alloc] init];
 
         // Reach out for the circles.
-        TSweetResponse * tsr = [[CirclesCommunicator shared] getCircles];
+        TSweetResponse * getCirclesResponse = [[CirclesCommunicator shared] getCircles];
         
-        for (NSDictionary * tempCircle in tsr.json)
+        for (NSDictionary * tempCircle in getCirclesResponse.json)
         {
             [circles setObject:tempCircle[@"name"] forKey:tempCircle[@"id"]];
         }
@@ -115,13 +115,38 @@
             if (addEventResponse.code == 201)
             {
                 NSInteger eventId = [addEventResponse.json[@"event_id"] integerValue];
+
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                 
-                // Get the event.
-                TSweetResponse * getEventResponse = [[EventsCommunicator shared] getEvent:eventId];
-                self.event = [[TEvent alloc] initWithJson:getEventResponse.json];
-                
-                // Done
-                [self performSegueWithIdentifier:@"showEvent" sender:nil];
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    
+                    // Get the event.
+                    TSweetResponse * getEventResponse = [[EventsCommunicator shared] getEvent:eventId];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        // Check if the response code is not successful.
+                        if (getEventResponse.code == 200)
+                        {
+                            self.event = [[TEvent alloc] initWithJson:getEventResponse.json];
+                            
+                            // Done
+                            [self performSegueWithIdentifier:@"showEvent" sender:nil];
+                        }
+                        else
+                        {
+                            self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ في جلب المناسبة، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                        }
+                        
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                });
+
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يًمكن إضافة المناسبة، الرجاء التأكد من إدخال الحقول بشكل صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
 
             [MBProgressHUD hideHUDForView:self.view animated:YES];

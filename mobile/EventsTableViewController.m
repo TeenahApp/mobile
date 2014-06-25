@@ -29,44 +29,9 @@
 {
     [super viewDidLoad];
     
-    TSweetResponse * getEventsResponse;
-    
-    if (self.circleId == 0)
-    {
-        getEventsResponse = [[EventsCommunicator shared] getEvents];
-    }
-    else
-    {
-        getEventsResponse = [[CirclesCommunicator shared] getEvents:self.circleId];
-    }
-    
-    NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
-    [shortDateFormatter setDateFormat:@"dd MMM yyyy"];
-    
     // Initialize the sections array.
     self.sections = [[NSMutableArray alloc] init];
     self.data = [[NSMutableArray alloc] init];
-    
-    int section = -1;
-    
-    for (NSDictionary * tempEvent in getEventsResponse.json)
-    {
-        TEvent * event = [[TEvent alloc] initWithJson:tempEvent];
-
-        NSString * startDateString = [shortDateFormatter stringFromDate:event.startsAt];
-        
-        if (![self.sections containsObject:startDateString])
-        {
-            [self.sections addObject:startDateString];
-            [self.data addObject:[[NSMutableArray alloc] init]];
-
-            section++;
-        }
-        
-        // Add rows to corresponing sections.
-        NSMutableArray * temp = [self.data objectAtIndex:section];
-        [temp addObject:event];
-    }
     
     UIColor * teenahAppBlueColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
     
@@ -74,6 +39,63 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSDateFormatter * shortDateFormatter = [[NSDateFormatter alloc] init];
+    [shortDateFormatter setDateFormat:@"dd MMM yyyy"];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * getEventsResponse;
+        
+        if (self.circleId == 0)
+        {
+            getEventsResponse = [[EventsCommunicator shared] getEvents];
+        }
+        else
+        {
+            getEventsResponse = [[CirclesCommunicator shared] getEvents:self.circleId];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // TODO: Check if the response code is not successful.
+            if (getEventsResponse.code == 200)
+            {
+                [self.sections removeAllObjects];
+                [self.data removeAllObjects];
+                
+                int section = -1;
+                
+                for (NSDictionary * tempEvent in getEventsResponse.json)
+                {
+                    TEvent * event = [[TEvent alloc] initWithJson:tempEvent];
+                    
+                    NSString * startDateString = [shortDateFormatter stringFromDate:event.startsAt];
+                    
+                    if (![self.sections containsObject:startDateString])
+                    {
+                        [self.sections addObject:startDateString];
+                        [self.data addObject:[[NSMutableArray alloc] init]];
+                        
+                        section++;
+                    }
+
+                    // Add rows to corresponing sections.
+                    NSMutableArray * temp = [self.data objectAtIndex:section];
+                    [temp addObject:event];
+                }
+            }
+
+            [self.tableView reloadData];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning

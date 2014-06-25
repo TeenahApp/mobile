@@ -95,9 +95,6 @@
             
             cell.textLabel.text = self.member.father.displayName;
             cell.detailTextLabel.text = self.member.father.displayYears;
-
-//            cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-//            cell.imageView.layer.masksToBounds = YES;
             
             return cell;
         }
@@ -137,9 +134,6 @@
         
         cell.textLabel.text = relatedMember.name;
         cell.detailTextLabel.text = relatedMember.displayYears;
-
-//        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-//        cell.imageView.layer.masksToBounds = YES;
         
         if (relatedMember.photo != nil)
         {
@@ -255,7 +249,7 @@
 - (IBAction)addRelation:(id)sender
 {
     // Fullfill the action sheet.
-    self.actionSheet = [[UIActionSheet alloc]init];//[[UIActionSheet alloc]initWithTitle:@"إضافة علاقة" delegate:self cancelButtonTitle:@"إلغاء" destructiveButtonTitle:nil otherButtonTitles:nil];
+    self.actionSheet = [[UIActionSheet alloc]init];
     
     self.actionSheet.title = @"إضافة علاقة";
     self.actionSheet.delegate = self;
@@ -306,7 +300,7 @@
         vc.relation = self.currentRelation;
         vc.acceptedRelations = self.relations;
         
-        [vc initWithNibName:nil bundle:nil];
+        id tempVC = [vc initWithNibName:nil bundle:nil];
     }
 }
 

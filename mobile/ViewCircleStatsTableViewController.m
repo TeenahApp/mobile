@@ -84,6 +84,8 @@
                    
     ] mutableCopy];
     
+    
+    
     // 0. Numbers 1
     [numbers1 addObject:
     @{@"Numbers1.Row1":
@@ -261,8 +263,6 @@
 
     cell.textLabel.text = key;
     cell.detailTextLabel.text = value;
-    
-    info;
 
     return cell;
 }

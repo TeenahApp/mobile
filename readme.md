@@ -26,6 +26,7 @@ TODO:
 41. Issue when sending a text message in the circles, need to know what is happining.
 42. Loading events whenever the user has a new one.
 43. Mobile numbers they should be correct.
+44. Forms validation.
 
 DONE:
 
