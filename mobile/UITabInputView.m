@@ -49,21 +49,21 @@
         
         [self addSubview:view];
         
-        CGFloat inputWidth = (self.bounds.size.width-(kPadding)) * kTextFieldWidthPercentage/100;
-        CGFloat doneWidth = (self.bounds.size.width-(kPadding)) * kDoneButtonWidthPercentage/100;
+        CGFloat inputWidth = (self.bounds.size.width-(kTabPadding)) * kTextFieldWidthPercentage/100;
+        CGFloat doneWidth = (self.bounds.size.width-(kTabPadding)) * kDoneButtonWidthPercentage/100;
         
         CGFloat inputW = inputWidth;
-        CGFloat inputX = kPadding;
+        CGFloat inputX = kTabPadding;
         
         if (hasAttachButton == YES)
         {
-            inputW -= kTabInputHeight-(kPadding);
-            inputX += kTabInputHeight-(kPadding);
+            inputW -= kTabInputHeight-(kTabPadding);
+            inputX += kTabInputHeight-(kTabPadding);
         }
         
         // Text field.
         self.textField = [[UITextField alloc] initWithFrame:
-                                   CGRectMake(inputX, kPadding, inputW, kTabInputHeight-(kPadding*2))];
+                                   CGRectMake(inputX, kTabPadding, inputW, kTabInputHeight-(kTabPadding*2))];
         
         self.textField.placeholder = @"قُل خيراً.";
         self.textField.font = [UIFont systemFontOfSize:16];
@@ -74,7 +74,7 @@
         
         // Done button.
         self.doneButton = [[UIButton alloc] initWithFrame:
-                           CGRectMake(inputWidth+(kPadding*2), kPadding/2, doneWidth+(kPadding*3.8), kTabInputHeight-(kPadding))];
+                           CGRectMake(inputWidth+(kTabPadding*2), kTabPadding/2, doneWidth+(kTabPadding*3.8), kTabInputHeight-(kTabPadding))];
         
         self.doneButton.backgroundColor = [UIColor colorWithRed:(138/255.0) green:(174/255.0) blue:(223/255.0) alpha:1];
         
@@ -90,7 +90,7 @@
         
         if (hasAttachButton == YES)
         {
-            self.attachButton = [[UIButton alloc] initWithFrame:CGRectMake(kPadding/2, kPadding/2, kTabInputHeight-(kPadding), kTabInputHeight-(kPadding))];
+            self.attachButton = [[UIButton alloc] initWithFrame:CGRectMake(kTabPadding/2, kTabPadding/2, kTabInputHeight-(kTabPadding), kTabInputHeight-(kTabPadding))];
         
             [self.attachButton setImage:[UIImage imageNamed:@"Paper"] forState:UIControlStateNormal];
         

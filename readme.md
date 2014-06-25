@@ -8,15 +8,15 @@ TODO:
 16. Run command for calculating member ages every day.
 27. Fix the thumb and photos (avatars).
 30. Shorten the fullname or display name.
-32. Taste, taste, and more taste.
-33. Validate chat messages before sending.
 39. SSL.
-43. Mobile numbers they should be correct.
 44. Forms validation.
 45. Fixing the liking of comments after each other.
 
 DONE:
 
+33. Validate chat messages before sending.
+43. Mobile numbers they should be correct.
+32. Taste, taste, and more taste.
 42. Loading events whenever the user has a new one.
 41. Issue when sending a text message in the circles, need to know what is happining.
 35. Add members to a specific circle.

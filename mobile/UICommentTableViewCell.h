@@ -13,7 +13,7 @@
 
 #import "TComment.h"
 
-#define kPadding 8
+#define kCommentPadding 8
 
 #define kAvatarSize 44
 

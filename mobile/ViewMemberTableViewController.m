@@ -427,7 +427,7 @@
         AddMemberEducationViewController *vc = (AddMemberEducationViewController *) [segue destinationViewController];
         vc.memberId = self.member.memberId;
 
-        [vc initWithNibName:nil bundle:nil];
+        id tempVC = [vc initWithNibName:nil bundle:nil];
         
         vc.hidesBottomBarWhenPushed = YES;
     }
@@ -438,7 +438,7 @@
         AddMemberJobViewController *vc = (AddMemberJobViewController *) [segue destinationViewController];
         vc.memberId = self.member.memberId;
         
-        [vc initWithNibName:nil bundle:nil];
+        id tempVC = [vc initWithNibName:nil bundle:nil];
         
         vc.hidesBottomBarWhenPushed = YES;
     }
@@ -448,7 +448,7 @@
         UpdateMemberInfoViewController *vc = (UpdateMemberInfoViewController *) [segue destinationViewController];
         vc.member = self.member;
         
-        [vc initWithNibName:nil bundle:nil];
+        id tempVC = [vc initWithNibName:nil bundle:nil];
     }
     
     else if ([[segue identifier] isEqualToString:@"showCommentsView"])

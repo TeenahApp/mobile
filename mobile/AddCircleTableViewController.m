@@ -262,6 +262,11 @@
     return NO;
 }
 
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    return YES;
+}
+
 -(NSString *)mobileFormatWithString:(NSString *)mobile
 {
     // Special case.

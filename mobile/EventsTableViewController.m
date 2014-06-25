@@ -160,7 +160,7 @@
     {
         AddEventViewController *vc = (AddEventViewController *) [segue destinationViewController];
 
-        [vc initWithNibName:nil bundle:nil];
+        id tempVC = [vc initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
     }
     

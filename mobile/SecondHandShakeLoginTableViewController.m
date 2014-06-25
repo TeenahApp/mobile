@@ -108,7 +108,7 @@
         
         UpdateInfoFirstTimeViewController *vc = (UpdateInfoFirstTimeViewController *)([navController viewControllers][0]);
         
-        [vc initWithNibName:nil bundle:nil];
+        id tempVC = [vc initWithNibName:nil bundle:nil];
     }
 
     else if ([[segue identifier] isEqualToString:@"showMainTabBarView"])

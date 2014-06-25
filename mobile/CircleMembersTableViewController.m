@@ -153,6 +153,11 @@
 
 #pragma mark - ABPeoplePicker
 
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    return YES;
+}
+
 -(void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];

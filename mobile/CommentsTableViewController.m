@@ -228,6 +228,10 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
+}
+
+-(void)didTouchAttachButton
+{
     
 }
 

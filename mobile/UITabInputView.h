@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define kTabInputHeight 40
-#define kPadding 6
+#define kTabPadding 6
 
 #define kTextFieldWidthPercentage 75
 #define kDoneButtonWidthPercentage 15
