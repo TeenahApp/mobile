@@ -107,12 +107,27 @@
         email = self.form.email;
     }
     
-    self.updateResponse = [[MembersCommunicator shared] updateMember:self.member.memberId maritalStatus:self.form.maritalStatus dob:dob pob:pob dod:dod pod:pod email:email];
-
-    if (self.updateResponse.code == 204)
-    {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        self.updateResponse = [[MembersCommunicator shared] updateMember:self.member.memberId maritalStatus:self.form.maritalStatus dob:dob pob:pob dod:dod pod:pod email:email];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (self.updateResponse.code == 204)
+            {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء تحديث معلومات الفرد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 /*

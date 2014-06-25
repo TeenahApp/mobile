@@ -28,20 +28,36 @@
     [super viewDidLoad];
     
     self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"إلغاء" destructiveButtonTitle:nil otherButtonTitles:@"عرض الإحصائيات", @"عرض المناسبات", @"استعراض الأفراد", @"مغادرة الدائرة", nil];
-    
-    TSweetResponse * getLatestReadResponse = [[CirclesCommunicator shared] getLatestRead:self.circleId];
-    
+
     // Define the messages array.
     self.messages = [[NSMutableArray alloc] init];
     
-    if (getLatestReadResponse.code == 200)
-    {
-        for (NSDictionary * tempCMM in getLatestReadResponse.json)
-        {
-            TCircleMessageMember * circleMessageMember = [[TCircleMessageMember alloc] initWithJson:tempCMM];
-            [self.messages addObject:circleMessageMember];
-        }
-    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Get the latest unread messages.
+        TSweetResponse * getLatestReadResponse = [[CirclesCommunicator shared] getLatestRead:self.circleId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (getLatestReadResponse.code == 200)
+            {
+                for (NSDictionary * tempCMM in getLatestReadResponse.json)
+                {
+                    TCircleMessageMember * circleMessageMember = [[TCircleMessageMember alloc] initWithJson:tempCMM];
+                    [self.messages addObject:circleMessageMember];
+                }
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب الرسائل، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"ddMMyyHHmmss"];
@@ -58,26 +74,41 @@
 
 -(void)getUnreadMessages
 {
-    // Try to fetch the new messages.
-    TSweetResponse * getLatestUnreadResponse = [[CirclesCommunicator shared] getLatestUnread:self.circleId];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    if (getLatestUnreadResponse.code == 200)
-    {
-        for (NSDictionary * tempCMM in getLatestUnreadResponse.json)
-        {
-            TCircleMessageMember * circleMessageMember = [[TCircleMessageMember alloc] initWithJson:tempCMM];
-            [self.messages addObject:circleMessageMember];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Try to fetch the new messages.
+        TSweetResponse * getLatestUnreadResponse = [[CirclesCommunicator shared] getLatestUnread:self.circleId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             
-            // Reload the table view data.
-            [self.tableView reloadData];
-        }
-    }
-    
-    if (self.tableView.contentSize.height > self.tableView.frame.size.height)
-    {
-        CGPoint offset = CGPointMake(0, (self.tableView.contentSize.height - self.tableView.frame.size.height) + 20);
-        [self.tableView setContentOffset:offset animated:YES];
-    }
+            if (getLatestUnreadResponse.code == 200)
+            {
+                for (NSDictionary * tempCMM in getLatestUnreadResponse.json)
+                {
+                    TCircleMessageMember * circleMessageMember = [[TCircleMessageMember alloc] initWithJson:tempCMM];
+                    [self.messages addObject:circleMessageMember];
+                    
+                    // Reload the table view data.
+                    [self.tableView reloadData];
+                }
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب الرسائل، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+            {
+                CGPoint offset = CGPointMake(0, (self.tableView.contentSize.height - self.tableView.frame.size.height) + 20);
+                [self.tableView setContentOffset:offset animated:YES];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -173,14 +204,32 @@
         return;
     }
     
-    // Send the message.
-    TSweetResponse * sendTextResponse = [[MessagesCommunicator shared] sendText:self.tabInput.textField.text circles:circles];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Send the message.
+        TSweetResponse * sendTextResponse = [[MessagesCommunicator shared] sendText:self.tabInput.textField.text circles:circles];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (sendTextResponse.code == 204)
+            {
+                // Read the unread messages.
+                [self getUnreadMessages];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء إضافة الرسالة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 
     self.tabInput.textField.text = @"";
     [self dismissKeyboard];
-    
-    // Read the unread messages.
-    [self getUnreadMessages];
 }
 
 -(void)didTouchAttachButton

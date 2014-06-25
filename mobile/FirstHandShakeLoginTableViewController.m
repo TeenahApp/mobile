@@ -68,19 +68,17 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
-//            if (self.tokenizeResponse.code == 204)
-//            {
-//                [self performSegueWithIdentifier:@"showSecondHandShakeLogin" sender:sender];
-//            }
-//            else
-//            {
-//                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال رقم جوّال بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-//                
-//                [alert show];
-//            }
-            
-            [self performSegueWithIdentifier:@"showSecondHandShakeLogin" sender:sender];
+            // Check if the response code is not successful.
+            if (self.tokenizeResponse.code == 204)
+            {
+                [self performSegueWithIdentifier:@"showSecondHandShakeLogin" sender:sender];
+            }
+            else
+            {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال رقم جوّال بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                
+                [alert show];
+            }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });

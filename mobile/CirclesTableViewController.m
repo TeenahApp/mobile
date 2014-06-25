@@ -59,6 +59,11 @@
                     [self.circles addObject:circle];
                 }
             }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطأ أثناء قراءة الدوائر، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
             [self.tableView reloadData];
             

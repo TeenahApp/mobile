@@ -43,9 +43,28 @@
     {
         [self.likeButton setEnabled:NO];
     }
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    TSweetResponse * creatorTSR = [[MembersCommunicator shared] getMember:self.media.createdBy];
-    self.media.creator = [[TMember alloc] initWithJson:creatorTSR.json];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * creatorTSR = [[MembersCommunicator shared] getMember:self.media.createdBy];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (creatorTSR.code == 200)
+            {
+                self.media.creator = [[TMember alloc] initWithJson:creatorTSR.json];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب معلومات الفرد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
     
     NSURL * URL = [NSURL URLWithString:self.media.url];
     

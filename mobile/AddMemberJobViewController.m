@@ -66,12 +66,30 @@
         return;
     }
     
-    TSweetResponse * createJobResponse = [[MembersCommunicator shared] createJob:self.memberId title:self.form.title startYear:self.form.startYear finishYear:self.form.finishYear status:self.form.status company:self.form.company];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    if (createJobResponse.code == 201)
-    {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Try to create a job.
+        TSweetResponse * createJobResponse = [[MembersCommunicator shared] createJob:self.memberId title:self.form.title startYear:self.form.startYear finishYear:self.form.finishYear status:self.form.status company:self.form.company];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Check if the response code is not successful.
+            if (createJobResponse.code == 201)
+            {
+                // TODO: Fix the returning back issue.
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء إضافة الوظيفة، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)viewDidLoad

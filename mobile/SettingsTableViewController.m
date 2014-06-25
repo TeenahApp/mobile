@@ -108,12 +108,31 @@
 
 -(void)goToLogoutMember
 {
-    TSweetResponse * logoutResponse = [[UsersCommunicator shared] logout];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
-    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
-    
-    [self performSegueWithIdentifier:@"showLoginView" sender:self];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * logoutResponse = [[UsersCommunicator shared] logout];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (logoutResponse.code == 204)
+            {
+                [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
+                [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
+                
+                [self performSegueWithIdentifier:@"showLoginView" sender:self];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء تسجيل الخروج، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+
 }
 
 #pragma mark - Navigation
@@ -137,13 +156,34 @@
     {
         UpdateMemberInfoViewController * vc = (UpdateMemberInfoViewController *)[segue destinationViewController];
         
-        TSweetResponse * getMemberResponse = [[MembersCommunicator shared] getMember:self.memberId];
-        TMember * member = [[TMember alloc] initWithJson:getMemberResponse.json];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-        vc.member = member;
-        vc.hidesBottomBarWhenPushed = YES;
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            TSweetResponse * getMemberResponse = [[MembersCommunicator shared] getMember:self.memberId];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (getMemberResponse.code == 200)
+                {
+                    TMember * member = [[TMember alloc] initWithJson:getMemberResponse.json];
+                    
+                    vc.member = member;
+                    vc.hidesBottomBarWhenPushed = YES;
+                    
+                    id tempVC = [vc initWithNibName:nil bundle:nil];
+                    
+                    // Done.
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }
+                else
+                {
+                    self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطأ أثناء جلب معلومات الفرد، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                }
+                
+            });
+        });
         
-        [vc initWithNibName:nil bundle:nil];
     }
 }
 

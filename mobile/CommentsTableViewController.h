@@ -37,4 +37,6 @@
 
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

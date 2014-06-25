@@ -25,4 +25,6 @@
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleNavigationItem;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

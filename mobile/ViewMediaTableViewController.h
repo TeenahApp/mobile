@@ -31,4 +31,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *likeButton;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

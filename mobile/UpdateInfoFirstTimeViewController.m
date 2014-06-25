@@ -63,27 +63,39 @@
     {
         gender = @"female";
     }
-    
-    TSweetResponse * tsr = [[UsersCommunicator shared] initialize:gender name:self.form.firstName dob:self.form.dob];
-    
-    if (tsr.code == 201)
-    {
-        NSString * memberId = tsr.json[@"member_id"];
-        
-        [UICKeyChainStore setString:memberId forKey:@"usertoken" service:@"com.teenah-app.mobile"];
-        
-        if ([gender isEqual: @"male"])
-        {
-            [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
-        }
-        else
-        {
-            [self performSegueWithIdentifier:@"showMainTabBarView" sender:self];
-        }
-    }
 
-    // Done.
-    [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * initializeResponse = [[UsersCommunicator shared] initialize:gender name:self.form.firstName dob:self.form.dob];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (initializeResponse.code == 201)
+            {
+                NSString * memberId = initializeResponse.json[@"member_id"];
+                
+                [UICKeyChainStore setString:memberId forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+                
+                if ([gender isEqual: @"male"])
+                {
+                    [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
+                }
+                else
+                {
+                    [self performSegueWithIdentifier:@"showMainTabBarView" sender:self];
+                }
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء تحديث معلومات الفرد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 
 #import "FXForms.h"
 #import "UpdateMemberInfoForm.h"

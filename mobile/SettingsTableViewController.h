@@ -21,4 +21,6 @@
 
 @property NSInteger memberId;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

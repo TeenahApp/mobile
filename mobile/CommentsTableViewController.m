@@ -41,35 +41,52 @@
 
 -(void)loadComments
 {
-    TSweetResponse * tsr;
-
-    if ([self.area isEqual:@"event"])
-    {
-        tsr = [[EventsCommunicator shared] getEventComments:self.affectedId];
-    }
-    
-    else if ([self.area isEqual:@"media"])
-    {
-        tsr = [[MediasCommunicator shared] getMediaComments:self.affectedId];
-    }
-    
-    else if ([self.area isEqual:@"member"])
-    {
-        tsr = [[MembersCommunicator shared] getMemberComments:self.affectedId];
-    }
-    
     // Define the comments array.
     self.comments = [[NSMutableArray alloc] init];
     
-    if (tsr.code == 200)
-    {
-        for (NSDictionary * tempComment in tsr.json)
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        TSweetResponse * tsr;
+        
+        if ([self.area isEqual:@"event"])
         {
-            TComment * comment = [[TComment alloc] initWithJson:tempComment];
-            
-            [self.comments addObject:comment];
+            tsr = [[EventsCommunicator shared] getEventComments:self.affectedId];
         }
-    }
+        
+        else if ([self.area isEqual:@"media"])
+        {
+            tsr = [[MediasCommunicator shared] getMediaComments:self.affectedId];
+        }
+        
+        else if ([self.area isEqual:@"member"])
+        {
+            tsr = [[MembersCommunicator shared] getMemberComments:self.affectedId];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (tsr.code == 200)
+            {
+                for (NSDictionary * tempComment in tsr.json)
+                {
+                    TComment * comment = [[TComment alloc] initWithJson:tempComment];
+                    
+                    [self.comments addObject:comment];
+                }
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطأ أثناء قراءة التعليقات، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [self.tableView reloadData];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -188,8 +205,6 @@
             
             if (tsr.code == 204)
             {
-                NSLog(@"Done.");
-                
                 self.tabInput.textField.text = @"";
                 [self dismissKeyboard];
                 
@@ -197,7 +212,7 @@
 
                 [self.tableView reloadData];
             }
-            
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
@@ -258,16 +273,5 @@
     // Return.
     return label.frame.size.height + 40 + 20;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

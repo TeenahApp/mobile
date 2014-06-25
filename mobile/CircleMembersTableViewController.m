@@ -32,21 +32,39 @@
 
 -(void)loadMembers
 {
-    // Get the members of the circle id.
-    TSweetResponse * tsr = [[CirclesCommunicator shared] getMembers:self.circleId];
-    
     self.members = [[NSMutableArray alloc] init];
     
-    for (NSDictionary * tempMember in tsr.json)
-    {
-        TMember * member = [[TMember alloc] initWithJson:tempMember];
-        [self.members addObject:member];
-    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    // This is for searching for members.
-    self.filteredMembers = [[NSMutableArray alloc] initWithCapacity:self.members.count];
-    
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Get the members of the circle id.
+        TSweetResponse * getMembersResponse = [[CirclesCommunicator shared] getMembers:self.circleId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (getMembersResponse.code == 200)
+            {
+                for (NSDictionary * tempMember in getMembersResponse.json)
+                {
+                    TMember * member = [[TMember alloc] initWithJson:tempMember];
+                    [self.members addObject:member];
+                }
+                
+                // This is for searching for members.
+                self.filteredMembers = [[NSMutableArray alloc] initWithCapacity:self.members.count];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب الأفراد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,10 +108,6 @@
     [cell.textLabel setText:[NSString stringWithFormat:@"%@", member.name]];
     
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@", member.fullname]];
-    
-    // Load the images in a separate thread.
-//    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-//    cell.imageView.layer.masksToBounds = YES;
     
     if (member.photo != nil)
     {
@@ -157,38 +171,58 @@
         NSString * mobile = [self mobileFormatWithString:chosenMobile];
         
         NSLog(@"mobile = %@", mobile);
-        
-        // Get the member information.
-        TSweetResponse * getMemberIdResponse = [[MembersCommunicator shared] getMemberIdByMobile:mobile];
-        
-        if (getMemberIdResponse.code == 200)
-        {
-            // Get the member id as an integer.
-            NSInteger memberId = [[getMemberIdResponse.json objectForKey:@"id"] integerValue];
-            
-            // Try to add the member to the circle.
-            TSweetResponse * createMembersResponse = [[CirclesCommunicator shared] createMembers:self.circleId members:@[@(memberId)]];
-            
-            if (createMembersResponse.code == 201)
-            {
-                [self loadMembers];
-                
-                self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّت عملية إضافة الفرد بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-                [self.alert show];
-            }
-            else
-            {
-                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه قد يكون أضُيف مسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-                [self.alert show];
-            }
-        }
-        else
-        {
-            self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه ليس مضافاً في قاعدة بيانات تطبيق تينه." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-            [self.alert show];
-        }
 
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            // Get the member information.
+            TSweetResponse * getMemberIdResponse = [[MembersCommunicator shared] getMemberIdByMobile:mobile];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (getMemberIdResponse.code == 200)
+                {
+                    // Get the member id as an integer.
+                    NSInteger memberId = [[getMemberIdResponse.json objectForKey:@"id"] integerValue];
+
+                    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    
+                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        
+                        // Try to add the member to the circle.
+                        TSweetResponse * createMembersResponse = [[CirclesCommunicator shared] createMembers:self.circleId members:@[@(memberId)]];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            if (createMembersResponse.code == 201)
+                            {
+                                [self loadMembers];
+                                
+                                self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّت عملية إضافة الفرد بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                                [self.alert show];
+                            }
+                            else
+                            {
+                                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه قد يكون أضُيف مسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                                [self.alert show];
+                            }
+                            
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        });
+                    });
+                }
+                else
+                {
+                    self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه ليس مضافاً في قاعدة بيانات تطبيق تينه." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                    [self.alert show];
+                }
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+        });
     }
 
     return NO;

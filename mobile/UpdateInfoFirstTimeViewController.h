@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 #import <UICKeyChainStore.h>
 
 #import "FXForms.h"
@@ -15,5 +16,7 @@
 @interface UpdateInfoFirstTimeViewController : FXFormViewController
 
 @property (strong, nonatomic) UpdateMemberFirstTimeForm * form;
+
+@property (nonatomic, strong) UIAlertView * alert;
 
 @end
