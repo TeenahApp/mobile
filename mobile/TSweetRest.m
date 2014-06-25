@@ -65,10 +65,9 @@
         self.appSecret = @"$2y$10$9XuWj51VVDY8tuhYghGcIuN2oEL35RnA17GeesMxIm2cKYvDpGBEW";
          */
 
-        self.apiUrl = @"http://localhost/~hossamzee/web.api/public/index.php/v1";
+        self.apiUrl = @"http://api.teenah-app.local/v1";
         self.appKey = @"SSxZcuQc2oiCbZ4cQSSZnRp1NdbbzZ";
         self.appSecret = @"$2y$10$wkmiYLbNwjJ2S3Yo/Vqsj.q4hegPvDxamDaruUrN2Nhs20Nd10ivq";
-        
     }
 
     return self;
@@ -200,9 +199,7 @@
     
     // Response.
     NSHTTPURLResponse * response;
-    
-    //return nil;
-    
+
     NSData * responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
     // TODO: Check if nil.

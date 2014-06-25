@@ -37,7 +37,6 @@
     }
     
     // Get the decision of the current member.
-    //NSString * decision = @"notyet";
     self.decision = @"notyet";
     
     TSweetResponse * decisionTsr = [[EventsCommunicator alloc] getDecision:self.eventId];

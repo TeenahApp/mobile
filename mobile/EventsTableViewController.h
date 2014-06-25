@@ -23,4 +23,6 @@
 @property (nonatomic, strong) NSMutableArray * sections;
 @property (nonatomic, strong) NSMutableArray * data;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

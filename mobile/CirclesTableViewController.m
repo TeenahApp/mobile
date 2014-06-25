@@ -48,7 +48,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
+            // Check if the response code is not successful.
             if (getCirclesResponse.code == 200)
             {
                 [self.circles removeAllObjects];
@@ -65,9 +65,8 @@
                 [self.alert show];
             }
             
-            [self.tableView reloadData];
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }

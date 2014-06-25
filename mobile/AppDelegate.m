@@ -15,18 +15,16 @@
     // $2y$10$7te/GxO0AwqUhZ61IMOLSuWp94LPK1M1fzu0Qks6u/YusvUvWKDIK
     // TEMP.USER.TOKEN
     
-    //[UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
-    //[UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
-    
-    //[UICKeyChainStore setString:@"TEMP.USER.TOKEN" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
-    //[UICKeyChainStore setString:@"1" forKey:@"memberid" service:@"com.teenah-app.mobile"];
+//    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
+//    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
+//    
+//    [UICKeyChainStore setString:@"TEMP.USER.TOKEN" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+//    [UICKeyChainStore setString:@"1" forKey:@"memberid" service:@"com.teenah-app.mobile"];
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    //vc = (TreeTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TreeTableView"];
-    
-    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
-    
+
+    UICKeyChainStore * store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
+
     if (store[@"usertoken"] == nil)
     {
         FirstHandShakeLoginTableViewController * fhsltvc = (FirstHandShakeLoginTableViewController *) [storyboard instantiateViewControllerWithIdentifier:@"FirstHandShakeLogin"];
@@ -46,7 +44,7 @@
         {
             UpdateInfoFirstTimeViewController * uftvc = (UpdateInfoFirstTimeViewController *) [storyboard instantiateViewControllerWithIdentifier:@"UpdateInfoFirstTime"];
             
-            [uftvc initWithNibName:nil bundle:nil];
+            id tempVC = [uftvc initWithNibName:nil bundle:nil];
             
             UINavigationController * navigationController = [[UINavigationController alloc]
                                     initWithRootViewController:uftvc];

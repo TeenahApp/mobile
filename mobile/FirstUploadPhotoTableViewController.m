@@ -31,17 +31,11 @@
     self.photoButton.layer.cornerRadius = 48.0f;
     self.photoButton.layer.borderWidth = 3.0f;
     self.photoButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         // Get the member information.
         TSweetResponse * memberResponse = [[MembersCommunicator shared] getMember:self.memberId];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
+            // Check if the response code is not successful.
             if (memberResponse.code == 200)
             {
                 self.member = [[TMember alloc] initWithJson:memberResponse.json];
@@ -64,12 +58,11 @@
                     });
                 }
             }
-
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
-    });
-    
-    NSLog(@"before = %@", self.member.photo);
+    else
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء رفع الصورة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,8 +82,6 @@
     
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    //self.presentedViewController; self.imagePicker animated:
-    
     [self presentViewController:self.imagePicker animated:NO completion:nil];
 }
 
@@ -98,9 +89,9 @@
     
     self.chosenImage = info[UIImagePickerControllerOriginalImage];
     
-    self.compressedImage = [self compressImage:self.chosenImage scale:0.5];
+    self.resizedImage = [self resizedImage:self.chosenImage width:92];
     
-    [self.photoButton setBackgroundImage:self.compressedImage forState:UIControlStateNormal];
+    [self.photoButton setBackgroundImage:self.resizedImage forState:UIControlStateNormal];
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }
@@ -126,7 +117,7 @@
         return;
     }
     
-    NSData * data = [NSData dataWithData:UIImagePNGRepresentation(self.compressedImage)];
+    NSData * data = [NSData dataWithData:UIImagePNGRepresentation(self.resizedImage)];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -144,20 +135,22 @@
     });
 }
 
--(UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale
+-(UIImage *)resizedImage: (UIImage *) original width:(CGFloat)width
 {
-    // Calculate new size given scale factor.
-    CGSize originalSize = original.size;
-    CGSize newSize = CGSizeMake(originalSize.width * scale, originalSize.height * scale);
+    CGFloat originalWidth = original.size.width;
+    CGFloat originalHeight = original.size.height;
     
-    // Scale the original image to match the new size.
+    CGFloat ratio = width/originalWidth;
+    
+    CGFloat newHeight = originalHeight * ratio;
+    CGSize newSize = CGSizeMake(width, newHeight);
+    
     UIGraphicsBeginImageContext(newSize);
-    [original drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    
-    UIImage* compressedImage = UIGraphicsGetImageFromCurrentImageContext();
+    [original drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return compressedImage;
+    return newImage;
 }
 
 /*

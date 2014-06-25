@@ -10,8 +10,6 @@
 
 #define kPadding 10
 
-// TODO: DOnt create views if already created.
-
 @interface UIMultiColumnsTableViewCell : UITableViewCell
 
 @property CGFloat columnHeight;

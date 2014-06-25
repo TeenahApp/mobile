@@ -13,6 +13,7 @@ TODO:
 39. SSL.
 43. Mobile numbers they should be correct.
 44. Forms validation.
+45. Fixing the liking of comments after each other.
 
 DONE:
 

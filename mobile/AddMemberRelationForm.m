@@ -49,7 +49,7 @@
                         }, FXFormFieldTitle: @"العلاقة", FXFormFieldAction: @"updateFields"
     }];
     
-    // TODO: Add the corresponding relationship field.
+    // Add the corresponding relationship field.
     if ([self.relationship isEqual: @"father"])
     {
         [temp addObject:@{FXFormFieldKey: @"isRoot", FXFormFieldTitle: @"اسم هذا الفرد تُنسب إليه العائلة"}];
@@ -73,7 +73,7 @@
     [temp addObject:@{FXFormFieldKey: @"dob", FXFormFieldTitle: @"تاريخ الميلاد", FXFormFieldHeader: @"الماضي وَ الحاضر"}];
     [temp addObject:@{FXFormFieldKey: @"isAlive", FXFormFieldTitle: @"حيّ يرزق؟", FXFormFieldAction: @"updateFields"}];
     
-    // TODO: Show or hide the dod.
+    // Show or hide the dod.
     if (self.isAlive == NO)
     {
         [temp addObject:@{FXFormFieldKey: @"dod", FXFormFieldTitle: @"تاريخ الوفاة"}];

@@ -36,8 +36,14 @@
 
 - (IBAction)login:(id)sender
 {
-    // TODO: Validate the input of the user.
-    // TODO: Check if the mobile is correct.
+    NSString * trimmedText = [self.smsTokenTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedText isEqual:@""])
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال كلمة المرور المؤقتة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+        return;
+    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -48,8 +54,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
-            
+            // Check if the response code is not successful.
             if (self.loginResponse.code == 200)
             {
                 TSweetRest * restAPI = [TSweetRest shared];
@@ -75,7 +80,7 @@
             }
             else
             {
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال كلمة المرور المؤقتة بالصياغة الصحيحة.." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال كلمة المرور المؤقتة بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
 
                 [alert show];
             }

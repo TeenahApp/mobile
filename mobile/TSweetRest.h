@@ -17,7 +17,7 @@ enum method {
     delete
 };
 
-@interface TSweetRest : NSObject
+@interface TSweetRest : NSObject <NSURLConnectionDelegate>
 
 @property NSString * const apiUrl;
 
@@ -27,6 +27,8 @@ enum method {
 
 // Teenah user token if logged in.
 @property NSString * userToken;
+
+@property NSMutableData * responseData;
 
 +(id) shared;
 

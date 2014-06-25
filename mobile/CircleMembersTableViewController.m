@@ -53,8 +53,6 @@
                 
                 // This is for searching for members.
                 self.filteredMembers = [[NSMutableArray alloc] initWithCapacity:self.members.count];
-                
-                [self.tableView reloadData];
             }
             else
             {
@@ -63,6 +61,7 @@
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }

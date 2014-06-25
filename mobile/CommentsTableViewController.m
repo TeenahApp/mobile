@@ -82,9 +82,8 @@
                 [self.alert show];
             }
             
-            [self.tableView reloadData];
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }
@@ -180,13 +179,20 @@
 
 -(void)didTouchDoneButton
 {
+    NSString * trimmedText = [self.tabInput.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedText isEqual:@""])
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء كتابة نص لتتمكن من إرساله." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+        return;
+    }
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         TSweetResponse * tsr;
-        
-        // TODO: Done with validation.
         
         if ([self.area isEqual:@"event"])
         {
@@ -208,9 +214,15 @@
                 self.tabInput.textField.text = @"";
                 [self dismissKeyboard];
                 
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self loadComments];
 
                 [self.tableView reloadData];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء إرسال الرسالة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
 
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -243,10 +255,15 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
+            // Check if the response code is not successful.
             if (tsr.code == 204)
             {
                 self.currentComment.likesCount++;
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يمكنك الإعجاب بهذا التعليق." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
             
             [self.tableView reloadData];

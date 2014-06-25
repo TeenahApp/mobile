@@ -43,15 +43,9 @@
     {
         [self.likeButton setEnabled:NO];
     }
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         TSweetResponse * creatorTSR = [[MembersCommunicator shared] getMember:self.media.createdBy];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
+
             if (creatorTSR.code == 200)
             {
                 self.media.creator = [[TMember alloc] initWithJson:creatorTSR.json];
@@ -61,12 +55,10 @@
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب معلومات الفرد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
             }
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
-    });
     
     NSURL * URL = [NSURL URLWithString:self.media.url];
+    
+    [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
     
     // Try to load the URL.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -77,11 +69,11 @@
         
         // Load the URL.
         dispatch_async(dispatch_get_main_queue(), ^(void) {
+            
             [self.imageView setImage:self.image];
+            
+            [MBProgressHUD hideHUDForView:self.imageView animated:YES];
         });
-        
-        // Done.
-        
     });
     
     NSDateFormatter * longDateFormatter = [[NSDateFormatter alloc] init];
@@ -164,8 +156,7 @@
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@", creator.name];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", creator.fullname];
-        
-        // TODO: Stopped in here.
+
         if (creator.photo != nil)
         {
             // TODO: Show wait indicator.
@@ -250,7 +241,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the action has been taken.
+            // Check if the action has been taken.
             self.media.hasLiked = YES;
             [self.likeButton setEnabled:NO];
             

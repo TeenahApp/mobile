@@ -42,6 +42,6 @@
 
 @property (nonatomic, strong) UIAlertView * alert;
 
-- (UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale;
+-(UIImage *)resizedImage: (UIImage *) original width:(CGFloat)width;
 
 @end

@@ -56,15 +56,23 @@
 
 - (IBAction)sendTempPassword:(id)sender
 {
-    // TODO: Validate the input of the user.
-    // TODO: Check if the mobile is correct.
+    // Check if the mobile is correct.
+    NSString * mobile = [self mobileFormatWithString:self.mobileTextField.text];
+    
+    if (mobile.length < 10)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال رقم جوّال بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        
+        [alert show];
+        return;
+    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         // Do something...
-        self.tokenizeResponse = [[UsersCommunicator shared] tokenize:self.mobileTextField.text];
+        self.tokenizeResponse = [[UsersCommunicator shared] tokenize:mobile];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -97,6 +105,23 @@
         vc.hidesBottomBarWhenPushed = YES;
         vc.mobile = self.mobileTextField.text;
     }
+}
+
+-(NSString *)mobileFormatWithString:(NSString *)mobile
+{
+    // Special case.
+    if (mobile.length == 10)
+    {
+        return [NSString stringWithFormat:@"966%lld", [mobile longLongValue]];
+    }
+    
+    // Remove the characters.
+    mobile = [[mobile componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+    
+    // Remove the leading zeros.
+    mobile = [NSString stringWithFormat:@"%lld", [mobile longLongValue]];
+    
+    return mobile;
 }
 
 @end

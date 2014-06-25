@@ -31,15 +31,9 @@
 
     // Define the messages array.
     self.messages = [[NSMutableArray alloc] init];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         // Get the latest unread messages.
         TSweetResponse * getLatestReadResponse = [[CirclesCommunicator shared] getLatestRead:self.circleId];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
             
             if (getLatestReadResponse.code == 200)
             {
@@ -54,10 +48,6 @@
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب الرسائل، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
             }
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
-    });
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"ddMMyyHHmmss"];
@@ -89,9 +79,6 @@
                 {
                     TCircleMessageMember * circleMessageMember = [[TCircleMessageMember alloc] initWithJson:tempCMM];
                     [self.messages addObject:circleMessageMember];
-                    
-                    // Reload the table view data.
-                    [self.tableView reloadData];
                 }
             }
             else
@@ -105,8 +92,9 @@
                 CGPoint offset = CGPointMake(0, (self.tableView.contentSize.height - self.tableView.frame.size.height) + 20);
                 [self.tableView setContentOffset:offset animated:YES];
             }
-            
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }
@@ -150,7 +138,7 @@
         // TODO: Show wait indicator.
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             
-            NSURL * photoUrl = [NSURL URLWithString:messageMedia.media.url];
+            NSURL * photoUrl = [NSURL URLWithString:messageMedia.media.taste];
             
             // Get the member photo.
             NSData * data = [NSData dataWithContentsOfURL:photoUrl];
@@ -216,11 +204,12 @@
             if (sendTextResponse.code == 204)
             {
                 // Read the unread messages.
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self getUnreadMessages];
             }
             else
             {
-                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء إضافة الرسالة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء إرسال الرسالة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
             }
             
@@ -267,20 +256,23 @@
     return label.frame.size.height + 40;
 }
 
--(UIImage *)compressImage: (UIImage *) original scale: (CGFloat)scale
+
+-(UIImage *)resizedImage: (UIImage *) original width:(CGFloat)width
 {
-    // Calculate new size given scale factor.
-    CGSize originalSize = original.size;
-    CGSize newSize = CGSizeMake(originalSize.width * scale, originalSize.height * scale);
+    CGFloat originalWidth = original.size.width;
+    CGFloat originalHeight = original.size.height;
     
-    // Scale the original image to match the new size.
+    CGFloat ratio = width/originalWidth;
+    
+    CGFloat newHeight = originalHeight * ratio;
+    CGSize newSize = CGSizeMake(width, newHeight);
+    
     UIGraphicsBeginImageContext(newSize);
-    [original drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    
-    UIImage* compressedImage = UIGraphicsGetImageFromCurrentImageContext();
+    [original drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return compressedImage;
+    return newImage;
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -289,10 +281,10 @@
     
     self.chosenImage = info[UIImagePickerControllerOriginalImage];
     
-    UIImage * compressedImage = [self compressImage:self.chosenImage scale:0.8];
+    UIImage * resizedImage = [self resizedImage:self.chosenImage width:320];
     
     // Upload the media.
-    NSData * data = [NSData dataWithData:UIImagePNGRepresentation(compressedImage)];
+    NSData * data = [NSData dataWithData:UIImagePNGRepresentation(resizedImage)];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -302,8 +294,18 @@
         TSweetResponse * sendMediaResponse = [[MessagesCommunicator shared] sendMedia:@"image" data:data extension:@"png" circles:circles];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-
-            [self getUnreadMessages];
+            
+            if (sendMediaResponse.code == 204)
+            {
+                // Read the unread messages.
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self getUnreadMessages];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء إرسال الرسالة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });

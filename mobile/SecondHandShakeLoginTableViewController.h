@@ -26,4 +26,6 @@
 
 @property (nonatomic, strong) TSweetResponse * loginResponse;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

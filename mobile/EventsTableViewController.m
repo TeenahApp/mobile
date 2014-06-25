@@ -63,7 +63,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
+            // Check if the response code is not successful.
             if (getEventsResponse.code == 200)
             {
                 [self.sections removeAllObjects];
@@ -90,10 +90,15 @@
                     [temp addObject:event];
                 }
             }
+            else
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء جلب المناسبات، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
 
-            [self.tableView reloadData];
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+
         });
     });
 }

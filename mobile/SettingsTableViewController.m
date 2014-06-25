@@ -160,6 +160,7 @@
         
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             
+            NSLog(@"settings");
             TSweetResponse * getMemberResponse = [[MembersCommunicator shared] getMember:self.memberId];
             
             dispatch_async(dispatch_get_main_queue(), ^{

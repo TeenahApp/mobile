@@ -380,7 +380,7 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the action has been taken.
+            // Check if the action has been taken.
             self.member.hasLiked = YES;
             [self.likeButton setEnabled:NO];
             

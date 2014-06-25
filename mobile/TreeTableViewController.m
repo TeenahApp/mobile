@@ -198,11 +198,12 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         // Get the member information.
+        NSLog(@"tree");
         TSweetResponse * memberResponse = [[MembersCommunicator shared] getMember:memberId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
+            // Check if the response code is not successful.
             if (memberResponse.code == 200)
             {
                 self.member = [[TMember alloc] initWithJson:memberResponse.json];
@@ -238,9 +239,8 @@
                 [self.relations addObject:@"husband"];
             }
 
-            [self.tableView reloadData];
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }

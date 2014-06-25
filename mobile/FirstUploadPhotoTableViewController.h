@@ -17,7 +17,7 @@
 @interface FirstUploadPhotoTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) UIImage * chosenImage;
-@property (strong, nonatomic) UIImage * compressedImage;
+@property (strong, nonatomic) UIImage * resizedImage;
 @property (strong, nonatomic) UIImagePickerController * imagePicker;
 
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
@@ -27,5 +27,7 @@
 @property BOOL isFirst;
 
 @property (nonatomic, strong) UIAlertView * alert;
+
+-(UIImage *)resizedImage: (UIImage *) original width:(CGFloat)width;
 
 @end

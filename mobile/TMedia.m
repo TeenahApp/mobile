@@ -26,6 +26,16 @@
         self.url = [json objectForKey:@"url"];
         self.taste = [json objectForKey:@"taste"];
         self.signature = [json objectForKey:@"signature"];
+
+        if ([self.taste isKindOfClass:[NSNull class]] || [self.taste isEqual:@""])
+        {
+            self.taste = nil;
+        }
+        
+        if (self.taste == nil)
+        {
+            self.taste = self.url;
+        }
         
         self.hasLiked = [[json objectForKey:@"has_liked"] boolValue];
         

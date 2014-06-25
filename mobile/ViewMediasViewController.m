@@ -49,7 +49,7 @@
     // TODO: Show wait indicator.
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             
-        NSURL * photoUrl = [NSURL URLWithString:eventMedia.media.url];
+        NSURL * photoUrl = [NSURL URLWithString:eventMedia.media.taste];
             
         // Get the member photo.
         NSData * data = [NSData dataWithContentsOfURL:photoUrl];
@@ -106,10 +106,15 @@
                 
                 [self.medias addObject:newEventMedia];
             }
+            else
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء إضافة الصورة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
-            [self.collectionView reloadData];
-
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.collectionView reloadData];
+    
         });
     });
     
