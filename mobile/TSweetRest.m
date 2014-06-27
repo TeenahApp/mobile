@@ -8,6 +8,11 @@
 
 #import "TSweetRest.h"
 
+@interface NSMutableURLRequest (NSMutableURLRequest_Extended)
++(BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host;
++(void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString*)host;
+@end
+
 @implementation NSString (NSString_Extended)
 
 - (NSString *)urlencode
@@ -65,7 +70,7 @@
         self.appSecret = @"$2y$10$9XuWj51VVDY8tuhYghGcIuN2oEL35RnA17GeesMxIm2cKYvDpGBEW";
          */
 
-        self.apiUrl = @"http://api.teenah-app.local/v1";
+        self.apiUrl = @"https://api.teenah-app.local/v1";
         self.appKey = @"SSxZcuQc2oiCbZ4cQSSZnRp1NdbbzZ";
         self.appSecret = @"$2y$10$wkmiYLbNwjJ2S3Yo/Vqsj.q4hegPvDxamDaruUrN2Nhs20Nd10ivq";
     }
@@ -78,13 +83,17 @@
                  parameters:(NSDictionary *)parameters
 {
 
-    NSString * url = [[NSString alloc] initWithFormat:@"%@%@", self.apiUrl, route];
+    NSString * urlString = [[NSString alloc] initWithFormat:@"%@%@", self.apiUrl, route];
+    NSURL * url = [[NSURL alloc] initWithString: urlString];
     
     // Request.
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
     
+    // Attempt to ignore the certification.
+    [NSMutableURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
+    
     // Set some variables.
-    [request setURL:[[NSURL alloc] initWithString: url]];
+    [request setURL:url];
     
     // Add API key and secret.
     [request setValue:self.appKey forHTTPHeaderField:@"X-App-Key"];
@@ -199,7 +208,7 @@
     
     // Response.
     NSHTTPURLResponse * response;
-
+    
     NSData * responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
     // TODO: Check if nil.
