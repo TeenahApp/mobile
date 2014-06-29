@@ -70,9 +70,12 @@
         self.appSecret = @"$2y$10$9XuWj51VVDY8tuhYghGcIuN2oEL35RnA17GeesMxIm2cKYvDpGBEW";
          */
 
-        self.apiUrl = @"https://api.teenah-app.local/v1";
-        self.appKey = @"SSxZcuQc2oiCbZ4cQSSZnRp1NdbbzZ";
-        self.appSecret = @"$2y$10$wkmiYLbNwjJ2S3Yo/Vqsj.q4hegPvDxamDaruUrN2Nhs20Nd10ivq";
+        self.apiUrl = @"https://api.teenah-app.com/v1";
+        self.appKey = @"PPmO9LM80coz51h3aWyd9sU0TkQKZY";
+        self.appSecret = @"$2y$10$1MfPiRe1tXM9RxTHF98AXeucseKAVKEiDmTf6mtmWojrx4bxn.CsO";
+
+        NSString *language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+        NSLog(@"language = %@", language);
     }
 
     return self;
@@ -172,10 +175,12 @@
             // Check if the key is either dob, dod.
             if (key == (id)@"dob" || key == (id)@"dod")
             {
+                [shortDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
                 stringValue = [shortDateFormatter stringFromDate:value];
             }
             else
             {
+                [longDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
                 stringValue = [longDateFormatter stringFromDate:value];
             }
         }

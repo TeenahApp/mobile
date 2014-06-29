@@ -113,7 +113,6 @@
         // Show an alert message and return.
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء اختيار صورة ليتم رفعها." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         [self.alert show];
-        
         return;
     }
     

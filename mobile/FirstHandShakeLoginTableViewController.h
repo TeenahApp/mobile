@@ -17,6 +17,8 @@
 
 @interface FirstHandShakeLoginTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSString * mobile;
+
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *sendTempPasswordButton;

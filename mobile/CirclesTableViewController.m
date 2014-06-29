@@ -63,6 +63,8 @@
             {
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطأ أثناء قراءة الدوائر، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                return;
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];

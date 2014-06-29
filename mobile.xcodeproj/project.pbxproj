@@ -131,7 +131,7 @@
 		FD5377D619337DCD002A62F0 /* LocationMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMapViewController.h; sourceTree = "<group>"; };
 		FD5377D719337DCD002A62F0 /* LocationMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMapViewController.m; sourceTree = "<group>"; };
 		FD5377D819337DCD002A62F0 /* LocationMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationMapViewController.xib; sourceTree = "<group>"; };
-		FD54660618F5A66000BFD409 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD54660618F5A66000BFD409 /* تينه.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "تينه.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD54660918F5A66000BFD409 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD54660B18F5A66000BFD409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FD54660D18F5A66000BFD409 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -350,7 +350,7 @@
 		FD54660718F5A66000BFD409 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FD54660618F5A66000BFD409 /* mobile.app */,
+				FD54660618F5A66000BFD409 /* تينه.app */,
 				FD54662718F5A66000BFD409 /* mobileTests.xctest */,
 			);
 			name = Products;
@@ -581,7 +581,7 @@
 			);
 			name = mobile;
 			productName = mobile;
-			productReference = FD54660618F5A66000BFD409 /* mobile.app */;
+			productReference = FD54660618F5A66000BFD409 /* تينه.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FD54662618F5A66000BFD409 /* mobileTests */ = {
@@ -902,7 +902,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mobile/mobile-Prefix.pch";
 				INFOPLIST_FILE = "mobile/mobile-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "تينه";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -919,7 +919,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mobile/mobile-Prefix.pch";
 				INFOPLIST_FILE = "mobile/mobile-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "تينه";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

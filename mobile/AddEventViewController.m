@@ -146,6 +146,7 @@
             else
             {
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يًمكن إضافة المناسبة، الرجاء التأكد من إدخال الحقول بشكل صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.alert show];
             }
 

@@ -18,12 +18,13 @@
 //    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
 //    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
 //    
-//    [UICKeyChainStore setString:@"TEMP.USER.TOKEN" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
-//    [UICKeyChainStore setString:@"1" forKey:@"memberid" service:@"com.teenah-app.mobile"];
-    
+//    [UICKeyChainStore setString:@"$2y$10$uxPSsP/QZ3eo69Dmg92syePntDjfP1qqQggVPvtpAJt4EdRWNWgQm" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+//    [UICKeyChainStore setString:@"2" forKey:@"memberid" service:@"com.teenah-app.mobile"];
+
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     UICKeyChainStore * store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
+    NSLog(@"store = %@", store);
 
     if (store[@"usertoken"] == nil)
     {

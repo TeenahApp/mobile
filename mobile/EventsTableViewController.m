@@ -92,8 +92,10 @@
             }
             else
             {
-                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء جلب المناسبات، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"ينبغي عليك الانضمام إلى دائرة واحدة على الأقل لتتمكّن من استعراض المناسبات." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.alert show];
+                return;
             }
 
             [MBProgressHUD hideHUDForView:self.view animated:YES];

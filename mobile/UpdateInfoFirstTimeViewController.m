@@ -63,6 +63,22 @@
     {
         gender = @"female";
     }
+    
+    if (self.form.firstName == nil || self.form.dob == nil)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تعبئة جميع الحقول بشكل صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+        return;
+    }
+    
+    NSString * trimmedText = [self.form.firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedText isEqual:@""])
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء كتابة الاسم بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        [self.alert show];
+        return;
+    }
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -74,7 +90,7 @@
             
             if (initializeResponse.code == 201)
             {
-                NSString * memberId = initializeResponse.json[@"member_id"];
+                NSString * memberId = [NSString stringWithFormat:@"%@", initializeResponse.json[@"member_id"]];
                 
                 [UICKeyChainStore setString:memberId forKey:@"usertoken" service:@"com.teenah-app.mobile"];
                 

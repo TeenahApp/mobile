@@ -2,6 +2,22 @@
 TeenahApp
 ================
 
+TESTING CODE:
+
+1. // Done. Checking the indian numbers if they understood as numbers not encoded strings.
+2. // Done. When clicking ok done on complete registeration.
+3. // Done. KeyChain integer issues.
+4. Hiding the keyboard in first/second hand shake issue.
+5. After logining in for the first time it does not show uploading image.
+6. Exception when closing the application.
+7. https://api.teenah-app.com/v1/events says "Not authorized to use this resource." when empty events.
+8. Design a better design for images for medias.
+9. Logless.
+10. Fullname is null whenever started.
+11. Update the user information is not moving it correctly.
+12. Adding an education of BSc, nil Major, Start: 2006, ongoing does not get back.
+13. When showing the contacts, no search bar appears.
+
 TODO:
 
 15. Circle is not being created for first time when visiting the circles view for second time.

@@ -220,6 +220,8 @@
                 {
                     self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"لا يُمكن إضافة الفرد لأنّه ليس مضافاً في قاعدة بيانات تطبيق تينه." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                     [self.alert show];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    return;
                 }
                 
                 [self dismissViewControllerAnimated:YES completion:nil];

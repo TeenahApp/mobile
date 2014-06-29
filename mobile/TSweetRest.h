@@ -28,6 +28,8 @@ enum method {
 // Teenah user token if logged in.
 @property NSString * userToken;
 
+@property NSString * locale;
+
 @property NSMutableData * responseData;
 
 +(id) shared;

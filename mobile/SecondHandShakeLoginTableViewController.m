@@ -81,12 +81,11 @@
             else
             {
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال كلمة المرور المؤقتة بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-
                 [alert show];
+                return;
             }
             
             [self performSegueWithIdentifier:@"showUpdateInfoFirstTime" sender:sender];
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });

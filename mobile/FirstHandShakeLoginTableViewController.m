@@ -57,9 +57,9 @@
 - (IBAction)sendTempPassword:(id)sender
 {
     // Check if the mobile is correct.
-    NSString * mobile = [self mobileFormatWithString:self.mobileTextField.text];
+    self.mobile = [self mobileFormatWithString:self.mobileTextField.text];
     
-    if (mobile.length < 10)
+    if (self.mobile.length < 10)
     {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال رقم جوّال بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         
@@ -72,7 +72,7 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         // Do something...
-        self.tokenizeResponse = [[UsersCommunicator shared] tokenize:mobile];
+        self.tokenizeResponse = [[UsersCommunicator shared] tokenize:self.mobile];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -103,7 +103,7 @@
         SecondHandShakeLoginTableViewController *vc = (SecondHandShakeLoginTableViewController *) [segue destinationViewController];
         
         vc.hidesBottomBarWhenPushed = YES;
-        vc.mobile = self.mobileTextField.text;
+        vc.mobile = self.mobile;
     }
 }
 

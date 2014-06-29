@@ -173,15 +173,14 @@
                     vc.hidesBottomBarWhenPushed = YES;
                     
                     id tempVC = [vc initWithNibName:nil bundle:nil];
-                    
-                    // Done.
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 }
                 else
                 {
                     self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطأ أثناء جلب معلومات الفرد، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 }
-                
+
+                // Done.
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         });
         

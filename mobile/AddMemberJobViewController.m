@@ -44,7 +44,6 @@
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة البدء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً"otherButtonTitles:nil];
         
         [self.alert show];
-        
         return;
     }
     
@@ -53,7 +52,6 @@
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة الانتهاء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         
         [self.alert show];
-        
         return;
     }
     
@@ -62,7 +60,6 @@
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تعبئة المسمّى الوظيفي و جهة العمل." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         
         [self.alert show];
-        
         return;
     }
     

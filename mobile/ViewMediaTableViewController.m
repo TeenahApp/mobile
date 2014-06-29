@@ -54,6 +54,7 @@
             {
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء جلب معلومات الفرد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
+                return;
             }
     
     NSURL * URL = [NSURL URLWithString:self.media.url];
