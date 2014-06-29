@@ -155,15 +155,8 @@
     else if ([[segue identifier] isEqual:@"showUpdateMember"])
     {
         UpdateMemberInfoViewController * vc = (UpdateMemberInfoViewController *)[segue destinationViewController];
-        
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            
-            NSLog(@"settings");
+
             TSweetResponse * getMemberResponse = [[MembersCommunicator shared] getMember:self.memberId];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (getMemberResponse.code == 200)
                 {
@@ -178,11 +171,6 @@
                 {
                     self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطأ أثناء جلب معلومات الفرد، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 }
-
-                // Done.
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            });
-        });
         
     }
 }

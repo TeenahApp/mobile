@@ -28,7 +28,7 @@
         degrees = [
                    @{
                         @"elementary": @"إبتدائي", @"intermediate": @"متوسّط", @"secondary": @"ثانوي",
-                        @"diploma": @"دبلوم", @"licentiate": @"إجازة", @"bachelor": @"بكالوريوس",
+                        @"diploma": @"دبلوم", @"licentiate": @"إجازة جامعية/ليسانس", @"bachelor": @"بكالوريوس",
                         @"master": @"ماجستير", @"doctorate": @"دكتوراه",
                     }
         mutableCopy];
@@ -44,8 +44,6 @@
         self.form.status = @"ongoing";
         
         self.formController.form = self.form;
-        
-        //self.alert = [[UIAlertView alloc] init];
     }
     return self;
 }

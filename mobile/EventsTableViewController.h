@@ -20,6 +20,9 @@
 
 @property NSInteger circleId;
 
+@property (nonatomic, strong) UILabel * noRowsLabel;
+@property (nonatomic, strong) UIView * noRowsView;
+
 @property (nonatomic, strong) NSMutableArray * sections;
 @property (nonatomic, strong) NSMutableArray * data;
 

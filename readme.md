@@ -4,19 +4,27 @@ TeenahApp
 
 TESTING CODE:
 
-1. // Done. Checking the indian numbers if they understood as numbers not encoded strings.
-2. // Done. When clicking ok done on complete registeration.
-3. // Done. KeyChain integer issues.
+
 4. Hiding the keyboard in first/second hand shake issue.
 5. After logining in for the first time it does not show uploading image.
 6. Exception when closing the application.
-7. https://api.teenah-app.com/v1/events says "Not authorized to use this resource." when empty events.
 8. Design a better design for images for medias.
 9. Logless.
 10. Fullname is null whenever started.
-11. Update the user information is not moving it correctly.
-12. Adding an education of BSc, nil Major, Start: 2006, ongoing does not get back.
-13. When showing the contacts, no search bar appears.
+12. Adding an education of BSc, nil Major, Start: 2006, ongoing does not get back. This one worked in desktop but not in mobile.
+13. When showing the contacts, no search bar appears in the first time update.
+14. Consider emoj. the input was empty.
+15. Consider saying no rows.
+16. After adding a relationship with number it shows nothing.
+17. I guess we could enforce adding a major for the person.
+
+FIXES:
+
+1. Checking the indian numbers if they understood as numbers not encoded strings.
+2. When clicking ok done on complete registeration.
+3. KeyChain integer issues.
+7. https://api.teenah-app.com/v1/events says "Not authorized to use this resource." when empty events.
+11. Update the user information is not moving it correctly. // Done, because of multi-threading issue.
 
 TODO:
 
