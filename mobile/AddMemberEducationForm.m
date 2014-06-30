@@ -58,7 +58,7 @@
     }, FXFormFieldHeader: @"الدرجة العلمية و التخصّص", FXFormFieldAction: @"updateFields"}];
     
     
-    if (![self.degree isEqual:@"none"] && ![self.degree isEqual:@"elementary"] && ![self.degree isEqual:@"intermediate"])
+    if (![self.degree isEqual:@"elementary"] && ![self.degree isEqual:@"intermediate"])
     {
         [temp addObject:@{FXFormFieldKey: @"major", FXFormFieldTitle: @"التخصّص"}];
     }

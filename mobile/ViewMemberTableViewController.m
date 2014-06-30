@@ -248,7 +248,6 @@
     
     // Fill the display name of the member.
     [self.displayNameButton setTitle:self.member.displayName forState:UIControlStateNormal];
-
 }
 
 - (void)didReceiveMemoryWarning

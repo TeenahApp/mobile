@@ -119,6 +119,11 @@
             {
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
+            else if (self.updateResponse.code == 400)
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء التأكّد من تعبئة الحقول بشكلٍ صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             else
             {
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء تحديث معلومات الفرد، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];

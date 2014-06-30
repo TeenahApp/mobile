@@ -63,23 +63,23 @@
 }
 
 -(void)submitAddingEventForm
-{  
+{
     // Validation.
-    if (self.form.title == nil)
+    if (self.form.title == nil || [self.form.title isEqual:@""])
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال عنوان المناسبة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         [self.alert show];
         return;
     }
     
-    if (self.form.location == nil)
+    if (self.form.location == nil || [self.form.location isEqual:@""])
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال موقع المناسبة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         [self.alert show];
         return;
     }
     
-    if (self.form.coordinates == nil)
+    if (self.form.coordinates == nil || [self.form.coordinates isEqual:@""])
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تحديد إحداثيات المناسبة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         [self.alert show];
@@ -93,7 +93,6 @@
         return;
     }
 
-    
     if (self.form.circles.count == 0)
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال موقع المناسبة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];

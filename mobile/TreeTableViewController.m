@@ -43,6 +43,8 @@
     };
 
     self.relations = [[NSMutableArray alloc]init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMember:) name:@"refreshMember" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -51,6 +53,14 @@
     {
         UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:@"com.teenah-app.mobile"];
         [self updateMember:[store[@"memberid"] integerValue]];
+    }
+}
+
+-(void)refreshMember:(NSNotification *) notification
+{
+    if (self.memberId != 0)
+    {
+        [self updateMember:self.memberId];
     }
 }
 

@@ -17,14 +17,26 @@ TESTING CODE:
 15. Consider saying no rows.
 16. After adding a relationship with number it shows nothing.
 17. I guess we could enforce adding a major for the person.
+18. Do not forget to add a job for calculating the ages.
+19. View event: the creator has a not updated information.
+20. Consider back button after adding a new event.
+22. Creator image is enlarging when appearing again -- also reloading the image twise.
+23. Update the values simultaneously.
+24. When updating the information of a member if the server responded with 400 is different of responsing 403.
+25. The image should not be reloaded again and agian whenever the cell appears.
+26. Adding circle members from two sources.
 
 FIXES:
+
+DONE: AddMemberEducationViewController
+
 
 1. Checking the indian numbers if they understood as numbers not encoded strings.
 2. When clicking ok done on complete registeration.
 3. KeyChain integer issues.
 7. https://api.teenah-app.com/v1/events says "Not authorized to use this resource." when empty events.
 11. Update the user information is not moving it correctly. // Done, because of multi-threading issue.
+21. After saying will come or apologizing for an event, the cell should be updated.
 
 TODO:
 
@@ -64,3 +76,4 @@ DONE:
 24. Done with the updating educations.
 37. Trustees, make sure that the appropriate members modify the appropriate members.
 38. Privacies.
+39. Location directions.

@@ -932,7 +932,7 @@
                                         <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vj-Xf-eLj">
                                             <rect key="frame" x="20" y="7" width="136" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.31266267660000002" green="0.73706552930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="أنوي الحضور">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2020,11 +2020,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="5ry-4C-25B"/>
         <segue reference="J4P-Vd-9bA"/>
-        <segue reference="wJr-mp-pWQ"/>
-        <segue reference="Uka-AT-8DX"/>
-        <segue reference="QvK-NN-VIj"/>
         <segue reference="Pqp-qE-sVe"/>
+        <segue reference="QvK-NN-VIj"/>
         <segue reference="Apj-Nu-HMS"/>
         <segue reference="eOu-fK-l8m"/>
+        <segue reference="LcY-o9-jJc"/>
+        <segue reference="Uka-AT-8DX"/>
     </inferredMetricsTieBreakers>
 </document>

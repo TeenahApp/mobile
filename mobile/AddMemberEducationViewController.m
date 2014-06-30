@@ -70,11 +70,27 @@
 -(void)submitAddingEducationForm
 {
     // Validation.
+    NSString * major = @"";
+    
+    if (self.form.major != nil)
+    {
+        major = self.form.major;
+    }
+    
+    // Check the major if it is empty when the degree.
+    if (![self.form.degree isEqual:@"elementary"] && ![self.form.degree isEqual:@"intermediate"])
+    {
+        if ([major isEqual:@""])
+        {
+            self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تعبئة حقل التخصّص." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+            [self.alert show];
+            return;
+        }
+    }
     
     if (self.form.startYear == 0)
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة البدء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً"otherButtonTitles:nil];
-        
         [self.alert show];
         return;
     }
@@ -82,16 +98,8 @@
     if (![self.form.status isEqual:@"ongoing"] && self.form.finishYear == 0)
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة الانتهاء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-        
         [self.alert show];
         return;
-    }
-    
-    NSString * major = @"";
-    
-    if (self.form.major != nil)
-    {
-        major = self.form.major;
     }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -106,8 +114,17 @@
             // Check if the response code is not successful.
             if (createEducationResponse.code == 201)
             {
-                // FIXME: the returning back issue.
-                [self dismissViewControllerAnimated:YES completion:nil];
+                self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّ إضافة المستوى التعليمي بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                // The returning back issue.
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMember" object:nil];
+            }
+            else if (createEducationResponse.code == 400)
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء التأكّد من تعبئة الحقول بشكلٍ صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
             else
             {
@@ -119,16 +136,5 @@
         });
     });
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

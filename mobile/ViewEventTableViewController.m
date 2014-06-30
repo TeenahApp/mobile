@@ -91,7 +91,7 @@
                    
                    // Section 1: Decision.
                    @[
-                       @{@"Decision": self.decision},
+                       [@{@"Decision": self.decision} mutableCopy]
                     ],
                    
                    // Section 2: Creator.
@@ -305,8 +305,11 @@
             
             self.decision = @"willcome";
             
-            //[self.tableView reloadData];
+            NSMutableDictionary * decisionSection = [[self.data objectAtIndex:1] objectAtIndex:0];
+            [decisionSection setObject:self.decision forKey:@"Decision"];
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }
@@ -322,8 +325,11 @@
             
             self.decision = @"apologize";
             
-            //[self.tableView reloadData];
+            NSMutableDictionary * decisionSection = [[self.data objectAtIndex:1] objectAtIndex:0];
+            [decisionSection setObject:self.decision forKey:@"Decision"];
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
         });
     });
 }
