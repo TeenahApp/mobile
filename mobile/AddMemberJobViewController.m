@@ -39,6 +39,14 @@
 
 -(void)submitAddingJobForm
 {
+    if (self.form.title == nil || [self.form.title isEqual:@""] || self.form.company == nil || [self.form.company isEqual:@""])
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تعبئة المسمّى الوظيفي و جهة العمل." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        
+        [self.alert show];
+        return;
+    }
+    
     if (self.form.startYear == 0)
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة البدء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً"otherButtonTitles:nil];
@@ -50,14 +58,6 @@
     if (![self.form.status isEqual:@"ongoing"] && self.form.finishYear == 0)
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال سنة الانتهاء بطريقة صحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-        
-        [self.alert show];
-        return;
-    }
-    
-    if (self.form.title == nil || self.form.company == nil)
-    {
-        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تعبئة المسمّى الوظيفي و جهة العمل." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         
         [self.alert show];
         return;
@@ -75,8 +75,17 @@
             // Check if the response code is not successful.
             if (createJobResponse.code == 201)
             {
-                // FIXME: the returning back issue.
-                [self dismissViewControllerAnimated:YES completion:nil];
+                self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّ إضافة الوظيفة بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                // The returning back issue.
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMember" object:nil];
+            }
+            else if (createJobResponse.code == 400)
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء التأكّد من تعبئة الحقول بشكلٍ صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
             else
             {
