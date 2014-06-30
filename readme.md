@@ -29,6 +29,7 @@ TESTING CODE:
 FIXES:
 
 DONE: AddMemberEducationViewController
+DONE: AddMemberJobViewController
 
 
 1. Checking the indian numbers if they understood as numbers not encoded strings.
