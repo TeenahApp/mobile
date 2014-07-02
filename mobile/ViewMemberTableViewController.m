@@ -86,10 +86,9 @@
                   jobs,
                   
                   // Section 6: Comments.
-                  @[
-                      @{@"Add": (self.member.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.member.commentsCount]},
-                    ],
-
+                  [@[
+                      [@{@"Add": (self.member.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.member.commentsCount]} mutableCopy],
+                    ] mutableCopy],
                   
                   // Section 8: Update.
                   @[
@@ -107,9 +106,9 @@
      @{@"Stats":
            @[
               @{@"label": @"سنة", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.age]},
-              @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.likesCount]},
+              [@{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.likesCount]} mutableCopy],
               @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.viewsCount]},
-              @{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.commentsCount]}
+              [@{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.member.commentsCount]} mutableCopy],
             ]
        }];
 
@@ -248,6 +247,9 @@
     
     // Fill the display name of the member.
     [self.displayNameButton setTitle:self.member.displayName forState:UIControlStateNormal];
+    
+    // Add observer.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMemberComments:) name:@"refreshMemberComments" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -379,13 +381,35 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // Check if the action has been taken.
-            self.member.hasLiked = YES;
-            [self.likeButton setEnabled:NO];
+            if (self.likeResponse.code == 204)
+            {
+                // Check if the action has been taken.
+                self.member.hasLiked = YES;
+                self.member.likesCount++;
+            
+                // Update the likes in the interface.
+                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:1] setObject:[NSString stringWithFormat:@"%d", self.member.likesCount] forKey:@"count"];
+
+                [self.likeButton setEnabled:NO];
+            
+                // Show an alert saying thanks.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل إعجابك." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                // Show an alert saying error.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يُمكنك تسجيل إعجابك، ربّما ليس لديك الصلاحيّة أو أنّك قد سجّلت إعجابك مُسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         });
     });
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -416,6 +440,21 @@
     }
 }
 
+#pragma mark - Observers.
+
+-(void)refreshMemberComments:(NSNotification *) notification
+{
+    self.member.commentsCount++;
+
+    // Update the likes in the interface.
+    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:3] setObject:[NSString stringWithFormat:@"%d", self.member.likesCount] forKey:@"count"];
+    
+    // Update the comments count in the interface.
+    [[[self.data objectAtIndex:6] objectAtIndex:0] setObject:[NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.member.commentsCount] forKey:@"Add"];
+
+    // And then, reload the data in the table.
+    [self.tableView reloadData];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

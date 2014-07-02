@@ -11,25 +11,23 @@ TESTING CODE:
 8. Design a better design for images for medias.
 9. Logless.
 10. Fullname is null whenever started.
-12. Adding an education of BSc, nil Major, Start: 2006, ongoing does not get back. This one worked in desktop but not in mobile.
 13. When showing the contacts, no search bar appears in the first time update.
-14. Consider emoj. the input was empty.
 15. Consider saying no rows.
 16. After adding a relationship with number it shows nothing.
-17. I guess we could enforce adding a major for the person.
 18. Do not forget to add a job for calculating the ages.
 19. View event: the creator has a not updated information.
 20. Consider back button after adding a new event.
 22. Creator image is enlarging when appearing again -- also reloading the image twise.
-23. Update the values simultaneously.
-24. When updating the information of a member if the server responded with 400 is different of responsing 403.
 25. The image should not be reloaded again and agian whenever the cell appears.
-26. Adding circle members from two sources.
+26. Update the likes count whenever the member likes a member, event, media.
+27. Notify the user whenever the member has been added, in member relations context.
+28. MBProgressHUD consider changing the appearance of it.
 
 FIXES:
 
 DONE: AddMemberEducationViewController
 DONE: AddMemberJobViewController
+DONE: ViewMemberTableViewController -- Except the age matter.
 
 
 1. Checking the indian numbers if they understood as numbers not encoded strings.
@@ -38,6 +36,9 @@ DONE: AddMemberJobViewController
 7. https://api.teenah-app.com/v1/events says "Not authorized to use this resource." when empty events.
 11. Update the user information is not moving it correctly. // Done, because of multi-threading issue.
 21. After saying will come or apologizing for an event, the cell should be updated.
+12. Adding an education of BSc, nil Major, Start: 2006, ongoing does not get back. This one worked in desktop but not in mobile.
+17. I guess we could enforce adding a major for the person.
+24. When updating the information of a member if the server responded with 400 is different of responsing 403.
 
 TODO:
 
@@ -78,3 +79,4 @@ DONE:
 37. Trustees, make sure that the appropriate members modify the appropriate members.
 38. Privacies.
 39. Location directions.
+14. Consider emoj. the input was empty.

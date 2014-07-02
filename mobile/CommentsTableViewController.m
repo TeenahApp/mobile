@@ -72,7 +72,6 @@
                 for (NSDictionary * tempComment in tsr.json)
                 {
                     TComment * comment = [[TComment alloc] initWithJson:tempComment];
-                    
                     [self.comments addObject:comment];
                 }
             }
@@ -212,12 +211,30 @@
             if (tsr.code == 204)
             {
                 self.tabInput.textField.text = @"";
+                
+                // Dismiss the keyboard.
                 [self dismissKeyboard];
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
                 [self loadComments];
-
                 [self.tableView reloadData];
+                
+                //[[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMemberComments" object:nil];
+                // TODO: refresh media, event comments too.
+                
+                if ([self.area isEqual:@"event"])
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshEventComments" object:nil];
+                }
+                else if ([self.area isEqual:@"media"])
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMediaComments" object:nil];
+                }
+                else if ([self.area isEqual:@"member"])
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMemberComments" object:nil];
+                }
             }
             else
             {

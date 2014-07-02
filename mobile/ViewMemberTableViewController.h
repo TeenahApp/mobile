@@ -42,4 +42,6 @@
 
 @property (nonatomic, strong) NSDictionary * relations;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end
