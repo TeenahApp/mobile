@@ -8,7 +8,6 @@ TESTING CODE:
 4. Hiding the keyboard in first/second hand shake issue.
 5. After logining in for the first time it does not show uploading image.
 6. Exception when closing the application.
-8. Design a better design for images for medias.
 9. Logless.
 10. Fullname is null whenever started.
 13. When showing the contacts, no search bar appears in the first time update.
@@ -21,7 +20,7 @@ TESTING CODE:
 25. The image should not be reloaded again and agian whenever the cell appears.
 26. Update the likes count whenever the member likes a member, event, media.
 27. Notify the user whenever the member has been added, in member relations context.
-28. MBProgressHUD consider changing the appearance of it.
+28. Liking a comment has some issues.
 
 FIXES:
 
@@ -39,6 +38,7 @@ DONE: ViewMemberTableViewController -- Except the age matter.
 12. Adding an education of BSc, nil Major, Start: 2006, ongoing does not get back. This one worked in desktop but not in mobile.
 17. I guess we could enforce adding a major for the person.
 24. When updating the information of a member if the server responded with 400 is different of responsing 403.
+8. Design a better design for images for medias.
 
 TODO:
 
@@ -67,7 +67,7 @@ DONE:
 8. Hide keyboard, or show it appropriatly.
 40. Don't draw the labels and buttons and objects generally twice (context: multi-columns cell).
 
-// Future improvments:
+FUTURE:
 
 6. Make a correct relation when a member adds a brother or a sister.
 3. Keep local data as cached data rather than calling up the server each time.
@@ -80,3 +80,4 @@ DONE:
 38. Privacies.
 39. Location directions.
 14. Consider emoj. the input was empty.
+28. MBProgressHUD consider changing the appearance of it.

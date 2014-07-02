@@ -261,7 +261,7 @@
     // Fullfill the action sheet.
     self.actionSheet = [[UIActionSheet alloc]init];
     
-    self.actionSheet.title = @"إضافة علاقة";
+    self.actionSheet.title = [NSString stringWithFormat:@"إضافة علاقة ل%@", self.member.name];
     self.actionSheet.delegate = self;
     
     for (NSString * relation in self.relations)
