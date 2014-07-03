@@ -19,6 +19,9 @@
 
 @interface CirclesTableViewController : UITableViewController
 
+@property (nonatomic, strong) UILabel * noRowsLabel;
+@property (nonatomic, strong) UIView * noRowsView;
+
 @property (strong, nonatomic) TCircle * currentCircle;
 
 @property (strong, nonatomic) NSMutableArray * circles;

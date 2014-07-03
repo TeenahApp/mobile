@@ -35,6 +35,29 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    // Show the no rows message if there is none.
+    self.noRowsView = [[UIView alloc] initWithFrame:self.view.frame];
+    self.noRowsView.backgroundColor = [UIColor clearColor];
+    
+    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat noRowsMessageHeight = self.noRowsView.frame.size.height - navBarHeight - tabBarHeight;
+    
+    self.noRowsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.noRowsView.frame.size.width, noRowsMessageHeight)];
+    self.noRowsLabel.numberOfLines = 0;
+    self.noRowsLabel.shadowColor = [UIColor lightTextColor];
+    self.noRowsLabel.textColor = [UIColor grayColor];
+    self.noRowsLabel.shadowOffset = CGSizeMake(0, 1);
+    self.noRowsLabel.backgroundColor = [UIColor clearColor];
+    self.noRowsLabel.textAlignment =  NSTextAlignmentCenter;
+
+    self.noRowsLabel.text = @"لم يتم إضافة دوائر حتّى الآن، ينبغي عليك إضافة بعض العلاقات الخاصّة بك لإنشاء دائرة (الأهل).";
+    
+    [self.noRowsView addSubview:self.noRowsLabel];
+    self.noRowsView.hidden = YES;
+    
+    [self.tableView insertSubview:self.noRowsView belowSubview:self.tableView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -89,6 +112,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.circles.count == 0)
+    {
+        self.noRowsView.hidden = NO;
+    }
+    else
+    {
+        self.noRowsView.hidden = YES;
+    }
+    
     // Return the number of rows in the section.
     return self.circles.count;
 }
