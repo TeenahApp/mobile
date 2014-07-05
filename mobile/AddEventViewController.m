@@ -130,17 +130,26 @@
                             self.event = [[TEvent alloc] initWithJson:getEventResponse.json];
                             
                             // Done
-                            [self performSegueWithIdentifier:@"showEvent" sender:nil];
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            
+                            self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّ إضافة المناسبة بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                            [self.alert show];
                         }
                         else
                         {
                             self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ في جلب المناسبة، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                            [self.alert show];
                         }
-                        
+
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     });
                 });
-
+            }
+            else if (addEventResponse.code == 400)
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء التأكّد من تعبئة الحقول بشكلٍ صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.alert show];
             }
             else
             {

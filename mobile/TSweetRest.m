@@ -158,14 +158,13 @@
         
         else if ([value isKindOfClass:[NSNumber class]])
         {
-            //NSLog(@"class = %@", value class);
-            
             if (strcmp([value objCType], @encode(BOOL)) == 0)
             {
                 stringValue = ([value boolValue] == YES) ? @"1" : @"0";
             }
             else
             {
+                NSLog(@"NSNumber is called.");
                 stringValue = [value stringValue];
             }
         }

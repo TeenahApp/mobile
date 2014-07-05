@@ -25,4 +25,6 @@
 
 @property (nonatomic, strong) TSweetResponse * tokenizeResponse;
 
+@property (nonatomic, strong) UIAlertView * alert;
+
 @end

@@ -79,6 +79,10 @@
             // Check if the response code is not successful.
             if (self.tokenizeResponse.code == 204)
             {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"تم إرسال كلمة المرور المؤقتة إلى رقم الجوّال المُدخل، قد تصل بعد لحظات، و إذا كانت قد أرسلت لك كلمة مرور مؤقتة قبل قليل فهي صالحة للاستخدام." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                
+                [alert show];
+                
                 [self performSegueWithIdentifier:@"showSecondHandShakeLogin" sender:sender];
             }
             else

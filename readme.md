@@ -27,7 +27,9 @@ FIXES:
 DONE: AddMemberEducationViewController
 DONE: AddMemberJobViewController
 DONE: ViewMemberTableViewController -- Except the age matter.
-
+DONE: AddEventViewController
+DONE: SecondHandShakeLoginTableViewController
+DONE: FirstHandShakeLoginTableViewController
 
 1. Checking the indian numbers if they understood as numbers not encoded strings.
 2. When clicking ok done on complete registeration.
@@ -39,6 +41,8 @@ DONE: ViewMemberTableViewController -- Except the age matter.
 17. I guess we could enforce adding a major for the person.
 24. When updating the information of a member if the server responded with 400 is different of responsing 403.
 8. Design a better design for images for medias.
+29. When sending a login SMS, notify the user to wait, or about the current situation.
+30. Make sure to accept the indian numbers.
 
 TODO:
 

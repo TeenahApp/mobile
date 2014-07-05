@@ -82,6 +82,7 @@
             {
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال كلمة المرور المؤقتة بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [alert show];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 return;
             }
             
