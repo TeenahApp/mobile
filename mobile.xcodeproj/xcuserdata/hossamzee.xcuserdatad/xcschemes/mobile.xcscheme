@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FD54660518F5A66000BFD409"
-               BuildableName = "mobile.app"
+               BuildableName = "&#x62a;&#x64a;&#x646;&#x647;.app"
                BlueprintName = "mobile"
                ReferencedContainer = "container:mobile.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FD54660518F5A66000BFD409"
-            BuildableName = "mobile.app"
+            BuildableName = "&#x62a;&#x64a;&#x646;&#x647;.app"
             BlueprintName = "mobile"
             ReferencedContainer = "container:mobile.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FD54660518F5A66000BFD409"
-            BuildableName = "mobile.app"
+            BuildableName = "&#x62a;&#x64a;&#x646;&#x647;.app"
             BlueprintName = "mobile"
             ReferencedContainer = "container:mobile.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FD54660518F5A66000BFD409"
-            BuildableName = "mobile.app"
+            BuildableName = "&#x62a;&#x64a;&#x646;&#x647;.app"
             BlueprintName = "mobile"
             ReferencedContainer = "container:mobile.xcodeproj">
          </BuildableReference>
