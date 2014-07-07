@@ -105,9 +105,9 @@
                     ] mutableCopy],
                    
                    // Section 4: Medias.
-                   @[
-                       @{@"Add": (self.event.medias.count == 0) ? @"إضافة صورة" : [NSString stringWithFormat:@"عرض الـ %lu صور أو إضافة", (long)self.event.medias.count]},
-                    ],
+                   [@[
+                       [@{@"Add": (self.event.medias.count == 0) ? @"إضافة صورة" : [NSString stringWithFormat:@"عرض الـ %lu صور أو إضافة", (long)self.event.medias.count]} mutableCopy],
+                    ] mutableCopy],
     ] mutableCopy];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -142,6 +142,18 @@
     // And then, reload the data in the table.
     [self.tableView reloadData];
 }
+
+-(void)refreshEventMedias:(NSNotification *) notification
+{
+    //self.event.medi++;
+    
+    // Update the comments count in the interface.
+    [[[self.data objectAtIndex:4] objectAtIndex:0] setObject:[NSString stringWithFormat:@"عرض الصور الـ %ld أو إضافة", (long)self.event.medias.count] forKey:@"Add"];
+    
+    // And then, reload the data in the table.
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Table view data source
 
@@ -322,7 +334,6 @@
             
         });
     });
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

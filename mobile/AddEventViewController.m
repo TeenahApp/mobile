@@ -95,7 +95,7 @@
 
     if (self.form.circles.count == 0)
     {
-        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال موقع المناسبة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء تحديد و دعوة دائرة واحدة على الأقل للمناسبة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         [self.alert show];
         return;
     }

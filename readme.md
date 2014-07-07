@@ -15,13 +15,7 @@ TESTING CODE:
 16. After adding a relationship with number it shows nothing.
 18. Do not forget to add a job for calculating the ages.
 19. View event: the creator has a not updated information.
-20. Consider back button after adding a new event.
-22. Creator image is enlarging when appearing again -- also reloading the image twise.
-25. The image should not be reloaded again and agian whenever the cell appears.
-26. Update the likes count whenever the member likes a member, event, media.
 27. Notify the user whenever the member has been added, in member relations context.
-28. Liking a comment has some issues, when liking another comment after liking one comment.
-29. Has some issue when logining in.
 
 FIXES:
 
@@ -44,6 +38,12 @@ DONE: FirstHandShakeLoginTableViewController
 8. Design a better design for images for medias.
 29. When sending a login SMS, notify the user to wait, or about the current situation.
 30. Make sure to accept the indian numbers.
+26. Update the likes count whenever the member likes a member, event, media.
+28. Liking a comment has some issues, when liking another comment after liking one comment.
+29. Has some issue when logining in.
+22. Creator image is enlarging when appearing again -- also reloading the image twise.
+20. Consider back button after adding a new event.
+
 
 TODO:
 
@@ -89,4 +89,6 @@ FUTURE:
 29. Give the user to choose the appropriate view for events.
 30. The end time of an event should be optional.
 31. When entering a city name the coordinates should be near.
+25. The image should not be reloaded again and agian whenever the cell appears.
+
 

@@ -91,8 +91,8 @@
                        
                        @{@"Stats": @[
                                     @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.viewsCount]},
-                                    @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.likesCount]},
-                                    @{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.commentsCount]},
+                                    [@{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.likesCount]} mutableCopy],
+                                    [@{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.media.commentsCount]} mutableCopy],
                                  ]
                          },
                        
@@ -105,16 +105,35 @@
                     ],
                    
                    // Section 2: Comments.
-                   @[
-                       @{@"Add": (self.media.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض الـ %ld تعليقات أو إضافة", (long)self.media.commentsCount]},
-                    ],
+                   [@[
+                       [@{@"Add": (self.media.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض الـ %ld تعليقات أو إضافة", (long)self.media.commentsCount]} mutableCopy],
+                    ] mutableCopy],
     ] mutableCopy];
+    
+    // Add an observer.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMediaComments:) name:@"refreshMediaComments" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Observers.
+
+-(void)refreshMediaComments:(NSNotification *) notification
+{
+    self.media.commentsCount++;
+    
+    // Update the likes in the interface.
+    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:2] setObject:[NSString stringWithFormat:@"%d", self.media.commentsCount] forKey:@"count"];
+    
+    // Update the comments count in the interface.
+    [[[self.data objectAtIndex:2] objectAtIndex:0] setObject:[NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.media.commentsCount] forKey:@"Add"];
+    
+    // And then, reload the data in the table.
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -242,11 +261,32 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // Check if the action has been taken.
-            self.media.hasLiked = YES;
-            [self.likeButton setEnabled:NO];
+            if (likeResponse.code == 204)
+            {
+                // Check if the action has been taken.
+                self.media.hasLiked = YES;
+                self.media.likesCount++;
+                
+                // Update the likes in the interface.
+                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:1] setObject:[NSString stringWithFormat:@"%d", self.media.likesCount] forKey:@"count"];
+                
+                [self.likeButton setEnabled:NO];
+                
+                // Show an alert saying thanks.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل إعجابك." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                // Show an alert saying error.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يُمكنك تسجيل إعجابك، ربّما ليس لديك الصلاحيّة أو أنّك قد سجّلت إعجابك مُسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
         });
     });
 }

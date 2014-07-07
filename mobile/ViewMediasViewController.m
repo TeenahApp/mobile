@@ -27,6 +27,29 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Show the no rows message if there is none.
+    self.noRowsView = [[UIView alloc] initWithFrame:self.view.frame];
+    self.noRowsView.backgroundColor = [UIColor clearColor];
+    
+    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat noRowsMessageHeight = self.noRowsView.frame.size.height - navBarHeight - tabBarHeight;
+    
+    self.noRowsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.noRowsView.frame.size.width, noRowsMessageHeight)];
+    self.noRowsLabel.numberOfLines = 0;
+    self.noRowsLabel.shadowColor = [UIColor lightTextColor];
+    self.noRowsLabel.textColor = [UIColor grayColor];
+    self.noRowsLabel.shadowOffset = CGSizeMake(0, 1);
+    self.noRowsLabel.backgroundColor = [UIColor clearColor];
+    self.noRowsLabel.textAlignment =  NSTextAlignmentCenter;
+    
+    self.noRowsLabel.text = @"لم يتم إضافة صور، يُمكنك إضافة صورة من خلال أيقونة (+) في أعلى اليمين.";
+    
+    [self.noRowsView addSubview:self.noRowsLabel];
+    self.noRowsView.hidden = YES;
+    
+    [self.collectionView insertSubview:self.noRowsView belowSubview:self.collectionView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +60,15 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (self.medias.count == 0)
+    {
+        self.noRowsView.hidden = NO;
+    }
+    else
+    {
+        self.noRowsView.hidden = YES;
+    }
+    
     return self.medias.count;
 }
 
@@ -56,7 +88,6 @@
         UIImage * photo = [[UIImage alloc]initWithData:data];
             
         dispatch_async(dispatch_get_main_queue(), ^{
-            //[cell.photo setImage:photo];
             UIImageView * imageView = (UIImageView *)[cell viewWithTag:11];
             [imageView setImage:photo];
         });
@@ -95,7 +126,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the response code is not successful.
+            // Check if the response code is not successful.
             if (createMediaResponse.code == 200)
             {
                 //self.member = [[TMember alloc] initWithJson:memberResponse.json];
@@ -105,6 +136,11 @@
                 newEventMedia.media = newMedia;
                 
                 [self.medias addObject:newEventMedia];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshEventMedias" object:nil];
+
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"تمّ إضافة الصورة بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
             else
             {

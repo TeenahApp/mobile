@@ -257,9 +257,6 @@
                 [self loadComments];
                 [self.tableView reloadData];
                 
-                //[[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMemberComments" object:nil];
-                // TODO: refresh media, event comments too.
-                
                 if ([self.area isEqual:@"event"])
                 {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshEventComments" object:nil];
@@ -272,6 +269,9 @@
                 {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMemberComments" object:nil];
                 }
+                
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"تمّ إضافة التعليق بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
             else
             {

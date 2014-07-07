@@ -18,6 +18,9 @@
 
 @interface ViewMediasViewController : UICollectionViewController  <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (nonatomic, strong) UILabel * noRowsLabel;
+@property (nonatomic, strong) UIView * noRowsView;
+
 @property NSInteger eventId;
 @property NSInteger circleId;
 
