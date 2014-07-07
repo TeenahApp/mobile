@@ -77,6 +77,7 @@
 		FDD1511A192FE1BE00BC41E5 /* TMemberEducation.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD15119192FE1BE00BC41E5 /* TMemberEducation.m */; };
 		FDD1511D192FFEA100BC41E5 /* AddMemberEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */; };
 		FDD15120192FFF2F00BC41E5 /* AddMemberEducationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */; };
+		FDD7769F1968625A00ED956A /* UILikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD7769E1968625A00ED956A /* UILikeButton.m */; };
 		FDE4A8901933C8FF00E3B866 /* ViewEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE4A88F1933C8FF00E3B866 /* ViewEventTableViewController.m */; };
 		FDF1F22B18F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21618F5C891001B53D0 /* TSweetAutoCompletesCommunicator.m */; };
 		FDF1F22C18F5C891001B53D0 /* TSweetCirclesCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF1F21818F5C891001B53D0 /* TSweetCirclesCommunicator.m */; };
@@ -229,6 +230,8 @@
 		FDD1511C192FFEA100BC41E5 /* AddMemberEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberEducationViewController.m; sourceTree = "<group>"; };
 		FDD1511E192FFF2F00BC41E5 /* AddMemberEducationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberEducationForm.h; sourceTree = "<group>"; };
 		FDD1511F192FFF2F00BC41E5 /* AddMemberEducationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberEducationForm.m; sourceTree = "<group>"; };
+		FDD7769D1968625A00ED956A /* UILikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILikeButton.h; sourceTree = "<group>"; };
+		FDD7769E1968625A00ED956A /* UILikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILikeButton.m; sourceTree = "<group>"; };
 		FDE4A88E1933C8FF00E3B866 /* ViewEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEventTableViewController.h; sourceTree = "<group>"; };
 		FDE4A88F1933C8FF00E3B866 /* ViewEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEventTableViewController.m; sourceTree = "<group>"; };
 		FDF1F21418F5C891001B53D0 /* TSweet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSweet-Prefix.pch"; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				FD0C3E581934834E001A5DB2 /* Cells */,
 				FD635C6919352B35007B3AAE /* UITabInputView.h */,
 				FD635C6A19352B35007B3AAE /* UITabInputView.m */,
+				FDD7769D1968625A00ED956A /* UILikeButton.h */,
+				FDD7769E1968625A00ED956A /* UILikeButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -743,6 +748,7 @@
 				FD5377CE19327569002A62F0 /* AddMemberJobViewController.m in Sources */,
 				FD96ECDA194CE9990030F6BE /* TMessageMedia.m in Sources */,
 				FD4AF16519293B4A00F41129 /* FXForms.m in Sources */,
+				FDD7769F1968625A00ED956A /* UILikeButton.m in Sources */,
 				FD697A0A19448EBE00D571E2 /* UpdateMemberInfoForm.m in Sources */,
 				FD85CB12191CE808003707AC /* TCircle.m in Sources */,
 				FD5A6A88193A844900CE9E10 /* SecondHandShakeLoginTableViewController.m in Sources */,

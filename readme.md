@@ -20,7 +20,8 @@ TESTING CODE:
 25. The image should not be reloaded again and agian whenever the cell appears.
 26. Update the likes count whenever the member likes a member, event, media.
 27. Notify the user whenever the member has been added, in member relations context.
-28. Liking a comment has some issues.
+28. Liking a comment has some issues, when liking another comment after liking one comment.
+29. Has some issue when logining in.
 
 FIXES:
 
@@ -85,3 +86,7 @@ FUTURE:
 39. Location directions.
 14. Consider emoj. the input was empty.
 28. MBProgressHUD consider changing the appearance of it.
+29. Give the user to choose the appropriate view for events.
+30. The end time of an event should be optional.
+31. When entering a city name the coordinates should be near.
+

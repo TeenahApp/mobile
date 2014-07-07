@@ -447,7 +447,7 @@
     self.member.commentsCount++;
 
     // Update the likes in the interface.
-    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:3] setObject:[NSString stringWithFormat:@"%d", self.member.likesCount] forKey:@"count"];
+    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:3] setObject:[NSString stringWithFormat:@"%d", self.member.commentsCount] forKey:@"count"];
     
     // Update the comments count in the interface.
     [[[self.data objectAtIndex:6] objectAtIndex:0] setObject:[NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.member.commentsCount] forKey:@"Add"];

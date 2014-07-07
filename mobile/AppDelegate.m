@@ -15,8 +15,8 @@
     // $2y$10$7te/GxO0AwqUhZ61IMOLSuWp94LPK1M1fzu0Qks6u/YusvUvWKDIK
     // TEMP.USER.TOKEN
     
-    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
-    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
+//    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
+//    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
 //
 //    [UICKeyChainStore setString:@"$2y$10$uxPSsP/QZ3eo69Dmg92syePntDjfP1qqQggVPvtpAJt4EdRWNWgQm" forKey:@"usertoken" service:@"com.teenah-app.mobile"];
 //    [UICKeyChainStore setString:@"2" forKey:@"memberid" service:@"com.teenah-app.mobile"];

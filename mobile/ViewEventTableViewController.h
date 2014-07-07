@@ -40,4 +40,6 @@
 
 @property (strong, nonatomic) TSweetResponse * likeResponse;
 
+@property (strong, nonatomic) UIAlertView * alert;
+
 @end

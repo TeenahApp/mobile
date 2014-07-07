@@ -78,10 +78,10 @@
                    @[
                        
                        @{@"Stats": @[
-                                        @{@"label": @"حاضر", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.comingsCount]},
-                                        @{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.likesCount]},
+                                        [@{@"label": @"حاضر", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.comingsCount]} mutableCopy],
+                                        [@{@"label": @"إعجاب", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.likesCount]} mutableCopy],
                                         @{@"label": @"زيارة", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.viewsCount]},
-                                        @{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.commentsCount]},
+                                        [@{@"label": @"تعليق", @"count": [NSString stringWithFormat:@"%ld", (long)self.event.commentsCount]} mutableCopy],
                                     ]
                         },
                        
@@ -100,9 +100,9 @@
                     ],
                    
                    // Section 3: Comments.
-                   @[
-                       @{@"Add": (self.event.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض الـ %ld تعليقات أو إضافة", (long)self.event.commentsCount]},
-                    ],
+                   [@[
+                      [@{@"Add": (self.event.commentsCount == 0) ? @"إضافة تعليق" : [NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.event.commentsCount]} mutableCopy],
+                    ] mutableCopy],
                    
                    // Section 4: Medias.
                    @[
@@ -115,12 +115,32 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Add observer(s).
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshEventComments:) name:@"refreshEventComments" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshEventMedias:) name:@"refreshEventMedias" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Observers.
+
+-(void)refreshEventComments:(NSNotification *) notification
+{
+    self.event.commentsCount++;
+    
+    // Update the likes in the interface.
+    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:3] setObject:[NSString stringWithFormat:@"%d", self.event.commentsCount] forKey:@"count"];
+    
+    // Update the comments count in the interface.
+    [[[self.data objectAtIndex:3] objectAtIndex:0] setObject:[NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.event.commentsCount] forKey:@"Add"];
+    
+    // And then, reload the data in the table.
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -267,19 +287,42 @@
 - (IBAction)like:(id)sender
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         self.likeResponse = [[EventsCommunicator shared] likeEvent:self.event.eventId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            // TODO: Check if the action has been taken.
-            self.event.hasLiked = YES;
-            [self.likeButton setEnabled:NO];
+            if (self.likeResponse.code == 204)
+            {
+                // Check if the action has been taken.
+                self.event.hasLiked = YES;
+                self.event.likesCount++;
+                
+                // Update the likes in the interface.
+                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:1] setObject:[NSString stringWithFormat:@"%d", self.event.likesCount] forKey:@"count"];
+                
+                [self.likeButton setEnabled:NO];
+                
+                // Show an alert saying thanks.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل إعجابك." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                // Show an alert saying error.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يُمكنك تسجيل إعجابك، ربّما ليس لديك الصلاحيّة أو أنّك قد سجّلت إعجابك مُسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
         });
     });
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -297,39 +340,92 @@
 -(void)didSayWillCome
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         TSweetResponse * decideResponse = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"willcome"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            self.decision = @"willcome";
-            
-            NSMutableDictionary * decisionSection = [[self.data objectAtIndex:1] objectAtIndex:0];
-            [decisionSection setObject:self.decision forKey:@"Decision"];
+            if (decideResponse.code == 204)
+            {
+                // Set some variables.
+                self.event.comingsCount++;
+                self.decision = @"willcome";
 
+                [[[self.data objectAtIndex:1] objectAtIndex:0] setObject:self.decision forKey:@"Decision"];
+                
+                // Update the comings in the interface.
+                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:0] setObject:[NSString stringWithFormat:@"%d", self.event.comingsCount] forKey:@"count"];
+                
+                // Show an alert saying thanks.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل قرارك." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                // Show an alert saying error.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يُمكنك تسجيل قرارك، ربّما ليس لديك الصلاحيّة أو أنّك قد سجّلت قرارك مُسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView reloadData];
+            
         });
     });
 }
 
 -(void)didSayApologize
 {
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//        
+//        TSweetResponse * decideResponse = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"apologize"];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            self.decision = @"apologize";
+//            
+//            NSMutableDictionary * decisionSection = [[self.data objectAtIndex:1] objectAtIndex:0];
+//            [decisionSection setObject:self.decision forKey:@"Decision"];
+//
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            [self.tableView reloadData];
+//        });
+//    });
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         TSweetResponse * decideResponse = [[EventsCommunicator shared] makeDecision:self.event.eventId decision:@"apologize"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            self.decision = @"apologize";
+            if (decideResponse.code == 204)
+            {
+                // Set some variables.
+                self.decision = @"apologize";
+                
+                [[[self.data objectAtIndex:1] objectAtIndex:0] setObject:self.decision forKey:@"Decision"];
+                
+                // Show an alert saying thanks.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل قرارك." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                // Show an alert saying error.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يُمكنك تسجيل قرارك، ربّما ليس لديك الصلاحيّة أو أنّك قد سجّلت قرارك مُسبقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
             
-            NSMutableDictionary * decisionSection = [[self.data objectAtIndex:1] objectAtIndex:0];
-            [decisionSection setObject:self.decision forKey:@"Decision"];
-
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView reloadData];
+            
         });
     });
 }

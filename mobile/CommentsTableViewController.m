@@ -173,8 +173,8 @@
     
     UILabel * likesLabel = (UILabel *)[cell viewWithTag:55];
     likesLabel.text = [NSString stringWithFormat:@"%ld",(long)comment.likesCount];
-    
-    UIButton * likeButton = (UIButton *)[cell viewWithTag:66];
+
+    UILikeButton * likeButton = (UILikeButton *)[cell viewWithTag:66];
     
     if (comment.hasLiked == YES)
     {
@@ -182,9 +182,14 @@
     }
     else
     {
-        self.currentComment = comment;
+        likeButton.affectedId = self.affectedId;
+        likeButton.commentId = comment.commentId;
+        likeButton.indexPath = indexPath;
+        
         [likeButton addTarget:self action:@selector(likeComment:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    //likeButton.
     
     UIImageView * imageView = (UIImageView *)[cell viewWithTag:11];
     
@@ -281,11 +286,52 @@
 
 -(void)didTouchAttachButton
 {
-    
+    // Not allowed.
 }
 
 -(void)likeComment:(id)sender
 {
+    // Notice: There is probably no need for drawing the comment again.
+    
+    UILikeButton * temp = (UILikeButton *) sender;
+
+    TComment * comment = [self.comments objectAtIndex:temp.indexPath.row];
+    
+    UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:temp.indexPath];
+    
+    UILabel * contentLabel = (UILabel *)[cell viewWithTag:44];
+    contentLabel.text = comment.content;
+    
+    UIButton * creatorButton = (UIButton *)[cell viewWithTag:22];
+    [creatorButton setTitle:comment.creator.displayName forState:UIControlStateNormal];
+    
+    UILabel * createdAtLabel = (UILabel *)[cell viewWithTag:33];
+    [createdAtLabel setText:[self.dateFormatter stringFromDate:comment.createdAt]];
+    
+    UILabel * likesLabel = (UILabel *)[cell viewWithTag:55];
+    likesLabel.text = [NSString stringWithFormat:@"%ld",(long)comment.likesCount];
+    
+    UIImageView * imageView = (UIImageView *)[cell viewWithTag:11];
+    
+    UILikeButton * likeButton = (UILikeButton *)[cell viewWithTag:66];
+    
+    if (comment.creator.photo != nil)
+    {
+        // TODO: Show wait indicator.
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            NSURL * photoUrl = [NSURL URLWithString:comment.creator.photo];
+            
+            // Get the member photo.
+            NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+            UIImage * photo = [[UIImage alloc]initWithData:data];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [imageView setImage:photo];
+            });
+        });
+    }
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -295,15 +341,15 @@
         
         if ([self.area isEqual:@"event"])
         {
-            tsr = [[EventsCommunicator shared] likeCommentOnEvent:self.affectedId commentId:self.currentComment.commentId];
+            tsr = [[EventsCommunicator shared] likeCommentOnEvent:likeButton.affectedId commentId:likeButton.commentId];
         }
         else if ([self.area isEqual:@"media"])
         {
-            tsr = [[MediasCommunicator shared] likeCommentOnMedia:self.affectedId commentId:self.currentComment.commentId];
+            tsr = [[MediasCommunicator shared] likeCommentOnMedia:likeButton.affectedId commentId:likeButton.commentId];
         }
         else if ([self.area isEqual:@"member"])
         {
-            tsr = [[MembersCommunicator shared] likeCommentOnMember:self.affectedId commentId:self.currentComment.commentId];
+            tsr = [[MembersCommunicator shared] likeCommentOnMember:likeButton.affectedId commentId:likeButton.commentId];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -311,7 +357,14 @@
             // Check if the response code is not successful.
             if (tsr.code == 204)
             {
-                self.currentComment.likesCount++;
+                comment.likesCount++;
+
+                [likesLabel setText:[NSString stringWithFormat:@"%d", comment.likesCount]];
+                [likeButton setEnabled:NO];
+                
+                // Show an alert saying thanks.
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل إعجابك بالتعليق." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
             }
             else
             {
