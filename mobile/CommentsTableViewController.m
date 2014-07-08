@@ -341,15 +341,15 @@
         
         if ([self.area isEqual:@"event"])
         {
-            tsr = [[EventsCommunicator shared] likeCommentOnEvent:likeButton.affectedId commentId:likeButton.commentId];
+            tsr = [[EventsCommunicator shared] likeCommentOnEvent:temp.affectedId commentId:temp.commentId];
         }
         else if ([self.area isEqual:@"media"])
         {
-            tsr = [[MediasCommunicator shared] likeCommentOnMedia:likeButton.affectedId commentId:likeButton.commentId];
+            tsr = [[MediasCommunicator shared] likeCommentOnMedia:temp.affectedId commentId:temp.commentId];
         }
         else if ([self.area isEqual:@"member"])
         {
-            tsr = [[MembersCommunicator shared] likeCommentOnMember:likeButton.affectedId commentId:likeButton.commentId];
+            tsr = [[MembersCommunicator shared] likeCommentOnMember:temp.affectedId commentId:temp.commentId];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
