@@ -58,11 +58,6 @@
                     });
                 }
             }
-    else
-    {
-        self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"حدث خطأ أثناء رفع الصورة، الرجاء المحاولة لاحقاً." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-        [self.alert show];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,9 +121,22 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            if (uploadResponse.code == 200)
+            {
+                // Done
+                [self dismissViewControllerAnimated:YES completion:nil];
+
+                self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّ رفع الصورة بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            else
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"حدث خطـأ أثناء رفع الصورة، الرجاء المحاولة مرّة أخرى." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+            }
+            
             // Done.
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
 
         });
     });

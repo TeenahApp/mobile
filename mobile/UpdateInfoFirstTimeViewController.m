@@ -81,10 +81,11 @@
             
             if (initializeResponse.code == 201)
             {
-                NSString * memberId = [NSString stringWithFormat:@"%@", initializeResponse.json[@"member_id"]];
+                //NSString * memberId = [NSString stringWithFormat:@"%@", initializeResponse.json[@"member_id"]];
+                self.memberId = [initializeResponse.json[@"member_id"] integerValue];
                 
-                [UICKeyChainStore setString:memberId forKey:@"usertoken" service:@"com.teenah-app.mobile"];
-                
+                [UICKeyChainStore setString:[NSString stringWithFormat:@"%ld", (long)self.memberId] forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+
                 if ([gender isEqual: @"male"])
                 {
                     [self performSegueWithIdentifier:@"showUploadPhotoView" sender:self];
@@ -111,7 +112,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -119,7 +119,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqual:@"showUploadPhotoView"])
+    {
+        FirstUploadPhotoTableViewController * vc = (FirstUploadPhotoTableViewController *)[segue destinationViewController];
+        vc.memberId = self.memberId;
+    }
 }
-*/
 
 @end

@@ -16,6 +16,7 @@ TESTING CODE:
 18. Do not forget to add a job for calculating the ages.
 19. View event: the creator has a not updated information.
 27. Notify the user whenever the member has been added, in member relations context.
+28. Upload a photo has an issue.
 
 FIXES:
 

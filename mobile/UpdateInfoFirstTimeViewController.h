@@ -13,10 +13,14 @@
 #import "FXForms.h"
 #import "UpdateMemberFirstTimeForm.h"
 
+#import "FirstUploadPhotoTableViewController.h"
+
 @interface UpdateInfoFirstTimeViewController : FXFormViewController
 
 @property (strong, nonatomic) UpdateMemberFirstTimeForm * form;
 
 @property (nonatomic, strong) UIAlertView * alert;
+
+@property NSInteger memberId;
 
 @end

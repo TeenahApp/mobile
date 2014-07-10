@@ -71,8 +71,8 @@
          */
 
         self.apiUrl = @"https://api.teenah-app.com/v1";
-        self.appKey = @"PPmO9LM80coz51h3aWyd9sU0TkQKZY";
-        self.appSecret = @"$2y$10$1MfPiRe1tXM9RxTHF98AXeucseKAVKEiDmTf6mtmWojrx4bxn.CsO";
+        self.appKey = @"CGnYFYBc73PydEImYEJqnRwkWYDXUt";
+        self.appSecret = @"$2y$10$9SDQs/pYAt7FDRrBa5a1nupMr06x.mirK5g4UBTbNQTymblCBwZBG";
 
         NSString *language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
         NSLog(@"language = %@", language);

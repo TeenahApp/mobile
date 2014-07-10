@@ -1215,7 +1215,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="8N7-rL-yvL">
-                            <rect key="frame" x="0.0" y="64" width="320" height="250"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYk-6E-p4a">
@@ -1235,7 +1235,7 @@
                             <tableViewSection id="ItG-s2-S7y">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RRH-HE-ngT">
-                                        <rect key="frame" x="0.0" y="314" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="250" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RRH-HE-ngT" id="1wu-kr-rT5">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1257,7 +1257,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oub-ca-SEJ">
-                                        <rect key="frame" x="0.0" y="358" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="294" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oub-ca-SEJ" id="TEr-Ae-sfy">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -2019,11 +2019,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hbd-4k-V2n"/>
-        <segue reference="J4P-Vd-9bA"/>
+        <segue reference="QvK-NN-VIj"/>
+        <segue reference="ghp-LU-FB7"/>
+        <segue reference="IG7-Dy-u21"/>
         <segue reference="wJr-mp-pWQ"/>
         <segue reference="Uka-AT-8DX"/>
-        <segue reference="QvK-NN-VIj"/>
         <segue reference="Apj-Nu-HMS"/>
         <segue reference="eOu-fK-l8m"/>
         <segue reference="zCv-pf-eKl"/>
