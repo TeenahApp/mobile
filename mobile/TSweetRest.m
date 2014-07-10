@@ -71,8 +71,8 @@
          */
 
         self.apiUrl = @"https://api.teenah-app.com/v1";
-        self.appKey = @"T85b3TH4iOVLI7jUxaHLVVQkD4azOL";
-        self.appSecret = @"$2y$10$xPNHnvMRDE8v1NApshog.O.85S2YIJqVVQhsmYpqsWucN43fM09ju";
+        self.appKey = @"xhUPuwwQnTNHVxc8TqwCRcuATkm8Fr";
+        self.appSecret = @"$2y$10$xFwMnqCM.59claA8Vhj6duXZ0InCilZZNtifXyk9XTiYhBpyQeCA.";
     }
 
     return self;

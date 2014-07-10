@@ -135,6 +135,8 @@
 
                 self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّ رفع الصورة بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMember" object:nil];
             }
             else
             {
