@@ -94,7 +94,7 @@
     }
     
     // Validation.
-    if (self.form.name == nil)
+    if (self.form.name == nil || [self.form.name isEqual:@""])
     {
         self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء إدخال اسم الفرد." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
         [self.alert show];
@@ -129,11 +129,22 @@
             // Check if the response code is not successful.
             if (createMemberRelationResponse.code == 201)
             {
-                [self dismissViewControllerAnimated:YES completion:nil];
+                self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"تمّ إضافة العلاقة للفرد بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
+                
+                // Done
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMember" object:nil];
+            }
+            else if (createMemberRelationResponse.code == 400)
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء التأكّد من تعبئة الحقول بشكلٍ صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.alert show];
             }
             else
             {
-                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لم يتم إضافة الفرد، تأكّد من إدخال البيانات بشكل صحيح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                self.alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"لا يُمكن إضافة العلاقة الآن، الرجاء المحاولة لاحقاً.." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
             }
 

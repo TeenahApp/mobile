@@ -139,7 +139,7 @@
         else if (indexPath.section == 2)
         {
             // Check if the circle name is empty or the members are empty.
-            if (self.name == nil)
+            if (self.name == nil || [self.name isEqual:@""])
             {
                 self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء تعبئة حقل اسم الدائرة المُراد إنشاؤها." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
@@ -171,6 +171,12 @@
                 [self.alert show];
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
+            else if (createCircleResponse.code == 400)
+            {
+                self.alert = [[UIAlertView alloc]initWithTitle:@"خطأ" message:@"الرجاء التأكّد من تعبئة الحقول بشكلٍ صحيح و التأكّد من أنّ أعضاء الدائرة اثنين فأكثر." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+                [self.alert show];
                 return;
             }
             else

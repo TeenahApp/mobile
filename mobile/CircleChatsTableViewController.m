@@ -99,7 +99,7 @@
             
             if (self.tableView.contentSize.height > self.tableView.frame.size.height)
             {
-                CGPoint offset = CGPointMake(0, (self.tableView.contentSize.height - self.tableView.frame.size.height) + 20);
+                CGPoint offset = CGPointMake(0, (self.tableView.contentSize.height - self.tableView.frame.size.height) + 80);
                 [self.tableView setContentOffset:offset animated:YES];
             }
 
@@ -223,12 +223,16 @@
                 [self.alert show];
             }
             
+            self.tabInput.textField.text = @"";
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
 
-    self.tabInput.textField.text = @"";
+
     [self dismissKeyboard];
+
+//    NSLog(@"didTouchDoneButton has been called.");
+//    NSLog(@"text = %@", self.tabInput.textField.text);
 }
 
 -(void)didTouchAttachButton

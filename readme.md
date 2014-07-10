@@ -25,6 +25,15 @@ DONE: ViewMemberTableViewController -- Except the age matter.
 DONE: AddEventViewController
 DONE: SecondHandShakeLoginTableViewController
 DONE: FirstHandShakeLoginTableViewController
+DONE: SettingsTableViewController.
+DONE: ViewCircleStatsTableViewController.
+DONE: CircleChatsTableViewController.
+DONE: TreeTableViewController.
+DONE: ViewMediasViewController.
+DONE: CirclesTableViewController.
+DONE: CircleMembersTableViewController.
+DONE: EventsTableViewController.
+DONE: AddEventViewController.
 
 1. Checking the indian numbers if they understood as numbers not encoded strings.
 2. When clicking ok done on complete registeration.
@@ -43,7 +52,8 @@ DONE: FirstHandShakeLoginTableViewController
 29. Has some issue when logining in.
 22. Creator image is enlarging when appearing again -- also reloading the image twise.
 20. Consider back button after adding a new event.
-
+28. Sending a message sometimes throws an error.
+29. The scrolling in circle chatting has some issues.
 
 TODO:
 

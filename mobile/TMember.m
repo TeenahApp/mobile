@@ -115,7 +115,7 @@
         }
         else
         {
-            self.displayName = self.fullname;
+            self.displayName = [self sanitize:self.fullname]; //self.fullname;
         }
         
         self.displayYears = displayYears;
@@ -206,7 +206,7 @@
         self.updatedAt = [longDateFormatter dateFromString: [json objectForKey:@"updated_at"]];
         
     }
-    
+
     return self;
 }
 
@@ -214,6 +214,19 @@
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"{id: %ld, dobYear: %ld, hasLiked: %d}", (long)self.memberId, (long)self.dobYear, self.hasLiked];
+}
+
+-(NSString *)sanitize:(NSString *)fullname
+{
+    NSArray * names = [fullname componentsSeparatedByString:@" "];
+
+    if (names.count > 3)
+    {
+        NSArray * specificNames = [NSArray arrayWithObjects:[names objectAtIndex:0], [names objectAtIndex:1], [names objectAtIndex:names.count-1], nil];
+        return [specificNames componentsJoinedByString:@" "];
+    }
+
+    return fullname;
 }
 
 @end

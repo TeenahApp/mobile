@@ -108,6 +108,9 @@
 
 -(void)goToLogoutMember
 {
+    [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
+    [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -118,9 +121,6 @@
             
             if (logoutResponse.code == 204)
             {
-                [UICKeyChainStore removeItemForKey:@"usertoken" service:@"com.teenah-app.mobile"];
-                [UICKeyChainStore removeItemForKey:@"memberid" service:@"com.teenah-app.mobile"];
-                
                 [self performSegueWithIdentifier:@"showLoginView" sender:self];
             }
             else

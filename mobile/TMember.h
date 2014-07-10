@@ -85,5 +85,6 @@
 // TODO: trustees.
 
 -(id) initWithJson: (NSDictionary *) json;
+-(NSString *)sanitize: (NSString *)fullname;
 
 @end
