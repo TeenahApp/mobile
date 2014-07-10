@@ -84,7 +84,7 @@
                 //NSString * memberId = [NSString stringWithFormat:@"%@", initializeResponse.json[@"member_id"]];
                 self.memberId = [initializeResponse.json[@"member_id"] integerValue];
                 
-                [UICKeyChainStore setString:[NSString stringWithFormat:@"%ld", (long)self.memberId] forKey:@"usertoken" service:@"com.teenah-app.mobile"];
+                [UICKeyChainStore setString:[NSString stringWithFormat:@"%ld", (long)self.memberId] forKey:@"memberid" service:@"com.teenah-app.mobile"];
 
                 if ([gender isEqual: @"male"])
                 {
@@ -122,6 +122,8 @@
     if ([[segue identifier] isEqual:@"showUploadPhotoView"])
     {
         FirstUploadPhotoTableViewController * vc = (FirstUploadPhotoTableViewController *)[segue destinationViewController];
+        
+        vc.isFirst = YES;
         vc.memberId = self.memberId;
     }
 }

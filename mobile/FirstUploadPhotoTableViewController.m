@@ -124,7 +124,14 @@
             if (uploadResponse.code == 200)
             {
                 // Done
-                [self dismissViewControllerAnimated:YES completion:nil];
+                if (self.isFirst == YES)
+                {
+                    [self performSegueWithIdentifier:@"showMainTabBarView" sender:sender];
+                }
+                else
+                {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }
 
                 self.alert = [[UIAlertView alloc]initWithTitle:@"تم" message:@"تمّ رفع الصورة بنجاح." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
                 [self.alert show];
@@ -160,7 +167,6 @@
     return newImage;
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -168,7 +174,14 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showMainTabBarView"])
+    {
+        UITabBarController * tbc = [segue destinationViewController];
+        UINavigationController * tbnc = tbc.viewControllers[0];
+        
+        TreeViewController * tvc = (TreeViewController *)tbnc.viewControllers[0];
+        tvc.memberId = self.memberId;
+    }
 }
-*/
 
 @end

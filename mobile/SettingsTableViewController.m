@@ -148,7 +148,7 @@
         
         fuptvc.memberId = self.memberId;
         fuptvc.isFirst = NO;
-        
+
         fuptvc.hidesBottomBarWhenPushed = YES;
     }
     

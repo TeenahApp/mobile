@@ -14,6 +14,8 @@
 
 #import "TMember.h"
 
+#import "TreeViewController.h"
+
 @interface FirstUploadPhotoTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) UIImage * chosenImage;
