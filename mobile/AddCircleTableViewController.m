@@ -221,9 +221,23 @@
         
         NSString * chosenMobile = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, ABMultiValueGetIndexForIdentifier(phone, identifier));
         
-        // Clean the mobile a bit.
-        NSString * mobile = [self mobileFormatWithString:chosenMobile];
+        // Check if the mobile is correct.
+        NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
         
+        NSError *anError = nil;
+        NBPhoneNumber *tempMobile = [phoneUtil parseWithPhoneCarrierRegion:chosenMobile error:&anError];
+        
+        if (anError != nil || [phoneUtil isValidNumber:tempMobile] == NO)
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال رقم جوّال بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
+            
+            [alert show];
+            return NO;
+        }
+
+        // Clean the mobile a bit.
+        NSString * mobile = [self mobileFormatWithString:tempMobile];
+
         // Get the member information.
         TSweetResponse * getMemberIdResponse = [[MembersCommunicator shared] getMemberIdByMobile:mobile];
         
@@ -273,21 +287,17 @@
     return YES;
 }
 
--(NSString *)mobileFormatWithString:(NSString *)mobile
+-(NSString *)mobileFormatWithString:(NBPhoneNumber *)mobile
 {
-    // Special case.
-    if (mobile.length == 10)
-    {
-        return [NSString stringWithFormat:@"966%lld", [mobile longLongValue]];
-    }
+    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    
+    NSError *anError = nil;
+    NSString * stringMobile = [phoneUtil format:mobile numberFormat:NBEPhoneNumberFormatE164 error:&anError];
     
     // Remove the characters.
-    mobile = [[mobile componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+    stringMobile = [[stringMobile componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
-    // Remove the leading zeros.
-    mobile = [NSString stringWithFormat:@"%lld", [mobile longLongValue]];
-    
-    return mobile;
+    return stringMobile;
 }
 
 - (void)hideKeyboard

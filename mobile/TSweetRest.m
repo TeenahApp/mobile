@@ -8,10 +8,10 @@
 
 #import "TSweetRest.h"
 
-@interface NSMutableURLRequest (NSMutableURLRequest_Extended)
-+(BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host;
-+(void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString*)host;
-@end
+//@interface NSMutableURLRequest (NSMutableURLRequest_Extended)
+//+(BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host;
+//+(void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString*)host;
+//@end
 
 @implementation NSString (NSString_Extended)
 
@@ -64,15 +64,9 @@
 
     if (self = [super init])
     {
-        /*
         self.apiUrl = @"http://api.teenah-app.com/v1";
-        self.appKey = @"MNwPLdo7hVdj5Mj0Jz7diq804sd5Sf";
-        self.appSecret = @"$2y$10$9XuWj51VVDY8tuhYghGcIuN2oEL35RnA17GeesMxIm2cKYvDpGBEW";
-         */
-
-        self.apiUrl = @"https://api.teenah-app.com/v1";
-        self.appKey = @"xhUPuwwQnTNHVxc8TqwCRcuATkm8Fr";
-        self.appSecret = @"$2y$10$xFwMnqCM.59claA8Vhj6duXZ0InCilZZNtifXyk9XTiYhBpyQeCA.";
+        self.appKey = @"";
+        self.appSecret = @"";
     }
 
     return self;
@@ -90,7 +84,7 @@
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
     
     // Attempt to ignore the certification.
-    [NSMutableURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
+    //[NSMutableURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
     
     // Set some variables.
     [request setURL:url];
@@ -148,7 +142,7 @@
         id value = parameters[key];
         NSString * stringValue = @"";
         
-        NSLog(@"%@\n", key);
+        //NSLog(@"%@\n", key);
         
         // Check the type of the object and make a related decision.
         if ([value isKindOfClass:[NSNull class]]);
@@ -161,7 +155,7 @@
             }
             else
             {
-                NSLog(@"NSNumber is called.");
+                //NSLog(@"NSNumber is called.");
                 stringValue = [value stringValue];
             }
         }

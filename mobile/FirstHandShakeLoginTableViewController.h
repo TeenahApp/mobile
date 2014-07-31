@@ -15,6 +15,12 @@
 
 #import "SecondHandShakeLoginTableViewController.h"
 
+#import "NBPhoneMetaData.h"
+#import "NBPhoneNumber.h"
+#import "NBPhoneNumberDesc.h"
+#import "NBPhoneNumberUtil.h"
+#import "NBNumberFormat.h"
+
 @interface FirstHandShakeLoginTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSString * mobile;

@@ -13,6 +13,12 @@
 #import "TSweetMembersCommunicator.h"
 #import "TSweetCirclesCommunicator.h"
 
+#import "NBPhoneMetaData.h"
+#import "NBPhoneNumber.h"
+#import "NBPhoneNumberDesc.h"
+#import "NBPhoneNumberUtil.h"
+#import "NBNumberFormat.h"
+
 @interface AddCircleTableViewController : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
 
 @property (strong, nonatomic) NSString * name;

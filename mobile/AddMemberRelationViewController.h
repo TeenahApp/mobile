@@ -16,6 +16,12 @@
 #import "FXForms.h"
 #import "AddMemberRelationForm.h"
 
+#import "NBPhoneMetaData.h"
+#import "NBPhoneNumber.h"
+#import "NBPhoneNumberDesc.h"
+#import "NBPhoneNumberUtil.h"
+#import "NBNumberFormat.h"
+
 @interface AddMemberRelationViewController : FXFormViewController <ABPeoplePickerNavigationControllerDelegate>
 
 @property (strong, nonatomic) AddMemberRelationForm * form;
@@ -23,8 +29,10 @@
 @property (strong, nonatomic) NSString * relation;
 @property NSInteger memberA;
 
+@property (strong, nonatomic) NBPhoneNumberUtil *phoneUtil;
+
 @property (nonatomic, strong) UIAlertView * alert;
 
--(NSString *)mobileFormatWithString:(NSString *)mobile;
+-(NSString *)mobileFormatWithString:(NBPhoneNumber *)mobile;
 
 @end

@@ -17,6 +17,12 @@
 
 #import "ViewMemberTableViewController.h"
 
+#import "NBPhoneMetaData.h"
+#import "NBPhoneNumber.h"
+#import "NBPhoneNumberDesc.h"
+#import "NBPhoneNumberUtil.h"
+#import "NBNumberFormat.h"
+
 @interface CircleMembersTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property NSInteger circleId;
@@ -33,6 +39,6 @@
 
 @property (strong, nonatomic) UIAlertView * alert;
 
--(NSString *)mobileFormatWithString:(NSString *)mobile;
+-(NSString *)mobileFormatWithString:(NBPhoneNumber *)mobile;
 
 @end

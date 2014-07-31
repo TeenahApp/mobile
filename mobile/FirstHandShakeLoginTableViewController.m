@@ -57,15 +57,21 @@
 - (IBAction)sendTempPassword:(id)sender
 {
     // Check if the mobile is correct.
-    self.mobile = [self mobileFormatWithString:self.mobileTextField.text];
+    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
     
-    if (self.mobile.length < 10)
+    NSError *anError = nil;
+    NBPhoneNumber *tempMobile = [phoneUtil parseWithPhoneCarrierRegion:self.mobileTextField.text error:&anError];
+    
+    if (anError != nil || [phoneUtil isValidNumber:tempMobile] == NO)
     {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"خطأ" message:@"الرجاء التأكد من إدخال رقم جوّال بالصياغة الصحيحة." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];
-        
+
         [alert show];
         return;
     }
+
+    // Format the mobile as good as possible.
+    self.mobile = [self mobileFormatWithString:tempMobile];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -111,21 +117,17 @@
     }
 }
 
--(NSString *)mobileFormatWithString:(NSString *)mobile
+-(NSString *)mobileFormatWithString:(NBPhoneNumber *)mobile
 {
-    // Special case.
-    if (mobile.length == 10)
-    {
-        return [NSString stringWithFormat:@"966%lld", [mobile longLongValue]];
-    }
+    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    
+    NSError *anError = nil;
+    NSString * stringMobile = [phoneUtil format:mobile numberFormat:NBEPhoneNumberFormatE164 error:&anError];
     
     // Remove the characters.
-    mobile = [[mobile componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+    stringMobile = [[stringMobile componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
-    // Remove the leading zeros.
-    mobile = [NSString stringWithFormat:@"%lld", [mobile longLongValue]];
-    
-    return mobile;
+    return stringMobile;
 }
 
 @end
