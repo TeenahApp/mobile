@@ -138,7 +138,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"self.data.count = %d", self.data.count);
+    NSLog(@"self.data.count = %lu", (unsigned long)self.data.count);
     
     if (self.data.count == 0)
     {

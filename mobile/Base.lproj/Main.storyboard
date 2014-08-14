@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DTC-lY-A4W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DTC-lY-A4W">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -1020,13 +1021,15 @@
                             </subviews>
                             <color key="backgroundColor" red="0.54117647059999996" green="0.68235294120000001" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
-                        <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تطبيق مفتوح المصدر" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O8b-UR-WIH">
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iXp-4T-rJ9">
                             <rect key="frame" x="0.0" y="348" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <state key="normal" title="تطبيق مفتوح المصدر">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <sections>
                             <tableViewSection id="T5r-90-XBS">
                                 <cells>
@@ -1046,25 +1049,20 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lLs-6W-Ged">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="OrN-wf-dFf" style="IBUITableViewCellStyleDefault" id="lLs-6W-Ged">
                                         <rect key="frame" x="0.0" y="294" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lLs-6W-Ged" id="vs5-g8-1nn">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwt-bU-6gJ">
-                                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="إرسال كلمة المرور المؤقتة" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OrN-wf-dFf">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="إرسال كلمة المرور المؤقتة">
-                                                        <color key="titleColor" red="0.31266267660000002" green="0.73706552930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="sendTempPassword:" destination="ktt-DM-qtU" eventType="touchUpInside" id="yc7-Np-XOK"/>
-                                                    </connections>
-                                                </button>
+                                                    <color key="textColor" red="0.31266267660000002" green="0.73706552930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1078,8 +1076,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="A2n-4b-z0A"/>
                     <connections>
+                        <outlet property="logoView" destination="pf4-ai-SBF" id="fzQ-GP-7bs"/>
                         <outlet property="mobileTextField" destination="rxz-OO-fPu" id="nCQ-Gw-lMy"/>
-                        <outlet property="sendTempPasswordButton" destination="Xwt-bU-6gJ" id="NQk-RC-Day"/>
                         <segue destination="pX7-hM-IfU" kind="modal" identifier="showSecondHandShakeLogin" id="QYg-Ba-Pci"/>
                     </connections>
                 </tableViewController>
@@ -2019,13 +2017,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="zCv-pf-eKl"/>
+        <segue reference="Apj-Nu-HMS"/>
         <segue reference="QvK-NN-VIj"/>
-        <segue reference="5ry-4C-25B"/>
+        <segue reference="hbd-4k-V2n"/>
         <segue reference="IG7-Dy-u21"/>
         <segue reference="wJr-mp-pWQ"/>
         <segue reference="Uka-AT-8DX"/>
-        <segue reference="Apj-Nu-HMS"/>
         <segue reference="eOu-fK-l8m"/>
-        <segue reference="zCv-pf-eKl"/>
     </inferredMetricsTieBreakers>
 </document>

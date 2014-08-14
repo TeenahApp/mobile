@@ -28,8 +28,7 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    
-    [self.view addGestureRecognizer:gestureRecognizer];
+    [self.logoView addGestureRecognizer:gestureRecognizer];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -54,7 +53,7 @@
     [self.mobileTextField resignFirstResponder];
 }
 
-- (IBAction)sendTempPassword:(id)sender
+- (void)sendTempPassword
 {
     // Check if the mobile is correct.
     NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
@@ -89,7 +88,7 @@
                 
                 [alert show];
                 
-                [self performSegueWithIdentifier:@"showSecondHandShakeLogin" sender:sender];
+                [self performSegueWithIdentifier:@"showSecondHandShakeLogin" sender:nil];
             }
             else
             {
@@ -101,6 +100,18 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
+}
+
+#pragma - Table View
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1)
+    {
+        [self sendTempPassword];
+    }
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - Navigation

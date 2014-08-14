@@ -23,6 +23,8 @@
 
 @interface FirstHandShakeLoginTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIView *logoView;
+
 @property (nonatomic, strong) NSString * mobile;
 
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;

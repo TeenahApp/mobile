@@ -134,7 +134,7 @@
     self.event.commentsCount++;
     
     // Update the likes in the interface.
-    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:3] setObject:[NSString stringWithFormat:@"%d", self.event.commentsCount] forKey:@"count"];
+    [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:3] setObject:[NSString stringWithFormat:@"%ld", (long)self.event.commentsCount] forKey:@"count"];
     
     // Update the comments count in the interface.
     [[[self.data objectAtIndex:3] objectAtIndex:0] setObject:[NSString stringWithFormat:@"عرض التعليقات الـ %ld أو إضافة", (long)self.event.commentsCount] forKey:@"Add"];
@@ -313,7 +313,7 @@
                 self.event.likesCount++;
                 
                 // Update the likes in the interface.
-                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:1] setObject:[NSString stringWithFormat:@"%d", self.event.likesCount] forKey:@"count"];
+                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:1] setObject:[NSString stringWithFormat:@"%ld", (long)self.event.likesCount] forKey:@"count"];
                 
                 [self.likeButton setEnabled:NO];
                 
@@ -367,7 +367,7 @@
                 [[[self.data objectAtIndex:1] objectAtIndex:0] setObject:self.decision forKey:@"Decision"];
                 
                 // Update the comings in the interface.
-                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:0] setObject:[NSString stringWithFormat:@"%d", self.event.comingsCount] forKey:@"count"];
+                [[[[[self.data objectAtIndex:0] objectAtIndex:0] objectForKey:@"Stats"] objectAtIndex:0] setObject:[NSString stringWithFormat:@"%ld", (long)self.event.comingsCount] forKey:@"count"];
                 
                 // Show an alert saying thanks.
                 self.alert = [[UIAlertView alloc] initWithTitle:@"تم" message:@"شكراً لك، تم تسجيل قرارك." delegate:nil cancelButtonTitle:@"حسناً" otherButtonTitles:nil];

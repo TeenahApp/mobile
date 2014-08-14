@@ -359,7 +359,7 @@
             {
                 comment.likesCount++;
 
-                [likesLabel setText:[NSString stringWithFormat:@"%d", comment.likesCount]];
+                [likesLabel setText:[NSString stringWithFormat:@"%ld", (long)comment.likesCount]];
                 [likeButton setEnabled:NO];
                 
                 // Show an alert saying thanks.
